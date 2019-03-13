@@ -13,4 +13,5 @@ public class ClsGestorLN {
 	/**
 	 * Aqui generaremos todo en relacion al Gestor.
 	 */
+	
 }
