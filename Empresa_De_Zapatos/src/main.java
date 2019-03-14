@@ -1,9 +1,9 @@
 import LP.ClsMenuPrincipal;
+
 /**
  * 
  * @author Alex Salazar
- * @author David Requeta
- * Este es el main de nuestra aplicaion.
+ * @author David Requeta Este es el main de nuestra aplicaion.
  *
  */
 public class main {
@@ -13,7 +13,7 @@ public class main {
 		/**
 		 * Aqui llamamos al menu principal.
 		 */
-		
+
 		ClsMenuPrincipal.MenuPrincipal();
 
 	}
