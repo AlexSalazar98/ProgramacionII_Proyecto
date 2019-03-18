@@ -1,4 +1,7 @@
 package LP;
+
+import java.text.ParseException;
+
 /**
  * @author Alex Salazar
  * @author David Requeta
@@ -9,7 +12,7 @@ public class ClsMenuBorrarDatos {
 
 	
 
-	public static void MenuBorrarDatos() {
+	public static void MenuBorrarDatos() throws ParseException {
 		
 		/**
 		 * 

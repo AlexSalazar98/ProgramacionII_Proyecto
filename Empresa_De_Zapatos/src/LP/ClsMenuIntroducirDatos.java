@@ -4,10 +4,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.sound.midi.Soundbank;
-
-
 
 import LN.ClsGestorLN;
 
@@ -20,16 +19,14 @@ import LN.ClsGestorLN;
  */
 
 public class ClsMenuIntroducirDatos {
-	
-	
 
-	public static void MenuIntroducirDatos() {
+	public static void MenuIntroducirDatos() throws ParseException {
 
 		/**
 		 * Creamos un objeto Gestor.
 		 */
 		ClsGestorLN objGestor = new ClsGestorLN();
-		
+
 		/**
 		 * 
 		 * Variable para guardar la opcion elegida por el usuario.
@@ -109,6 +106,7 @@ public class ClsMenuIntroducirDatos {
 
 	/**
 	 * Pedimos los datos a introducir en la entidad Suelas.
+	 * 
 	 * @param objGSuelas
 	 */
 	public static void IntroducirDatosSuelas(ClsGestorLN objGSuelas) {
@@ -129,7 +127,7 @@ public class ClsMenuIntroducirDatos {
 		Descripcion_Suelas = UtilidadesLP.leerCadena();
 		System.out.print("Introduzca el Precio:");
 		Precio_Suelas = UtilidadesLP.leerReal();
-		
+
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
@@ -139,6 +137,7 @@ public class ClsMenuIntroducirDatos {
 
 	/**
 	 * Pedimos los datos a introducir en la entidad Series.
+	 * 
 	 * @param objGSeries
 	 */
 	public static void IntroducirDatosSeries(ClsGestorLN objGSeries) {
@@ -156,7 +155,7 @@ public class ClsMenuIntroducirDatos {
 		NumeroDeSerie = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca la Descripción:");
 		descripcion_Serie = UtilidadesLP.leerCadena();
-		
+
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
@@ -165,9 +164,11 @@ public class ClsMenuIntroducirDatos {
 
 	/**
 	 * Pedimos los datos a introducir en la entidad Pedidos.
+	 * 
 	 * @param objGPedidos
+	 * @throws ParseException
 	 */
-	public static void IntroducirDatosPedidos(ClsGestorLN objGPedidos) {
+	public static void IntroducirDatosPedidos(ClsGestorLN objGPedidos) throws ParseException {
 
 		/**
 		 * variables para recoger los datos de la entidad Pedidos.
@@ -178,18 +179,11 @@ public class ClsMenuIntroducirDatos {
 		int Entregado;
 		int NumeroDeCliente_Pedidos;
 		String NombreYApelliosDelCliente;
-		
-		/**
-		 * Variables para las fechas.
-		 */
-		Date FechaDePedido = new Date();
-		DateFormat miFormato;
-		Date FechaDeEntrega = new Date();
-		DateFormat miFormato1;
-		miFormato = new SimpleDateFormat("dd-MM-YYYY");
-		//miFormato1 = new SimpleDateFormat("dd-MM-YYYY");
-		
 
+		/**
+		 * Para formatear las fechas
+		 */
+		SimpleDateFormat miFormato = new SimpleDateFormat("dd-MM-yyyy");
 		/**
 		 * pedimos los datos.
 		 */
@@ -197,58 +191,44 @@ public class ClsMenuIntroducirDatos {
 		NumeroDePedido = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca la Fecha del Pedido (Formato: 00-00-0000):");
 		fechaDePedido = UtilidadesLP.leerCadena();
-		
-		try 
-		{
-			FechaDePedido=miFormato.parse(fechaDePedido);
-		} 
-		catch (ParseException e) 
-		{
-			System.out.println("Error en el parseo.");
-		}
-		//miFormato = new SimpleDateFormat("dd-MM-YYYY");
-		
+		/**
+		 * Pasamos de String a date y eliminamos el parseo. (para las excepciones hemos
+		 * añadido throws ParseException
+		 */
+		Date FechaDePedido = miFormato.parse(fechaDePedido);
 		System.out.print("Introduzca la Fecha de Entrega (Formato: 00-00-0000):");
 		fechaDeEntrega = UtilidadesLP.leerCadena();
-		
-		try 
-		{
-			FechaDeEntrega=miFormato.parse(fechaDeEntrega);
-		} 
-		catch (ParseException e) 
-		{
-			System.out.println("Error en el parseo.");
-		}
-		//miFormato1 = new SimpleDateFormat("dd-MM-YYYY");
-		
+		/**
+		 * Pasamos de String a date y eliminamos el parseo. (para las excepciones hemos
+		 * añadido throws ParseException
+		 */
+		Date FechaDeEntrega = miFormato.parse(fechaDeEntrega);
 		System.out.print("Introduce 1 (Si) o 0 (No) para indicar si el pedido esta entregado o no:");
 		Entregado = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca el Numero de Cliente:");
 		NumeroDeCliente_Pedidos = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca el Nombre y los Apellidos del Cliente:");
 		NombreYApelliosDelCliente = UtilidadesLP.leerCadena();
-		
-		
-		
+
 		/**
-		 * Eliminamos errores de parseo para las fechas
-		 */		
-		
-		System.out.println(miFormato.format(FechaDePedido));
-		System.out.println(miFormato.format(FechaDeEntrega));
-		
+		 * 
+		 */
+		DateFormat.getDateInstance().format(FechaDePedido);
+		DateFormat.getDateInstance().format(FechaDeEntrega);
+
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
-		objGPedidos.CrearPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado, NumeroDeCliente_Pedidos, NombreYApelliosDelCliente);
+		objGPedidos.CrearPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado, NumeroDeCliente_Pedidos,
+				NombreYApelliosDelCliente);
 
 	}
 
 	/**
-	 *  Pedimos los datos a introducir en la entidad Materiales.
+	 * Pedimos los datos a introducir en la entidad Materiales. *
+	 * 
 	 * @param objGMateriales
 	 */
-	 
 	public static void IntroducirDatosMateriales(ClsGestorLN objGMateriales) {
 
 		/**
@@ -267,15 +247,17 @@ public class ClsMenuIntroducirDatos {
 		Descripcion_Materiales = UtilidadesLP.leerCadena();
 		System.out.print("Introduzca el Precio:");
 		Precio_Materiales = UtilidadesLP.leerReal();
-		
+
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
+		objGMateriales.CrearMateriales(Referencia_Materiales, Descripcion_Materiales, Precio_Materiales);
 
 	}
 
 	/**
-	 *  Pedimos los datos a introducir en la entidad Herrajes.
+	 * Pedimos los datos a introducir en la entidad Herrajes. *
+	 * 
 	 * @param objGHerrajes
 	 */
 	public static void IntroducirDatosHerrajes(ClsGestorLN objGHerrajes) {
@@ -296,15 +278,17 @@ public class ClsMenuIntroducirDatos {
 		Descripcion_Herrajes = UtilidadesLP.leerCadena();
 		System.out.print("Introduzca el Precio:");
 		Precio_Herrajes = UtilidadesLP.leerReal();
-		
+
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
+		objGHerrajes.CrearHerrajes(Referencia_Herrajes, Descripcion_Herrajes, Precio_Herrajes);
 
 	}
 
 	/**
 	 * Pedimos los datos a introducir en la entidad Envios.
+	 * 
 	 * @param objGEnvios
 	 */
 	public static void IntroducirDatosEnvios(ClsGestorLN objGEnvios) {
@@ -340,18 +324,21 @@ public class ClsMenuIntroducirDatos {
 		TelefonoDeEnvio = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca el Número de Cliente:");
 		NumeroDeCliente_Envio = UtilidadesLP.leerEntero();
-		
+
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
+		objGEnvios.CrearEnvios(NumeroDeEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio, CPDeEnvio,
+				ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
 	}
 
 	/**
 	 * Pedimos los datos a introducir en la entidad Clientes.
+	 * 
 	 * @param objGClientes
 	 */
 	public static void IntroducirDatosClientes(ClsGestorLN objGClientes) {
-		
+
 		/**
 		 * variables para recoger los datos de la entidad Clientes.
 		 */
@@ -362,7 +349,7 @@ public class ClsMenuIntroducirDatos {
 		String Provincia;
 		int Telefono;
 		String Email;
-		
+
 		/**
 		 * pedimos los datos.
 		 */
@@ -380,19 +367,22 @@ public class ClsMenuIntroducirDatos {
 		Telefono = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca el email del cliente:");
 		Email = UtilidadesLP.leerCadena();
-		
+
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
+		objGClientes.CrearClientes(NumeroDeCliente, NombreYApellidos, DNI_NIF, DireccionDeCliente, Provincia, Telefono,
+				Email);
 
 	}
 
 	/**
 	 * Pedimos los datos a introducir en la entidad Articulo
+	 * 
 	 * @param objGArticulos
 	 */
 	public static void IntroducirDatosArticulos(ClsGestorLN objGArticulos) {
-		
+
 		/**
 		 * variables para recoger los datos de la entidad Articulos.
 		 */
@@ -403,7 +393,7 @@ public class ClsMenuIntroducirDatos {
 		int CantidadHerrajes;
 		double Precio;
 		int ReferenciaSuelas_Articulos;
-		
+
 		/**
 		 * pedimos los datos.
 		 */
@@ -419,22 +409,24 @@ public class ClsMenuIntroducirDatos {
 		CantidadHerrajes = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca el precio del artículo");
 		Precio = UtilidadesLP.leerReal();
-		System.out.print("Introduzca el número de referencia de la suelas:"); 
+		System.out.print("Introduzca el número de referencia de la suelas:");
 		ReferenciaSuelas_Articulos = UtilidadesLP.leerEntero();
-		
+
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
-		
+		objGArticulos.CrearArticulos(Referencia, Serie, Descripcion, CantidadMaterial, CantidadHerrajes, Precio,
+				ReferenciaSuelas_Articulos);
 
 	}
 
 	/**
 	 * pedimos los datos a introducir en la entidad Desglose de Pedidos.
+	 * 
 	 * @param objGDesgloseDePedido
 	 */
 	public static void IntroducirDatosDesgloseDePedido(ClsGestorLN objGDesgloseDePedido) {
-		
+
 		/**
 		 * variables para recoger los datos de la entidad Desglose de Pedido.
 		 */
@@ -442,7 +434,7 @@ public class ClsMenuIntroducirDatos {
 		int ReferenciaDelArticulo;
 		int Serie;
 		int Color;
-		int NumeroDePie5; 
+		int NumeroDePie5;
 		int NumeroDePie6;
 		int NumeroDePie7;
 		int NumeroDePie8;
@@ -453,7 +445,7 @@ public class ClsMenuIntroducirDatos {
 		int NumeroDePie3;
 		int NumeroDePie4;
 		int NumeroDeCliente_Desglose;
-		
+
 		/**
 		 * pedimos los datos.
 		 */
@@ -487,12 +479,13 @@ public class ClsMenuIntroducirDatos {
 		NumeroDePie4 = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca el Número del Cliente:");
 		NumeroDeCliente_Desglose = UtilidadesLP.leerEntero();
-		
+
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
-		
-		
+		objGDesgloseDePedido.CrearDesgloseDePedido(NumeroDePedido, ReferenciaDelArticulo, Serie, Color, NumeroDePie5,
+				NumeroDePie6, NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1, NumeroDePie2,
+				NumeroDePie3, NumeroDePie4, NumeroDeCliente_Desglose);
 
 	}
 }

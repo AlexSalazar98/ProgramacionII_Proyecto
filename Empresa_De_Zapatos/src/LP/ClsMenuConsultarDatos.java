@@ -1,4 +1,7 @@
 package LP;
+
+import java.text.ParseException;
+
 /**
  * 
  * @author Alex Salazar
@@ -8,7 +11,7 @@ package LP;
  */
 public class ClsMenuConsultarDatos {
 
-	public static void MenuConsultarDatos() {
+	public static void MenuConsultarDatos() throws ParseException {
 		
 		/**
 		 * 

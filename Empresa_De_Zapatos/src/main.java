@@ -1,3 +1,5 @@
+import java.text.ParseException;
+
 import LP.ClsMenuPrincipal;
 
 /**
@@ -8,7 +10,7 @@ import LP.ClsMenuPrincipal;
  */
 public class main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 
 		/**
 		 * Aqui llamamos al menu principal.

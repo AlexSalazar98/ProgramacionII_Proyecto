@@ -1,4 +1,7 @@
 package LN;
+
+import COMUN.ItfProperty;
+
 /**
  * 
  *@author Alex Salazar
@@ -6,7 +9,7 @@ package LN;
  *Esta clase nos da los atributos padre para las herencias de las clases "Materiales, Herrajes, Suelas"
  *
  */
-public class ClsMateriasPrimas {
+public abstract class ClsMateriasPrimas implements ItfProperty{
 
 	/**
 	 * 

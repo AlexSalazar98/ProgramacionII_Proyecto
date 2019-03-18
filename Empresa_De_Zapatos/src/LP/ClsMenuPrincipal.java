@@ -1,5 +1,7 @@
 package LP;
 
+import java.text.ParseException;
+
 /**
  * 
  *@author Alex Salazar
@@ -10,7 +12,7 @@ package LP;
 
 public class ClsMenuPrincipal {
 
-	public static void MenuPrincipal() {
+	public static void MenuPrincipal() throws ParseException {
 
 		int opcion;
 
