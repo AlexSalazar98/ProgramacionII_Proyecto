@@ -9,7 +9,7 @@ import LP.ClsMenuPrincipal;
  */
 public class main {
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) throws ParseException{
 
 		/**
 		 * Aqui llamamos al menu principal.
