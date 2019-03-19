@@ -8,9 +8,7 @@ package LN;
  */
 
 import java.util.Date;
-
 import COMUN.ItfProperty;
-
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_ENTREGADO;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_FECHA_DE_ENTREGA;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_FECHA_DE_PEDIDO;

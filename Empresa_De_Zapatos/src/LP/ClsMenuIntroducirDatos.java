@@ -211,7 +211,7 @@ public class ClsMenuIntroducirDatos {
 		NombreYApelliosDelCliente = UtilidadesLP.leerCadena();
 
 		/**
-		 * 
+		 * Formatear la fechas.
 		 */
 		DateFormat.getDateInstance().format(FechaDePedido);
 		DateFormat.getDateInstance().format(FechaDeEntrega);

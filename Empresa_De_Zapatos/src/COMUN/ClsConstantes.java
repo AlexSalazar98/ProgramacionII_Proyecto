@@ -79,22 +79,22 @@ public class ClsConstantes {
 	/**
 	 * Propiedades de la clase Clientes.
 	 */
-	public static final String PROPIEDAD_NUMERO_DE_CLIENTE = "Numero de cliente";
-	public static final String PROPIEDAD_NOMBRE_Y_APELLIDOS_CLIENTE = "Nombre y apellidos del cliente";
-	public static final String PROPIEDAD_DNI_NIF_CLIENTE = "DNI o NIF del cliente";
-	public static final String PROPIEDAD_DIRECCION_DE_CLIENTE = "Direccion del cliente";
-	public static final String PROPIEDAD_PROVINCIA_CLIENTE = "Provincia del cliente";
-	public static final String PROPIEDAD_TELEFONO_CLIENTE = "Telefono del cliente";
-	public static final String PROPIEDAD_EMAIL_CLIENTE = "Email del cliente";
+	public static final String PROPIEDAD_CLIENTE_NUMERO_DE = "Numero de cliente";
+	public static final String PROPIEDAD_CLIENTE_NOMBRE_Y_APELLIDOS = "Nombre y apellidos del cliente";
+	public static final String PROPIEDAD_CLIENTE_DNI_NIF = "DNI o NIF del cliente";
+	public static final String PROPIEDAD_CLIENTE_DIRECCION = "Direccion del cliente";
+	public static final String PROPIEDAD_CLIENTE_PROVINCIA = "Provincia del cliente";
+	public static final String PROPIEDAD_CLIENTE_TELEFONO = "Telefono del cliente";
+	public static final String PROPIEDAD_CLIENTE_EMAIL = "Email del cliente";
 	
 	/**
 	 * Propiedades de la clase Articulos.
 	 */
-	public static final String PROPIEDAD_REFERENCIA_ARTICULO = "Referencia del articulo";
-	public static final String PROPIEDAD_SERIE_ARTICULO = "Numero de Serie";
-	public static final String PROPIEDAD_DESCRIPCION_ARTICULO = "Descripcion del articulo";
-	public static final String PROPIEDAD_CANTIDAD_DE_MATERIAL_ARTICULO = "Cantidad de material";
-	public static final String PROPIEDAD_CANTIDAD_DE_HERRAJES_ARTICULO = "Cantidad de Herrajes";
-	public static final String PROPIEDAD_PRECIO_ARTICULO = "Precio del articulo";
-	public static final String PROPIEDAD_REFERENCIA_SUELAS_ARTICULO = "Numero de referencia de la suela";
+	public static final String PROPIEDAD_ARTICULO_REFERENCIA = "Referencia del articulo";
+	public static final String PROPIEDAD_ARTICULO_SERIE = "Numero de Serie";
+	public static final String PROPIEDAD_ARTICULO_DESCRIPCION = "Descripcion del articulo";
+	public static final String PROPIEDAD_ARTICULO_CANTIDAD_DE_MATERIAL = "Cantidad de material";
+	public static final String PROPIEDAD_ARTICULO_CANTIDAD_DE_HERRAJES = "Cantidad de Herrajes";
+	public static final String PROPIEDAD_ARTICULO_PRECIO = "Precio del articulo";
+	public static final String PROPIEDAD_ARTICULO_REFERENCIA_SUELAS = "Numero de referencia de la suela";
 }
