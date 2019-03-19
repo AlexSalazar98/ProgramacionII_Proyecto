@@ -4,6 +4,7 @@ import COMUN.ItfProperty;
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_DESCRIPCION;
 
+
 /**
  * 
  * @author Alex Salazar, David Requeta.
