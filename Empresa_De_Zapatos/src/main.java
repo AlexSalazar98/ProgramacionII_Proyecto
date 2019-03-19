@@ -16,7 +16,6 @@ public class main {
 		 */
 
 		ClsMenuPrincipal.MenuPrincipal();
-		System.out.println();
 
 	}
 
