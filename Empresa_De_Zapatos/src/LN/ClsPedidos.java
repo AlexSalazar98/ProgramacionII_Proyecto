@@ -8,8 +8,15 @@ package LN;
  */
 
 import java.util.Date;
+import COMUN.ItfProperty;
+import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO;
+import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_FECHA_DE_PEDIDO;
+import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_FECHA_DE_ENTREGA;
+import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_ENTREGADO;
+import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_CLIENTE_PEDIDO;
+import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NOMBRE_Y_APELLIDOS_DEL_CLIENTE;
 
-public class ClsPedidos {
+public class ClsPedidos implements ItfProperty {
 
 	/**
 	 * 
@@ -98,6 +105,51 @@ public class ClsPedidos {
 
 	public void setNumeroDeCliente_Pedidos(int numeroDeCliente_Pedidos) {
 		NumeroDeCliente_Pedidos = numeroDeCliente_Pedidos;
+	}
+
+	/**
+	 * Metodos implementados de ItfProperty.
+	 */
+	@Override
+	public String getStringProperty(String propiedad) {
+
+		switch (propiedad) {
+		case PROPIEDAD_PEDIDOS_NOMBRE_Y_APELLIDOS_DEL_CLIENTE:
+			return this.getNombreYApelliosDelCliente();
+		}
+		return null;
+	}
+
+	@Override
+	public Integer getIntegerProperty(String propiedad) {
+
+		switch (propiedad) {
+		case PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO:
+			return this.getNumeroDePedido();
+		case PROPIEDAD_PEDIDOS_ENTREGADO:
+			return this.getEntregado();
+		case PROPIEDAD_PEDIDOS_NUMERO_DE_CLIENTE_PEDIDO:
+			return this.getNumeroDeCliente_Pedidos();
+		}
+		return null;
+	}
+
+	@Override
+	public Float getFloatProperty(String propiedad) {
+
+		return null;
+	}
+
+	@Override
+	public Double getDoubleProperty(String propiedad) {
+
+		return null;
+	}
+
+	@Override
+	public char getCharProperty(String propiedad) {
+
+		return 0;
 	}
 
 }

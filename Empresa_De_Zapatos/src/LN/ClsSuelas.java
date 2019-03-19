@@ -28,6 +28,9 @@ public class ClsSuelas extends ClsMateriasPrimas {
 		super(referencia, descripcion, precio);
 	}
 
+	/**
+	 * Metodos implementados de ItfProperty.
+	 */
 	@Override
 	public String getStringProperty(String propiedad) {
 		switch (propiedad) {

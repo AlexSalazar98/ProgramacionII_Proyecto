@@ -2,8 +2,7 @@ package LN;
 
 import COMUN.ItfProperty;
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
-import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_DESCRIPCION;
-
+import static COMUN.ClsConstantes.PROPIEDAD_SERIES_DESCRIPCION;
 
 /**
  * 
@@ -58,10 +57,13 @@ public class ClsSeries implements ItfProperty {
 		Descripcion = descripcion;
 	}
 
+	/**
+	 * Metodos implementados de ItfProperty.
+	 */
 	@Override
 	public String getStringProperty(String propiedad) {
 		switch (propiedad) {
-		case PROPIEDAD_SUELAS_DESCRIPCION:
+		case PROPIEDAD_SERIES_DESCRIPCION:
 			return this.getDescripcion();
 		}
 		return null;

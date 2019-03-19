@@ -4,12 +4,12 @@ import COMUN.ItfProperty;
 
 /**
  * 
- *@author Alex Salazar
- *@author David Requeta
- *Esta clase nos da los atributos padre para las herencias de las clases "Materiales, Herrajes, Suelas"
+ * @author Alex Salazar
+ * @author David Requeta Esta clase nos da los atributos padre para las
+ *         herencias de las clases "Materiales, Herrajes, Suelas"
  *
  */
-public abstract class ClsMateriasPrimas implements ItfProperty{
+public abstract class ClsMateriasPrimas implements ItfProperty {
 
 	/**
 	 * 
@@ -19,10 +19,11 @@ public abstract class ClsMateriasPrimas implements ItfProperty{
 	private int Referencia;
 	private String Descripcion;
 	private double Precio;
-	
+
 	/**
 	 * 
 	 * Este seria el constructor de la clase.
+	 * 
 	 * @param referencia
 	 * @param descripcion
 	 * @param precio
@@ -38,6 +39,7 @@ public abstract class ClsMateriasPrimas implements ItfProperty{
 	/**
 	 * 
 	 * A partir de aqui tendriamos los metodos getters y setters.
+	 * 
 	 * @return
 	 * 
 	 */
@@ -64,8 +66,5 @@ public abstract class ClsMateriasPrimas implements ItfProperty{
 	public void setPrecio(double precio) {
 		Precio = precio;
 	}
-	
-	
-	
-	
+
 }
