@@ -79,7 +79,7 @@ public class ClsConstantes {
 	/**
 	 * Propiedades de la clase Clientes.
 	 */
-	public static final String PROPIEDAD_CLIENTE_NUMERO_DE = "Numero de cliente";
+	public static final String PROPIEDAD_CLIENTE_NUMERO = "Numero de cliente";
 	public static final String PROPIEDAD_CLIENTE_NOMBRE_Y_APELLIDOS = "Nombre y apellidos del cliente";
 	public static final String PROPIEDAD_CLIENTE_DNI_NIF = "DNI o NIF del cliente";
 	public static final String PROPIEDAD_CLIENTE_DIRECCION = "Direccion del cliente";

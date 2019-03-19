@@ -1,11 +1,21 @@
 package LN;
+
+import COMUN.ItfProperty;
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_REFERENCIA;
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_SERIE;
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_DESCRIPCION;
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_CANTIDAD_DE_MATERIAL;
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_CANTIDAD_DE_HERRAJES;
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_PRECIO;
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_REFERENCIA_SUELAS;
+
 /**
  * 
  * @author Alex Salazar
- *@author David Requeta
- *Esta seria la clase donde generamos los objetos de la entidad Articulos.
+ * @author David Requeta Esta seria la clase donde generamos los objetos de la
+ *         entidad Articulos.
  */
-public class ClsArticulos {
+public class ClsArticulos implements ItfProperty {
 
 	/**
 	 * Estos son los atributos de la entidad Articulos.
@@ -17,9 +27,10 @@ public class ClsArticulos {
 	private int CantidadHerrajes;
 	private double Precio;
 	private int ReferenciaSuelas_Articulos;
-	
+
 	/**
 	 * Este seria el constructor de la entidad Articulos.
+	 * 
 	 * @param referencia
 	 * @param serie
 	 * @param descripcion
@@ -41,6 +52,7 @@ public class ClsArticulos {
 
 	/**
 	 * Estos serian los metodos getters y setters de la clase.
+	 * 
 	 * @return
 	 */
 	public int getReferencia() {
@@ -91,13 +103,65 @@ public class ClsArticulos {
 		Precio = precio;
 	}
 
-	public int getReferenciaSuelas_Desglose() {
+	public int getReferenciaSuelas_Articulo() {
 		return ReferenciaSuelas_Articulos;
 	}
 
-	public void setReferenciaSuelas_Desglose(int referenciaSuelas_Desglose) {
-		ReferenciaSuelas_Articulos = referenciaSuelas_Desglose;
+	public void setReferenciaSuelas_Articulo(int referenciaSuelas_Articulo) {
+		ReferenciaSuelas_Articulos = referenciaSuelas_Articulo;
 	}
 
-	
+	/**
+	 * Metodos implementados de ItfProperty.
+	 */
+	@Override
+	public String getStringProperty(String propiedad) {
+
+		switch (propiedad) {
+		case PROPIEDAD_ARTICULO_DESCRIPCION:
+			return this.getDescripcion();
+		}
+		return null;
+	}
+
+	@Override
+	public Integer getIntegerProperty(String propiedad) {
+
+		switch (propiedad) {
+		case PROPIEDAD_ARTICULO_REFERENCIA:
+			return this.getReferencia();
+		case PROPIEDAD_ARTICULO_SERIE:
+			return this.getSerie();
+		case PROPIEDAD_ARTICULO_CANTIDAD_DE_MATERIAL:
+			return this.getCantidadMaterial();
+		case PROPIEDAD_ARTICULO_CANTIDAD_DE_HERRAJES:
+			return this.getCantidadHerrajes();
+		case PROPIEDAD_ARTICULO_REFERENCIA_SUELAS:
+			return this.getReferenciaSuelas_Articulo();
+		}
+		return null;
+	}
+
+	@Override
+	public Float getFloatProperty(String propiedad) {
+
+		return null;
+	}
+
+	@Override
+	public Double getDoubleProperty(String propiedad) {
+
+		switch (propiedad) {
+		case PROPIEDAD_ARTICULO_PRECIO:
+			return this.getPrecio();
+		}
+		return null;
+	}
+
+	@Override
+	public char getCharProperty(String propiedad) {
+
+		return 0;
+	}
+
 }

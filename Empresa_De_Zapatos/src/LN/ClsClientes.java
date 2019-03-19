@@ -1,16 +1,25 @@
 package LN;
 
+import COMUN.ItfProperty;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NUMERO;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NOMBRE_Y_APELLIDOS;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DNI_NIF;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DIRECCION;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_PROVINCIA;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_TELEFONO;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_EMAIL;
+
 /**
  * 
  * @author Alex Salazar
- * @author David Requeta 
- * En esta clase vamos a recoger los atributos de la tabla clientes.
- *         
+ * @author David Requeta En esta clase vamos a recoger los atributos de la tabla
+ *         clientes.
+ * 
  */
-public class ClsClientes {
+public class ClsClientes implements ItfProperty {
 
 	/**
-	 *  Estos son los atributos de la tabla.
+	 * Estos son los atributos de la tabla.
 	 */
 	private int NumeroDeCliente;
 	private String NombreYApellidos;
@@ -19,9 +28,10 @@ public class ClsClientes {
 	private String Provincia;
 	private int Telefono;
 	private String Email;
-	
+
 	/**
-	 *  Aqui generamos el constructor de la clase
+	 * Aqui generamos el constructor de la clase
+	 * 
 	 * @param numeroDeCliente
 	 * @param nombreYApellidos
 	 * @param dNI_NIF
@@ -42,7 +52,8 @@ public class ClsClientes {
 	}
 
 	/**
-	 *  Ahora generamos los metodos getters y setters
+	 * Ahora generamos los metodos getters y setters
+	 * 
 	 * @return
 	 */
 	public int getNumeroDeCliente() {
@@ -101,5 +112,54 @@ public class ClsClientes {
 		Email = email;
 	}
 
-	
+	/**
+	 * Metodos implementados de ItfProperty.
+	 */
+	@Override
+	public String getStringProperty(String propiedad) {
+		switch (propiedad) {
+		case PROPIEDAD_CLIENTE_NOMBRE_Y_APELLIDOS:
+			return this.getNombreYApellidos();
+		case PROPIEDAD_CLIENTE_DNI_NIF:
+			return this.getDNI_NIF();
+		case PROPIEDAD_CLIENTE_DIRECCION:
+			return this.getDireccionDeCliente();
+		case PROPIEDAD_CLIENTE_PROVINCIA:
+			return this.getProvincia();
+		case PROPIEDAD_CLIENTE_EMAIL:
+			return this.getEmail();
+		}
+		return null;
+	}
+
+	@Override
+	public Integer getIntegerProperty(String propiedad) {
+
+		switch (propiedad) {
+		case PROPIEDAD_CLIENTE_NUMERO:
+			return this.getNumeroDeCliente();
+		case PROPIEDAD_CLIENTE_TELEFONO:
+			return this.getTelefono();
+		}
+		return null;
+	}
+
+	@Override
+	public Float getFloatProperty(String propiedad) {
+
+		return null;
+	}
+
+	@Override
+	public Double getDoubleProperty(String propiedad) {
+
+		return null;
+	}
+
+	@Override
+	public char getCharProperty(String propiedad) {
+
+		return 0;
+	}
+
 }
