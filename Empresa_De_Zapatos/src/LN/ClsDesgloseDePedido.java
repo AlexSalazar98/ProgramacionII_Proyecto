@@ -1,4 +1,23 @@
 package LN;
+
+import COMUN.ItfProperty;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_SERIE;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_COLOR;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_5;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_6;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_7;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_8;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_9;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_0;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_1;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_2;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_3;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_4;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_CLIENTE;
+
+
 /**
  * 
  * @author Alex Salazar
@@ -6,7 +25,7 @@ package LN;
  *Esta clase recoge y crea los objetos para la entidad Desglose De Pedido.
  */
 
-public class ClsDesgloseDePedido {
+public class ClsDesgloseDePedido implements ItfProperty {
 	
 	/**
 	 * Estos son los atributos.
@@ -218,6 +237,60 @@ public class ClsDesgloseDePedido {
 
 	public void setNumeroDeCliente_Desglose(int numeroDeCliente_Desglose) {
 		NumeroDeCliente_Desglose = numeroDeCliente_Desglose;
+	}
+
+	/**
+	 * Metodos implementados de ItfProperty.
+	 */
+
+	@Override
+	public String getStringProperty(String propiedad) {
+		
+		return null;
+	}
+
+
+	@Override
+	public Integer getIntegerProperty(String propiedad) {
+		switch (propiedad) {
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO: return this.getNumeroDePedido();
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO:return this.getReferenciaDelArticulo();
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_SERIE: return this.getSerie();
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_COLOR: return this.getColor();
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_5:return this.getNumeroDePie5();
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_6:return this.getNumeroDePie6();	
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_7:return this.getNumeroDePie7();
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_8:return this.getNumeroDePie8();
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_9:return this.getNumeroDePie9();
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_0:return this.getNumeroDePie0();
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_1:return this.getNumeroDePie1();
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_2:return this.getNumeroDePie2();
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_3:return this.getNumeroDePie3();
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_4:return this.getNumeroDePie4();
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_CLIENTE:return this.getNumeroDeCliente_Desglose();
+		}
+		return null;
+	}
+
+
+	@Override
+	public Float getFloatProperty(String propiedad) {
+		
+		return null;
+	}
+
+
+	@Override
+	public Double getDoubleProperty(String propiedad) {
+		
+		return null;
+	}
+
+
+	@Override
+	public char getCharProperty(String propiedad) {
+		
+		return 0;
 	}
 
 	
