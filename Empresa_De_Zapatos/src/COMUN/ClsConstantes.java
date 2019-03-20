@@ -74,6 +74,7 @@ public class ClsConstantes {
 	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_2 = "Numero de pie 2";
 	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_3 = "Numero de pie 3";
 	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_4 = "Numero de pie 4";
+	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_CANTIDAD_TOTAL = "Cantidad total";
 	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_CLIENTE = "Numero de cliente";
 	
 	/**

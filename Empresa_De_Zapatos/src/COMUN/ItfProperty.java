@@ -16,39 +16,52 @@ public interface ItfProperty
 	
 	/**
 	 * Devuelve la propiedad solicitada por nombre de tipo String.
-	 * @para propiedad nombre de la propiedad a devolver del objeto. 
+	 * @param propiedad nombre de la propiedad a devolver del objeto. 
+	 * @return genera return
 	 */
 	String 	getStringProperty	(String propiedad);
 	
 	/**
 	 * Devuelve la propiedad solicitada por nombre de tipo Integer.
-	 * @para propiedad nombre de la propiedad a devolver del objeto. 
+	 * @param propiedad nombre de la propiedad a devolver del objeto. 
+	 * @return genera return
 	 */
 	Integer getIntegerProperty	(String propiedad);
 	
 	/**
 	 * Devuelve la propiedad solicitada por nombre de tipo Float.
-	 * @para propiedad nombre de la propiedad a devolver del objeto. 
+	 * @param propiedad nombre de la propiedad a devolver del objeto. 
+	 * @return genera return
 	 */
 	Float 	getFloatProperty	(String propiedad);
 	
 	/**
 	 * Devuelve la propiedad solicitada por nombre de tipo Double.
-	 * @para propiedad nombre de la propiedad a devolver del objeto. 
+	 * @param propiedad nombre de la propiedad a devolver del objeto. 
+	 * @return genera return
 	 */
 	Double	getDoubleProperty	(String propiedad);
 	
 	/**
 	 * Devuelve la propiedad solicitada por nombre de tipo char.
-	 * @para propiedad nombre de la propiedad a devolver del objeto. 
+	 * @param propiedad nombre de la propiedad a devolver del objeto.
+	 * @return genera return 
 	 */
 	char	getCharProperty		(String propiedad);
 	
 	/**
 	 * Devuelve la propiedad solicitada por nombre de tipo Date.
 	 * Implementado por nosotros para el uso de fechas.
-	 * @para propiedad nombre de la propiedad a devolver del objeto. 
+	 * @param propiedad nombre de la propiedad a devolver del objeto. 
+	 * @return genera return
 	 */
 	Date	getDateProperty		(String propiedad);
 
+	/**
+	 * Devuelve la propiedad solicitada por nombre de tipo Boolean.
+	 * Implementado por nosotros para el uso de fechas.
+	 * @param propiedad nombre de la propiedad a devolver del objeto. 
+	 * @return genera return
+	 */
+	Boolean		getBooleanProperty 		(String propiedad);
 }

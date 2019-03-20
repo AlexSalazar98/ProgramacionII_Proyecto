@@ -2,6 +2,8 @@ package LP;
 
 import java.text.ParseException;
 
+import LN.ClsGestorLN;
+
 /**
  * 
  *@author Alex Salazar
@@ -14,6 +16,14 @@ public class ClsMenuPrincipal {
 
 	public static void MenuPrincipal() throws ParseException {
 
+		/**
+		 * Creamos un objeto Gestor.
+		 */
+		ClsGestorLN objGestor = new ClsGestorLN();
+		
+		/**
+		 * Variable para elegir la opcion de menu.
+		 */
 		int opcion;
 
 		/**
@@ -47,7 +57,7 @@ public class ClsMenuPrincipal {
 			 *
 			 */
 			case 1:
-				ClsMenuIntroducirDatos.MenuIntroducirDatos();
+				ClsMenuIntroducirDatos.MenuIntroducirDatos(objGestor);
 				break;
 			/**
 			 * 
@@ -55,7 +65,7 @@ public class ClsMenuPrincipal {
 			 *
 			 */
 			case 2:
-				ClsMenuConsultarDatos.MenuConsultarDatos();
+				ClsMenuConsultarDatos.MenuConsultarDatos(objGestor);
 				break;
 			/**
 			 * 
@@ -63,7 +73,7 @@ public class ClsMenuPrincipal {
 			 *
 			 */
 			case 3:
-				ClsMenuBorrarDatos.MenuBorrarDatos();;
+				ClsMenuBorrarDatos.MenuBorrarDatos(objGestor);;
 				break;
 			/**
 			 * 

@@ -34,13 +34,13 @@ public class ClsArticulos implements ItfProperty {
 	/**
 	 * Este seria el constructor de la entidad Articulos.
 	 * 
-	 * @param referencia
-	 * @param serie
-	 * @param descripcion
-	 * @param cantidadMaterial
-	 * @param cantidadHerrajes
-	 * @param precio
-	 * @param referenciaSuelas_Articulos
+	 * @param referencia parametro referencia
+	 * @param serie parametro serie
+	 * @param descripcion parametro descripcion
+	 * @param cantidadMaterial parametro cantidad de material
+	 * @param cantidadHerrajes parametro cantidad de herrajes
+	 * @param precio parametro precio
+	 * @param referenciaSuelas_Articulos parametro referencia de la suela
 	 */
 	public ClsArticulos(int referencia, int serie, String descripcion, int cantidadMaterial, int cantidadHerrajes,
 			double precio, int referenciaSuelas_Articulos) {
@@ -56,7 +56,7 @@ public class ClsArticulos implements ItfProperty {
 	/**
 	 * Estos serian los metodos getters y setters de la clase.
 	 * 
-	 * @return
+	 * @return nos genera unos returns
 	 */
 	public int getReferencia() {
 		return Referencia;
@@ -169,6 +169,12 @@ public class ClsArticulos implements ItfProperty {
 
 	@Override
 	public Date getDateProperty(String propiedad) {
+		
+		return null;
+	}
+
+	@Override
+	public Boolean getBooleanProperty(String propiedad) {
 		
 		return null;
 	}

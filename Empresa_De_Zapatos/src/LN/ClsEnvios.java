@@ -38,14 +38,14 @@ public class ClsEnvios implements ItfProperty {
 	/**
 	 * Aqui generamos el constructor de la clase
 	 * 
-	 * @param numeroDeEnvio
-	 * @param nombreCliente
-	 * @param direccionDeEnvio
-	 * @param poblacionDeEnvio
-	 * @param cPDeEnvio
-	 * @param provinciaDeEnvio
-	 * @param telefonoDeEnvio
-	 * @param numeroDeCliente_Envio
+	 * @param numeroDeEnvio parametro numero de envio 
+	 * @param nombreCliente parametro nombre del cliente
+	 * @param direccionDeEnvio parametro direccion de envio
+	 * @param poblacionDeEnvio parametro poblacion de envio
+	 * @param cPDeEnvio parametro codigo postal de envio
+	 * @param provinciaDeEnvio parametro provincia de envio
+	 * @param telefonoDeEnvio parametro telefono de envio
+	 * @param numeroDeCliente_Envio parametro numero de cliente.
 	 */
 	public ClsEnvios(int numeroDeEnvio, String nombreCliente, String direccionDeEnvio, String poblacionDeEnvio,
 			String cPDeEnvio, String provinciaDeEnvio, int telefonoDeEnvio, int numeroDeCliente_Envio) {
@@ -62,7 +62,7 @@ public class ClsEnvios implements ItfProperty {
 	/**
 	 * Ahora generamos los metodos getters y setters
 	 * 
-	 * @return
+	 * @return nos genera unos returns
 	 */
 	public int getNumeroDeEnvio() {
 		return NumeroDeEnvio;
@@ -183,7 +183,13 @@ public class ClsEnvios implements ItfProperty {
 
 	@Override
 	public Date getDateProperty(String propiedad) {
-		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+	@Override
+	public Boolean getBooleanProperty(String propiedad) {
+		
 		return null;
 	}
 

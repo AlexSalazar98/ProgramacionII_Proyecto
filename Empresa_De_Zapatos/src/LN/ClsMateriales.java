@@ -22,9 +22,9 @@ public class ClsMateriales extends ClsMateriasPrimas {
 	 * Este es el contructor de la entidad Materiales con herencia de la clase
 	 * Materias Primas.
 	 * 
-	 * @param referencia
-	 * @param descripcion
-	 * @param precio
+	 * @param referencia parametro referencia.
+	 * @param descripcion parametro descripcion.
+	 * @param precio parametro precio.
 	 * 
 	 */
 	public ClsMateriales(int referencia, String descripcion, double precio) {
@@ -76,7 +76,13 @@ public class ClsMateriales extends ClsMateriasPrimas {
 
 	@Override
 	public Date getDateProperty(String propiedad) {
-		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+	@Override
+	public Boolean getBooleanProperty(String propiedad) {
+		
 		return null;
 	}
 

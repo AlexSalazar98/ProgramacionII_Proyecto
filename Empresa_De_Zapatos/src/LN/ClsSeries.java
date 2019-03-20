@@ -29,8 +29,8 @@ public class ClsSeries implements ItfProperty {
 	 * 
 	 * Aqui generamos el constructor de la clase
 	 * 
-	 * @param numeroDeSerie
-	 * @param descripcion
+	 * @param numeroDeSerie parametro numero de serie
+	 * @param descripcion parametro descripcion
 	 * 
 	 */
 	public ClsSeries(int numeroDeSerie, String descripcion) {
@@ -42,7 +42,7 @@ public class ClsSeries implements ItfProperty {
 	 * 
 	 * Ahora generamos los metodos getters y setters
 	 * 
-	 * @return
+	 * @return nos genera unos return.
 	 * 
 	 */
 	public int getNumeroDeSerie() {
@@ -102,7 +102,13 @@ public class ClsSeries implements ItfProperty {
 
 	@Override
 	public Date getDateProperty(String propiedad) {
-		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+	@Override
+	public Boolean getBooleanProperty(String propiedad) {
+		
 		return null;
 	}
 

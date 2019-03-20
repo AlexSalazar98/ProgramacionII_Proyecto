@@ -24,9 +24,9 @@ public abstract class ClsMateriasPrimas implements ItfProperty {
 	 * 
 	 * Este seria el constructor de la clase.
 	 * 
-	 * @param referencia
-	 * @param descripcion
-	 * @param precio
+	 * @param referencia prametro referencia
+	 * @param descripcion parametro descripcion
+	 * @param precio parametro precio
 	 * 
 	 */
 	public ClsMateriasPrimas(int referencia, String descripcion, double precio) {
@@ -40,7 +40,7 @@ public abstract class ClsMateriasPrimas implements ItfProperty {
 	 * 
 	 * A partir de aqui tendriamos los metodos getters y setters.
 	 * 
-	 * @return
+	 * @return nos genera un return
 	 * 
 	 */
 	public int getReferencia() {

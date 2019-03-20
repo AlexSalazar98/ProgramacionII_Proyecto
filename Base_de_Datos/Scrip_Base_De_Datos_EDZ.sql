@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Pedidos` (
   `NºPedido` INT NOT NULL,
   `Fecha_de_pedido` DATE NOT NULL,
   `Fecha_de_entrega` DATE NOT NULL,
-  `Entregado` VARCHAR(1) BINARY NULL,
+  `Entregado` TINYINT(1) NULL,
   `Clientes_NºCliente` INT NOT NULL,
   `NombreYApellidos` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`NºPedido`),

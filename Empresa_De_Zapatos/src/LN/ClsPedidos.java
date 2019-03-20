@@ -26,7 +26,7 @@ public class ClsPedidos implements ItfProperty {
 	private int NumeroDePedido;
 	private Date FechaDePedido;
 	private Date FechaDeEntrega;
-	private int Entregado;
+	private boolean Entregado;
 	private int NumeroDeCliente_Pedidos;
 	private String NombreYApelliosDelCliente;
 
@@ -34,14 +34,15 @@ public class ClsPedidos implements ItfProperty {
 	 * 
 	 * Este seria el constructor de la clase Pedidos.
 	 * 
-	 * @param fechaDePedido
-	 * @param fechaDeEntrega
-	 * @param entregado
-	 * @param nombreYApelliosDelCliente
-	 * @param numeroDeCliente_Pedidos
+	 * @param numeroDePedido parametro numero de pedido.
+	 * @param fechaDePedido parametro fecha de pedido
+	 * @param fechaDeEntrega parametro fecha de entrega
+	 * @param entregado parametro entregado
+	 * @param nombreYApelliosDelCliente parametro nombre y apellidos del cliente
+	 * @param numeroDeCliente_Pedidos parametro numero de cliente en la tabla pedidos
 	 * 
 	 */
-	public ClsPedidos(int numeroDePedido, Date fechaDePedido, Date fechaDeEntrega, int entregado,
+	public ClsPedidos(int numeroDePedido, Date fechaDePedido, Date fechaDeEntrega, Boolean entregado,
 			String nombreYApelliosDelCliente, int numeroDeCliente_Pedidos) {
 		NumeroDePedido = numeroDePedido;
 		FechaDePedido = fechaDePedido;
@@ -55,7 +56,7 @@ public class ClsPedidos implements ItfProperty {
 	 * 
 	 * Estos son lo metodos getters y setters.
 	 * 
-	 * @return
+	 * @return nos genera unos returns.
 	 * 
 	 */
 
@@ -83,11 +84,11 @@ public class ClsPedidos implements ItfProperty {
 		FechaDeEntrega = fechaDeEntrega;
 	}
 
-	public int getEntregado() {
+	public boolean getEntregado() {
 		return Entregado;
 	}
 
-	public void setEntregado(int entregado) {
+	public void setEntregado(Boolean entregado) {
 		Entregado = entregado;
 	}
 
@@ -126,8 +127,6 @@ public class ClsPedidos implements ItfProperty {
 		switch (propiedad) {
 		case PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO:
 			return this.getNumeroDePedido();
-		case PROPIEDAD_PEDIDOS_ENTREGADO:
-			return this.getEntregado();
 		case PROPIEDAD_PEDIDOS_NUMERO_DE_CLIENTE_PEDIDO:
 			return this.getNumeroDeCliente_Pedidos();
 		}
@@ -160,6 +159,16 @@ public class ClsPedidos implements ItfProperty {
 			return this.getFechaDePedido();
 		case PROPIEDAD_PEDIDOS_FECHA_DE_ENTREGA:
 			return this.getFechaDeEntrega();
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean getBooleanProperty(String propiedad) {
+
+		switch (propiedad) {
+		case PROPIEDAD_PEDIDOS_ENTREGADO:
+			return this.getEntregado();
 		}
 		return null;
 	}

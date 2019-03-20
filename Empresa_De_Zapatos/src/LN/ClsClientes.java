@@ -35,13 +35,13 @@ public class ClsClientes implements ItfProperty {
 	/**
 	 * Aqui generamos el constructor de la clase
 	 * 
-	 * @param numeroDeCliente
-	 * @param nombreYApellidos
-	 * @param dNI_NIF
-	 * @param direccionDeCliente
-	 * @param provincia
-	 * @param telefono
-	 * @param email
+	 * @param numeroDeCliente parametro numero del cliente
+	 * @param nombreYApellidos parametro nombre y apellidos del cliente
+	 * @param dNI_NIF parametro dni o nif del cliente
+	 * @param direccionDeCliente parametro direccion del cliente
+	 * @param provincia parametro provincia
+	 * @param telefono parametro telefono
+	 * @param email parametro email
 	 */
 	public ClsClientes(int numeroDeCliente, String nombreYApellidos, String dNI_NIF, String direccionDeCliente,
 			String provincia, int telefono, String email) {
@@ -57,7 +57,7 @@ public class ClsClientes implements ItfProperty {
 	/**
 	 * Ahora generamos los metodos getters y setters
 	 * 
-	 * @return
+	 * @return nos genera unos returns
 	 */
 	public int getNumeroDeCliente() {
 		return NumeroDeCliente;
@@ -167,7 +167,13 @@ public class ClsClientes implements ItfProperty {
 
 	@Override
 	public Date getDateProperty(String propiedad) {
-		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+	@Override
+	public Boolean getBooleanProperty(String propiedad) {
+		
 		return null;
 	}
 

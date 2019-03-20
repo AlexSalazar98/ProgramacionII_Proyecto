@@ -21,9 +21,9 @@ public class ClsHerrajes extends ClsMateriasPrimas {
 	 * Este es el constructor de la entidad Herrajes con herencia de la clase
 	 * Materias Primas.
 	 * 
-	 * @param referencia
-	 * @param descripcion
-	 * @param precio
+	 * @param referencia parametro referencia
+	 * @param descripcion parametro descripcion
+	 * @param precio parametro precio
 	 * 
 	 */
 	public ClsHerrajes(int referencia, String descripcion, double precio) {
@@ -74,7 +74,13 @@ public class ClsHerrajes extends ClsMateriasPrimas {
 
 	@Override
 	public Date getDateProperty(String propiedad) {
-		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+	@Override
+	public Boolean getBooleanProperty(String propiedad) {
+		
 		return null;
 	}
 

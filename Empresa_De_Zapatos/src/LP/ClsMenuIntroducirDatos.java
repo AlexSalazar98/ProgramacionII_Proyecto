@@ -20,12 +20,7 @@ import LN.ClsGestorLN;
 
 public class ClsMenuIntroducirDatos {
 
-	public static void MenuIntroducirDatos() throws ParseException {
-
-		/**
-		 * Creamos un objeto Gestor.
-		 */
-		ClsGestorLN objGestor = new ClsGestorLN();
+	public static void MenuIntroducirDatos(ClsGestorLN objGestorMI) throws ParseException {
 
 		/**
 		 * 
@@ -56,58 +51,54 @@ public class ClsMenuIntroducirDatos {
 
 			switch (opcionIntroducir) {
 			case 1:
-				IntroducirDatosSuelas(objGestor);
+				IntroducirDatosSuelas(objGestorMI);
 				break;
 
 			case 2:
-				IntroducirDatosSeries(objGestor);
+				IntroducirDatosSeries(objGestorMI);
 				break;
 
 			case 3:
-				IntroducirDatosPedidos(objGestor);
+				IntroducirDatosPedidos(objGestorMI);
 				break;
 
 			case 4:
-				IntroducirDatosMateriales(objGestor);
+				IntroducirDatosMateriales(objGestorMI);
 				break;
 
 			case 5:
-				IntroducirDatosHerrajes(objGestor);
+				IntroducirDatosHerrajes(objGestorMI);
 				break;
 
 			case 6:
 
-				IntroducirDatosEnvios(objGestor);
+				IntroducirDatosEnvios(objGestorMI);
 				break;
 
 			case 7:
-				IntroducirDatosClientes(objGestor);
+				IntroducirDatosClientes(objGestorMI);
 				break;
 
 			case 8:
-				IntroducirDatosArticulos(objGestor);
+				IntroducirDatosArticulos(objGestorMI);
 				break;
 
 			case 9:
-				IntroducirDatosDesgloseDePedido(objGestor);
-				break;
-
-			case 10:
-				ClsMenuPrincipal.MenuPrincipal();
+				IntroducirDatosDesgloseDePedido(objGestorMI);
 				break;
 
 			default:
 				break;
 			}
 
-		} while (opcionIntroducir != 4);
+		} while (opcionIntroducir != 10);
 
 	}
 
 	/**
 	 * Pedimos los datos a introducir en la entidad Suelas.
 	 * 
-	 * @param objGSuelas
+	 * @param objGSuelas objeto suelas
 	 */
 	public static void IntroducirDatosSuelas(ClsGestorLN objGSuelas) {
 
@@ -138,7 +129,7 @@ public class ClsMenuIntroducirDatos {
 	/**
 	 * Pedimos los datos a introducir en la entidad Series.
 	 * 
-	 * @param objGSeries
+	 * @param objGSeries objeto series
 	 */
 	public static void IntroducirDatosSeries(ClsGestorLN objGSeries) {
 
@@ -165,8 +156,8 @@ public class ClsMenuIntroducirDatos {
 	/**
 	 * Pedimos los datos a introducir en la entidad Pedidos.
 	 * 
-	 * @param objGPedidos
-	 * @throws ParseException
+	 * @param objGPedidos objeto pedidos
+	 * @throws ParseException para el parseo
 	 */
 	public static void IntroducirDatosPedidos(ClsGestorLN objGPedidos) throws ParseException {
 
@@ -176,7 +167,8 @@ public class ClsMenuIntroducirDatos {
 		int NumeroDePedido;
 		String fechaDePedido;
 		String fechaDeEntrega;
-		int Entregado;
+		int comprobar;
+		Boolean Entregado;
 		int NumeroDeCliente_Pedidos;
 		String NombreYApelliosDelCliente;
 
@@ -184,7 +176,7 @@ public class ClsMenuIntroducirDatos {
 		 * Para formatear las fechas
 		 */
 		SimpleDateFormat miFormato = new SimpleDateFormat("dd-mm-yyyy");
-		//DateFormat miFormato = DateFormat.getDateInstance(DateFormat.MEDIUM);
+		// DateFormat miFormato = DateFormat.getDateInstance(DateFormat.MEDIUM);
 		/**
 		 * pedimos los datos.
 		 */
@@ -197,7 +189,8 @@ public class ClsMenuIntroducirDatos {
 		 * añadido throws ParseException
 		 */
 		Date FechaDePedido = miFormato.parse(fechaDePedido);
-		//System.out.println(miFormato.format(FechaDePedido)); ----> Para formatear a la salida.
+		// System.out.println(miFormato.format(FechaDePedido)); ----> Para formatear a
+		// la salida.
 		System.out.print("Introduzca la Fecha de Entrega (Formato: 00-00-0000):");
 		fechaDeEntrega = UtilidadesLP.leerCadena();
 		/**
@@ -206,7 +199,13 @@ public class ClsMenuIntroducirDatos {
 		 */
 		Date FechaDeEntrega = miFormato.parse(fechaDeEntrega);
 		System.out.print("Introduce 1 (Si) o 0 (No) para indicar si el pedido esta entregado o no:");
-		Entregado = UtilidadesLP.leerEntero();
+		comprobar = UtilidadesLP.leerEntero();
+		if (comprobar == 1) {
+			Entregado = true;
+
+		} else {
+			Entregado = false;
+		}
 		System.out.print("Introduzca el Numero de Cliente:");
 		NumeroDeCliente_Pedidos = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca el Nombre y los Apellidos del Cliente:");
@@ -223,7 +222,7 @@ public class ClsMenuIntroducirDatos {
 	/**
 	 * Pedimos los datos a introducir en la entidad Materiales. *
 	 * 
-	 * @param objGMateriales
+	 * @param objGMateriales objeto materiales
 	 */
 	public static void IntroducirDatosMateriales(ClsGestorLN objGMateriales) {
 
@@ -254,7 +253,7 @@ public class ClsMenuIntroducirDatos {
 	/**
 	 * Pedimos los datos a introducir en la entidad Herrajes. *
 	 * 
-	 * @param objGHerrajes
+	 * @param objGHerrajes objeto herrajes
 	 */
 	public static void IntroducirDatosHerrajes(ClsGestorLN objGHerrajes) {
 
@@ -285,7 +284,7 @@ public class ClsMenuIntroducirDatos {
 	/**
 	 * Pedimos los datos a introducir en la entidad Envios.
 	 * 
-	 * @param objGEnvios
+	 * @param objGEnvios objeto envios
 	 */
 	public static void IntroducirDatosEnvios(ClsGestorLN objGEnvios) {
 
@@ -331,7 +330,7 @@ public class ClsMenuIntroducirDatos {
 	/**
 	 * Pedimos los datos a introducir en la entidad Clientes.
 	 * 
-	 * @param objGClientes
+	 * @param objGClientes objeto clientes
 	 */
 	public static void IntroducirDatosClientes(ClsGestorLN objGClientes) {
 
@@ -375,7 +374,7 @@ public class ClsMenuIntroducirDatos {
 	/**
 	 * Pedimos los datos a introducir en la entidad Articulo
 	 * 
-	 * @param objGArticulos
+	 * @param objGArticulos objeto articulos
 	 */
 	public static void IntroducirDatosArticulos(ClsGestorLN objGArticulos) {
 
@@ -419,7 +418,7 @@ public class ClsMenuIntroducirDatos {
 	/**
 	 * pedimos los datos a introducir en la entidad Desglose de Pedidos.
 	 * 
-	 * @param objGDesgloseDePedido
+	 * @param objGDesgloseDePedido objeto desglose de pedido
 	 */
 	public static void IntroducirDatosDesgloseDePedido(ClsGestorLN objGDesgloseDePedido) {
 
@@ -440,6 +439,7 @@ public class ClsMenuIntroducirDatos {
 		int NumeroDePie2;
 		int NumeroDePie3;
 		int NumeroDePie4;
+		int CantidadTotal;
 		int NumeroDeCliente_Desglose;
 
 		/**
@@ -473,6 +473,8 @@ public class ClsMenuIntroducirDatos {
 		NumeroDePie3 = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca la cantidad de pares de zapatos del Número 4:");
 		NumeroDePie4 = UtilidadesLP.leerEntero();
+		CantidadTotal = NumeroDePie0 + NumeroDePie1 + NumeroDePie2 + NumeroDePie3 + NumeroDePie4 + NumeroDePie5
+				+ NumeroDePie6 + NumeroDePie7 + NumeroDePie8 + NumeroDePie9;
 		System.out.print("Introduzca el Número del Cliente:");
 		NumeroDeCliente_Desglose = UtilidadesLP.leerEntero();
 
@@ -481,7 +483,7 @@ public class ClsMenuIntroducirDatos {
 		 */
 		objGDesgloseDePedido.CrearDesgloseDePedido(NumeroDePedido, ReferenciaDelArticulo, Serie, Color, NumeroDePie5,
 				NumeroDePie6, NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1, NumeroDePie2,
-				NumeroDePie3, NumeroDePie4, NumeroDeCliente_Desglose);
+				NumeroDePie3, NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
 
 	}
 }
