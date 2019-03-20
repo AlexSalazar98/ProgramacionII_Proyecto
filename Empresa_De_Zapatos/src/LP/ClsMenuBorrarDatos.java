@@ -85,15 +85,11 @@ public class ClsMenuBorrarDatos {
 						BorrarDatosDesgloseDePedido();
 						break;
 
-					case 10:
-						ClsMenuPrincipal.MenuPrincipal();
-						break;
-
 					default:
 						break;
 					}
 
-				} while (opcionBorrar != 4);
+				} while (opcionBorrar != 10);
 	}
 	
 	/**

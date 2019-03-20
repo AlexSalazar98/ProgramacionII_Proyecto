@@ -84,15 +84,11 @@ public class ClsMenuConsultarDatos {
 				ConsultarDatosDesgloseDePedido();
 				break;
 
-			case 10:
-				ClsMenuPrincipal.MenuPrincipal();
-				break;
-
 			default:
 				break;
 			}
 
-		} while (opcionConsultar != 4);
+		} while (opcionConsultar != 10);
 
 	}
 
