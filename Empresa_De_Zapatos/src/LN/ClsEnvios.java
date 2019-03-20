@@ -8,6 +8,9 @@ import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_POBLACION_DE_ENVIO;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_CPD_DE_ENVIO;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_PROVINCIA_DE_ENVIO;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_TELEFONO_DE_ENVIO;
+
+import java.util.Date;
+
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO;
 
 /**
@@ -176,6 +179,12 @@ public class ClsEnvios implements ItfProperty {
 	public char getCharProperty(String propiedad) {
 
 		return 0;
+	}
+
+	@Override
+	public Date getDateProperty(String propiedad) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

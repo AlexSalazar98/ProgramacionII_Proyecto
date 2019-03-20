@@ -152,4 +152,16 @@ public class ClsPedidos implements ItfProperty {
 		return 0;
 	}
 
+	@Override
+	public Date getDateProperty(String propiedad) {
+
+		switch (propiedad) {
+		case PROPIEDAD_PEDIDOS_FECHA_DE_PEDIDO:
+			return this.getFechaDePedido();
+		case PROPIEDAD_PEDIDOS_FECHA_DE_ENTREGA:
+			return this.getFechaDeEntrega();
+		}
+		return null;
+	}
+
 }

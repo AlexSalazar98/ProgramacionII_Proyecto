@@ -1,6 +1,9 @@
 package LN;
 
 import static COMUN.ClsConstantes.PROPIEDAD_HERRAJES_REFERENCIA;
+
+import java.util.Date;
+
 import static COMUN.ClsConstantes.PROPIEDAD_HERRAJES_DESCRIPCION;
 import static COMUN.ClsConstantes.PROPIEDAD_HERRAJES_PRECIO;
 
@@ -67,6 +70,12 @@ public class ClsHerrajes extends ClsMateriasPrimas {
 	public char getCharProperty(String propiedad) {
 
 		return 0;
+	}
+
+	@Override
+	public Date getDateProperty(String propiedad) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -4,6 +4,9 @@ import COMUN.ItfProperty;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_SERIE;
+
+import java.util.Date;
+
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_COLOR;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_5;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_6;
@@ -272,6 +275,12 @@ public class ClsDesgloseDePedido implements ItfProperty {
 	public char getCharProperty(String propiedad) {
 
 		return 0;
+	}
+
+	@Override
+	public Date getDateProperty(String propiedad) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

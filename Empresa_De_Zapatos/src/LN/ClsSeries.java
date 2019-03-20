@@ -2,6 +2,9 @@ package LN;
 
 import COMUN.ItfProperty;
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
+
+import java.util.Date;
+
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_DESCRIPCION;
 
 
@@ -95,6 +98,12 @@ public class ClsSeries implements ItfProperty {
 	public char getCharProperty(String propiedad) {
 
 		return 0;
+	}
+
+	@Override
+	public Date getDateProperty(String propiedad) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -3,6 +3,9 @@ package LN;
 import COMUN.ItfProperty;
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_REFERENCIA;
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_SERIE;
+
+import java.util.Date;
+
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_DESCRIPCION;
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_CANTIDAD_DE_MATERIAL;
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_CANTIDAD_DE_HERRAJES;
@@ -162,6 +165,12 @@ public class ClsArticulos implements ItfProperty {
 	public char getCharProperty(String propiedad) {
 
 		return 0;
+	}
+
+	@Override
+	public Date getDateProperty(String propiedad) {
+		
+		return null;
 	}
 
 }

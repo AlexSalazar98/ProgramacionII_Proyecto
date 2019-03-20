@@ -183,7 +183,8 @@ public class ClsMenuIntroducirDatos {
 		/**
 		 * Para formatear las fechas
 		 */
-		SimpleDateFormat miFormato = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat miFormato = new SimpleDateFormat("dd-mm-yyyy");
+		//DateFormat miFormato = DateFormat.getDateInstance(DateFormat.MEDIUM);
 		/**
 		 * pedimos los datos.
 		 */
@@ -196,6 +197,7 @@ public class ClsMenuIntroducirDatos {
 		 * añadido throws ParseException
 		 */
 		Date FechaDePedido = miFormato.parse(fechaDePedido);
+		//System.out.println(miFormato.format(FechaDePedido)); ----> Para formatear a la salida.
 		System.out.print("Introduzca la Fecha de Entrega (Formato: 00-00-0000):");
 		fechaDeEntrega = UtilidadesLP.leerCadena();
 		/**
@@ -209,12 +211,6 @@ public class ClsMenuIntroducirDatos {
 		NumeroDeCliente_Pedidos = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca el Nombre y los Apellidos del Cliente:");
 		NombreYApelliosDelCliente = UtilidadesLP.leerCadena();
-
-		/**
-		 * Formatear la fechas.
-		 */
-		DateFormat.getDateInstance().format(FechaDePedido);
-		DateFormat.getDateInstance().format(FechaDeEntrega);
 
 		/**
 		 * Pasamos los parametros para generer el objeto

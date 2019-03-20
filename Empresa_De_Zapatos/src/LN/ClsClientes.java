@@ -7,6 +7,9 @@ import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DNI_NIF;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DIRECCION;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_PROVINCIA;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_TELEFONO;
+
+import java.util.Date;
+
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_EMAIL;
 
 /**
@@ -160,6 +163,12 @@ public class ClsClientes implements ItfProperty {
 	public char getCharProperty(String propiedad) {
 
 		return 0;
+	}
+
+	@Override
+	public Date getDateProperty(String propiedad) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

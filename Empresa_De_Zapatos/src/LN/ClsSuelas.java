@@ -1,6 +1,9 @@
 package LN;
 
 import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_REFERENCIA;
+
+import java.util.Date;
+
 import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_DESCRIPCION;
 import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_PRECIO;
 
@@ -71,6 +74,12 @@ public class ClsSuelas extends ClsMateriasPrimas {
 	public char getCharProperty(String propiedad) {
 
 		return 0;
+	}
+
+	@Override
+	public Date getDateProperty(String propiedad) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
