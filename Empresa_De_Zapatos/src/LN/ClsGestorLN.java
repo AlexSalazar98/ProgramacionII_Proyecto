@@ -1,7 +1,10 @@
 package LN;
 
+
 import java.util.ArrayList;
 import java.util.Date;
+
+import LD.ClsDatos;
 
 /**
  * Clase de gestion entre LN y LP
@@ -24,6 +27,7 @@ public class ClsGestorLN {
 	ArrayList<ClsMateriasPrimas> MiListaDeMateriasPrimas;
 	ArrayList<ClsPedidos> MiListaDePedidos;
 	ArrayList<ClsSeries> MiListaDeSeries;
+	static ArrayList<ClsSeries> MiListaDeSeriesRecuperadas;
 
 	/**
 	 * Aqui generaremos todo en relacion al Gestor.
@@ -40,6 +44,7 @@ public class ClsGestorLN {
 		MiListaDeMateriasPrimas = new ArrayList<ClsMateriasPrimas>();
 		MiListaDePedidos = new ArrayList<ClsPedidos>();
 		MiListaDeSeries = new ArrayList<ClsSeries>();
+		MiListaDeSeriesRecuperadas = new ArrayList<ClsSeries>();
 	}
 
 	/**
@@ -80,6 +85,11 @@ public class ClsGestorLN {
 		 * Añadimos el objeto a el array.
 		 */
 		MiListaDeSeries.add(objSeries);
+		
+		/**
+		 * Llamada a introducir datos con paso de parametros.
+		 */
+		ClsDatos.InsertarSerie(NumeroDeSerie, Descripcion_Serie);
 
 	}
 
@@ -251,6 +261,7 @@ public class ClsGestorLN {
 	 * @param NumeroDePie2             parametro cantidad del numero 2
 	 * @param NumeroDePie3             parametro cantidad del numero 3
 	 * @param NumeroDePie4             parametro cantidad del numero 4
+	 * @param CantidadTotal parametro de cantidad total de numeros.
 	 * @param NumeroDeCliente_Desglose parametro del numero del cliente.
 	 */
 	public void CrearDesgloseDePedido(int NumeroDePedido, int ReferenciaDelArticulo, int Serie, int Color,
@@ -271,6 +282,13 @@ public class ClsGestorLN {
 		 */
 		MiListaDeDesgloses.add(objClsDesgloseDePedido);
 
+	}
+	
+	public static void ObjetosRecuperadosSerie(int numeroDeSerie, String descripcion) {
+		
+		ClsSeries objSeriesRecuperadaSeries;
+		objSeriesRecuperadaSeries = new ClsSeries(numeroDeSerie, descripcion);
+		MiListaDeSeriesRecuperadas.add(objSeriesRecuperadaSeries);
 	}
 
 }

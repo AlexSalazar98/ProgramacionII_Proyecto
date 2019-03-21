@@ -2,51 +2,47 @@ package LP;
 
 import java.text.ParseException;
 
+import LD.ClsDatos;
 import LN.ClsGestorLN;
 
 /**
  * 
  * @author Alex Salazar
- *@author David Requeta
- *Creamos un menu para poder consultar los diferentes tipos de datos que tengamos en nuestra base de datos.
+ * @author David Requeta Creamos un menu para poder consultar los diferentes
+ *         tipos de datos que tengamos en nuestra base de datos.
  *
  */
 public class ClsMenuConsultarDatos {
 
 	public static void MenuConsultarDatos(ClsGestorLN objGestorMC) throws ParseException {
-		
+
 		/**
 		 * 
-		 *Variable para guardar la opcion elegida por el usuario.
+		 * Variable para guardar la opcion elegida por el usuario.
 		 *
 		 */
 		int opcionConsultar;
 
-		/**
-		 * 
-		 *Mostramos al usuario las opciones que tiene para elegir a la hora de consultar datos.
-		 *
-		 */
-		System.out.println("Elije la entidad de la que deseas consultar datos: ");
-		System.out.println("1- Consultar datos de Suelas: \n" 
-		+ "2- Consultar datos de Series: \n"
-		+ "3- Consultar datos de Pedidos: \n" 
-		+ "4- Consultar datos de Materiales: \n"
-		+ "5- Consultar datos de Herrajes: \n" 
-		+ "6- Consultar datos de Envios: \n"
-		+ "7- Consultar datos de Clientes: \n" 
-		+ "8- Consultar datos de Articulos: \n"
-		+ "9- Consultar datos de Desglose de Pedido: \n" 
-		+ "10- Regresar al Menu Principal: ");
-		
-		/**
-		 * 
-		 *Pedimos los datos que deseen introducir.
-		 *
-		 */
-		opcionConsultar = UtilidadesLP.leerEntero();
 		do {
+			/**
+			 * 
+			 * Mostramos al usuario las opciones que tiene para elegir a la hora de
+			 * consultar datos.
+			 *
+			 */
+			System.out.println("Elije la entidad de la que deseas consultar datos: ");
+			System.out.println("1- Consultar datos de Suelas: \n" + "2- Consultar datos de Series: \n"
+					+ "3- Consultar datos de Pedidos: \n" + "4- Consultar datos de Materiales: \n"
+					+ "5- Consultar datos de Herrajes: \n" + "6- Consultar datos de Envios: \n"
+					+ "7- Consultar datos de Clientes: \n" + "8- Consultar datos de Articulos: \n"
+					+ "9- Consultar datos de Desglose de Pedido: \n" + "10- Regresar al Menu Principal: ");
 
+			/**
+			 * 
+			 * Pedimos los datos que deseen introducir.
+			 *
+			 */
+			opcionConsultar = UtilidadesLP.leerEntero();
 			switch (opcionConsultar) {
 			case 1:
 				ConsultarDatosSuelas();
@@ -94,7 +90,7 @@ public class ClsMenuConsultarDatos {
 
 	/**
 	 * 
-	 *Pedimos los datos a consultar en la entidad Suelas.
+	 * Pedimos los datos a consultar en la entidad Suelas.
 	 *
 	 */
 	public static void ConsultarDatosSuelas() {
@@ -103,16 +99,20 @@ public class ClsMenuConsultarDatos {
 
 	/**
 	 * 
-	 *Pedimos los datos a consultar en la entidad Series.
+	 * Pedimos los datos a consultar en la entidad Series.
 	 *
 	 */
 	public static void ConsultarDatosSeries() {
 
+		/**
+		 * Llamada a consultar series
+		 */
+		ClsDatos.consultarSeries();
 	}
 
 	/**
 	 * 
-	 *Pedimos los datos a consultar en la entidad Pedidos.
+	 * Pedimos los datos a consultar en la entidad Pedidos.
 	 *
 	 */
 	public static void ConsultarDatosPedidos() {
@@ -121,7 +121,7 @@ public class ClsMenuConsultarDatos {
 
 	/**
 	 * 
-	 *Pedimos los datos a consultar en la entidad Materiales.
+	 * Pedimos los datos a consultar en la entidad Materiales.
 	 *
 	 */
 	public static void ConsultarDatosMateriales() {
@@ -130,7 +130,7 @@ public class ClsMenuConsultarDatos {
 
 	/**
 	 * 
-	 *Pedimos los datos a consultar en la entidad Herrajes.
+	 * Pedimos los datos a consultar en la entidad Herrajes.
 	 *
 	 */
 	public static void ConsultarDatosHerrajes() {
@@ -139,7 +139,7 @@ public class ClsMenuConsultarDatos {
 
 	/**
 	 * 
-	 *Pedimos los datos a consultar en la entidad Envios.
+	 * Pedimos los datos a consultar en la entidad Envios.
 	 *
 	 */
 	public static void ConsultarDatosEnvios() {
@@ -148,7 +148,7 @@ public class ClsMenuConsultarDatos {
 
 	/**
 	 * 
-	 *Pedimos los datos a consultar en la entidad Clientes.
+	 * Pedimos los datos a consultar en la entidad Clientes.
 	 *
 	 */
 	public static void ConsultarDatosClientes() {
@@ -157,7 +157,7 @@ public class ClsMenuConsultarDatos {
 
 	/**
 	 * 
-	 *Pedimos los datos a consultar en la entidad Articulo
+	 * Pedimos los datos a consultar en la entidad Articulo
 	 *
 	 */
 	public static void ConsultarDatosArticulos() {
@@ -166,7 +166,7 @@ public class ClsMenuConsultarDatos {
 
 	/**
 	 * 
-	 *Pedimos los datos a consultar en la entidad Desglose de Pedidos.
+	 * Pedimos los datos a consultar en la entidad Desglose de Pedidos.
 	 *
 	 */
 	public static void ConsultarDatosDesgloseDePedido() {

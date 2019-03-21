@@ -24,26 +24,25 @@ public class ClsMenuIntroducirDatos {
 		 */
 		int opcionIntroducir;
 
-		/**
-		 * 
-		 * Mostramos al usuario las opciones que tiene para elegir a la hora de
-		 * introducir datos.
-		 *
-		 */
-		System.out.println("Elije la entidad donde desas introducir nuevos datos: ");
-		System.out.println("1- Introducir datos de Suelas: \n" + "2- Introducir datos de Series: \n"
-				+ "3- Introducir datos de Pedidos: \n" + "4- Introducir datos de Materiales: \n"
-				+ "5- Introducir datos de Herrajes: \n" + "6- Introducir datos de Envios: \n"
-				+ "7- Introducir datos de Clientes: \n" + "8- Introducir datos de Articulos: \n"
-				+ "9- Introducir datos de Desglose de Pedido: \n" + "10- Regresar al Menu Principal: ");
-		/**
-		 * 
-		 * Pedimos los datos que deseen introducir.
-		 *
-		 */
-		opcionIntroducir = UtilidadesLP.leerEntero();
 		do {
-
+			/**
+			 * 
+			 * Mostramos al usuario las opciones que tiene para elegir a la hora de
+			 * introducir datos.
+			 *
+			 */
+			System.out.println("Elije la entidad donde desas introducir nuevos datos: ");
+			System.out.println("1- Introducir datos de Suelas: \n" + "2- Introducir datos de Series: \n"
+					+ "3- Introducir datos de Pedidos: \n" + "4- Introducir datos de Materiales: \n"
+					+ "5- Introducir datos de Herrajes: \n" + "6- Introducir datos de Envios: \n"
+					+ "7- Introducir datos de Clientes: \n" + "8- Introducir datos de Articulos: \n"
+					+ "9- Introducir datos de Desglose de Pedido: \n" + "10- Regresar al Menu Principal: ");
+			/**
+			 * 
+			 * Pedimos los datos que deseen introducir.
+			 *
+			 */
+			opcionIntroducir = UtilidadesLP.leerEntero();
 			switch (opcionIntroducir) {
 			case 1:
 				IntroducirDatosSuelas(objGestorMI);
