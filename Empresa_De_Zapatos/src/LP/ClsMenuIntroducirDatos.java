@@ -1,13 +1,8 @@
 package LP;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
-
-import javax.sound.midi.Soundbank;
-
 import LN.ClsGestorLN;
 
 /**
