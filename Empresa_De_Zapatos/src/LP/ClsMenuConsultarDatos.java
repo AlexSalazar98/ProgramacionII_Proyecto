@@ -17,6 +17,11 @@ public class ClsMenuConsultarDatos {
 	public static void MenuConsultarDatos(ClsGestorLN objGestorMC) throws ParseException {
 
 		/**
+		 * Intanciamos el objeto gestor para tener acceso a la clase gestor
+		 */
+		
+
+		/**
 		 * 
 		 * Variable para guardar la opcion elegida por el usuario.
 		 *
@@ -49,7 +54,7 @@ public class ClsMenuConsultarDatos {
 				break;
 
 			case 2:
-				ConsultarDatosSeries();
+				ConsultarDatosSeries(objGestorMC);
 				break;
 
 			case 3:
@@ -102,12 +107,13 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Series.
 	 *
 	 */
-	public static void ConsultarDatosSeries() {
+	public static void ConsultarDatosSeries(ClsGestorLN ObjGestCSeries) {
 
 		/**
 		 * Llamada a consultar series
 		 */
-		ClsDatos.consultarSeries();
+		ClsDatos.consultarSeries(ObjGestCSeries);
+		ClsMostrarDatos.VerSeries(ObjGestCSeries);
 	}
 
 	/**

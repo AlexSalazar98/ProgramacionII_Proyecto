@@ -29,7 +29,7 @@ public class ClsConstantesBD {
 	/**
 	 * Constante para Select de series.
 	 */
-	public static final String QUERY_PARA_SELEC_SERIES = "SELECT `series`.`NºDeSerie`,\r\n"
+	public static final String QUERY_PARA_SELECT_SERIES = "SELECT `series`.`NºDeSerie`,\r\n"
 			+ "    `series`.`Descripcion`\r\n" + "FROM `mydb`.`series`;";
 
 	/**

@@ -6,14 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import LN.ClsGestorLN;
+import LN.ClsSeries;
 
 import static LD.ClsConstantesBD.RUTA_DE_LA_BD;
 import static LD.ClsConstantesBD.NOMBRE_DEL_USUARIO;
 import static LD.ClsConstantesBD.CONTRASEÑA_DE_LA_BD;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_SERIES;
-import static LD.ClsConstantesBD.QUERY_PARA_SELEC_SERIES;
+import static LD.ClsConstantesBD.QUERY_PARA_SELECT_SERIES;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_SERIES_POR_NºDESERIE;
 
 /**
@@ -48,18 +50,18 @@ public class ClsDatos {
 	}
 
 	/**
-	 * Para hacer inserte de Series
+	 * Para hacer insert de Series
 	 * 
 	 * @param NºDeSerie   parametro para insert
 	 * @param Descripcion parametro para insert
 	 */
 	public static void InsertarSerie(int NºDeSerie, String Descripcion) {
 		/**
-		 * Instancias la clase que hemos creado anteriormente
+		 * Instancias el metodo que hemos creado anteriormente
 		 */
 		ClsDatos SQL = new ClsDatos();
 		/**
-		 * Llamas al método que tiene la clase y te devuelve una conexión
+		 * Llamas al método y te devuelve una conexión
 		 * 
 		 */
 		Connection objConn = SQL.conectarBD();
@@ -97,14 +99,14 @@ public class ClsDatos {
 	/**
 	 * Para consultar Series.
 	 */
-	public static void consultarSeries() {
+	public static void consultarSeries(ClsGestorLN ObjGestorCSEries) {
 		/**
-		 * Instancias la clase que hemos creado anteriormente
+		 * Instancias el metodo que hemos creado anteriormente
 		 */
 		ClsDatos SQL = new ClsDatos();
 
 		/**
-		 * Llamas al método que tiene la clase y te devuelve una conexión
+		 * Llamas al método y te devuelve una conexión
 		 * 
 		 */
 		Connection objConn = SQL.conectarBD();
@@ -115,21 +117,21 @@ public class ClsDatos {
 				 * Preparamos la consulta
 				 */
 				Statement st = objConn.createStatement();
-				ResultSet rs = st.executeQuery(QUERY_PARA_SELEC_SERIES);
+				ResultSet rs = st.executeQuery(QUERY_PARA_SELECT_SERIES);
 
-				System.out.println("SERIES RECUPERADAS");
-				System.out.println("-------------------");
-
+				//ArrayList<ClsSeries> MiListaDeSeriesRecuperadas = new ArrayList<ClsSeries>();
 				/**
 				 * Recorremos el resultado, mientras haya registros para leer, y escribimos el
 				 * resultado en pantalla.
 				 * 
 				 */
 				while (rs.next()) {
-					//System.out.println(rs.getInt("NºDeSerie") + " " + rs.getString("Descripcion"));
+					// System.out.println(rs.getInt("NºDeSerie") + " " +
+					// rs.getString("Descripcion"));
 					int NumeroDeSerie = rs.getInt("NºDeSerie");
 					String Descripcion_Serie = rs.getString("Descripcion");
-					ClsGestorLN.ObjetosRecuperadosSerie(NumeroDeSerie, Descripcion_Serie);
+					ObjGestorCSEries.ObjetosRecuperadosSerie(NumeroDeSerie, Descripcion_Serie);
+					//ObjGestorCSEries.DameSeries(MiListaDeSeriesRecuperadas);
 				}
 
 				/**
@@ -157,6 +159,11 @@ public class ClsDatos {
 		}
 	}
 
+	/**
+	 * Para hacer delete en Series
+	 * 
+	 * @param NºDeSerie parametro de condicion.
+	 */
 	public static void eliminarSeries(int NºDeSerie) {
 
 		// Instancias la clase que hemos creado anteriormente

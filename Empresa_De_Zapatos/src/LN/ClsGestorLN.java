@@ -1,9 +1,9 @@
 package LN;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 
+import COMUN.ItfProperty;
 import LD.ClsDatos;
 
 /**
@@ -27,7 +27,7 @@ public class ClsGestorLN {
 	ArrayList<ClsMateriasPrimas> MiListaDeMateriasPrimas;
 	ArrayList<ClsPedidos> MiListaDePedidos;
 	ArrayList<ClsSeries> MiListaDeSeries;
-	static ArrayList<ClsSeries> MiListaDeSeriesRecuperadas;
+	ArrayList<ClsSeries> MiListaDeSeriesRecuperadas;
 
 	/**
 	 * Aqui generaremos todo en relacion al Gestor.
@@ -85,7 +85,7 @@ public class ClsGestorLN {
 		 * Añadimos el objeto a el array.
 		 */
 		MiListaDeSeries.add(objSeries);
-		
+
 		/**
 		 * Llamada a introducir datos con paso de parametros.
 		 */
@@ -261,7 +261,7 @@ public class ClsGestorLN {
 	 * @param NumeroDePie2             parametro cantidad del numero 2
 	 * @param NumeroDePie3             parametro cantidad del numero 3
 	 * @param NumeroDePie4             parametro cantidad del numero 4
-	 * @param CantidadTotal parametro de cantidad total de numeros.
+	 * @param CantidadTotal            parametro de cantidad total de numeros.
 	 * @param NumeroDeCliente_Desglose parametro del numero del cliente.
 	 */
 	public void CrearDesgloseDePedido(int NumeroDePedido, int ReferenciaDelArticulo, int Serie, int Color,
@@ -283,12 +283,38 @@ public class ClsGestorLN {
 		MiListaDeDesgloses.add(objClsDesgloseDePedido);
 
 	}
-	
-	public static void ObjetosRecuperadosSerie(int numeroDeSerie, String descripcion) {
-		
+
+	/**
+	 * Metodo para generar objetos con los datos recuperados de la BD
+	 * 
+	 * @param numeroDeSerie parametro recibido.
+	 * @param descripcion   parametro recibido.
+	 */
+	public void ObjetosRecuperadosSerie(int numeroDeSerie, String descripcion) {
+
+		//MiListaDeSeriesRecuperadas = new ArrayList<ClsSeries>();
 		ClsSeries objSeriesRecuperadaSeries;
 		objSeriesRecuperadaSeries = new ClsSeries(numeroDeSerie, descripcion);
 		MiListaDeSeriesRecuperadas.add(objSeriesRecuperadaSeries);
+
+	}
+
+	/**
+	 * Metodo para sacar por pantalla en LP los datos de series
+	 * 
+	 * @return genera un return.
+	 */
+	public ArrayList<ItfProperty> DameSeries() { 
+
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		for (ClsSeries a : MiListaDeSeriesRecuperadas) {
+			retorno.add(a);
+		}
+
+		return retorno;
+
 	}
 
 }

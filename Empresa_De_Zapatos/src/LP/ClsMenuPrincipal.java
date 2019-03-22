@@ -6,9 +6,9 @@ import LN.ClsGestorLN;
 
 /**
  * 
- *@author Alex Salazar
- *@author David Requeta 
- *Generamos un menu principal para poder insertar, consultar, borrar datos o salir.
+ * @author Alex Salazar
+ * @author David Requeta Generamos un menu principal para poder insertar,
+ *         consultar, borrar datos o salir.
  *
  */
 
@@ -20,7 +20,7 @@ public class ClsMenuPrincipal {
 		 * Creamos un objeto Gestor.
 		 */
 		ClsGestorLN objGestor = new ClsGestorLN();
-		
+
 		/**
 		 * Variable para elegir la opcion de menu.
 		 */
@@ -28,7 +28,7 @@ public class ClsMenuPrincipal {
 
 		/**
 		 * 
-		 *Mostramos las opciones del menu principal.
+		 * Mostramos las opciones del menu principal.
 		 *
 		 */
 		System.out.println("¡Bienvenido!");
@@ -40,20 +40,20 @@ public class ClsMenuPrincipal {
 
 			/**
 			 * 
-			 *Pedimos la opcion a escoger por el usuario.
+			 * Pedimos la opcion a escoger por el usuario.
 			 *
 			 */
 			opcion = UtilidadesLP.leerEntero();
 
 			/**
 			 * 
-			 *Segun la opcion escogida realizamos las siguientes tareas.
+			 * Segun la opcion escogida realizamos las siguientes tareas.
 			 *
 			 */
 			switch (opcion) {
 			/**
 			 * 
-			 *opcion=1 menu de introducir datos.
+			 * opcion=1 menu de introducir datos.
 			 *
 			 */
 			case 1:
@@ -61,7 +61,7 @@ public class ClsMenuPrincipal {
 				break;
 			/**
 			 * 
-			 *opcion=2 menu de consultar datos.
+			 * opcion=2 menu de consultar datos.
 			 *
 			 */
 			case 2:
@@ -69,15 +69,16 @@ public class ClsMenuPrincipal {
 				break;
 			/**
 			 * 
-			 *opcion=3 menu de borrar datos.
+			 * opcion=3 menu de borrar datos.
 			 *
 			 */
 			case 3:
-				ClsMenuBorrarDatos.MenuBorrarDatos(objGestor);;
+				ClsMenuBorrarDatos.MenuBorrarDatos(objGestor);
+				;
 				break;
 			/**
 			 * 
-			 *opcion=4 finalizamos la aplicacion
+			 * opcion=4 finalizamos la aplicacion
 			 *
 			 */
 			case 4:
