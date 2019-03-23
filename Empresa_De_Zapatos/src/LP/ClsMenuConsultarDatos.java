@@ -19,7 +19,6 @@ public class ClsMenuConsultarDatos {
 		/**
 		 * Intanciamos el objeto gestor para tener acceso a la clase gestor
 		 */
-		
 
 		/**
 		 * 
@@ -110,9 +109,17 @@ public class ClsMenuConsultarDatos {
 	public static void ConsultarDatosSeries(ClsGestorLN ObjGestCSeries) {
 
 		/**
+		 * Variable contador para condicionar el generado de ArrayList para consultas.
+		 */
+		int contador = 0;
+
+		/**
 		 * Llamada a consultar series
 		 */
-		ClsDatos.consultarSeries(ObjGestCSeries);
+		ClsDatos.consultarSeries(ObjGestCSeries, contador);
+		/**
+		 * Llamada al metodo Ver Series.
+		 */
 		ClsMostrarDatos.VerSeries(ObjGestCSeries);
 	}
 

@@ -1,10 +1,5 @@
 import java.text.ParseException;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-import LD.ClsDatos;
 import LP.ClsMenuPrincipal;
 
 /**
@@ -16,6 +11,12 @@ import LP.ClsMenuPrincipal;
 public class main {
 
 	public static void main(String[] args) throws ParseException {
+
+		/**
+		 * Recordatorios temporales.
+		 */
+		System.out.println("Abre el MySQLWorkBench e inicia coñexion con la DB en el programa MySQLWorkBench ");
+		System.out.println("Acuerdate de comprobar la contraseña en la aplicacion");
 
 		/**
 		 * Aqui llamamos al menu principal.

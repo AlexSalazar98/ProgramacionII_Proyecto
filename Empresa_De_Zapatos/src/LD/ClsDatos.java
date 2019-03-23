@@ -99,7 +99,7 @@ public class ClsDatos {
 	/**
 	 * Para consultar Series.
 	 */
-	public static void consultarSeries(ClsGestorLN ObjGestorCSEries) {
+	public static void consultarSeries(ClsGestorLN ObjGestorCSEries, int contador) {
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
 		 */
@@ -119,19 +119,30 @@ public class ClsDatos {
 				Statement st = objConn.createStatement();
 				ResultSet rs = st.executeQuery(QUERY_PARA_SELECT_SERIES);
 
-				//ArrayList<ClsSeries> MiListaDeSeriesRecuperadas = new ArrayList<ClsSeries>();
+				// ArrayList<ClsSeries> MiListaDeSeriesRecuperadas = new ArrayList<ClsSeries>();
 				/**
 				 * Recorremos el resultado, mientras haya registros para leer, y escribimos el
 				 * resultado en pantalla.
 				 * 
 				 */
 				while (rs.next()) {
-					// System.out.println(rs.getInt("NºDeSerie") + " " +
-					// rs.getString("Descripcion"));
+
+					/**
+					 * Volvamos la informacion recuperdad en variables.
+					 */
 					int NumeroDeSerie = rs.getInt("NºDeSerie");
 					String Descripcion_Serie = rs.getString("Descripcion");
-					ObjGestorCSEries.ObjetosRecuperadosSerie(NumeroDeSerie, Descripcion_Serie);
-					//ObjGestorCSEries.DameSeries(MiListaDeSeriesRecuperadas);
+					/**
+					 * Incrementamos el valor del contador recivido por parametro para condicionar
+					 * el ArrayList
+					 */
+					contador = contador + 1;
+					/**
+					 * Llamada al metodo Objetos Recuperdos Series con paso de parametros.
+					 */
+					ObjGestorCSEries.ObjetosRecuperadosSerie(NumeroDeSerie, Descripcion_Serie, contador);
+
+					// ObjGestorCSEries.DameSeries(MiListaDeSeriesRecuperadas);
 				}
 
 				/**

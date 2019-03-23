@@ -44,7 +44,7 @@ public class ClsGestorLN {
 		MiListaDeMateriasPrimas = new ArrayList<ClsMateriasPrimas>();
 		MiListaDePedidos = new ArrayList<ClsPedidos>();
 		MiListaDeSeries = new ArrayList<ClsSeries>();
-		MiListaDeSeriesRecuperadas = new ArrayList<ClsSeries>();
+		// MiListaDeSeriesRecuperadas = new ArrayList<ClsSeries>();
 	}
 
 	/**
@@ -290,9 +290,17 @@ public class ClsGestorLN {
 	 * @param numeroDeSerie parametro recibido.
 	 * @param descripcion   parametro recibido.
 	 */
-	public void ObjetosRecuperadosSerie(int numeroDeSerie, String descripcion) {
-
-		//MiListaDeSeriesRecuperadas = new ArrayList<ClsSeries>();
+	public void ObjetosRecuperadosSerie(int numeroDeSerie, String descripcion, int contador) {
+		/**
+		 * Generamos unas condiciones para guardar la informacion de consulta en
+		 * ArrayList y poder machacarlos para que no nos duplique informacion
+		 */
+		if (contador == 1) {
+			MiListaDeSeriesRecuperadas = new ArrayList<ClsSeries>();
+		}
+		/**
+		 * Con los datos devueltos de BD creamos objeto y lo añadimos a ArrayList
+		 */
 		ClsSeries objSeriesRecuperadaSeries;
 		objSeriesRecuperadaSeries = new ClsSeries(numeroDeSerie, descripcion);
 		MiListaDeSeriesRecuperadas.add(objSeriesRecuperadaSeries);
@@ -304,8 +312,12 @@ public class ClsGestorLN {
 	 * 
 	 * @return genera un return.
 	 */
-	public ArrayList<ItfProperty> DameSeries() { 
+	public ArrayList<ItfProperty> DameSeries() {
 
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
 		ArrayList<ItfProperty> retorno;
 		retorno = new ArrayList<ItfProperty>();
 
