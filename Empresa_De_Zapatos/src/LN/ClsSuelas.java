@@ -8,10 +8,11 @@ import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_DESCRIPCION;
 import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_PRECIO;
 
 /**
+ * En esta clase vamos a recoger los atributos de la tabla suelas.
  * 
  * @author Alex Salazar
- * @author David Requeta En esta clase vamos a recoger los atributos de la tabla
- *         suelas.
+ * @author David Requeta 
+ *        
  * 
  */
 

@@ -6,8 +6,10 @@ package COMUN;
 import java.util.Date;
 
 /**
+ * Interfaz para la independencia entre la LN y la LP. Implementados los dos ultimos metodos por nosotros.
+ * 
  * @author javier.cerro
- * Interfaz para la independencia entre la LN y la LP.
+ * 
  */
 public interface ItfProperty 
 {

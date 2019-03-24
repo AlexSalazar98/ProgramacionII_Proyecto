@@ -6,10 +6,11 @@ import LD.ClsDatos;
 import LN.ClsGestorLN;
 
 /**
+ * Creamos un menu para poder consultar los diferentes tipos de datos que tengamos en nuestra base de datos.
  * 
  * @author Alex Salazar
- * @author David Requeta Creamos un menu para poder consultar los diferentes
- *         tipos de datos que tengamos en nuestra base de datos.
+ * @author David Requeta 
+ *         
  *
  */
 public class ClsMenuConsultarDatos {
@@ -102,9 +103,8 @@ public class ClsMenuConsultarDatos {
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a consultar en la entidad Series.
-	 *
+	 * @param ObjGestCSeries parametro para acceder al Gestor.
 	 */
 	public static void ConsultarDatosSeries(ClsGestorLN ObjGestCSeries) {
 

@@ -6,9 +6,11 @@ import LD.ClsDatos;
 import LN.ClsGestorLN;
 
 /**
+ * Creamos un menu donde podamos borrar los datos de nuestra base de datos.
+ * 
  * @author Alex Salazar
- * @author David Requeta Creamos un menu donde podamos borrar los datos de
- *         nuestra base de datos.
+ * @author David Requeta 
+ *         
  * 
  */
 public class ClsMenuBorrarDatos {

@@ -13,10 +13,11 @@ import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_PRECIO;
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_REFERENCIA_SUELAS;
 
 /**
+ * Esta seria la clase donde generamos los objetos de la entidad Articulos.
  * 
  * @author Alex Salazar
- * @author David Requeta Esta seria la clase donde generamos los objetos de la
- *         entidad Articulos.
+ * @author David Requeta
+ *         
  */
 public class ClsArticulos implements ItfProperty {
 

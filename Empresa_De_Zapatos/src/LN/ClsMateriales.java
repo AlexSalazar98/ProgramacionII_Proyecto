@@ -8,10 +8,11 @@ import static COMUN.ClsConstantes.PROPIEDAD_MATERIALES_DESCRIPCION;
 import static COMUN.ClsConstantes.PROPIEDAD_MATERIALES_PRECIO;
 
 /**
+ * En esta clase vamos a recoger los atributos de la tabla materiales.
  * 
  * @author Alex Salazar
- * @author David Requeta En esta clase vamos a recoger los atributos de la tabla
- *         materiales.
+ * @author David Requeta 
+ *         
  * 
  */
 

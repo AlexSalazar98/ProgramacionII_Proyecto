@@ -8,11 +8,11 @@ import static COMUN.ClsConstantes.PROPIEDAD_HERRAJES_DESCRIPCION;
 import static COMUN.ClsConstantes.PROPIEDAD_HERRAJES_PRECIO;
 
 /**
+ * En esta clase vamos a recoger los atributos de la tabla herrajes.
  * 
  * @author Alex Salazar
- * @author David Requeta En esta clase vamos a recoger los atributos de la tabla
- *         herrajes.
- * 
+ * @author David Requeta 
+ *         
  */
 
 public class ClsHerrajes extends ClsMateriasPrimas {

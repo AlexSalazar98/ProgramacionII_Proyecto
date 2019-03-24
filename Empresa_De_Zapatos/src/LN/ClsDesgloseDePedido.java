@@ -22,10 +22,11 @@ import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_CANTIDAD_TOTAL;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_CLIENTE;
 
 /**
+ * Esta clase recoge y crea los objetos para la entidad Desglose De Pedido.
  * 
  * @author Alex Salazar
- * @author David Requeta Esta clase recoge y crea los objetos para la entidad
- *         Desglose De Pedido.
+ * @author David Requeta 
+ *         
  */
 
 public class ClsDesgloseDePedido implements ItfProperty {

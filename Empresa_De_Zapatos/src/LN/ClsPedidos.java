@@ -1,12 +1,4 @@
 package LN;
-/**
- * 
- *@author Alex Salazar
- *@author David Requeta
- *En esta clase generamos los objetos asignados a la entidad Pedido.
- *
- */
-
 import java.util.Date;
 import COMUN.ItfProperty;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_ENTREGADO;
@@ -15,7 +7,13 @@ import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_FECHA_DE_PEDIDO;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NOMBRE_Y_APELLIDOS_DEL_CLIENTE;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_CLIENTE_PEDIDO;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO;
-
+/**
+ * En esta clase generamos los objetos asignados a la entidad Pedido.
+ * 
+ *@author Alex Salazar
+ *@author David Requeta
+ *
+ */
 public class ClsPedidos implements ItfProperty {
 
 	/**

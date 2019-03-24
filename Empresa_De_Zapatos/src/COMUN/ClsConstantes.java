@@ -1,9 +1,10 @@
 package COMUN;
 
 /**
+ * Clase para generar propiedades.
  * 
  * @author Alex Salazar
- * @author David Requeta Clase para generar propiedades.
+ * @author David Requeta 
  */
 
 public class ClsConstantes {

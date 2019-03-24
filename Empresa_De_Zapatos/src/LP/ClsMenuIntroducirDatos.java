@@ -6,10 +6,11 @@ import java.util.Date;
 import LN.ClsGestorLN;
 
 /**
+ * Creamos un menu donde nos de las opciones de introducir los distintos tipos de datos que tenemos en nuestra base de datos.
  * 
  * @author Alex Salazar
- * @author David Requeta Creamos un menu donde nos de las opciones de introducir
- *         los distintos tipos de datos que tenemos en nuestra base de datos.
+ * @author David Requeta 
+ *         
  *
  */
 

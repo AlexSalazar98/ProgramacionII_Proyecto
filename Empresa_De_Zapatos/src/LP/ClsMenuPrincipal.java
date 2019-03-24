@@ -5,10 +5,11 @@ import java.text.ParseException;
 import LN.ClsGestorLN;
 
 /**
+ * Generamos un menu principal para poder insertar, consultar, borrar datos o salir.
  * 
  * @author Alex Salazar
- * @author David Requeta Generamos un menu principal para poder insertar,
- *         consultar, borrar datos o salir.
+ * @author David Requeta 
+ *        
  *
  */
 

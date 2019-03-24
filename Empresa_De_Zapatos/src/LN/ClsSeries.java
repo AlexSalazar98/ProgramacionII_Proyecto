@@ -9,10 +9,11 @@ import static COMUN.ClsConstantes.PROPIEDAD_SERIES_DESCRIPCION;
 
 
 /**
+ * En esta clase vamos a recoger los atributos de la tabla series.
  * 
  * @author Alex Salazar, David Requeta.
- * @author David Requeta En esta clase vamos a recoger los atributos de la tabla
- *         series.
+ * @author David Requeta 
+ *         
  * 
  */
 public class ClsSeries implements ItfProperty {

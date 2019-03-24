@@ -19,10 +19,11 @@ import static LD.ClsConstantesBD.QUERY_PARA_SELECT_SERIES;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_SERIES_POR_NºDESERIE;
 
 /**
+ * Clase para hacer todos los tramites con la Base de Datos.
  * 
  * @author Alex Salazar
- * @author David Requeta Clase para hacer todos los tramites con la Base de
- *         Datos.
+ * @author David Requeta 
+ *        
  *
  */
 
@@ -98,8 +99,10 @@ public class ClsDatos {
 
 	/**
 	 * Para consultar Series.
+	 * @param ObjGestorCSeries Parametro para acceder al gestor
+	 * @param contador parametro contador.
 	 */
-	public static void consultarSeries(ClsGestorLN ObjGestorCSEries, int contador) {
+	public static void consultarSeries(ClsGestorLN ObjGestorCSeries, int contador) {
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
 		 */
@@ -140,7 +143,7 @@ public class ClsDatos {
 					/**
 					 * Llamada al metodo Objetos Recuperdos Series con paso de parametros.
 					 */
-					ObjGestorCSEries.ObjetosRecuperadosSerie(NumeroDeSerie, Descripcion_Serie, contador);
+					ObjGestorCSeries.ObjetosRecuperadosSerie(NumeroDeSerie, Descripcion_Serie, contador);
 
 					// ObjGestorCSEries.DameSeries(MiListaDeSeriesRecuperadas);
 				}

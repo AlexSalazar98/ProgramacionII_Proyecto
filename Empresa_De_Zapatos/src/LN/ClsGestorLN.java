@@ -289,6 +289,7 @@ public class ClsGestorLN {
 	 * 
 	 * @param numeroDeSerie parametro recibido.
 	 * @param descripcion   parametro recibido.
+	 * @param contador parametro recibido. 
 	 */
 	public void ObjetosRecuperadosSerie(int numeroDeSerie, String descripcion, int contador) {
 		/**

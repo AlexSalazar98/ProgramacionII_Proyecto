@@ -9,9 +9,10 @@ import COMUN.ItfProperty;
 import LN.ClsGestorLN;
 
 /**
+ * Esta clase sirve para mostrar los datos.
  * 
  * @author Alex Salazar
- * @author David Requeta Esta clase sirve para mostrar los datos.
+ * @author David Requeta 
  */
 public class ClsMostrarDatos {
 

@@ -13,10 +13,10 @@ import java.util.Date;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_EMAIL;
 
 /**
+ * En esta clase vamos a recoger los atributos de la tabla clientes.
  * 
  * @author Alex Salazar
- * @author David Requeta En esta clase vamos a recoger los atributos de la tabla
- *         clientes.
+ * @author David Requeta 
  * 
  */
 public class ClsClientes implements ItfProperty {
