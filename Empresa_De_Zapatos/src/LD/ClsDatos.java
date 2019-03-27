@@ -6,10 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-
-import LN.ClsGestorLN;
-import LN.ClsSeries;
 
 import static LD.ClsConstantesBD.RUTA_DE_LA_BD;
 import static LD.ClsConstantesBD.NOMBRE_DEL_USUARIO;
@@ -22,29 +18,36 @@ import static LD.ClsConstantesBD.QUERY_PARA_DELETE_SERIES_POR_NºDESERIE;
  * Clase para hacer todos los tramites con la Base de Datos.
  * 
  * @author Alex Salazar
- * @author David Requeta 
- *        
+ * @author David Requeta
+ * 
  *
  */
 
 public class ClsDatos {
 
 	/**
+	 * Constructor vacio de ClsDatos.
+	 */
+	public ClsDatos() {
+	}
+
+	/**
 	 * Para generar la conexion con BD
 	 * 
 	 * @return tiene return
+	 * @throws SQLException lanzamos excepciones a la capa LP
 	 */
-	public Connection conectarBD() {
+	public Connection conectarBD() throws SQLException {
 
 		Connection objConn = null;
 
-		try {
+		// try {
 
-			objConn = DriverManager.getConnection(RUTA_DE_LA_BD, NOMBRE_DEL_USUARIO, CONTRASEÑA_DE_LA_BD);
+		objConn = DriverManager.getConnection(RUTA_DE_LA_BD, NOMBRE_DEL_USUARIO, CONTRASEÑA_DE_LA_BD);
 
-		} catch (SQLException e) {
-			System.out.println("Ha fallado la conexión" + e);
-		}
+		// } catch (SQLException e) {
+		// System.out.println("Ha fallado la conexión" + e);
+		// }
 
 		return objConn;
 
@@ -55,8 +58,9 @@ public class ClsDatos {
 	 * 
 	 * @param NºDeSerie   parametro para insert
 	 * @param Descripcion parametro para insert
+	 * @throws SQLException lanzamos excepciones a la capa LP
 	 */
-	public static void InsertarSerie(int NºDeSerie, String Descripcion) {
+	public static void InsertarSerie(int NºDeSerie, String Descripcion) throws SQLException {
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
 		 */
@@ -67,42 +71,41 @@ public class ClsDatos {
 		 */
 		Connection objConn = SQL.conectarBD();
 
-		try {
-			if (objConn != null) {
+		if (objConn != null) {
 
-				// Creamos las preparedstaments
-				PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_SERIES);
-				objSt.setInt(1, NºDeSerie);
-				objSt.setString(2, Descripcion);
+			// Creamos las preparedstaments
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_SERIES);
+			objSt.setInt(1, NºDeSerie);
+			objSt.setString(2, Descripcion);
 
-				// Ejecutamos la query que hemos preparado
-				objSt.execute();
+			// Ejecutamos la query que hemos preparado
+			objSt.execute();
 
-				System.out.println("Se ha insertado el registro correctamente");
-				System.out.println("-----------------------------------------");
+			System.out.println("Se ha insertado el registro correctamente");
+			System.out.println("-----------------------------------------");
 
-				// Cerramos el preparedStatement
-				objSt.close();
+			// Cerramos el preparedStatement
+			objSt.close();
 
-				// Cerramos la conexión
-				objConn.close();
+			// Cerramos la conexión
+			objConn.close();
 
-			} else {
-				System.out.println("No existe conexión");
-			}
-
-		} catch (SQLException e) {
-			System.out.println("No se ha podido realizar el insert: " + e);
+		} else {
+			System.out.println("No existe conexión");
 		}
 
 	}
 
 	/**
 	 * Para consultar Series.
+	 * 
 	 * @param ObjGestorCSeries Parametro para acceder al gestor
-	 * @param contador parametro contador.
+	 * @param contador         parametro contador.
+	 * @throws SQLException lanzamos excepciones hacia la capa LP
+	 * 
 	 */
-	public static void consultarSeries(ClsGestorLN ObjGestorCSeries, int contador) {
+
+	public ResultSet consultarSeries() throws SQLException {
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
 		 */
@@ -114,104 +117,92 @@ public class ClsDatos {
 		 */
 		Connection objConn = SQL.conectarBD();
 
-		try {
-			if (objConn != null) {
-				/**
-				 * Preparamos la consulta
-				 */
-				Statement st = objConn.createStatement();
-				ResultSet rs = st.executeQuery(QUERY_PARA_SELECT_SERIES);
+		ResultSet rs = null;
 
-				// ArrayList<ClsSeries> MiListaDeSeriesRecuperadas = new ArrayList<ClsSeries>();
-				/**
-				 * Recorremos el resultado, mientras haya registros para leer, y escribimos el
-				 * resultado en pantalla.
-				 * 
-				 */
-				while (rs.next()) {
+		if (objConn != null) {
+			/**
+			 * Preparamos la consulta
+			 */
+			Statement st = objConn.createStatement();
+			rs = st.executeQuery(QUERY_PARA_SELECT_SERIES);
 
-					/**
-					 * Volvamos la informacion recuperdad en variables.
-					 */
-					int NumeroDeSerie = rs.getInt("NºDeSerie");
-					String Descripcion_Serie = rs.getString("Descripcion");
-					/**
-					 * Incrementamos el valor del contador recivido por parametro para condicionar
-					 * el ArrayList
-					 */
-					contador = contador + 1;
-					/**
-					 * Llamada al metodo Objetos Recuperdos Series con paso de parametros.
-					 */
-					ObjGestorCSeries.ObjetosRecuperadosSerie(NumeroDeSerie, Descripcion_Serie, contador);
+			while (rs.next()) {
 
-					// ObjGestorCSEries.DameSeries(MiListaDeSeriesRecuperadas);
-				}
+				return rs;
 
-				/**
-				 * Cerramos el resulset
-				 * 
-				 */
-				rs.close();
-				/**
-				 * Cerramos el statement
-				 * 
-				 */
-				st.close();
-				/**
-				 * Cerramos la conexión
-				 * 
-				 */
-				objConn.close();
-
-			} else {
-				System.out.println("No existe conexión");
 			}
 
-		} catch (SQLException e) {
-			System.out.println("Ha fallado la consulta: " + e);
+			/**
+			 * Cerramos el resulset
+			 * 
+			 */
+			rs.close();
+			/**
+			 * Cerramos el statement
+			 * 
+			 */
+			st.close();
+			/**
+			 * Cerramos la conexión
+			 * 
+			 */
+			objConn.close();
+
+		} else {
+			System.out.println("No existe conexión");
 		}
+
+		return null;
 	}
 
 	/**
 	 * Para hacer delete en Series
 	 * 
 	 * @param NºDeSerie parametro de condicion.
+	 * @throws SQLException lanzamos excepciones hacia la capa LP
 	 */
-	public static void eliminarSeries(int NºDeSerie) {
+	public static void eliminarSeries(int NºDeSerie) throws SQLException {
 
-		// Instancias la clase que hemos creado anteriormente
+		/**
+		 *  Instancias la clase que hemos creado anteriormente
+		 */
 		ClsDatos SQL = new ClsDatos();
 
-		// Llamas al método que tiene la clase y te devuelve una conexión
+		/**
+		 *  Llamas al método que tiene la clase y te devuelve una conexión
+		 */
 		Connection objConn = SQL.conectarBD();
 
-		try {
-			if (objConn != null) {
+		if (objConn != null) {
 
-				// Creamos las preparedstaments
-				PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_SERIES_POR_NºDESERIE);
-				objSt.setInt(1, NºDeSerie);
+			/**
+			 *  Creamos las preparedstaments
+			 */
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_SERIES_POR_NºDESERIE);
+			objSt.setInt(1, NºDeSerie);
 
-				// Ejecutamos la query que hemos preparado
-				objSt.execute();
+			/**
+			 *  Ejecutamos la query que hemos preparado
+			 */
+			objSt.execute();
 
-				System.out.println("Se ha eliminado el registro correctamente");
-				System.out.println("-----------------------------------------");
+			System.out.println("Se ha eliminado el registro correctamente");
+			System.out.println("-----------------------------------------");
 
-				// Cerramos el preparedStatement
-				objSt.close();
+			/**
+			 *  Cerramos el preparedStatement
+			 */
+			objSt.close();
 
-				// Cerramos la conexión
-				objConn.close();
+			/**
+			 *  Cerramos la conexión
+			 */
+			objConn.close();
 
-			} else {
-				System.out.println("No existe conexión");
-			}
-
-		} catch (SQLException e) {
-			System.out.println("No se ha podido eliminar el registro: " + e);
+		} else {
+			System.out.println("No existe conexión");
 		}
+
 	}
 
 }

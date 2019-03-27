@@ -2,6 +2,7 @@ package LP;
 
 import java.text.ParseException;
 
+import LD.ClsDatos;
 import LN.ClsGestorLN;
 
 /**
@@ -21,6 +22,7 @@ public class ClsMenuPrincipal {
 		 * Creamos un objeto Gestor.
 		 */
 		ClsGestorLN objGestor = new ClsGestorLN();
+		ClsDatos objDatos = new ClsDatos();
 
 		/**
 		 * Variable para elegir la opcion de menu.
@@ -66,7 +68,7 @@ public class ClsMenuPrincipal {
 			 *
 			 */
 			case 2:
-				ClsMenuConsultarDatos.MenuConsultarDatos(objGestor);
+				ClsMenuConsultarDatos.MenuConsultarDatos(objGestor, objDatos);
 				break;
 			/**
 			 * 

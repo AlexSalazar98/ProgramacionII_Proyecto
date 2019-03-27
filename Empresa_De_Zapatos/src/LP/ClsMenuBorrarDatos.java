@@ -1,5 +1,6 @@
 package LP;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 
 import LD.ClsDatos;
@@ -9,8 +10,8 @@ import LN.ClsGestorLN;
  * Creamos un menu donde podamos borrar los datos de nuestra base de datos.
  * 
  * @author Alex Salazar
- * @author David Requeta 
- *         
+ * @author David Requeta
+ * 
  * 
  */
 public class ClsMenuBorrarDatos {
@@ -112,11 +113,18 @@ public class ClsMenuBorrarDatos {
 		 */
 		int NºDeSerie;
 		NºDeSerie = UtilidadesLP.leerEntero();
-		
+
 		/**
-		 * Llamamos al metodo borrar y le pasamos el parametro.
+		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
 		 */
-		ClsDatos.eliminarSeries(NºDeSerie);
+		try {
+			/**
+			 * Llamamos al metodo borrar y le pasamos el parametro.
+			 */
+			ClsDatos.eliminarSeries(NºDeSerie);
+		} catch (SQLException e) {
+			System.out.println("No se ha podido eliminar el registro: " + e);
+		}
 
 	}
 

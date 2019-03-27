@@ -1,5 +1,7 @@
 package LN;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -73,8 +75,9 @@ public class ClsGestorLN {
 	 * 
 	 * @param NumeroDeSerie     parametro numero de serie
 	 * @param Descripcion_Serie parametro descripcion de serie.
+	 * @throws SQLException
 	 */
-	public void CrearSerie(int NumeroDeSerie, String Descripcion_Serie) {
+	public void CrearSerie(int NumeroDeSerie, String Descripcion_Serie) throws SQLException {
 		/**
 		 * Crearmos el objeto
 		 */
@@ -287,25 +290,31 @@ public class ClsGestorLN {
 	/**
 	 * Metodo para generar objetos con los datos recuperados de la BD
 	 * 
-	 * @param numeroDeSerie parametro recibido.
-	 * @param descripcion   parametro recibido.
-	 * @param contador parametro recibido. 
+	 * @param objDatosORS objetos creados
+	 * @throws SQLException excepcion lanzada a tratar en LP
 	 */
-	public void ObjetosRecuperadosSerie(int numeroDeSerie, String descripcion, int contador) {
-		/**
-		 * Generamos unas condiciones para guardar la informacion de consulta en
-		 * ArrayList y poder machacarlos para que no nos duplique informacion
-		 */
-		if (contador == 1) {
-			MiListaDeSeriesRecuperadas = new ArrayList<ClsSeries>();
-		}
-		/**
-		 * Con los datos devueltos de BD creamos objeto y lo añadimos a ArrayList
-		 */
-		ClsSeries objSeriesRecuperadaSeries;
-		objSeriesRecuperadaSeries = new ClsSeries(numeroDeSerie, descripcion);
-		MiListaDeSeriesRecuperadas.add(objSeriesRecuperadaSeries);
+	public void ObjetosRecuperadosSerie(ClsDatos objDatosORS) throws SQLException {
 
+		/**
+		 * Recogemos datos desde LD y consturimos objetos.
+		 */
+		ResultSet Resultado = objDatosORS.consultarSeries();
+		try {
+			while (Resultado.next()) {
+				int NumeroDeSerie = Resultado.getInt("NºDeSerie");
+				String Descripcion_Series = Resultado.getString("Descripcion");
+				ClsSeries objSeries = new ClsSeries(NumeroDeSerie, Descripcion_Series);
+				/**
+				 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
+				 */
+				if (!ExisteSeries(objSeries, MiListaDeSeries)) {
+					MiListaDeSeries.add(objSeries);
+				} else {
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -322,12 +331,30 @@ public class ClsGestorLN {
 		ArrayList<ItfProperty> retorno;
 		retorno = new ArrayList<ItfProperty>();
 
-		for (ClsSeries a : MiListaDeSeriesRecuperadas) {
+		for (ClsSeries a : MiListaDeSeries) {
 			retorno.add(a);
 		}
 
 		return retorno;
 
 	}
+	/**
+	 * Metodo para comprobar si los Objetos Series estan repetidos o no en nuestro Array
+	 * @param Series parametro serie
+	 * @param MiListaDeSeries Arraylist
+	 * @return nos devuelve true si esta repetido.
+	 */
 
+	public static boolean ExisteSeries(ClsSeries Series, ArrayList<ClsSeries> MiListaDeSeries) {
+
+		boolean retorno = false;
+
+		for (ClsSeries b : MiListaDeSeries) {
+			if (b.equals(Series))
+				return true;
+
+		}
+
+		return retorno;
+	}
 }

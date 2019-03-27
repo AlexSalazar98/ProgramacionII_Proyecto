@@ -1,21 +1,23 @@
 package LP;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 
 import LD.ClsDatos;
 import LN.ClsGestorLN;
 
 /**
- * Creamos un menu para poder consultar los diferentes tipos de datos que tengamos en nuestra base de datos.
+ * Creamos un menu para poder consultar los diferentes tipos de datos que
+ * tengamos en nuestra base de datos.
  * 
  * @author Alex Salazar
- * @author David Requeta 
- *         
+ * @author David Requeta
+ * 
  *
  */
 public class ClsMenuConsultarDatos {
 
-	public static void MenuConsultarDatos(ClsGestorLN objGestorMC) throws ParseException {
+	public static void MenuConsultarDatos(ClsGestorLN objGestorMC, ClsDatos objDatosMC) throws ParseException {
 
 		/**
 		 * Intanciamos el objeto gestor para tener acceso a la clase gestor
@@ -54,7 +56,7 @@ public class ClsMenuConsultarDatos {
 				break;
 
 			case 2:
-				ConsultarDatosSeries(objGestorMC);
+				ConsultarDatosSeries(objGestorMC, objDatosMC);
 				break;
 
 			case 3:
@@ -104,19 +106,25 @@ public class ClsMenuConsultarDatos {
 
 	/**
 	 * Pedimos los datos a consultar en la entidad Series.
-	 * @param ObjGestCSeries parametro para acceder al Gestor.
+	 * @param ObjGestCSeries relacion con LN
+	 * @param objDatosCS relacion con LD
 	 */
-	public static void ConsultarDatosSeries(ClsGestorLN ObjGestCSeries) {
+	public static void ConsultarDatosSeries(ClsGestorLN ObjGestCSeries, ClsDatos objDatosCS) {
 
 		/**
-		 * Variable contador para condicionar el generado de ArrayList para consultas.
+		 * Rodeado de Try Catch para tratar excepcion y sacar un mensaje por pantalla.
 		 */
-		int contador = 0;
+		try {
+			/**
+			 * Llamada al gestor para recuperar datos de BD
+			 */
+			ObjGestCSeries.ObjetosRecuperadosSerie(objDatosCS);
+		} catch (SQLException e) {
 
-		/**
-		 * Llamada a consultar series
-		 */
-		ClsDatos.consultarSeries(ObjGestCSeries, contador);
+			System.out.println("Ha fallado la consulta: " + e);
+		}
+		
+		
 		/**
 		 * Llamada al metodo Ver Series.
 		 */

@@ -17,7 +17,7 @@ public class ClsConstantesBD {
 	public static final String NOMBRE_DEL_HOSTNAME = "localhost";
 	public static final String PUERTO_BD = "3306";
 	public static final String NOMBRE_DEL_USUARIO = "root";
-	public static final String CONTRASEÑA_DE_LA_BD = "xxx";
+	public static final String CONTRASEÑA_DE_LA_BD = "16dejuniode1998";
 	public static final String RUTA_DE_LA_BD = "jdbc:mysql://" + NOMBRE_DEL_HOSTNAME + ":" + PUERTO_BD + "/"
 			+ NOMBRE_DE_LA_BD + "?useTimezone=true&serverTimezone=GMT&useSSL=false";
 

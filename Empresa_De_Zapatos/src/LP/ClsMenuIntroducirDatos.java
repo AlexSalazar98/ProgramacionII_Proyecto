@@ -1,16 +1,18 @@
 package LP;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import LN.ClsGestorLN;
 
 /**
- * Creamos un menu donde nos de las opciones de introducir los distintos tipos de datos que tenemos en nuestra base de datos.
+ * Creamos un menu donde nos de las opciones de introducir los distintos tipos
+ * de datos que tenemos en nuestra base de datos.
  * 
  * @author Alex Salazar
- * @author David Requeta 
- *         
+ * @author David Requeta
+ * 
  *
  */
 
@@ -143,18 +145,24 @@ public class ClsMenuIntroducirDatos {
 		descripcion_Serie = UtilidadesLP.leerCadena();
 
 		/**
-		 * Pasamos los parametros para generer el objeto
+		 * Rodeamos con TRY CATCH para tratar excepcion.
 		 */
-		objGSeries.CrearSerie(NumeroDeSerie, descripcion_Serie);
+		try {
+			/**
+			 * Pasamos los datos al gestor para que los gestione
+			 */
+			objGSeries.CrearSerie(NumeroDeSerie, descripcion_Serie);
+		} catch (SQLException e) {
+			System.out.println("No se ha podido realizar el insert: " + e);
+		}
 	}
 
 	/**
 	 * Pedimos los datos a introducir en la entidad Pedidos.
 	 * 
 	 * @param objGPedidos objeto pedidos
-	 * @throws ParseException para el parseo
 	 */
-	public static void IntroducirDatosPedidos(ClsGestorLN objGPedidos) throws ParseException {
+	public static void IntroducirDatosPedidos(ClsGestorLN objGPedidos) {
 
 		/**
 		 * variables para recoger los datos de la entidad Pedidos.
@@ -171,7 +179,7 @@ public class ClsMenuIntroducirDatos {
 		 * Para formatear las fechas
 		 */
 		SimpleDateFormat miFormato = new SimpleDateFormat("dd-mm-yyyy");
-		// DateFormat miFormato = DateFormat.getDateInstance(DateFormat.MEDIUM);
+
 		/**
 		 * pedimos los datos.
 		 */
@@ -180,19 +188,25 @@ public class ClsMenuIntroducirDatos {
 		System.out.print("Introduzca la Fecha del Pedido (Formato: 00-00-0000):");
 		fechaDePedido = UtilidadesLP.leerCadena();
 		/**
-		 * Pasamos de String a date y eliminamos el parseo. (para las excepciones hemos
-		 * añadido throws ParseException
+		 * Pasamos de String a date tratando la excepcion.
 		 */
-		Date FechaDePedido = miFormato.parse(fechaDePedido);
-		// System.out.println(miFormato.format(FechaDePedido)); ----> Para formatear a
-		// la salida.
+		Date FechaDePedido = null;
+		try {
+			FechaDePedido = miFormato.parse(fechaDePedido);
+		} catch (ParseException e1) {
+			System.out.println("¡Error en el formato!");
+		}
 		System.out.print("Introduzca la Fecha de Entrega (Formato: 00-00-0000):");
 		fechaDeEntrega = UtilidadesLP.leerCadena();
 		/**
-		 * Pasamos de String a date y eliminamos el parseo. (para las excepciones hemos
-		 * añadido throws ParseException
+		 * Pasamos de String a date tratando la excepcion.
 		 */
-		Date FechaDeEntrega = miFormato.parse(fechaDeEntrega);
+		Date FechaDeEntrega = null;
+		try {
+			FechaDeEntrega = miFormato.parse(fechaDeEntrega);
+		} catch (ParseException e) {
+			System.out.println("¡Error en el formato!");
+		}
 		System.out.print("Introduce 1 (Si) o 0 (No) para indicar si el pedido esta entregado o no:");
 		comprobar = UtilidadesLP.leerEntero();
 		if (comprobar == 1) {
