@@ -1,11 +1,12 @@
 package LD;
 
 /**
- * Clase para almacenar todas las constantes que utilicemos a nivel de LP con base de datos.
+ * Clase para almacenar todas las constantes que utilicemos a nivel de LP con
+ * base de datos.
  * 
  * @author Alex Salazar
- * @author David Requeta 
- *         
+ * @author David Requeta
+ * 
  */
 
 public class ClsConstantesBD {
@@ -38,4 +39,10 @@ public class ClsConstantesBD {
 	 */
 	public static final String QUERY_PARA_DELETE_SERIES_POR_NºDESERIE = "DELETE FROM `mydb`.`series`\r\n"
 			+ "	WHERE NºDeSerie = ?";
+
+	/**
+	 * Consatnte para la SELECT de suelas.
+	 */
+	public static final String QUERY_PARA_SELECT_SUELAS = "SELECT `suelas`.`Referencia`,\r\n"
+			+ "    `suelas`.`Descripcion`,\r\n" + "    `suelas`.`Precio`\r\n" + "FROM `mydb`.`suelas`;";
 }

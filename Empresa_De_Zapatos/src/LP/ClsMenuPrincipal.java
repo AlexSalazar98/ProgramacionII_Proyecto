@@ -1,16 +1,18 @@
 package LP;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 
 import LD.ClsDatos;
 import LN.ClsGestorLN;
 
 /**
- * Generamos un menu principal para poder insertar, consultar, borrar datos o salir.
+ * Generamos un menu principal para poder insertar, consultar, borrar datos o
+ * salir.
  * 
  * @author Alex Salazar
- * @author David Requeta 
- *        
+ * @author David Requeta
+ * 
  *
  */
 
@@ -19,10 +21,20 @@ public class ClsMenuPrincipal {
 	public static void MenuPrincipal() throws ParseException {
 
 		/**
-		 * Creamos un objeto Gestor.
+		 * Creamos un objeto Gestor y un objeto datos.
 		 */
 		ClsGestorLN objGestor = new ClsGestorLN();
 		ClsDatos objDatos = new ClsDatos();
+		/**
+		 * Llamadas a metodos para cargar los datos en Arrays nada mas iniciar la
+		 * aplicacion.
+		 */
+		try {
+			objGestor.ObjetosRecuperadosSerie(objDatos);
+		} catch (SQLException e) {
+			
+			System.out.println("Ejecute la aplicacion MySQLWorkBench");
+		}
 
 		/**
 		 * Variable para elegir la opcion de menu.

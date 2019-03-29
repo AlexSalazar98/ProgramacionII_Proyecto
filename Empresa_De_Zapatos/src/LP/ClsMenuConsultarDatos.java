@@ -56,7 +56,7 @@ public class ClsMenuConsultarDatos {
 				break;
 
 			case 2:
-				ConsultarDatosSeries(objGestorMC, objDatosMC);
+				ConsultarDatosSeries(objGestorMC);
 				break;
 
 			case 3:
@@ -109,20 +109,20 @@ public class ClsMenuConsultarDatos {
 	 * @param ObjGestCSeries relacion con LN
 	 * @param objDatosCS relacion con LD
 	 */
-	public static void ConsultarDatosSeries(ClsGestorLN ObjGestCSeries, ClsDatos objDatosCS) {
+	public static void ConsultarDatosSeries(ClsGestorLN ObjGestCSeries) {
 
 		/**
 		 * Rodeado de Try Catch para tratar excepcion y sacar un mensaje por pantalla.
 		 */
-		try {
+//		try {
 			/**
 			 * Llamada al gestor para recuperar datos de BD
 			 */
-			ObjGestCSeries.ObjetosRecuperadosSerie(objDatosCS);
-		} catch (SQLException e) {
+	//		ObjGestCSeries.ObjetosRecuperadosSerie(objDatosCS);
+		//} catch (SQLException e) {
 
-			System.out.println("Ha fallado la consulta: " + e);
-		}
+			//System.out.println("Ha fallado la consulta: " + e);
+		//}
 		
 		
 		/**

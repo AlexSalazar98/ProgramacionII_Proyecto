@@ -13,6 +13,7 @@ import static LD.ClsConstantesBD.CONTRASEÑA_DE_LA_BD;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_SERIES;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_SERIES;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_SERIES_POR_NºDESERIE;
+import static LD.ClsConstantesBD.QUERY_PARA_SELECT_SUELAS;
 
 /**
  * Clase para hacer todos los tramites con la Base de Datos.
@@ -41,13 +42,7 @@ public class ClsDatos {
 
 		Connection objConn = null;
 
-		// try {
-
 		objConn = DriverManager.getConnection(RUTA_DE_LA_BD, NOMBRE_DEL_USUARIO, CONTRASEÑA_DE_LA_BD);
-
-		// } catch (SQLException e) {
-		// System.out.println("Ha fallado la conexión" + e);
-		// }
 
 		return objConn;
 
@@ -90,8 +85,6 @@ public class ClsDatos {
 			// Cerramos la conexión
 			objConn.close();
 
-		} else {
-			System.out.println("No existe conexión");
 		}
 
 	}
@@ -148,8 +141,6 @@ public class ClsDatos {
 			 */
 			objConn.close();
 
-		} else {
-			System.out.println("No existe conexión");
 		}
 
 		return null;
@@ -164,25 +155,25 @@ public class ClsDatos {
 	public static void eliminarSeries(int NºDeSerie) throws SQLException {
 
 		/**
-		 *  Instancias la clase que hemos creado anteriormente
+		 * Instancias la clase que hemos creado anteriormente
 		 */
 		ClsDatos SQL = new ClsDatos();
 
 		/**
-		 *  Llamas al método que tiene la clase y te devuelve una conexión
+		 * Llamas al método que tiene la clase y te devuelve una conexión
 		 */
 		Connection objConn = SQL.conectarBD();
 
 		if (objConn != null) {
 
 			/**
-			 *  Creamos las preparedstaments
+			 * Creamos las preparedstaments
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_SERIES_POR_NºDESERIE);
 			objSt.setInt(1, NºDeSerie);
 
 			/**
-			 *  Ejecutamos la query que hemos preparado
+			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
 
@@ -190,19 +181,70 @@ public class ClsDatos {
 			System.out.println("-----------------------------------------");
 
 			/**
-			 *  Cerramos el preparedStatement
+			 * Cerramos el preparedStatement
 			 */
 			objSt.close();
 
 			/**
-			 *  Cerramos la conexión
+			 * Cerramos la conexión
 			 */
 			objConn.close();
 
-		} else {
-			System.out.println("No existe conexión");
 		}
 
+	}
+
+	/**
+	 * Para consultar suelas
+	 * @return devolvemos datos
+	 * @throws SQLException mandamos excepxiones a tratar.
+	 */
+	public ResultSet consultarSuelas() throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		ResultSet rs = null;
+
+		if (objConn != null) {
+			/**
+			 * Preparamos la consulta
+			 */
+			Statement st = objConn.createStatement();
+			rs = st.executeQuery(QUERY_PARA_SELECT_SUELAS);
+
+			while (rs.next()) {
+
+				return rs;
+
+			}
+
+			/**
+			 * Cerramos el resulset
+			 * 
+			 */
+			rs.close();
+			/**
+			 * Cerramos el statement
+			 * 
+			 */
+			st.close();
+			/**
+			 * Cerramos la conexión
+			 * 
+			 */
+			objConn.close();
+
+		}
+
+		return null;
 	}
 
 }

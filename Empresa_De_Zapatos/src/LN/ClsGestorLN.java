@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-
 import COMUN.ItfProperty;
 import LD.ClsDatos;
 
@@ -19,6 +18,8 @@ import LD.ClsDatos;
 
 public class ClsGestorLN {
 
+	
+	
 	/**
 	 * Instanciamos los Arrays donde guardar los objetos.
 	 */
@@ -29,7 +30,7 @@ public class ClsGestorLN {
 	ArrayList<ClsMateriasPrimas> MiListaDeMateriasPrimas;
 	ArrayList<ClsPedidos> MiListaDePedidos;
 	ArrayList<ClsSeries> MiListaDeSeries;
-	ArrayList<ClsSeries> MiListaDeSeriesRecuperadas;
+	//ArrayList<ClsSeries> MiListaDeSeriesRecuperadas;
 
 	/**
 	 * Aqui generaremos todo en relacion al Gestor.
@@ -338,13 +339,13 @@ public class ClsGestorLN {
 		return retorno;
 
 	}
+	
 	/**
 	 * Metodo para comprobar si los Objetos Series estan repetidos o no en nuestro Array
 	 * @param Series parametro serie
 	 * @param MiListaDeSeries Arraylist
 	 * @return nos devuelve true si esta repetido.
 	 */
-
 	public static boolean ExisteSeries(ClsSeries Series, ArrayList<ClsSeries> MiListaDeSeries) {
 
 		boolean retorno = false;
@@ -357,4 +358,43 @@ public class ClsGestorLN {
 
 		return retorno;
 	}
+	
+	public void ObjetosRecuperadosSuelas(ClsDatos objDatosORS) throws SQLException {
+
+		/**
+		 * Recogemos datos desde LD y consturimos objetos.
+		 */
+		ResultSet Resultado = objDatosORS.consultarSuelas();
+		try {
+			while (Resultado.next()) {
+				int Referencia = Resultado.getInt("Referencia");
+				String Descripcion = Resultado.getString("Descripcion");
+				Double Precio = Resultado.getDouble("Precio");
+				ClsSuelas ObjSuelas = new ClsSuelas(Referencia, Descripcion, Precio);
+				/**
+				 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
+				 */
+				if (!ExisteMateriasPrimasS(ObjSuelas, MiListaDeMateriasPrimas)) {
+					MiListaDeMateriasPrimas.add(ObjSuelas);
+				} else {
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static boolean ExisteMateriasPrimasS(ClsSuelas Suelas, ArrayList<ClsMateriasPrimas> MiListaDeMateriasPrimas) {
+
+		boolean retorno = false;
+
+		for (ClsMateriasPrimas b : MiListaDeMateriasPrimas) {
+			if (b.equals(Suelas))
+				return true;
+
+		}
+
+		return retorno;
+	}
+
 }
