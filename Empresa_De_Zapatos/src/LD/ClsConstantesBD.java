@@ -45,4 +45,10 @@ public class ClsConstantesBD {
 	 */
 	public static final String QUERY_PARA_SELECT_SUELAS = "SELECT `suelas`.`Referencia`,\r\n"
 			+ "    `suelas`.`Descripcion`,\r\n" + "    `suelas`.`Precio`\r\n" + "FROM `mydb`.`suelas`;";
+
+	/**
+	 * Constante para la INSERT de suelas.
+	 */
+	public static final String QUERY_PARA_INSERTAR_SUELAS = "INSERT INTO `mydb`.`suelas`\r\n" + "(`Referencia`,\r\n"
+			+ "`Descripcion`,\r\n" + "`Precio`)\r\n" + "VALUES\r\n" + "(?,\r\n" + "?,\r\n" + "?);";
 }

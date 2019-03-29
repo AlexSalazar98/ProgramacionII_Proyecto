@@ -7,13 +7,12 @@ import java.util.Date;
 
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_DESCRIPCION;
 
-
 /**
  * En esta clase vamos a recoger los atributos de la tabla series.
  * 
  * @author Alex Salazar, David Requeta.
- * @author David Requeta 
- *         
+ * @author David Requeta
+ * 
  * 
  */
 public class ClsSeries implements ItfProperty {
@@ -31,7 +30,7 @@ public class ClsSeries implements ItfProperty {
 	 * Aqui generamos el constructor de la clase
 	 * 
 	 * @param numeroDeSerie parametro numero de serie
-	 * @param descripcion parametro descripcion
+	 * @param descripcion   parametro descripcion
 	 * 
 	 */
 	public ClsSeries(int numeroDeSerie, String descripcion) {
@@ -103,13 +102,13 @@ public class ClsSeries implements ItfProperty {
 
 	@Override
 	public Date getDateProperty(String propiedad) {
-		
+
 		return null;
 	}
 
 	@Override
 	public Boolean getBooleanProperty(String propiedad) {
-		
+
 		return null;
 	}
 
@@ -137,7 +136,5 @@ public class ClsSeries implements ItfProperty {
 			return false;
 		return true;
 	}
-	
-	
 
 }

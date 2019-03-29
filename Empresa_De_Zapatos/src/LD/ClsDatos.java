@@ -13,6 +13,7 @@ import static LD.ClsConstantesBD.CONTRASEÑA_DE_LA_BD;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_SERIES;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_SERIES;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_SERIES_POR_NºDESERIE;
+import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_SUELAS;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_SUELAS;
 
 /**
@@ -55,7 +56,7 @@ public class ClsDatos {
 	 * @param Descripcion parametro para insert
 	 * @throws SQLException lanzamos excepciones a la capa LP
 	 */
-	public static void InsertarSerie(int NºDeSerie, String Descripcion) throws SQLException {
+	public void InsertarSerie(int NºDeSerie, String Descripcion) throws SQLException {
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
 		 */
@@ -193,9 +194,46 @@ public class ClsDatos {
 		}
 
 	}
+	
+	public void InsertarSuelas(int Referencia, String Descripcion, Double Precio) throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			// Creamos las preparedstaments
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_SUELAS);
+			objSt.setInt(1, Referencia);
+			objSt.setString(2, Descripcion);
+			objSt.setDouble(3, Precio);
+
+			// Ejecutamos la query que hemos preparado
+			objSt.execute();
+
+			System.out.println("Se ha insertado el registro correctamente");
+			System.out.println("-----------------------------------------");
+
+			// Cerramos el preparedStatement
+			objSt.close();
+
+			// Cerramos la conexión
+			objConn.close();
+
+		}
+
+	}
+
 
 	/**
 	 * Para consultar suelas
+	 * 
 	 * @return devolvemos datos
 	 * @throws SQLException mandamos excepxiones a tratar.
 	 */

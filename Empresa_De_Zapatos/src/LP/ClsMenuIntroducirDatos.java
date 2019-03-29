@@ -119,7 +119,11 @@ public class ClsMenuIntroducirDatos {
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
-		objGSuelas.CrearSuelas(Referencia_Suelas, Descripcion_Suelas, Precio_Suelas);
+		try {
+			objGSuelas.CrearSuelas(Referencia_Suelas, Descripcion_Suelas, Precio_Suelas);
+		} catch (SQLException e) {
+			System.out.println("No se ha podido realizar el insert: " + e);
+		}
 
 	}
 

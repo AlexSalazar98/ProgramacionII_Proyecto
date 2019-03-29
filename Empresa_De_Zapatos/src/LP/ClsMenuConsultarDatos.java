@@ -1,9 +1,6 @@
 package LP;
 
-import java.sql.SQLException;
 import java.text.ParseException;
-
-import LD.ClsDatos;
 import LN.ClsGestorLN;
 
 /**
@@ -17,7 +14,7 @@ import LN.ClsGestorLN;
  */
 public class ClsMenuConsultarDatos {
 
-	public static void MenuConsultarDatos(ClsGestorLN objGestorMC, ClsDatos objDatosMC) throws ParseException {
+	public static void MenuConsultarDatos(ClsGestorLN objGestorMC) throws ParseException {
 
 		/**
 		 * Intanciamos el objeto gestor para tener acceso a la clase gestor
@@ -52,7 +49,7 @@ public class ClsMenuConsultarDatos {
 			opcionConsultar = UtilidadesLP.leerEntero();
 			switch (opcionConsultar) {
 			case 1:
-				ConsultarDatosSuelas();
+				ConsultarDatosSuelas(objGestorMC);
 				break;
 
 			case 2:
@@ -60,31 +57,31 @@ public class ClsMenuConsultarDatos {
 				break;
 
 			case 3:
-				ConsultarDatosPedidos();
+				ConsultarDatosPedidos(objGestorMC);
 				break;
 
 			case 4:
-				ConsultarDatosMateriales();
+				ConsultarDatosMateriales(objGestorMC);
 				break;
 
 			case 5:
-				ConsultarDatosHerrajes();
+				ConsultarDatosHerrajes(objGestorMC);
 				break;
 
 			case 6:
-				ConsultarDatosEnvios();
+				ConsultarDatosEnvios(objGestorMC);
 				break;
 
 			case 7:
-				ConsultarDatosClientes();
+				ConsultarDatosClientes(objGestorMC);
 				break;
 
 			case 8:
-				ConsultarDatosArticulos();
+				ConsultarDatosArticulos(objGestorMC);
 				break;
 
 			case 9:
-				ConsultarDatosDesgloseDePedido();
+				ConsultarDatosDesgloseDePedido(objGestorMC);
 				break;
 
 			default:
@@ -96,35 +93,21 @@ public class ClsMenuConsultarDatos {
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a consultar en la entidad Suelas.
-	 *
+	 * 
+	 * @param ObjGestCSuelas relacion con LN
 	 */
-	public static void ConsultarDatosSuelas() {
+	public static void ConsultarDatosSuelas(ClsGestorLN ObjGestCSuelas) {
 
 	}
 
 	/**
 	 * Pedimos los datos a consultar en la entidad Series.
+	 * 
 	 * @param ObjGestCSeries relacion con LN
-	 * @param objDatosCS relacion con LD
 	 */
 	public static void ConsultarDatosSeries(ClsGestorLN ObjGestCSeries) {
 
-		/**
-		 * Rodeado de Try Catch para tratar excepcion y sacar un mensaje por pantalla.
-		 */
-//		try {
-			/**
-			 * Llamada al gestor para recuperar datos de BD
-			 */
-	//		ObjGestCSeries.ObjetosRecuperadosSerie(objDatosCS);
-		//} catch (SQLException e) {
-
-			//System.out.println("Ha fallado la consulta: " + e);
-		//}
-		
-		
 		/**
 		 * Llamada al metodo Ver Series.
 		 */
@@ -136,7 +119,7 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Pedidos.
 	 *
 	 */
-	public static void ConsultarDatosPedidos() {
+	public static void ConsultarDatosPedidos(ClsGestorLN ObjGestCPedidos) {
 
 	}
 
@@ -145,7 +128,7 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Materiales.
 	 *
 	 */
-	public static void ConsultarDatosMateriales() {
+	public static void ConsultarDatosMateriales(ClsGestorLN ObjGestCMateriales) {
 
 	}
 
@@ -154,7 +137,7 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Herrajes.
 	 *
 	 */
-	public static void ConsultarDatosHerrajes() {
+	public static void ConsultarDatosHerrajes(ClsGestorLN ObjGestCHerrajes) {
 
 	}
 
@@ -163,7 +146,7 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Envios.
 	 *
 	 */
-	public static void ConsultarDatosEnvios() {
+	public static void ConsultarDatosEnvios(ClsGestorLN ObjGestCEnvios) {
 
 	}
 
@@ -172,7 +155,7 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Clientes.
 	 *
 	 */
-	public static void ConsultarDatosClientes() {
+	public static void ConsultarDatosClientes(ClsGestorLN ObjGestCClientes) {
 
 	}
 
@@ -181,7 +164,7 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Articulo
 	 *
 	 */
-	public static void ConsultarDatosArticulos() {
+	public static void ConsultarDatosArticulos(ClsGestorLN ObjGestCArticulos) {
 
 	}
 
@@ -190,7 +173,7 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Desglose de Pedidos.
 	 *
 	 */
-	public static void ConsultarDatosDesgloseDePedido() {
+	public static void ConsultarDatosDesgloseDePedido(ClsGestorLN ObjGestCDesglose) {
 
 	}
 }

@@ -18,8 +18,8 @@ import LD.ClsDatos;
 
 public class ClsGestorLN {
 
-	
-	
+	ClsDatos objDatos = new ClsDatos();
+
 	/**
 	 * Instanciamos los Arrays donde guardar los objetos.
 	 */
@@ -30,7 +30,7 @@ public class ClsGestorLN {
 	ArrayList<ClsMateriasPrimas> MiListaDeMateriasPrimas;
 	ArrayList<ClsPedidos> MiListaDePedidos;
 	ArrayList<ClsSeries> MiListaDeSeries;
-	//ArrayList<ClsSeries> MiListaDeSeriesRecuperadas;
+	// ArrayList<ClsSeries> MiListaDeSeriesRecuperadas;
 
 	/**
 	 * Aqui generaremos todo en relacion al Gestor.
@@ -56,8 +56,9 @@ public class ClsGestorLN {
 	 * @param Referencia_Suelas  parametro referencia suelas
 	 * @param Descripcion_Suelas parametro descripcion suelas
 	 * @param Precio_Suelas      parametro precio suelas
+	 * @throws SQLException 
 	 */
-	public void CrearSuelas(int Referencia_Suelas, String Descripcion_Suelas, Double Precio_Suelas) {
+	public void CrearSuelas(int Referencia_Suelas, String Descripcion_Suelas, Double Precio_Suelas) throws SQLException {
 		/**
 		 * Crearmos el objeto
 		 */
@@ -68,6 +69,10 @@ public class ClsGestorLN {
 		 * Añadimos el objeto a el array.
 		 */
 		MiListaDeMateriasPrimas.add(objSuelas);
+		/**
+		 * Llamada a Insert suelas con paso de parametros.
+		 */
+		objDatos.InsertarSuelas(Referencia_Suelas, Descripcion_Suelas, Precio_Suelas);
 
 	}
 
@@ -93,7 +98,7 @@ public class ClsGestorLN {
 		/**
 		 * Llamada a introducir datos con paso de parametros.
 		 */
-		ClsDatos.InsertarSerie(NumeroDeSerie, Descripcion_Serie);
+		objDatos.InsertarSerie(NumeroDeSerie, Descripcion_Serie);
 
 	}
 
@@ -294,12 +299,12 @@ public class ClsGestorLN {
 	 * @param objDatosORS objetos creados
 	 * @throws SQLException excepcion lanzada a tratar en LP
 	 */
-	public void ObjetosRecuperadosSerie(ClsDatos objDatosORS) throws SQLException {
+	public void ObjetosRecuperadosSerie() throws SQLException {
 
 		/**
 		 * Recogemos datos desde LD y consturimos objetos.
 		 */
-		ResultSet Resultado = objDatosORS.consultarSeries();
+		ResultSet Resultado = objDatos.consultarSeries();
 		try {
 			while (Resultado.next()) {
 				int NumeroDeSerie = Resultado.getInt("NºDeSerie");
@@ -339,10 +344,12 @@ public class ClsGestorLN {
 		return retorno;
 
 	}
-	
+
 	/**
-	 * Metodo para comprobar si los Objetos Series estan repetidos o no en nuestro Array
-	 * @param Series parametro serie
+	 * Metodo para comprobar si los Objetos Series estan repetidos o no en nuestro
+	 * Array
+	 * 
+	 * @param Series          parametro serie
 	 * @param MiListaDeSeries Arraylist
 	 * @return nos devuelve true si esta repetido.
 	 */
@@ -358,13 +365,13 @@ public class ClsGestorLN {
 
 		return retorno;
 	}
-	
-	public void ObjetosRecuperadosSuelas(ClsDatos objDatosORS) throws SQLException {
+
+	public void ObjetosRecuperadosSuelas() throws SQLException {
 
 		/**
 		 * Recogemos datos desde LD y consturimos objetos.
 		 */
-		ResultSet Resultado = objDatosORS.consultarSuelas();
+		ResultSet Resultado = objDatos.consultarSuelas();
 		try {
 			while (Resultado.next()) {
 				int Referencia = Resultado.getInt("Referencia");
@@ -383,8 +390,9 @@ public class ClsGestorLN {
 			e.printStackTrace();
 		}
 	}
-	
-	public static boolean ExisteMateriasPrimasS(ClsSuelas Suelas, ArrayList<ClsMateriasPrimas> MiListaDeMateriasPrimas) {
+
+	public static boolean ExisteMateriasPrimasS(ClsSuelas Suelas,
+			ArrayList<ClsMateriasPrimas> MiListaDeMateriasPrimas) {
 
 		boolean retorno = false;
 

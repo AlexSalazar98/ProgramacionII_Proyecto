@@ -2,8 +2,6 @@ package LP;
 
 import java.sql.SQLException;
 import java.text.ParseException;
-
-import LD.ClsDatos;
 import LN.ClsGestorLN;
 
 /**
@@ -21,18 +19,18 @@ public class ClsMenuPrincipal {
 	public static void MenuPrincipal() throws ParseException {
 
 		/**
-		 * Creamos un objeto Gestor y un objeto datos.
+		 * Creamos un objeto Gestor.
 		 */
 		ClsGestorLN objGestor = new ClsGestorLN();
-		ClsDatos objDatos = new ClsDatos();
 		/**
 		 * Llamadas a metodos para cargar los datos en Arrays nada mas iniciar la
 		 * aplicacion.
 		 */
 		try {
-			objGestor.ObjetosRecuperadosSerie(objDatos);
+			objGestor.ObjetosRecuperadosSerie();
+			objGestor.ObjetosRecuperadosSuelas();
 		} catch (SQLException e) {
-			
+
 			System.out.println("Ejecute la aplicacion MySQLWorkBench");
 		}
 
@@ -80,7 +78,7 @@ public class ClsMenuPrincipal {
 			 *
 			 */
 			case 2:
-				ClsMenuConsultarDatos.MenuConsultarDatos(objGestor, objDatos);
+				ClsMenuConsultarDatos.MenuConsultarDatos(objGestor);
 				break;
 			/**
 			 * 
