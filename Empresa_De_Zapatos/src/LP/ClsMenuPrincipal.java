@@ -33,7 +33,7 @@ public class ClsMenuPrincipal {
 
 			System.out.println("Ejecute la aplicacion MySQLWorkBench");
 		}
-
+		
 		/**
 		 * Variable para elegir la opcion de menu.
 		 */

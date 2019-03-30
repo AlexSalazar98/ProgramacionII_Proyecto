@@ -47,11 +47,11 @@ public class ClsMenuBorrarDatos {
 			opcionBorrar = UtilidadesLP.leerEntero();
 			switch (opcionBorrar) {
 			case 1:
-				BorrarDatosSuelas();
+				BorrarDatosSuelas(objGestorMB);
 				break;
 
 			case 2:
-				BorrarDatosSeries();
+				BorrarDatosSeries(objGestorMB);
 				break;
 
 			case 3:
@@ -94,16 +94,15 @@ public class ClsMenuBorrarDatos {
 	 * Pedimos los datos a Borrar en la entidad Suelas.
 	 *
 	 */
-	public static void BorrarDatosSuelas() {
+	public static void BorrarDatosSuelas(ClsGestorLN objGestorBSu) {
 
 	}
 
 	/**
-	 * 
-	 * Pedimos los datos a Borrar en la entidad Series.
-	 *
+	 *  Pedimos los datos a Borrar en la entidad Series.
+	 * @param objGestorBse objeto gestor.
 	 */
-	public static void BorrarDatosSeries() {
+	public static void BorrarDatosSeries(ClsGestorLN objGestorBse) {
 		/**
 		 * Pedimos el numero de Serie que se quiera eliminar.
 		 */
@@ -111,8 +110,7 @@ public class ClsMenuBorrarDatos {
 		/**
 		 * Variable para recoger el numero de serie
 		 */
-		int NºDeSerie;
-		NºDeSerie = UtilidadesLP.leerEntero();
+		 int NºDeSerie = UtilidadesLP.leerEntero();
 
 		/**
 		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
@@ -121,7 +119,7 @@ public class ClsMenuBorrarDatos {
 			/**
 			 * Llamamos al metodo borrar y le pasamos el parametro.
 			 */
-			ClsDatos.eliminarSeries(NºDeSerie);
+			objGestorBse.EliminarSeriesDeArray(NºDeSerie);
 		} catch (SQLException e) {
 			System.out.println("No se ha podido eliminar el registro: " + e);
 		}

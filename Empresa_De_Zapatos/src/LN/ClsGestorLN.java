@@ -27,11 +27,11 @@ public class ClsGestorLN {
 	ArrayList<ClsClientes> MiListaDeClientes;
 	ArrayList<ClsDesgloseDePedido> MiListaDeDesgloses;
 	ArrayList<ClsEnvios> MiListaDeEnvios;
-	ArrayList<ClsMateriasPrimas> MiListaDeMateriasPrimas;
 	ArrayList<ClsPedidos> MiListaDePedidos;
 	ArrayList<ClsSeries> MiListaDeSeries;
-	// ArrayList<ClsSeries> MiListaDeSeriesRecuperadas;
-
+	ArrayList<ClsSuelas> MiListaDeSuelas;
+	ArrayList<ClsHerrajes> MiListaDeHerrajes;
+	
 	/**
 	 * Aqui generaremos todo en relacion al Gestor.
 	 */
@@ -44,10 +44,11 @@ public class ClsGestorLN {
 		MiListaDeClientes = new ArrayList<ClsClientes>();
 		MiListaDeDesgloses = new ArrayList<ClsDesgloseDePedido>();
 		MiListaDeEnvios = new ArrayList<ClsEnvios>();
-		MiListaDeMateriasPrimas = new ArrayList<ClsMateriasPrimas>();
 		MiListaDePedidos = new ArrayList<ClsPedidos>();
 		MiListaDeSeries = new ArrayList<ClsSeries>();
-		// MiListaDeSeriesRecuperadas = new ArrayList<ClsSeries>();
+		MiListaDeSuelas = new ArrayList<ClsSuelas>();
+		MiListaDeHerrajes = new ArrayList<ClsHerrajes>();
+		
 	}
 
 	/**
@@ -68,7 +69,7 @@ public class ClsGestorLN {
 		/**
 		 * Añadimos el objeto a el array.
 		 */
-		MiListaDeMateriasPrimas.add(objSuelas);
+		MiListaDeSuelas.add(objSuelas);
 		/**
 		 * Llamada a Insert suelas con paso de parametros.
 		 */
@@ -138,13 +139,13 @@ public class ClsGestorLN {
 		/**
 		 * Crearmos el objeto
 		 */
-		ClsMateriales objMateriales;
-		objMateriales = new ClsMateriales(Referencia, Descripcion, Precio);
+		ClsSuelas objSuelas;
+		objSuelas = new ClsSuelas(Referencia, Descripcion, Precio);
 
 		/**
 		 * Añadimos el objeto a el array.
 		 */
-		MiListaDeMateriasPrimas.add(objMateriales);
+		MiListaDeSuelas.add(objSuelas);
 
 	}
 
@@ -165,7 +166,7 @@ public class ClsGestorLN {
 		/**
 		 * Añadimos el objeto a el array.
 		 */
-		MiListaDeMateriasPrimas.add(objHerrajes);
+		MiListaDeHerrajes.add(objHerrajes);
 
 	}
 
@@ -365,6 +366,16 @@ public class ClsGestorLN {
 
 		return retorno;
 	}
+	
+	/**
+	 * Metodo para borrar objetos Serie del Array y de la BD.
+	 * @param NºDeSerie parametro para seleccionar que borrar.
+	 * @throws SQLException lanzamos la excepcion.
+	 */
+	public void EliminarSeriesDeArray(int NºDeSerie) throws SQLException {
+		
+		objDatos.eliminarSeries(NºDeSerie);
+	}
 
 	public void ObjetosRecuperadosSuelas() throws SQLException {
 
@@ -381,8 +392,8 @@ public class ClsGestorLN {
 				/**
 				 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
 				 */
-				if (!ExisteMateriasPrimasS(ObjSuelas, MiListaDeMateriasPrimas)) {
-					MiListaDeMateriasPrimas.add(ObjSuelas);
+				if (!ExisteSuelas(ObjSuelas, MiListaDeSuelas)) {
+					MiListaDeSuelas.add(ObjSuelas);
 				} else {
 				}
 			}
@@ -390,13 +401,30 @@ public class ClsGestorLN {
 			e.printStackTrace();
 		}
 	}
+	
+	public ArrayList<ItfProperty> DameSuelas() {
 
-	public static boolean ExisteMateriasPrimasS(ClsSuelas Suelas,
-			ArrayList<ClsMateriasPrimas> MiListaDeMateriasPrimas) {
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		for (ClsSuelas a : MiListaDeSuelas) {
+			retorno.add(a);
+		}
+
+		return retorno;
+
+	}
+
+	public static boolean ExisteSuelas(ClsSuelas Suelas,
+			ArrayList<ClsSuelas> MiListaDeSuelas) {
 
 		boolean retorno = false;
 
-		for (ClsMateriasPrimas b : MiListaDeMateriasPrimas) {
+		for (ClsMateriasPrimas b : MiListaDeSuelas) {
 			if (b.equals(Suelas))
 				return true;
 

@@ -41,14 +41,21 @@ public class ClsConstantesBD {
 			+ "	WHERE NºDeSerie = ?";
 
 	/**
+	 * Constante para la INSERT de suelas.
+	 */
+	public static final String QUERY_PARA_INSERTAR_SUELAS = "INSERT INTO `mydb`.`suelas`\r\n" + "(`Referencia`,\r\n"
+			+ "`Descripcion`,\r\n" + "`Precio`)\r\n" + "VALUES\r\n" + "(?,\r\n" + "?,\r\n" + "?);";
+
+	/**
 	 * Consatnte para la SELECT de suelas.
 	 */
 	public static final String QUERY_PARA_SELECT_SUELAS = "SELECT `suelas`.`Referencia`,\r\n"
 			+ "    `suelas`.`Descripcion`,\r\n" + "    `suelas`.`Precio`\r\n" + "FROM `mydb`.`suelas`;";
 
 	/**
-	 * Constante para la INSERT de suelas.
+	 * Constante de DELETE para suelas por referencia.
 	 */
-	public static final String QUERY_PARA_INSERTAR_SUELAS = "INSERT INTO `mydb`.`suelas`\r\n" + "(`Referencia`,\r\n"
-			+ "`Descripcion`,\r\n" + "`Precio`)\r\n" + "VALUES\r\n" + "(?,\r\n" + "?,\r\n" + "?);";
+	public static final String QUERY_PARA_DELETE_SUELAS_POR_REFERENCIA = "DELETE FROM `mydb`.`suelas`\r\n"
+			+ "WHERE Referencia = ?;";
+
 }

@@ -93,8 +93,7 @@ public class ClsDatos {
 	/**
 	 * Para consultar Series.
 	 * 
-	 * @param ObjGestorCSeries Parametro para acceder al gestor
-	 * @param contador         parametro contador.
+	 * @param contador parametro contador.
 	 * @throws SQLException lanzamos excepciones hacia la capa LP
 	 * 
 	 */
@@ -119,7 +118,9 @@ public class ClsDatos {
 			 */
 			Statement st = objConn.createStatement();
 			rs = st.executeQuery(QUERY_PARA_SELECT_SERIES);
-
+			if (rs.isBeforeFirst()) {
+				return rs;
+			}
 			while (rs.next()) {
 
 				return rs;
@@ -153,7 +154,7 @@ public class ClsDatos {
 	 * @param NºDeSerie parametro de condicion.
 	 * @throws SQLException lanzamos excepciones hacia la capa LP
 	 */
-	public static void eliminarSeries(int NºDeSerie) throws SQLException {
+	public void eliminarSeries(int NºDeSerie) throws SQLException {
 
 		/**
 		 * Instancias la clase que hemos creado anteriormente
@@ -194,7 +195,15 @@ public class ClsDatos {
 		}
 
 	}
-	
+
+	/**
+	 * Metodo para insertar suelas
+	 * 
+	 * @param Referencia parametro de suelas
+	 * @param Descripcion parametro de suelas
+	 * @param Precio parametro de suelas
+	 * @throws SQLException lanzamos excepciones
+	 */
 	public void InsertarSuelas(int Referencia, String Descripcion, Double Precio) throws SQLException {
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
@@ -230,7 +239,6 @@ public class ClsDatos {
 
 	}
 
-
 	/**
 	 * Para consultar suelas
 	 * 
@@ -258,6 +266,9 @@ public class ClsDatos {
 			Statement st = objConn.createStatement();
 			rs = st.executeQuery(QUERY_PARA_SELECT_SUELAS);
 
+			if (rs.isBeforeFirst()) {
+				return rs;
+			}
 			while (rs.next()) {
 
 				return rs;
@@ -283,6 +294,48 @@ public class ClsDatos {
 		}
 
 		return null;
+	}
+
+	public static void eliminarSuelas(int NºDeSerie) throws SQLException {
+
+		/**
+		 * Instancias la clase que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método que tiene la clase y te devuelve una conexión
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			/**
+			 * Creamos las preparedstaments
+			 */
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_SERIES_POR_NºDESERIE);
+			objSt.setInt(1, NºDeSerie);
+
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
+			objSt.execute();
+
+			System.out.println("Se ha eliminado el registro correctamente");
+			System.out.println("-----------------------------------------");
+
+			/**
+			 * Cerramos el preparedStatement
+			 */
+			objSt.close();
+
+			/**
+			 * Cerramos la conexión
+			 */
+			objConn.close();
+
+		}
+
 	}
 
 }

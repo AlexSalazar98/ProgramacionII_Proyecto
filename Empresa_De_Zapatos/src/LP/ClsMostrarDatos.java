@@ -2,6 +2,9 @@ package LP;
 
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_DESCRIPCION;
+import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_REFERENCIA;
+import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_DESCRIPCION;
+import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_PRECIO;
 
 import java.util.ArrayList;
 
@@ -12,7 +15,7 @@ import LN.ClsGestorLN;
  * Esta clase sirve para mostrar los datos.
  * 
  * @author Alex Salazar
- * @author David Requeta 
+ * @author David Requeta
  */
 public class ClsMostrarDatos {
 
@@ -33,6 +36,23 @@ public class ClsMostrarDatos {
 
 			System.out.println(a.getIntegerProperty(PROPIEDAD_SERIES_NUMERO_DE_SERIE) + " "
 					+ a.getStringProperty(PROPIEDAD_SERIES_DESCRIPCION));
+
+		}
+	}
+
+	public static void VerSuelas(ClsGestorLN ObjGestorVS) {
+
+		ArrayList<ItfProperty> Suelas;
+
+		Suelas = ObjGestorVS.DameSuelas();
+
+		System.out.println("SUELAS RECUPERADAS");
+		System.out.println("-------------------");
+		for (ItfProperty a : Suelas) {
+
+			System.out.println(a.getIntegerProperty(PROPIEDAD_SUELAS_REFERENCIA) + " "
+					+ a.getStringProperty(PROPIEDAD_SUELAS_DESCRIPCION) + " "
+					+ a.getDoubleProperty(PROPIEDAD_SUELAS_PRECIO));
 
 		}
 	}

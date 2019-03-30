@@ -99,6 +99,10 @@ public class ClsMenuConsultarDatos {
 	 */
 	public static void ConsultarDatosSuelas(ClsGestorLN ObjGestCSuelas) {
 
+		/**
+		 * LLamada al metodo Ver Suelas
+		 */
+		ClsMostrarDatos.VerSuelas(ObjGestCSuelas);
 	}
 
 	/**
@@ -107,7 +111,7 @@ public class ClsMenuConsultarDatos {
 	 * @param ObjGestCSeries relacion con LN
 	 */
 	public static void ConsultarDatosSeries(ClsGestorLN ObjGestCSeries) {
-
+		
 		/**
 		 * Llamada al metodo Ver Series.
 		 */
