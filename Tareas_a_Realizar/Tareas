@@ -2,3 +2,5 @@ Realizar tag en git
 Realizar Javadoc
 Envios y Nº de pedido y desglose pedidos (autoincremental)
 Relacion N-M entre articulos y desglose
+Desarrollar: INSERT, DELETE y SELECT de herrajes(hacer array individual), materiales(hacer array individual), articulos, pedidos(mirar bien lo de las fechas), envios, desglose(mirar bien lo de las fechas) y demas tabalas. solo estan hechas las de series y suelas.
+para ello desarrollar bien los menos, hashcode e equals, ir mirando lo de eliminar de arrays.
