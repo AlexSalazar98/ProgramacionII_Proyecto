@@ -323,7 +323,7 @@ public class ClsGestorLN {
 			/**
 			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
 			 */
-			if (!ExisteSeries(objSeries, MiListaDeSeries)) {
+			if (!ExisteSeries(objSeries)) {
 				MiListaDeSeries.add(objSeries);
 			} else {
 			}
@@ -361,7 +361,7 @@ public class ClsGestorLN {
 	 * @param MiListaDeSeries Arraylist
 	 * @return nos devuelve true si esta repetido.
 	 */
-	public static boolean ExisteSeries(ClsSeries Series, ArrayList<ClsSeries> MiListaDeSeries) {
+	public boolean ExisteSeries(ClsSeries Series) {
 
 		boolean retorno = false;
 
@@ -405,7 +405,7 @@ public class ClsGestorLN {
 			/**
 			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
 			 */
-			if (!ExisteSuelas(ObjSuelas, MiListaDeSuelas)) {
+			if (!ExisteSuelas(ObjSuelas)) {
 				MiListaDeSuelas.add(ObjSuelas);
 			} else {
 			}
@@ -442,7 +442,7 @@ public class ClsGestorLN {
 	 * @param MiListaDeSuelas arraylist donde se guarda y contra el que compara
 	 * @return devuelve si o no en funcion de si esta repetido o no.
 	 */
-	public static boolean ExisteSuelas(ClsSuelas Suelas, ArrayList<ClsSuelas> MiListaDeSuelas) {
+	public boolean ExisteSuelas(ClsSuelas Suelas) {
 
 		boolean retorno = false;
 
@@ -474,7 +474,7 @@ public class ClsGestorLN {
 			/**
 			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
 			 */
-			if (!ExisteMateriales(ObjMateriales, MiListaDeMateriales)) {
+			if (!ExisteMateriales(ObjMateriales)) {
 				MiListaDeMateriales.add(ObjMateriales);
 			} else {
 			}
@@ -511,11 +511,11 @@ public class ClsGestorLN {
 	 * @param miListaDeMateriales compara con los objetos del array
 	 * @return devuelve si esta repetido o no.
 	 */
-	public static boolean ExisteMateriales(ClsMateriales Materiales, ArrayList<ClsMateriales> miListaDeMateriales) {
+	public boolean ExisteMateriales(ClsMateriales Materiales) {
 
 		boolean retorno = false;
 
-		for (ClsMateriasPrimas b : miListaDeMateriales) {
+		for (ClsMateriasPrimas b : MiListaDeMateriales) {
 			if (b.equals(Materiales))
 				return true;
 
