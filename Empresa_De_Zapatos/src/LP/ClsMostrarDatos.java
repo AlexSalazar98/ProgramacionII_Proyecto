@@ -40,6 +40,11 @@ public class ClsMostrarDatos {
 		}
 	}
 
+	/**
+	 * Metodo para sacar por consola las suelas
+	 * 
+	 * @param ObjGestorVS parametro para acceder a DameSuelas
+	 */
 	public static void VerSuelas(ClsGestorLN ObjGestorVS) {
 
 		ArrayList<ItfProperty> Suelas;
@@ -55,5 +60,27 @@ public class ClsMostrarDatos {
 					+ a.getDoubleProperty(PROPIEDAD_SUELAS_PRECIO));
 
 		}
+	}
+
+	/**
+	 * Metodo para sacar por consola Materiales
+	 * 
+	 * @param ObjGestorVM parametro para acceder a DameMateriales
+	 */
+	public static void VerMateriales(ClsGestorLN ObjGestorVM) {
+		ArrayList<ItfProperty> Materiales;
+
+		Materiales = ObjGestorVM.DameMateriales();
+
+		System.out.println("MATERIALES RECUPERADOS");
+		System.out.println("----------------------");
+		for (ItfProperty a : Materiales) {
+
+			System.out.println(a.getIntegerProperty(PROPIEDAD_SUELAS_REFERENCIA) + " "
+					+ a.getStringProperty(PROPIEDAD_SUELAS_DESCRIPCION) + " "
+					+ a.getDoubleProperty(PROPIEDAD_SUELAS_PRECIO));
+
+		}
+
 	}
 }

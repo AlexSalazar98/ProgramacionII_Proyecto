@@ -259,7 +259,11 @@ public class ClsMenuIntroducirDatos {
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
-		objGMateriales.CrearMateriales(Referencia_Materiales, Descripcion_Materiales, Precio_Materiales);
+		try {
+			objGMateriales.CrearMateriales(Referencia_Materiales, Descripcion_Materiales, Precio_Materiales);
+		} catch (SQLException e) {
+			System.out.println("No se ha podido realizar el insert: " + e);
+		}
 
 	}
 

@@ -15,7 +15,10 @@ import static LD.ClsConstantesBD.QUERY_PARA_SELECT_SERIES;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_SERIES_POR_NºDESERIE;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_SUELAS;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_SUELAS;
-
+import static LD.ClsConstantesBD.QUERY_PARA_DELETE_SUELAS_POR_REFERENCIA;
+import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_MATERIALES;
+import static LD.ClsConstantesBD.QUERY_PARA_SELECT_MATERIALES;
+import static LD.ClsConstantesBD.QUERY_PARA_DELETE_MATERIALES_POR_REFERENCIA;
 /**
  * Clase para hacer todos los tramites con la Base de Datos.
  * 
@@ -296,6 +299,11 @@ public class ClsDatos {
 		return null;
 	}
 
+	/**
+	 * Para eliminar suelas por numero de serie
+	 * @param NºDeSerie parametro por el cual eliminar
+	 * @throws SQLException lanzamos excepcion
+	 */
 	public static void eliminarSuelas(int NºDeSerie) throws SQLException {
 
 		/**
@@ -313,7 +321,7 @@ public class ClsDatos {
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_SERIES_POR_NºDESERIE);
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_SUELAS_POR_REFERENCIA);
 			objSt.setInt(1, NºDeSerie);
 
 			/**
@@ -336,6 +344,104 @@ public class ClsDatos {
 
 		}
 
+	}
+	
+	/**
+	 * para insertar materiales
+	 * @param Referencia parametro a insertar
+	 * @param Descripcion parametro a insertar
+	 * @param Precio parametro a insertar 
+	 * @throws SQLException lanzamos excepciones
+	 */
+	public void InsertarMateriales(int Referencia, String Descripcion, Double Precio) throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			// Creamos las preparedstaments
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_MATERIALES);
+			objSt.setInt(1, Referencia);
+			objSt.setString(2, Descripcion);
+			objSt.setDouble(3, Precio);
+
+			// Ejecutamos la query que hemos preparado
+			objSt.execute();
+
+			System.out.println("Se ha insertado el registro correctamente");
+			System.out.println("-----------------------------------------");
+
+			// Cerramos el preparedStatement
+			objSt.close();
+
+			// Cerramos la conexión
+			objConn.close();
+
+		}
+
+	}
+	
+	/**
+	 * para consultar materiales
+	 * @return genera un return con los datos obtenidos de BD
+	 * @throws SQLException lanzamos excepciones
+	 */
+	public ResultSet consultarMateriales() throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		ResultSet rs = null;
+
+		if (objConn != null) {
+			/**
+			 * Preparamos la consulta
+			 */
+			Statement st = objConn.createStatement();
+			rs = st.executeQuery(QUERY_PARA_SELECT_MATERIALES);
+
+			if (rs.isBeforeFirst()) {
+				return rs;
+			}
+			while (rs.next()) {
+
+				return rs;
+
+			}
+
+			/**
+			 * Cerramos el resulset
+			 * 
+			 */
+			rs.close();
+			/**
+			 * Cerramos el statement
+			 * 
+			 */
+			st.close();
+			/**
+			 * Cerramos la conexión
+			 * 
+			 */
+			objConn.close();
+
+		}
+
+		return null;
 	}
 
 }

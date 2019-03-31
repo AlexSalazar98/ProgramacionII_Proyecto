@@ -58,4 +58,22 @@ public class ClsConstantesBD {
 	public static final String QUERY_PARA_DELETE_SUELAS_POR_REFERENCIA = "DELETE FROM `mydb`.`suelas`\r\n"
 			+ "WHERE Referencia = ?;";
 
+	/**
+	 * Constante para INSERT materiales.
+	 */
+	public static final String QUERY_PARA_INSERTAR_MATERIALES = "INSERT INTO `mydb`.`materiales`\r\n"
+			+ "(`Referencia`,\r\n" + "`Descripcion`,\r\n" + "`Precio`)\r\n" + "VALUES\r\n" + "(?,\r\n" + "?,\r\n"
+			+ "?);";
+
+	/**
+	 * Constantes para SELECT materiales.
+	 */
+	public static final String QUERY_PARA_SELECT_MATERIALES = "SELECT `materiales`.`Referencia`,\r\n"
+			+ "    `materiales`.`Descripcion`,\r\n" + "    `materiales`.`Precio`\r\n" + "FROM `mydb`.`materiales`;";
+
+	/**
+	 * Constante para DELETE materiales por referencia.
+	 */
+	public static final String QUERY_PARA_DELETE_MATERIALES_POR_REFERENCIA = "DELETE FROM `mydb`.`materiales`\r\n"
+			+ "WHERE Referencia = ?;";
 }

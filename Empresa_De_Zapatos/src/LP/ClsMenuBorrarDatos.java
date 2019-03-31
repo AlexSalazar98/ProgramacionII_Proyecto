@@ -2,8 +2,6 @@ package LP;
 
 import java.sql.SQLException;
 import java.text.ParseException;
-
-import LD.ClsDatos;
 import LN.ClsGestorLN;
 
 /**

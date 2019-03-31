@@ -31,7 +31,8 @@ public class ClsGestorLN {
 	ArrayList<ClsSeries> MiListaDeSeries;
 	ArrayList<ClsSuelas> MiListaDeSuelas;
 	ArrayList<ClsHerrajes> MiListaDeHerrajes;
-	
+	ArrayList<ClsMateriales> MiListaDeMateriales;
+
 	/**
 	 * Aqui generaremos todo en relacion al Gestor.
 	 */
@@ -48,7 +49,8 @@ public class ClsGestorLN {
 		MiListaDeSeries = new ArrayList<ClsSeries>();
 		MiListaDeSuelas = new ArrayList<ClsSuelas>();
 		MiListaDeHerrajes = new ArrayList<ClsHerrajes>();
-		
+		MiListaDeMateriales = new ArrayList<ClsMateriales>();
+
 	}
 
 	/**
@@ -57,9 +59,10 @@ public class ClsGestorLN {
 	 * @param Referencia_Suelas  parametro referencia suelas
 	 * @param Descripcion_Suelas parametro descripcion suelas
 	 * @param Precio_Suelas      parametro precio suelas
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
-	public void CrearSuelas(int Referencia_Suelas, String Descripcion_Suelas, Double Precio_Suelas) throws SQLException {
+	public void CrearSuelas(int Referencia_Suelas, String Descripcion_Suelas, Double Precio_Suelas)
+			throws SQLException {
 		/**
 		 * Crearmos el objeto
 		 */
@@ -134,18 +137,24 @@ public class ClsGestorLN {
 	 * @param Referencia  parametro referencia
 	 * @param Descripcion parametro descripcion
 	 * @param Precio      parametro precio
+	 * @throws SQLException lanzamos la excepcion
 	 */
-	public void CrearMateriales(int Referencia, String Descripcion, double Precio) {
+	public void CrearMateriales(int Referencia, String Descripcion, double Precio) throws SQLException {
 		/**
 		 * Crearmos el objeto
 		 */
-		ClsSuelas objSuelas;
-		objSuelas = new ClsSuelas(Referencia, Descripcion, Precio);
+		ClsMateriales objMateriales;
+		objMateriales = new ClsMateriales(Referencia, Descripcion, Precio);
 
 		/**
 		 * Añadimos el objeto a el array.
 		 */
-		MiListaDeSuelas.add(objSuelas);
+		MiListaDeMateriales.add(objMateriales);
+
+		/**
+		 * Mandamos los datos a LD para introducirlos en BD
+		 */
+		objDatos.InsertarMateriales(Referencia, Descripcion, Precio);
 
 	}
 
@@ -306,22 +315,20 @@ public class ClsGestorLN {
 		 * Recogemos datos desde LD y consturimos objetos.
 		 */
 		ResultSet Resultado = objDatos.consultarSeries();
-		try {
-			while (Resultado.next()) {
-				int NumeroDeSerie = Resultado.getInt("NºDeSerie");
-				String Descripcion_Series = Resultado.getString("Descripcion");
-				ClsSeries objSeries = new ClsSeries(NumeroDeSerie, Descripcion_Series);
-				/**
-				 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
-				 */
-				if (!ExisteSeries(objSeries, MiListaDeSeries)) {
-					MiListaDeSeries.add(objSeries);
-				} else {
-				}
+
+		while (Resultado.next()) {
+			int NumeroDeSerie = Resultado.getInt("NºDeSerie");
+			String Descripcion_Series = Resultado.getString("Descripcion");
+			ClsSeries objSeries = new ClsSeries(NumeroDeSerie, Descripcion_Series);
+			/**
+			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
+			 */
+			if (!ExisteSeries(objSeries, MiListaDeSeries)) {
+				MiListaDeSeries.add(objSeries);
+			} else {
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
+
 	}
 
 	/**
@@ -366,42 +373,51 @@ public class ClsGestorLN {
 
 		return retorno;
 	}
-	
+
 	/**
 	 * Metodo para borrar objetos Serie del Array y de la BD.
+	 * 
 	 * @param NºDeSerie parametro para seleccionar que borrar.
 	 * @throws SQLException lanzamos la excepcion.
 	 */
 	public void EliminarSeriesDeArray(int NºDeSerie) throws SQLException {
-		
+
 		objDatos.eliminarSeries(NºDeSerie);
 	}
 
+	/**
+	 * Metodo intermedio para recuperar suelas de BD.
+	 * 
+	 * @throws SQLException lanzamos la excepcion a LP.
+	 */
 	public void ObjetosRecuperadosSuelas() throws SQLException {
 
 		/**
 		 * Recogemos datos desde LD y consturimos objetos.
 		 */
 		ResultSet Resultado = objDatos.consultarSuelas();
-		try {
-			while (Resultado.next()) {
-				int Referencia = Resultado.getInt("Referencia");
-				String Descripcion = Resultado.getString("Descripcion");
-				Double Precio = Resultado.getDouble("Precio");
-				ClsSuelas ObjSuelas = new ClsSuelas(Referencia, Descripcion, Precio);
-				/**
-				 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
-				 */
-				if (!ExisteSuelas(ObjSuelas, MiListaDeSuelas)) {
-					MiListaDeSuelas.add(ObjSuelas);
-				} else {
-				}
+
+		while (Resultado.next()) {
+			int Referencia = Resultado.getInt("Referencia");
+			String Descripcion = Resultado.getString("Descripcion");
+			Double Precio = Resultado.getDouble("Precio");
+			ClsSuelas ObjSuelas = new ClsSuelas(Referencia, Descripcion, Precio);
+			/**
+			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
+			 */
+			if (!ExisteSuelas(ObjSuelas, MiListaDeSuelas)) {
+				MiListaDeSuelas.add(ObjSuelas);
+			} else {
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
+
 	}
-	
+
+	/**
+	 * Metodo para devolver suelas cuando las pidan
+	 * 
+	 * @return genera un return a la capa LP
+	 */
 	public ArrayList<ItfProperty> DameSuelas() {
 
 		/**
@@ -419,13 +435,88 @@ public class ClsGestorLN {
 
 	}
 
-	public static boolean ExisteSuelas(ClsSuelas Suelas,
-			ArrayList<ClsSuelas> MiListaDeSuelas) {
+	/**
+	 * Metodo para comprobar que no haya suelas repetidas
+	 * 
+	 * @param Suelas          parametro suelas
+	 * @param MiListaDeSuelas arraylist donde se guarda y contra el que compara
+	 * @return devuelve si o no en funcion de si esta repetido o no.
+	 */
+	public static boolean ExisteSuelas(ClsSuelas Suelas, ArrayList<ClsSuelas> MiListaDeSuelas) {
 
 		boolean retorno = false;
 
 		for (ClsMateriasPrimas b : MiListaDeSuelas) {
 			if (b.equals(Suelas))
+				return true;
+
+		}
+
+		return retorno;
+	}
+
+	/**
+	 * Metodo intermedio para recuperar Materiales de BD
+	 * 
+	 * @throws SQLException lanzamos la excepcion a LP
+	 */
+	public void ObjetosRecuperadosMateriales() throws SQLException {
+		/**
+		 * Recogemos datos desde LD y consturimos objetos.
+		 */
+		ResultSet Resultado = objDatos.consultarMateriales();
+
+		while (Resultado.next()) {
+			int Referencia = Resultado.getInt("Referencia");
+			String Descripcion = Resultado.getString("Descripcion");
+			Double Precio = Resultado.getDouble("Precio");
+			ClsMateriales ObjMateriales = new ClsMateriales(Referencia, Descripcion, Precio);
+			/**
+			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
+			 */
+			if (!ExisteMateriales(ObjMateriales, MiListaDeMateriales)) {
+				MiListaDeMateriales.add(ObjMateriales);
+			} else {
+			}
+		}
+
+	}
+
+	/**
+	 * Metodo para devolver materiales cuando nos los pidan.
+	 * 
+	 * @return
+	 */
+	public ArrayList<ItfProperty> DameMateriales() {
+
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		for (ClsMateriales a : MiListaDeMateriales) {
+			retorno.add(a);
+		}
+
+		return retorno;
+
+	}
+
+	/**
+	 * Para comprobar que no haya objetos materiales repetidos
+	 * 
+	 * @param Materiales          parametro a comprobar
+	 * @param miListaDeMateriales compara con los objetos del array
+	 * @return devuelve si esta repetido o no.
+	 */
+	public static boolean ExisteMateriales(ClsMateriales Materiales, ArrayList<ClsMateriales> miListaDeMateriales) {
+
+		boolean retorno = false;
+
+		for (ClsMateriasPrimas b : miListaDeMateriales) {
+			if (b.equals(Materiales))
 				return true;
 
 		}

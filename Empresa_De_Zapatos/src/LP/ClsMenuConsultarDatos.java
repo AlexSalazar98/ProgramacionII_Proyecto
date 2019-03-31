@@ -134,6 +134,10 @@ public class ClsMenuConsultarDatos {
 	 */
 	public static void ConsultarDatosMateriales(ClsGestorLN ObjGestCMateriales) {
 
+		/**
+		 * Llamada al metodo mostrar Materiales
+		 */
+		ClsMostrarDatos.VerMateriales(ObjGestCMateriales);
 	}
 
 	/**
