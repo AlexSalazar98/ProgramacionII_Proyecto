@@ -76,4 +76,23 @@ public class ClsConstantesBD {
 	 */
 	public static final String QUERY_PARA_DELETE_MATERIALES_POR_REFERENCIA = "DELETE FROM `mydb`.`materiales`\r\n"
 			+ "WHERE Referencia = ?;";
+
+	/**
+	 * Constantes para INSERT herrajes.
+	 */
+	public static final String QUERY_PARA_INSERTAR_HERRAJES = "INSERT INTO `mydb`.`herrajes`\r\n" + "(`Referencia`,\r\n"
+			+ "`Descripcion`,\r\n" + "`Precio`)\r\n" + "VALUES\r\n" + "(?,\r\n" + "?,\r\n" + "?);";
+
+	/**
+	 * Constantes para la SELECT de herrajes.
+	 */
+	public static final String QUERY_PARA_SELECT_HERRAJES = "SELECT `herrajes`.`Referencia`,\r\n"
+			+ "    `herrajes`.`Descripcion`,\r\n" + "    `herrajes`.`Precio`\r\n" + "FROM `mydb`.`herrajes`;";
+	
+	/**
+	 * Constante de DELETE para herrajes por referencia.
+	 */
+	public static final String QUERY_PARA_DELETE_HERRAJES_POR_REFERENCIA = "DELETE FROM `mydb`.`herrajes`\r\n"
+			+ "WHERE Referencia = ?;";
+	
 }

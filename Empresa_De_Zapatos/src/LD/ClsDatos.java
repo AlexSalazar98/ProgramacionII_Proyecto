@@ -444,4 +444,150 @@ public class ClsDatos {
 		return null;
 	}
 
+	/**
+	 * Metodo para insertar herrajes
+	 * 
+	 * @param Referencia parametro de herrajes
+	 * @param Descripcion parametro de herrajes
+	 * @param Precio parametro de herrajes
+	 * @throws SQLException lanzamos excepciones
+	 */
+	public void InsertarHerrajes(int Referencia, String Descripcion, Double Precio) throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			// Creamos las preparedstaments
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_HERRAJES);
+			objSt.setInt(1, Referencia);
+			objSt.setString(2, Descripcion);
+			objSt.setDouble(3, Precio);
+
+			// Ejecutamos la query que hemos preparado
+			objSt.execute();
+
+			System.out.println("Se ha insertado el registro correctamente");
+			System.out.println("-----------------------------------------");
+
+			// Cerramos el preparedStatement
+			objSt.close();
+
+			// Cerramos la conexión
+			objConn.close();
+
+		}
+
+	}
+
+	/**
+	 * Para consultar herrajes
+	 * 
+	 * @return devolvemos datos
+	 * @throws SQLException mandamos excepxiones a tratar.
+	 */
+	public ResultSet consultarHerrajes() throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		ResultSet rs = null;
+
+		if (objConn != null) {
+			/**
+			 * Preparamos la consulta
+			 */
+			Statement st = objConn.createStatement();
+			rs = st.executeQuery(QUERY_PARA_SELECT_HERRAJES);
+
+			if (rs.isBeforeFirst()) {
+				return rs;
+			}
+			while (rs.next()) {
+
+				return rs;
+
+			}
+
+			/**
+			 * Cerramos el resulset
+			 * 
+			 */
+			rs.close();
+			/**
+			 * Cerramos el statement
+			 * 
+			 */
+			st.close();
+			/**
+			 * Cerramos la conexión
+			 * 
+			 */
+			objConn.close();
+
+		}
+
+		return null;
+	}
+
+	/**
+	 * Para eliminar herrajes por numero de serie
+	 * @param NºDeSerie parametro por el cual eliminar
+	 * @throws SQLException lanzamos excepcion
+	 */
+	public static void eliminarHerrajes(int NºDeSerie) throws SQLException {
+
+		/**
+		 * Instancias la clase que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método que tiene la clase y te devuelve una conexión
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			/**
+			 * Creamos las preparedstaments
+			 */
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_HERRAJES_POR_REFERENCIA);
+			objSt.setInt(1, NºDeSerie);
+
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
+			objSt.execute();
+
+			System.out.println("Se ha eliminado el registro correctamente");
+			System.out.println("-----------------------------------------");
+
+			/**
+			 * Cerramos el preparedStatement
+			 */
+			objSt.close();
+
+			/**
+			 * Cerramos la conexión
+			 */
+			objConn.close();
+
+		}
+
+	}
 }
