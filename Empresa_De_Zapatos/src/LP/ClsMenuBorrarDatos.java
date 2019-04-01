@@ -183,9 +183,9 @@ public class ClsMenuBorrarDatos {
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a Borrar en la entidad Herrajes.
-	 *
+	 * 
+	 * @param objGestorBH parametro para acceder al gestor.
 	 */
 	public static void BorrarDatosHerrajes(ClsGestorLN objGestorBH) {
 		/**

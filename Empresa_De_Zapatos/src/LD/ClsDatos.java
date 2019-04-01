@@ -106,9 +106,8 @@ public class ClsDatos {
 	/**
 	 * Para consultar Series.
 	 * 
-	 * @param contador parametro contador.
 	 * @throws SQLException lanzamos excepciones hacia la capa LP
-	 * 
+	 * @return nos devuelve los datos.
 	 */
 
 	public ResultSet consultarSeries() throws SQLException {
@@ -660,7 +659,7 @@ public class ClsDatos {
 	 * @param NºCliente          parametro recibido.
 	 * @param NombreYApellidos   parametro recibido
 	 * @param DNI_NIF            parametro recibido
-	 * @param DireccionDeCliente parametro recibido
+	 * @param DirecciónDeCliente parametro recibido
 	 * @param Provincia          parametro recibido
 	 * @param Telefono           parametro recibido
 	 * @param Email              parametro recibido
@@ -808,20 +807,23 @@ public class ClsDatos {
 		}
 
 	}
-	
+
 	/**
 	 * Metodo para insertar Envios en BD
-	 * @param NºEnvio parametro recibido
-	 * @param NombreCliente parametro recibido
-	 * @param DireccionDeEnvio parametro recibido
-	 * @param PoblacionDeEnvio parametro recibido
-	 * @param CPDeEnvio parametro recibido
-	 * @param ProvinciaDeEnvio parametro recibido
-	 * @param TelefonoDeEnvio parametro recibido
+	 * 
+	 * @param NºEnvio            parametro recibido
+	 * @param NombreCliente      parametro recibido
+	 * @param DireccionDeEnvio   parametro recibido
+	 * @param PoblacionDeEnvio   parametro recibido
+	 * @param CPDeEnvio          parametro recibido
+	 * @param ProvinciaDeEnvio   parametro recibido
+	 * @param TelefonoDeEnvio    parametro recibido
+	 * @param Clientes_NºCliente parametro recibido
 	 * @throws SQLException lanzamos la excepcion
 	 */
 	public void InsertarEnvios(int NºEnvio, String NombreCliente, String DireccionDeEnvio, String PoblacionDeEnvio,
-			String CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int Clientes_NºCliente) throws SQLException {
+			String CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int Clientes_NºCliente)
+			throws SQLException {
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
 		 */
@@ -863,6 +865,7 @@ public class ClsDatos {
 
 	/**
 	 * Metodo para consultar Envios
+	 * 
 	 * @return nos devuelve parametros
 	 * @throws SQLException lanza la excepcion
 	 */
@@ -917,6 +920,7 @@ public class ClsDatos {
 
 	/**
 	 * Metodo para eliminar Envios de BD
+	 * 
 	 * @param NºEnvio parametro recibido
 	 * @throws SQLException lazamos la excepcion
 	 */

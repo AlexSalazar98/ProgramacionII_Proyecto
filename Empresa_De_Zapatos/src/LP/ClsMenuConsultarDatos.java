@@ -94,7 +94,8 @@ public class ClsMenuConsultarDatos {
 	/**
 	 * Pedimos los datos a consultar en la entidad Suelas.
 	 * 
-	 * @param ObjGestCSuelas relacion con LN
+	 * @param ObjGestCSuelas    relacion con LN
+	 * @param objMostrarDatosSU relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosSuelas(ClsGestorLN ObjGestCSuelas, ClsMostrarDatos objMostrarDatosSU) {
 
@@ -107,10 +108,11 @@ public class ClsMenuConsultarDatos {
 	/**
 	 * Pedimos los datos a consultar en la entidad Series.
 	 * 
-	 * @param ObjGestCSeries relacion con LN
+	 * @param ObjGestCSeries    relacion con LN
+	 * @param objMostrarDatosSE relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosSeries(ClsGestorLN ObjGestCSeries, ClsMostrarDatos objMostrarDatosSE) {
-		
+
 		/**
 		 * Llamada al metodo Ver Series.
 		 */
@@ -118,18 +120,20 @@ public class ClsMenuConsultarDatos {
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a consultar en la entidad Pedidos.
-	 *
+	 * 
+	 * @param ObjGestCPedidos  relacion con LN
+	 * @param objMostrarDatosP relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosPedidos(ClsGestorLN ObjGestCPedidos, ClsMostrarDatos objMostrarDatosP) {
 
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a consultar en la entidad Materiales.
-	 *
+	 * 
+	 * @param ObjGestCMateriales relacion con LN
+	 * @param objMostrarDatosM   relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosMateriales(ClsGestorLN ObjGestCMateriales, ClsMostrarDatos objMostrarDatosM) {
 
@@ -140,12 +144,13 @@ public class ClsMenuConsultarDatos {
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a consultar en la entidad Herrajes.
-	 *
+	 * 
+	 * @param ObjGestCHerrajes relacion con LN
+	 * @param objMostrarDatosH relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosHerrajes(ClsGestorLN ObjGestCHerrajes, ClsMostrarDatos objMostrarDatosH) {
-		
+
 		/**
 		 * Llamada al metodo mostrar Herrajes
 		 */
@@ -154,18 +159,20 @@ public class ClsMenuConsultarDatos {
 	}
 
 	/**
+	 * Pedimos los datos a consultar en la entidad Envios
 	 * 
-	 * Pedimos los datos a consultar en la entidad Envios.
-	 *
+	 * @param ObjGestCEnvios   relacion con LN
+	 * @param objMostrarDatosE relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosEnvios(ClsGestorLN ObjGestCEnvios, ClsMostrarDatos objMostrarDatosE) {
 
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a consultar en la entidad Clientes.
-	 *
+	 * 
+	 * @param ObjGestCClientes relacion con LN
+	 * @param objMostrarDatosC relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosClientes(ClsGestorLN ObjGestCClientes, ClsMostrarDatos objMostrarDatosC) {
 
@@ -176,18 +183,20 @@ public class ClsMenuConsultarDatos {
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a consultar en la entidad Articulo
-	 *
+	 * 
+	 * @param ObjGestCArticulos relacion con LN
+	 * @param objMostrarDatosA  relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosArticulos(ClsGestorLN ObjGestCArticulos, ClsMostrarDatos objMostrarDatosA) {
 
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a consultar en la entidad Desglose de Pedidos.
-	 *
+	 * 
+	 * @param ObjGestCDesglose relacion con LN
+	 * @param objMostrarDatosD relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosDesgloseDePedido(ClsGestorLN ObjGestCDesglose, ClsMostrarDatos objMostrarDatosD) {
 

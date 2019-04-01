@@ -1,4 +1,5 @@
 package LN;
+
 import java.util.Date;
 import COMUN.ItfProperty;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_ENTREGADO;
@@ -7,14 +8,15 @@ import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_FECHA_DE_PEDIDO;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NOMBRE_Y_APELLIDOS_DEL_CLIENTE;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_CLIENTE_PEDIDO;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO;
+
 /**
  * En esta clase generamos los objetos asignados a la entidad Pedido.
  * 
- *@author Alex Salazar
- *@author David Requeta
+ * @author Alex Salazar
+ * @author David Requeta
  *
  */
-public class ClsPedidos implements ItfProperty  {
+public class ClsPedidos implements ItfProperty {
 
 	/**
 	 * 
@@ -32,12 +34,13 @@ public class ClsPedidos implements ItfProperty  {
 	 * 
 	 * Este seria el constructor de la clase Pedidos.
 	 * 
-	 * @param numeroDePedido parametro numero de pedido.
-	 * @param fechaDePedido parametro fecha de pedido
-	 * @param fechaDeEntrega parametro fecha de entrega
-	 * @param entregado parametro entregado
+	 * @param numeroDePedido            parametro numero de pedido.
+	 * @param fechaDePedido             parametro fecha de pedido
+	 * @param fechaDeEntrega            parametro fecha de entrega
+	 * @param entregado                 parametro entregado
 	 * @param nombreYApelliosDelCliente parametro nombre y apellidos del cliente
-	 * @param numeroDeCliente_Pedidos parametro numero de cliente en la tabla pedidos
+	 * @param numeroDeCliente_Pedidos   parametro numero de cliente en la tabla
+	 *                                  pedidos
 	 * 
 	 */
 	public ClsPedidos(int numeroDePedido, Date fechaDePedido, Date fechaDeEntrega, Boolean entregado,
@@ -115,13 +118,12 @@ public class ClsPedidos implements ItfProperty  {
 		switch (propiedad) {
 		case PROPIEDAD_PEDIDOS_NOMBRE_Y_APELLIDOS_DEL_CLIENTE:
 			return this.getNombreYApelliosDelCliente();
-			
-		default: //lanzar excepcion atributo inexistente
+
+		default: // lanzar excepcion atributo inexistente
 			break;
 		}
 		return null;
-		
-		
+
 	}
 
 	@Override

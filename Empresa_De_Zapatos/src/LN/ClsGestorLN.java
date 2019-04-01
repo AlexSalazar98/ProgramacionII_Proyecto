@@ -59,7 +59,7 @@ public class ClsGestorLN {
 	 * @param Referencia_Suelas  parametro referencia suelas
 	 * @param Descripcion_Suelas parametro descripcion suelas
 	 * @param Precio_Suelas      parametro precio suelas
-	 * @throws SQLException
+	 * @throws SQLException lanzamos excepcion.
 	 */
 	public void CrearSuelas(int Referencia_Suelas, String Descripcion_Suelas, Double Precio_Suelas)
 			throws SQLException {
@@ -88,7 +88,7 @@ public class ClsGestorLN {
 	 * 
 	 * @param NumeroDeSerie     parametro numero de serie
 	 * @param Descripcion_Serie parametro descripcion de serie.
-	 * @throws SQLException
+	 * @throws SQLException lanzamos excepcion
 	 */
 	public void CrearSerie(int NumeroDeSerie, String Descripcion_Serie) throws SQLException {
 		/**
@@ -176,7 +176,7 @@ public class ClsGestorLN {
 	 * @param Referencia  parametro referencia
 	 * @param Descripcion parametro descripcion
 	 * @param Precio      parametro precio
-	 * @throws SQLException
+	 * @throws SQLException lanzamos excepcion
 	 */
 	public void CrearHerrajes(int Referencia, String Descripcion, double Precio) throws SQLException {
 		/**
@@ -212,7 +212,8 @@ public class ClsGestorLN {
 	 * @throws SQLException lanza excepcion
 	 */
 	public void CrearEnvios(int NumeroDeEnvio, String NombreCliente, String DireccionDeEnvio, String PoblacionDeEnvio,
-			String CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int NumeroDeCliente_Envio) throws SQLException {
+			String CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int NumeroDeCliente_Envio)
+			throws SQLException {
 
 		/**
 		 * Crearmos el objeto
@@ -233,8 +234,6 @@ public class ClsGestorLN {
 					ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
 		}
 	}
-
-
 
 	/**
 	 * Metodo para crear Clientes.
@@ -342,7 +341,6 @@ public class ClsGestorLN {
 	/**
 	 * Metodo para generar objetos con los datos recuperados de la BD
 	 * 
-	 * @param objDatosORS objetos creados
 	 * @throws SQLException excepcion lanzada a tratar en LP
 	 */
 	public void ObjetosRecuperadosSerie() throws SQLException {
@@ -392,8 +390,7 @@ public class ClsGestorLN {
 	 * Metodo para comprobar si los Objetos Series estan repetidos o no en nuestro
 	 * Array
 	 * 
-	 * @param Series          parametro serie
-	 * @param MiListaDeSeries Arraylist
+	 * @param Series parametro serie
 	 * @return nos devuelve true si esta repetido.
 	 */
 	public boolean ExisteSeries(ClsSeries Series) {
@@ -472,8 +469,7 @@ public class ClsGestorLN {
 	/**
 	 * Metodo para comprobar que no haya suelas repetidas
 	 * 
-	 * @param Suelas          parametro suelas
-	 * @param MiListaDeSuelas arraylist donde se guarda y contra el que compara
+	 * @param Suelas parametro suelas
 	 * @return devuelve si o no en funcion de si esta repetido o no.
 	 */
 	public boolean ExisteSuelas(ClsSuelas Suelas) {
@@ -551,8 +547,7 @@ public class ClsGestorLN {
 	/**
 	 * Para comprobar que no haya objetos materiales repetidos
 	 * 
-	 * @param Materiales          parametro a comprobar
-	 * @param miListaDeMateriales compara con los objetos del array
+	 * @param Materiales parametro a comprobar
 	 * @return devuelve si esta repetido o no.
 	 */
 	public boolean ExisteMateriales(ClsMateriales Materiales) {
@@ -649,8 +644,8 @@ public class ClsGestorLN {
 	/**
 	 * Metodo para eliminar Herrajes por referencia de los Arrays y de BD.
 	 * 
-	 * @param Referencia parametro para buscar .@throws SQLException lanzamos la
-	 *                   excepcion a LP,
+	 * @param Referencia parametro para buscar.
+	 * @throws SQLException lanzamos la excepcion a LP.
 	 */
 	public void EliminarHerrajesDeArray(int Referencia) throws SQLException {
 
@@ -784,7 +779,7 @@ public class ClsGestorLN {
 	/**
 	 * Metodo para comprobar que no se repite clientes.
 	 * 
-	 * @param objClientes parametro recibido
+	 * @param objEnvios objeto a comparar.
 	 * @return nos dice si esta repetido o no.
 	 */
 	public boolean ExisteEnvios(ClsEnvios objEnvios) {
@@ -800,7 +795,7 @@ public class ClsGestorLN {
 	/**
 	 * Metopo para eliminar cliente de Array y BD
 	 * 
-	 * @param DNI_NIF parametro de eliminacion
+	 * @param NºEnvio parametro por el cual borrar.
 	 * @throws SQLException lanzamos excepcion
 	 */
 	public void EliminarEnviosDeArray(int NºEnvio) throws SQLException {

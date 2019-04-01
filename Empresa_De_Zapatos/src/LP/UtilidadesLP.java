@@ -17,6 +17,7 @@ public class UtilidadesLP {
 	 * 
 	 * @return Devuelve el n�mero entero que se haya introducido por teclado.
 	 */
+	@SuppressWarnings("deprecation")
 	public static int leerEntero() {
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(isr);
@@ -42,6 +43,7 @@ public class UtilidadesLP {
 	 * 
 	 * @return Devuelve el n�mero real que se haya introducido por teclado.
 	 */
+	@SuppressWarnings("deprecation")
 	public static double leerReal() {
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(isr);

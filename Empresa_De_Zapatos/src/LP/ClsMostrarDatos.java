@@ -28,13 +28,12 @@ import LN.ClsGestorLN;
  * @author David Requeta
  */
 public class ClsMostrarDatos {
-	
-	
 
 	/**
 	 * Constructor de la clase MostrarDatos
 	 */
-	public ClsMostrarDatos() {}
+	public ClsMostrarDatos() {
+	}
 
 	/**
 	 * Metodo para sacar por consola las series.

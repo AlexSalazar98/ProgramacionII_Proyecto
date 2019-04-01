@@ -11,21 +11,21 @@ import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_PRECIO;
  * En esta clase vamos a recoger los atributos de la tabla suelas.
  * 
  * @author Alex Salazar
- * @author David Requeta 
- *        
+ * @author David Requeta
+ * 
  * 
  */
 
-public class ClsSuelas extends ClsMateriasPrimas  {
+public class ClsSuelas extends ClsMateriasPrimas {
 
 	/**
 	 * 
 	 * Este es el constructor de la entidad suelas con herencia de la clase
 	 * MateriasPrimas.
 	 * 
-	 * @param referencia prametro referencia
+	 * @param referencia  prametro referencia
 	 * @param descripcion parametro descripcion
-	 * @param precio parametro precio
+	 * @param precio      parametro precio
 	 * 
 	 */
 	public ClsSuelas(int referencia, String descripcion, double precio) {
@@ -79,16 +79,14 @@ public class ClsSuelas extends ClsMateriasPrimas  {
 
 	@Override
 	public Date getDateProperty(String propiedad) {
-		
+
 		return null;
 	}
 
 	@Override
 	public Boolean getBooleanProperty(String propiedad) {
-		
+
 		return null;
 	}
-	
-	
 
 }
