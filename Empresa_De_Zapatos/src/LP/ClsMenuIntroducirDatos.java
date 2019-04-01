@@ -294,7 +294,11 @@ public class ClsMenuIntroducirDatos {
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
-		objGHerrajes.CrearHerrajes(Referencia_Herrajes, Descripcion_Herrajes, Precio_Herrajes);
+		try {
+			objGHerrajes.CrearHerrajes(Referencia_Herrajes, Descripcion_Herrajes, Precio_Herrajes);
+		} catch (SQLException e) {
+			System.out.println("No se ha podido realizar el insert: " + e);
+		}
 
 	}
 
@@ -383,8 +387,12 @@ public class ClsMenuIntroducirDatos {
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
-		objGClientes.CrearClientes(NumeroDeCliente, NombreYApellidos, DNI_NIF, DireccionDeCliente, Provincia, Telefono,
-				Email);
+		try {
+			objGClientes.CrearClientes(NumeroDeCliente, NombreYApellidos, DNI_NIF, DireccionDeCliente, Provincia, Telefono,
+					Email);
+		} catch (SQLException e) {
+			System.out.println("No se ha podido realizar el insert: " + e);
+		}
 
 	}
 

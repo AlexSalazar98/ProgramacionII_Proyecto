@@ -57,11 +57,11 @@ public class ClsMenuBorrarDatos {
 				break;
 
 			case 4:
-				BorrarDatosMateriales();
+				BorrarDatosMateriales(objGestorMB);
 				break;
 
 			case 5:
-				BorrarDatosHerrajes();
+				BorrarDatosHerrajes(objGestorMB);
 				break;
 
 			case 6:
@@ -69,7 +69,7 @@ public class ClsMenuBorrarDatos {
 				break;
 
 			case 7:
-				BorrarDatosClientes();
+				BorrarDatosClientes(objGestorMB);
 				break;
 
 			case 8:
@@ -88,16 +88,37 @@ public class ClsMenuBorrarDatos {
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a Borrar en la entidad Suelas.
-	 *
+	 * 
+	 * @param objGestorBSu objeto gestor
 	 */
 	public static void BorrarDatosSuelas(ClsGestorLN objGestorBSu) {
 
+		/**
+		 * Pedimos el numero de Suela que queremos eliminar
+		 */
+		System.out.println("Inserte el numero de Suela que desee eliminar:");
+		/**
+		 * Variable para regoger el numero de serie
+		 */
+		int Referencia = UtilidadesLP.leerEntero();
+
+		/**
+		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
+		 */
+		try {
+			/**
+			 * Llamamos al metodo borrar y le pasamos el parametro.
+			 */
+			objGestorBSu.EliminarSuelasDeArray(Referencia);
+		} catch (SQLException e) {
+			System.out.println("No se ha podido eliminar el registro: " + e);
+		}
 	}
 
 	/**
-	 *  Pedimos los datos a Borrar en la entidad Series.
+	 * Pedimos los datos a Borrar en la entidad Series.
+	 * 
 	 * @param objGestorBse objeto gestor.
 	 */
 	public static void BorrarDatosSeries(ClsGestorLN objGestorBse) {
@@ -108,7 +129,7 @@ public class ClsMenuBorrarDatos {
 		/**
 		 * Variable para recoger el numero de serie
 		 */
-		 int NºDeSerie = UtilidadesLP.leerEntero();
+		int NºDeSerie = UtilidadesLP.leerEntero();
 
 		/**
 		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
@@ -134,11 +155,31 @@ public class ClsMenuBorrarDatos {
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a Borrar en la entidad Materiales.
-	 *
+	 * 
+	 * @param objGestorBM objeto gestor
 	 */
-	public static void BorrarDatosMateriales() {
+	public static void BorrarDatosMateriales(ClsGestorLN objGestorBM) {
+		/**
+		 * Pedimos el numero de Materiales que se quiera eliminar.
+		 */
+		System.out.println("Inserte el Numero de Referencia del Material que desee eliminar:");
+		/**
+		 * Variable para recoger el numero de Material
+		 */
+		int Referencia = UtilidadesLP.leerEntero();
+
+		/**
+		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
+		 */
+		try {
+			/**
+			 * Llamamos al metodo borrar y le pasamos el parametro.
+			 */
+			objGestorBM.EliminarMaterialesDeArray(Referencia);
+		} catch (SQLException e) {
+			System.out.println("No se ha podido eliminar el registro: " + e);
+		}
 
 	}
 
@@ -147,8 +188,24 @@ public class ClsMenuBorrarDatos {
 	 * Pedimos los datos a Borrar en la entidad Herrajes.
 	 *
 	 */
-	public static void BorrarDatosHerrajes() {
+	public static void BorrarDatosHerrajes(ClsGestorLN objGestorBH) {
+		/**
+		 * Pedimos el numero de Herrajes que se quiera eliminar.
+		 */
+		System.out.println("Inserte el numero de Referencia de herrajes que desee eliminar");
+		/**
+		 * Variable para recoger el numero de herraje.
+		 */
+		int Referencia = UtilidadesLP.leerEntero();
 
+		/**
+		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
+		 */
+		try {
+			objGestorBH.EliminarHerrajesDeArray(Referencia);
+		} catch (SQLException e) {
+			System.out.println("No se ha podido eliminar el registro: " + e);
+		}
 	}
 
 	/**
@@ -161,11 +218,28 @@ public class ClsMenuBorrarDatos {
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a Borrar en la entidad Clientes.
-	 *
+	 * 
+	 * @param objGestorBC parametro para acceder a eliminar clientes de Array
 	 */
-	public static void BorrarDatosClientes() {
+	public static void BorrarDatosClientes(ClsGestorLN objGestorBC) {
+		/**
+		 * Pedimos el numero de Herrajes que se quiera eliminar.
+		 */
+		System.out.println("Inserte el DNI_NIF del Cliente que desee eliminar");
+		/**
+		 * Variable para recoger el numero de herraje.
+		 */
+		String DNI_NIF = UtilidadesLP.leerCadena();
+
+		/**
+		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
+		 */
+		try {
+			objGestorBC.EliminarClientesDeArray(DNI_NIF);
+		} catch (SQLException e) {
+			System.out.println("No se ha podido eliminar el registro: " + e);
+		}
 
 	}
 

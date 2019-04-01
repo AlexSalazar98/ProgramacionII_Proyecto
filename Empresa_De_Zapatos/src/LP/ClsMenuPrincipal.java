@@ -30,6 +30,8 @@ public class ClsMenuPrincipal {
 			objGestor.ObjetosRecuperadosSerie();
 			objGestor.ObjetosRecuperadosSuelas();
 			objGestor.ObjetosRecuperadosMateriales();
+			objGestor.ObjetosRecuperadosHerrajes();
+			objGestor.ObjetosRecuperadosClientes();
 		} catch (SQLException e) {
 
 			System.out.println("Ejecute la aplicacion MySQLWorkBench");

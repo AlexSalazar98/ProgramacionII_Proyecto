@@ -19,6 +19,13 @@ import static LD.ClsConstantesBD.QUERY_PARA_DELETE_SUELAS_POR_REFERENCIA;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_MATERIALES;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_MATERIALES;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_MATERIALES_POR_REFERENCIA;
+import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_HERRAJES;
+import static LD.ClsConstantesBD.QUERY_PARA_SELECT_HERRAJES;
+import static LD.ClsConstantesBD.QUERY_PARA_DELETE_HERRAJES_POR_REFERENCIA;
+import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_CLIENTES;
+import static LD.ClsConstantesBD.QUERY_PARA_SELECT_CLIENTES;
+import static LD.ClsConstantesBD.QUERY_PARA_DELETE_CLIENTES_POR_DNI_NIF;
+
 /**
  * Clase para hacer todos los tramites con la Base de Datos.
  * 
@@ -202,9 +209,9 @@ public class ClsDatos {
 	/**
 	 * Metodo para insertar suelas
 	 * 
-	 * @param Referencia parametro de suelas
+	 * @param Referencia  parametro de suelas
 	 * @param Descripcion parametro de suelas
-	 * @param Precio parametro de suelas
+	 * @param Precio      parametro de suelas
 	 * @throws SQLException lanzamos excepciones
 	 */
 	public void InsertarSuelas(int Referencia, String Descripcion, Double Precio) throws SQLException {
@@ -301,10 +308,11 @@ public class ClsDatos {
 
 	/**
 	 * Para eliminar suelas por numero de serie
+	 * 
 	 * @param NºDeSerie parametro por el cual eliminar
 	 * @throws SQLException lanzamos excepcion
 	 */
-	public static void eliminarSuelas(int NºDeSerie) throws SQLException {
+	public void eliminarSuelas(int NºDeSerie) throws SQLException {
 
 		/**
 		 * Instancias la clase que hemos creado anteriormente
@@ -345,12 +353,13 @@ public class ClsDatos {
 		}
 
 	}
-	
+
 	/**
 	 * para insertar materiales
-	 * @param Referencia parametro a insertar
+	 * 
+	 * @param Referencia  parametro a insertar
 	 * @param Descripcion parametro a insertar
-	 * @param Precio parametro a insertar 
+	 * @param Precio      parametro a insertar
 	 * @throws SQLException lanzamos excepciones
 	 */
 	public void InsertarMateriales(int Referencia, String Descripcion, Double Precio) throws SQLException {
@@ -387,9 +396,10 @@ public class ClsDatos {
 		}
 
 	}
-	
+
 	/**
 	 * para consultar materiales
+	 * 
 	 * @return genera un return con los datos obtenidos de BD
 	 * @throws SQLException lanzamos excepciones
 	 */
@@ -445,11 +455,60 @@ public class ClsDatos {
 	}
 
 	/**
+	 * Para eliminar materiales por referencia
+	 * 
+	 * @param Referencia parametro por el cual borramos
+	 * @throws SQLException Lanzamos excepciones
+	 */
+
+	public void eliminarMateriales(int Referencia) throws SQLException {
+
+		/**
+		 * Instancias la clase que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método que tiene la clase y te devuelve una conexión
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			/**
+			 * Creamos las preparedstaments
+			 */
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_MATERIALES_POR_REFERENCIA);
+			objSt.setInt(1, Referencia);
+
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
+			objSt.execute();
+
+			System.out.println("Se ha eliminado el registro correctamente");
+			System.out.println("-----------------------------------------");
+
+			/**
+			 * Cerramos el preparedStatement
+			 */
+			objSt.close();
+
+			/**
+			 * Cerramos la conexión
+			 */
+			objConn.close();
+
+		}
+
+	}
+
+	/**
 	 * Metodo para insertar herrajes
 	 * 
-	 * @param Referencia parametro de herrajes
+	 * @param Referencia  parametro de herrajes
 	 * @param Descripcion parametro de herrajes
-	 * @param Precio parametro de herrajes
+	 * @param Precio      parametro de herrajes
 	 * @throws SQLException lanzamos excepciones
 	 */
 	public void InsertarHerrajes(int Referencia, String Descripcion, Double Precio) throws SQLException {
@@ -546,10 +605,11 @@ public class ClsDatos {
 
 	/**
 	 * Para eliminar herrajes por numero de serie
+	 * 
 	 * @param NºDeSerie parametro por el cual eliminar
 	 * @throws SQLException lanzamos excepcion
 	 */
-	public static void eliminarHerrajes(int NºDeSerie) throws SQLException {
+	public void eliminarHerrajes(int NºDeSerie) throws SQLException {
 
 		/**
 		 * Instancias la clase que hemos creado anteriormente
@@ -568,6 +628,161 @@ public class ClsDatos {
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_HERRAJES_POR_REFERENCIA);
 			objSt.setInt(1, NºDeSerie);
+
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
+			objSt.execute();
+
+			System.out.println("Se ha eliminado el registro correctamente");
+			System.out.println("-----------------------------------------");
+
+			/**
+			 * Cerramos el preparedStatement
+			 */
+			objSt.close();
+
+			/**
+			 * Cerramos la conexión
+			 */
+			objConn.close();
+
+		}
+
+	}
+
+	/**
+	 * Metodo para insertar clientes en BD
+	 * 
+	 * @param NºCliente          parametro recibido.
+	 * @param NombreYApellidos   parametro recibido
+	 * @param DNI_NIF            parametro recibido
+	 * @param DireccionDeCliente parametro recibido
+	 * @param Provincia          parametro recibido
+	 * @param Telefono           parametro recibido
+	 * @param Email              parametro recibido
+	 * @throws SQLException lanzamos excepcion
+	 */
+	public void InsertarClientes(int NºCliente, String NombreYApellidos, String DNI_NIF, String DirecciónDeCliente,
+			String Provincia, int Telefono, String Email) throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			// Creamos las preparedstaments
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_CLIENTES);
+			objSt.setInt(1, NºCliente);
+			objSt.setString(2, NombreYApellidos);
+			objSt.setString(3, DNI_NIF);
+			objSt.setString(4, DirecciónDeCliente);
+			objSt.setString(5, Provincia);
+			objSt.setInt(6, Telefono);
+			objSt.setString(7, Email);
+
+			// Ejecutamos la query que hemos preparado
+			objSt.execute();
+
+			System.out.println("Se ha insertado el registro correctamente");
+			System.out.println("-----------------------------------------");
+
+			// Cerramos el preparedStatement
+			objSt.close();
+
+			// Cerramos la conexión
+			objConn.close();
+
+		}
+
+	}
+
+	/**
+	 * Metodo para consultar clientes
+	 * 
+	 * @return nos devuelve parametros
+	 * @throws SQLException lanzamos excepcion
+	 */
+	public ResultSet consultarClientes() throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		ResultSet rs = null;
+
+		if (objConn != null) {
+			/**
+			 * Preparamos la consulta
+			 */
+			Statement st = objConn.createStatement();
+			rs = st.executeQuery(QUERY_PARA_SELECT_CLIENTES);
+			if (rs.isBeforeFirst()) {
+				return rs;
+			}
+			while (rs.next()) {
+
+				return rs;
+
+			}
+
+			/**
+			 * Cerramos el resulset
+			 * 
+			 */
+			rs.close();
+			/**
+			 * Cerramos el statement
+			 * 
+			 */
+			st.close();
+			/**
+			 * Cerramos la conexión
+			 * 
+			 */
+			objConn.close();
+
+		}
+		return null;
+	}
+
+	/**
+	 * Metodo para eliminar clientes de BD
+	 * 
+	 * @param DNI_NIF parametro de eliminacion
+	 * @throws SQLException lanzamos excepcion
+	 */
+	public void eliminarClientes(String DNI_NIF) throws SQLException {
+
+		/**
+		 * Instancias la clase que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método que tiene la clase y te devuelve una conexión
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			/**
+			 * Creamos las preparedstaments
+			 */
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_CLIENTES_POR_DNI_NIF);
+			objSt.setString(3, DNI_NIF);
 
 			/**
 			 * Ejecutamos la query que hemos preparado

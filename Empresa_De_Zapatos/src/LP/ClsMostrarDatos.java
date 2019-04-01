@@ -5,6 +5,16 @@ import static COMUN.ClsConstantes.PROPIEDAD_SERIES_DESCRIPCION;
 import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_REFERENCIA;
 import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_DESCRIPCION;
 import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_PRECIO;
+import static COMUN.ClsConstantes.PROPIEDAD_MATERIALES_REFERENCIA;
+import static COMUN.ClsConstantes.PROPIEDAD_MATERIALES_DESCRIPCION;
+import static COMUN.ClsConstantes.PROPIEDAD_MATERIALES_PRECIO;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NUMERO;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NOMBRE_Y_APELLIDOS;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DNI_NIF;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DIRECCION;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_PROVINCIA;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_TELEFONO;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_EMAIL;
 
 import java.util.ArrayList;
 
@@ -82,5 +92,53 @@ public class ClsMostrarDatos {
 
 		}
 
+	}
+
+	/**
+	 * Metodo para sacar por consola herrajes
+	 * 
+	 * @param objGestorVH parametro para acceder a dame herrajes
+	 */
+	public static void VerHerrajes(ClsGestorLN objGestorVH) {
+		ArrayList<ItfProperty> Herrajes;
+
+		Herrajes = objGestorVH.DameHerrajes();
+
+		System.out.println("HERRAJES RECUPERADOS");
+		System.out.println("--------------------");
+
+		for (ItfProperty a : Herrajes) {
+
+			System.out.println(a.getIntegerProperty(PROPIEDAD_MATERIALES_REFERENCIA) + " "
+					+ a.getStringProperty(PROPIEDAD_MATERIALES_DESCRIPCION) + " "
+					+ a.getDoubleProperty(PROPIEDAD_MATERIALES_PRECIO));
+
+		}
+	}
+
+	/**
+	 * Metodo para sacar por consola Clientes
+	 * 
+	 * @param objGestorVC parametro para acceder a dame clientes
+	 */
+	public static void VerClientes(ClsGestorLN objGestorVC) {
+		ArrayList<ItfProperty> Clientes;
+
+		Clientes = objGestorVC.DameClientes();
+
+		System.out.println("HERRAJES RECUPERADOS");
+		System.out.println("--------------------");
+
+		for (ItfProperty a : Clientes) {
+
+			System.out.println(a.getIntegerProperty(PROPIEDAD_CLIENTE_NUMERO) + " "
+					+ a.getStringProperty(PROPIEDAD_CLIENTE_NOMBRE_Y_APELLIDOS) + " "
+					+ a.getStringProperty(PROPIEDAD_CLIENTE_DNI_NIF) + " "
+					+ a.getStringProperty(PROPIEDAD_CLIENTE_DIRECCION) + " "
+					+ a.getStringProperty(PROPIEDAD_CLIENTE_PROVINCIA) + " "
+					+ a.getIntegerProperty(PROPIEDAD_CLIENTE_TELEFONO) + " "
+					+ a.getStringProperty(PROPIEDAD_CLIENTE_EMAIL));
+
+		}
 	}
 }

@@ -146,6 +146,11 @@ public class ClsMenuConsultarDatos {
 	 *
 	 */
 	public static void ConsultarDatosHerrajes(ClsGestorLN ObjGestCHerrajes) {
+		
+		/**
+		 * Llamada al metodo mostrar Herrajes
+		 */
+		ClsMostrarDatos.VerHerrajes(ObjGestCHerrajes);
 
 	}
 
@@ -165,6 +170,10 @@ public class ClsMenuConsultarDatos {
 	 */
 	public static void ConsultarDatosClientes(ClsGestorLN ObjGestCClientes) {
 
+		/**
+		 * Mostramos los datos del cliente
+		 */
+		ClsMostrarDatos.VerClientes(ObjGestCClientes);
 	}
 
 	/**

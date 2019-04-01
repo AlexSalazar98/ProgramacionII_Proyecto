@@ -88,11 +88,31 @@ public class ClsConstantesBD {
 	 */
 	public static final String QUERY_PARA_SELECT_HERRAJES = "SELECT `herrajes`.`Referencia`,\r\n"
 			+ "    `herrajes`.`Descripcion`,\r\n" + "    `herrajes`.`Precio`\r\n" + "FROM `mydb`.`herrajes`;";
-	
+
 	/**
 	 * Constante de DELETE para herrajes por referencia.
 	 */
 	public static final String QUERY_PARA_DELETE_HERRAJES_POR_REFERENCIA = "DELETE FROM `mydb`.`herrajes`\r\n"
 			+ "WHERE Referencia = ?;";
-	
+	/**
+	 * Constantes para INSERT clientes.
+	 */
+	public static final String QUERY_PARA_INSERTAR_CLIENTES = "INSERT INTO `mydb`.`clientes`\r\n" + "(`NºCliente`,\r\n"
+			+ "`NombreYApellidos`,\r\n" + "`DNI_NIF`,\r\n" + "`DirecciónDeCliente`,\r\n" + "`Provincia`,\r\n"
+			+ "`Telefono`,\r\n" + "`Email`)\r\n" + "VALUES\r\n" + "(?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n"
+			+ "?,\r\n" + "?);";
+
+	/**
+	 * Constantes para la SELECT de clientes.
+	 */
+	public static final String QUERY_PARA_SELECT_CLIENTES = "SELECT `clientes`.`NºCliente`,\r\n"
+			+ "    `clientes`.`NombreYApellidos`,\r\n" + "    `clientes`.`DNI_NIF`,\r\n"
+			+ "    `clientes`.`DirecciónDeCliente`,\r\n" + "    `clientes`.`Provincia`,\r\n"
+			+ "    `clientes`.`Telefono`,\r\n" + "    `clientes`.`Email`\r\n" + "FROM `mydb`.`clientes`;\r\n" + "";
+
+	/**
+	 * Constante de DELETE para clientes por DNI_NIF.
+	 */
+	public static final String QUERY_PARA_DELETE_CLIENTES_POR_DNI_NIF = "DELETE FROM `mydb`.`clientes`\r\n"
+			+ "WHERE DNI_NIF = ?;\r\n" + "";
 }

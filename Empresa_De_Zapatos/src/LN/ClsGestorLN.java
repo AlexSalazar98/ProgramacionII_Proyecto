@@ -68,16 +68,19 @@ public class ClsGestorLN {
 		 */
 		ClsSuelas objSuelas;
 		objSuelas = new ClsSuelas(Referencia_Suelas, Descripcion_Suelas, Precio_Suelas);
-
 		/**
-		 * Añadimos el objeto a el array.
+		 * Comprobamos que no exite el objeto y lo añadimos al Array y a la BD.
 		 */
-		MiListaDeSuelas.add(objSuelas);
-		/**
-		 * Llamada a Insert suelas con paso de parametros.
-		 */
-		objDatos.InsertarSuelas(Referencia_Suelas, Descripcion_Suelas, Precio_Suelas);
-
+		if (!ExisteSuelas(objSuelas)) {
+			/**
+			 * Añadimos el objeto a el array.
+			 */
+			MiListaDeSuelas.add(objSuelas);
+			/**
+			 * Llamada a Insert suelas con paso de parametros.
+			 */
+			objDatos.InsertarSuelas(Referencia_Suelas, Descripcion_Suelas, Precio_Suelas);
+		}
 	}
 
 	/**
@@ -95,14 +98,19 @@ public class ClsGestorLN {
 		objSeries = new ClsSeries(NumeroDeSerie, Descripcion_Serie);
 
 		/**
-		 * Añadimos el objeto a el array.
+		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
 		 */
-		MiListaDeSeries.add(objSeries);
+		if (!ExisteSeries(objSeries)) {
+			/**
+			 * Añadimos el objeto a el array.
+			 */
+			MiListaDeSeries.add(objSeries);
 
-		/**
-		 * Llamada a introducir datos con paso de parametros.
-		 */
-		objDatos.InsertarSerie(NumeroDeSerie, Descripcion_Serie);
+			/**
+			 * Llamada a introducir datos con paso de parametros.
+			 */
+			objDatos.InsertarSerie(NumeroDeSerie, Descripcion_Serie);
+		}
 
 	}
 
@@ -147,15 +155,19 @@ public class ClsGestorLN {
 		objMateriales = new ClsMateriales(Referencia, Descripcion, Precio);
 
 		/**
-		 * Añadimos el objeto a el array.
+		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
 		 */
-		MiListaDeMateriales.add(objMateriales);
+		if (!ExisteMateriales(objMateriales)) {
+			/**
+			 * Añadimos el objeto a el array.
+			 */
+			MiListaDeMateriales.add(objMateriales);
 
-		/**
-		 * Mandamos los datos a LD para introducirlos en BD
-		 */
-		objDatos.InsertarMateriales(Referencia, Descripcion, Precio);
-
+			/**
+			 * Mandamos los datos a LD para introducirlos en BD
+			 */
+			objDatos.InsertarMateriales(Referencia, Descripcion, Precio);
+		}
 	}
 
 	/**
@@ -164,19 +176,26 @@ public class ClsGestorLN {
 	 * @param Referencia  parametro referencia
 	 * @param Descripcion parametro descripcion
 	 * @param Precio      parametro precio
+	 * @throws SQLException
 	 */
-	public void CrearHerrajes(int Referencia, String Descripcion, double Precio) {
+	public void CrearHerrajes(int Referencia, String Descripcion, double Precio) throws SQLException {
 		/**
 		 * Crearmos el objeto
 		 */
 		ClsHerrajes objHerrajes;
 		objHerrajes = new ClsHerrajes(Referencia, Descripcion, Precio);
 
-		/**
-		 * Añadimos el objeto a el array.
-		 */
-		MiListaDeHerrajes.add(objHerrajes);
+		if (!ExisteHerrajes(objHerrajes)) {
+			/**
+			 * Añadimos el objeto a el array.
+			 */
+			MiListaDeHerrajes.add(objHerrajes);
 
+			/**
+			 * Mandamos los datos a LD para introducir en BD.
+			 */
+			objDatos.InsertarHerrajes(Referencia, Descripcion, Precio);
+		}
 	}
 
 	/**
@@ -217,9 +236,10 @@ public class ClsGestorLN {
 	 * @param Provincia          parametro provincia
 	 * @param Telefono           parametro telefono
 	 * @param Email              parametro email
+	 * @throws SQLException mandamos la excepcion a LP
 	 */
 	public void CrearClientes(int NumeroDeCliente, String NombreYApellidos, String DNI_NIF, String DireccionDeCliente,
-			String Provincia, int Telefono, String Email) {
+			String Provincia, int Telefono, String Email) throws SQLException {
 
 		/**
 		 * Crearmos el objeto
@@ -228,11 +248,17 @@ public class ClsGestorLN {
 		objClientes = new ClsClientes(NumeroDeCliente, NombreYApellidos, DNI_NIF, DireccionDeCliente, Provincia,
 				Telefono, Email);
 
-		/**
-		 * Añadimos el objeto a el array.
-		 */
-		MiListaDeClientes.add(objClientes);
-
+		if (!ExisteCliente(objClientes)) {
+			/**
+			 * Añadimos el objeto a el array.
+			 */
+			MiListaDeClientes.add(objClientes);
+			/**
+			 * Mandamos los datos a LD para introducir a BD
+			 */
+			objDatos.InsertarClientes(NumeroDeCliente, NombreYApellidos, DNI_NIF, DireccionDeCliente, Provincia,
+					Telefono, Email);
+		}
 	}
 
 	/**
@@ -323,10 +349,9 @@ public class ClsGestorLN {
 			/**
 			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
 			 */
-			if (!ExisteSeries(objSeries)) {
-				MiListaDeSeries.add(objSeries);
-			} else {
-			}
+
+			MiListaDeSeries.add(objSeries);
+
 		}
 
 	}
@@ -405,10 +430,9 @@ public class ClsGestorLN {
 			/**
 			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
 			 */
-			if (!ExisteSuelas(ObjSuelas)) {
-				MiListaDeSuelas.add(ObjSuelas);
-			} else {
-			}
+
+			MiListaDeSuelas.add(ObjSuelas);
+
 		}
 
 	}
@@ -456,6 +480,17 @@ public class ClsGestorLN {
 	}
 
 	/**
+	 * Metodo para borrar objetos Suelas del Array y de la BD.
+	 * 
+	 * @param Referencia parametro para selecionar que borrar
+	 * @throws SQLException lanzamos la excepcion
+	 */
+	public void EliminarSuelasDeArray(int Referencia) throws SQLException {
+
+		objDatos.eliminarSuelas(Referencia);
+	}
+
+	/**
 	 * Metodo intermedio para recuperar Materiales de BD
 	 * 
 	 * @throws SQLException lanzamos la excepcion a LP
@@ -474,10 +509,9 @@ public class ClsGestorLN {
 			/**
 			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
 			 */
-			if (!ExisteMateriales(ObjMateriales)) {
-				MiListaDeMateriales.add(ObjMateriales);
-			} else {
-			}
+
+			MiListaDeMateriales.add(ObjMateriales);
+
 		}
 
 	}
@@ -485,7 +519,7 @@ public class ClsGestorLN {
 	/**
 	 * Metodo para devolver materiales cuando nos los pidan.
 	 * 
-	 * @return
+	 * @return genera un return.
 	 */
 	public ArrayList<ItfProperty> DameMateriales() {
 
@@ -522,6 +556,170 @@ public class ClsGestorLN {
 		}
 
 		return retorno;
+	}
+
+	/**
+	 * Metodo para eliminar materiales del array y de bd
+	 * 
+	 * @param Referencia parametro por el cual borrar
+	 * @throws SQLException lanzamos la excepcion a LP
+	 */
+	public void EliminarMaterialesDeArray(int Referencia) throws SQLException {
+
+		objDatos.eliminarMateriales(Referencia);
+	}
+
+	/**
+	 * Metodo intermedio para recuperar objetos herraje de la BD
+	 * 
+	 * @throws SQLException lanzamos excepcion a LP
+	 */
+	public void ObjetosRecuperadosHerrajes() throws SQLException {
+		/**
+		 * Recogemos datos desde LD y consturimos objetos.
+		 */
+		ResultSet Resultado = objDatos.consultarHerrajes();
+
+		while (Resultado.next()) {
+			int Referencia = Resultado.getInt("Referencia");
+			String Descripcion = Resultado.getString("Descripcion");
+			Double Precio = Resultado.getDouble("Precio");
+			ClsHerrajes ObjHerrajes = new ClsHerrajes(Referencia, Descripcion, Precio);
+			/**
+			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
+			 */
+
+			MiListaDeHerrajes.add(ObjHerrajes);
+
+		}
+
+	}
+
+	/**
+	 * Metodo para devolver los objetos Herrajes
+	 * 
+	 * @return genera un return
+	 */
+	public ArrayList<ItfProperty> DameHerrajes() {
+
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		for (ClsHerrajes a : MiListaDeHerrajes) {
+			retorno.add(a);
+		}
+
+		return retorno;
+
+	}
+
+	/**
+	 * Metodo para comprobar que no se dupliquen los objetos herrajes introducidos
+	 * 
+	 * @param objHerrajes parametro a comprobar
+	 * @return nos dice si esta repetido o no
+	 */
+	public boolean ExisteHerrajes(ClsHerrajes objHerrajes) {
+
+		boolean retorno = false;
+
+		for (ClsMateriasPrimas b : MiListaDeHerrajes) {
+			if (b.equals(objHerrajes))
+				return true;
+
+		}
+
+		return retorno;
+	}
+
+	/**
+	 * Metodo para eliminar Herrajes por referencia de los Arrays y de BD.
+	 * 
+	 * @param Referencia parametro para buscar .@throws SQLException lanzamos la
+	 *                   excepcion a LP,
+	 */
+	public void EliminarHerrajesDeArray(int Referencia) throws SQLException {
+
+		objDatos.eliminarHerrajes(Referencia);
+	}
+
+	public void ObjetosRecuperadosClientes() throws SQLException {
+		/**
+		 * Recogemos datos desde LD y consturimos objetos.
+		 */
+		ResultSet Resultado = objDatos.consultarClientes();
+
+		while (Resultado.next()) {
+			int NºDeClientes = Resultado.getInt("NºCliente");
+			String NombreYApellido = Resultado.getString("NombreYApellido");
+			String DNI_NIF = Resultado.getString("DNI_NIF");
+			String DirecciónDeClientes = Resultado.getString("DirecciónDeClientes");
+			String Provincia = Resultado.getString("Provincia");
+			int Telefono = Resultado.getInt("Telefono");
+			String Email = Resultado.getString("Email");
+			ClsClientes objClientes = new ClsClientes(NºDeClientes, NombreYApellido, DNI_NIF, DirecciónDeClientes,
+					Provincia, Telefono, Email);
+			/**
+			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
+			 */
+
+			MiListaDeClientes.add(objClientes);
+
+		}
+
+	}
+
+	/**
+	 * Metodo para devolver objetos Cliente
+	 * 
+	 * @return nos genera un return
+	 */
+	public ArrayList<ItfProperty> DameClientes() {
+
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		for (ClsClientes a : MiListaDeClientes) {
+			retorno.add(a);
+		}
+
+		return retorno;
+
+	}
+
+	/**
+	 * Metodo para comprobar que no se repite clientes.
+	 * 
+	 * @param objClientes parametro recibido
+	 * @return nos dice si esta repetido o no.
+	 */
+	public boolean ExisteCliente(ClsClientes objClientes) {
+
+		boolean retorno = false;
+		for (ClsClientes b : MiListaDeClientes) {
+			if (b.equals(objClientes))
+				return true;
+		}
+		return retorno;
+	}
+
+	/**
+	 * Metopo para eliminar cliente de Array y BD
+	 * 
+	 * @param DNI_NIF parametro de eliminacion
+	 * @throws SQLException lanzamos excepcion
+	 */
+	public void EliminarClientesDeArray(String DNI_NIF) throws SQLException {
+
+		objDatos.eliminarClientes(DNI_NIF);
 	}
 
 }
