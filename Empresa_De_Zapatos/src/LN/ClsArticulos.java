@@ -179,5 +179,7 @@ public class ClsArticulos implements ItfProperty {
 		
 		return null;
 	}
+	
+	
 
 }

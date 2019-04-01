@@ -14,7 +14,7 @@ import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO;
  *@author David Requeta
  *
  */
-public class ClsPedidos implements ItfProperty {
+public class ClsPedidos implements ItfProperty  {
 
 	/**
 	 * 
@@ -115,8 +115,13 @@ public class ClsPedidos implements ItfProperty {
 		switch (propiedad) {
 		case PROPIEDAD_PEDIDOS_NOMBRE_Y_APELLIDOS_DEL_CLIENTE:
 			return this.getNombreYApelliosDelCliente();
+			
+		default: //lanzar excepcion atributo inexistente
+			break;
 		}
 		return null;
+		
+		
 	}
 
 	@Override

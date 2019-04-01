@@ -16,7 +16,7 @@ import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_PRECIO;
  * 
  */
 
-public class ClsSuelas extends ClsMateriasPrimas {
+public class ClsSuelas extends ClsMateriasPrimas  {
 
 	/**
 	 * 

@@ -1,6 +1,5 @@
 package LP;
 
-import java.text.ParseException;
 import LN.ClsGestorLN;
 
 /**
@@ -14,7 +13,7 @@ import LN.ClsGestorLN;
  */
 public class ClsMenuConsultarDatos {
 
-	public static void MenuConsultarDatos(ClsGestorLN objGestorMC) throws ParseException {
+	public static void MenuConsultarDatos(ClsGestorLN objGestorMC, ClsMostrarDatos objMostrarDatos) {
 
 		/**
 		 * Intanciamos el objeto gestor para tener acceso a la clase gestor
@@ -49,39 +48,39 @@ public class ClsMenuConsultarDatos {
 			opcionConsultar = UtilidadesLP.leerEntero();
 			switch (opcionConsultar) {
 			case 1:
-				ConsultarDatosSuelas(objGestorMC);
+				ConsultarDatosSuelas(objGestorMC, objMostrarDatos);
 				break;
 
 			case 2:
-				ConsultarDatosSeries(objGestorMC);
+				ConsultarDatosSeries(objGestorMC, objMostrarDatos);
 				break;
 
 			case 3:
-				ConsultarDatosPedidos(objGestorMC);
+				ConsultarDatosPedidos(objGestorMC, objMostrarDatos);
 				break;
 
 			case 4:
-				ConsultarDatosMateriales(objGestorMC);
+				ConsultarDatosMateriales(objGestorMC, objMostrarDatos);
 				break;
 
 			case 5:
-				ConsultarDatosHerrajes(objGestorMC);
+				ConsultarDatosHerrajes(objGestorMC, objMostrarDatos);
 				break;
 
 			case 6:
-				ConsultarDatosEnvios(objGestorMC);
+				ConsultarDatosEnvios(objGestorMC, objMostrarDatos);
 				break;
 
 			case 7:
-				ConsultarDatosClientes(objGestorMC);
+				ConsultarDatosClientes(objGestorMC, objMostrarDatos);
 				break;
 
 			case 8:
-				ConsultarDatosArticulos(objGestorMC);
+				ConsultarDatosArticulos(objGestorMC, objMostrarDatos);
 				break;
 
 			case 9:
-				ConsultarDatosDesgloseDePedido(objGestorMC);
+				ConsultarDatosDesgloseDePedido(objGestorMC, objMostrarDatos);
 				break;
 
 			default:
@@ -97,12 +96,12 @@ public class ClsMenuConsultarDatos {
 	 * 
 	 * @param ObjGestCSuelas relacion con LN
 	 */
-	public static void ConsultarDatosSuelas(ClsGestorLN ObjGestCSuelas) {
+	public static void ConsultarDatosSuelas(ClsGestorLN ObjGestCSuelas, ClsMostrarDatos objMostrarDatosSU) {
 
 		/**
 		 * LLamada al metodo Ver Suelas
 		 */
-		ClsMostrarDatos.VerSuelas(ObjGestCSuelas);
+		objMostrarDatosSU.VerSuelas(ObjGestCSuelas);
 	}
 
 	/**
@@ -110,12 +109,12 @@ public class ClsMenuConsultarDatos {
 	 * 
 	 * @param ObjGestCSeries relacion con LN
 	 */
-	public static void ConsultarDatosSeries(ClsGestorLN ObjGestCSeries) {
+	public static void ConsultarDatosSeries(ClsGestorLN ObjGestCSeries, ClsMostrarDatos objMostrarDatosSE) {
 		
 		/**
 		 * Llamada al metodo Ver Series.
 		 */
-		ClsMostrarDatos.VerSeries(ObjGestCSeries);
+		objMostrarDatosSE.VerSeries(ObjGestCSeries);
 	}
 
 	/**
@@ -123,7 +122,7 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Pedidos.
 	 *
 	 */
-	public static void ConsultarDatosPedidos(ClsGestorLN ObjGestCPedidos) {
+	public static void ConsultarDatosPedidos(ClsGestorLN ObjGestCPedidos, ClsMostrarDatos objMostrarDatosP) {
 
 	}
 
@@ -132,12 +131,12 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Materiales.
 	 *
 	 */
-	public static void ConsultarDatosMateriales(ClsGestorLN ObjGestCMateriales) {
+	public static void ConsultarDatosMateriales(ClsGestorLN ObjGestCMateriales, ClsMostrarDatos objMostrarDatosM) {
 
 		/**
 		 * Llamada al metodo mostrar Materiales
 		 */
-		ClsMostrarDatos.VerMateriales(ObjGestCMateriales);
+		objMostrarDatosM.VerMateriales(ObjGestCMateriales);
 	}
 
 	/**
@@ -145,12 +144,12 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Herrajes.
 	 *
 	 */
-	public static void ConsultarDatosHerrajes(ClsGestorLN ObjGestCHerrajes) {
+	public static void ConsultarDatosHerrajes(ClsGestorLN ObjGestCHerrajes, ClsMostrarDatos objMostrarDatosH) {
 		
 		/**
 		 * Llamada al metodo mostrar Herrajes
 		 */
-		ClsMostrarDatos.VerHerrajes(ObjGestCHerrajes);
+		objMostrarDatosH.VerHerrajes(ObjGestCHerrajes);
 
 	}
 
@@ -159,7 +158,7 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Envios.
 	 *
 	 */
-	public static void ConsultarDatosEnvios(ClsGestorLN ObjGestCEnvios) {
+	public static void ConsultarDatosEnvios(ClsGestorLN ObjGestCEnvios, ClsMostrarDatos objMostrarDatosE) {
 
 	}
 
@@ -168,12 +167,12 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Clientes.
 	 *
 	 */
-	public static void ConsultarDatosClientes(ClsGestorLN ObjGestCClientes) {
+	public static void ConsultarDatosClientes(ClsGestorLN ObjGestCClientes, ClsMostrarDatos objMostrarDatosC) {
 
 		/**
 		 * Mostramos los datos del cliente
 		 */
-		ClsMostrarDatos.VerClientes(ObjGestCClientes);
+		objMostrarDatosC.VerClientes(ObjGestCClientes);
 	}
 
 	/**
@@ -181,7 +180,7 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Articulo
 	 *
 	 */
-	public static void ConsultarDatosArticulos(ClsGestorLN ObjGestCArticulos) {
+	public static void ConsultarDatosArticulos(ClsGestorLN ObjGestCArticulos, ClsMostrarDatos objMostrarDatosA) {
 
 	}
 
@@ -190,7 +189,7 @@ public class ClsMenuConsultarDatos {
 	 * Pedimos los datos a consultar en la entidad Desglose de Pedidos.
 	 *
 	 */
-	public static void ConsultarDatosDesgloseDePedido(ClsGestorLN ObjGestCDesglose) {
+	public static void ConsultarDatosDesgloseDePedido(ClsGestorLN ObjGestCDesglose, ClsMostrarDatos objMostrarDatosD) {
 
 	}
 }

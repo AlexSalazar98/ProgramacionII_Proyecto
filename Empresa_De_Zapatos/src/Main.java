@@ -1,4 +1,3 @@
-import java.text.ParseException;
 
 import LP.ClsMenuPrincipal;
 
@@ -8,9 +7,9 @@ import LP.ClsMenuPrincipal;
  * @author David Requeta Este es el main de nuestra aplicaion.
  *
  */
-public class main {
+public class Main {
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) {
 
 		/**
 		 * Recordatorios temporales.

@@ -1,7 +1,6 @@
 package LP;
 
 import java.sql.SQLException;
-import java.text.ParseException;
 import LN.ClsGestorLN;
 
 /**
@@ -16,12 +15,13 @@ import LN.ClsGestorLN;
 
 public class ClsMenuPrincipal {
 
-	public static void MenuPrincipal() throws ParseException {
+	public static void MenuPrincipal() {
 
 		/**
 		 * Creamos un objeto Gestor.
 		 */
 		ClsGestorLN objGestor = new ClsGestorLN();
+		ClsMostrarDatos objMostrarDatos = new ClsMostrarDatos();
 		/**
 		 * Llamadas a metodos para cargar los datos en Arrays nada mas iniciar la
 		 * aplicacion.
@@ -81,7 +81,7 @@ public class ClsMenuPrincipal {
 			 *
 			 */
 			case 2:
-				ClsMenuConsultarDatos.MenuConsultarDatos(objGestor);
+				ClsMenuConsultarDatos.MenuConsultarDatos(objGestor, objMostrarDatos);
 				break;
 			/**
 			 * 

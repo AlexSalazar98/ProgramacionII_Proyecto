@@ -18,7 +18,7 @@ import LN.ClsGestorLN;
 
 public class ClsMenuIntroducirDatos {
 
-	public static void MenuIntroducirDatos(ClsGestorLN objGestorMI) throws ParseException {
+	public static void MenuIntroducirDatos(ClsGestorLN objGestorMI) {
 
 		/**
 		 * 

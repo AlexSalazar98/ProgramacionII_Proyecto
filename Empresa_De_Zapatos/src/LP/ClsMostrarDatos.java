@@ -28,13 +28,20 @@ import LN.ClsGestorLN;
  * @author David Requeta
  */
 public class ClsMostrarDatos {
+	
+	
+
+	/**
+	 * Constructor de la clase MostrarDatos
+	 */
+	public ClsMostrarDatos() {}
 
 	/**
 	 * Metodo para sacar por consola las series.
 	 * 
 	 * @param ObjGestorVS parametro para acceder al metodo DameSeries.
 	 */
-	public static void VerSeries(ClsGestorLN ObjGestorVS) {
+	public void VerSeries(ClsGestorLN ObjGestorVS) {
 
 		ArrayList<ItfProperty> Series;
 
@@ -55,7 +62,7 @@ public class ClsMostrarDatos {
 	 * 
 	 * @param ObjGestorVS parametro para acceder a DameSuelas
 	 */
-	public static void VerSuelas(ClsGestorLN ObjGestorVS) {
+	public void VerSuelas(ClsGestorLN ObjGestorVS) {
 
 		ArrayList<ItfProperty> Suelas;
 
@@ -77,7 +84,7 @@ public class ClsMostrarDatos {
 	 * 
 	 * @param ObjGestorVM parametro para acceder a DameMateriales
 	 */
-	public static void VerMateriales(ClsGestorLN ObjGestorVM) {
+	public void VerMateriales(ClsGestorLN ObjGestorVM) {
 		ArrayList<ItfProperty> Materiales;
 
 		Materiales = ObjGestorVM.DameMateriales();
@@ -99,7 +106,7 @@ public class ClsMostrarDatos {
 	 * 
 	 * @param objGestorVH parametro para acceder a dame herrajes
 	 */
-	public static void VerHerrajes(ClsGestorLN objGestorVH) {
+	public void VerHerrajes(ClsGestorLN objGestorVH) {
 		ArrayList<ItfProperty> Herrajes;
 
 		Herrajes = objGestorVH.DameHerrajes();
@@ -121,7 +128,7 @@ public class ClsMostrarDatos {
 	 * 
 	 * @param objGestorVC parametro para acceder a dame clientes
 	 */
-	public static void VerClientes(ClsGestorLN objGestorVC) {
+	public void VerClientes(ClsGestorLN objGestorVC) {
 		ArrayList<ItfProperty> Clientes;
 
 		Clientes = objGestorVC.DameClientes();

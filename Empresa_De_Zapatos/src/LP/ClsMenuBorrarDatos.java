@@ -1,7 +1,6 @@
 package LP;
 
 import java.sql.SQLException;
-import java.text.ParseException;
 import LN.ClsGestorLN;
 
 /**
@@ -14,7 +13,7 @@ import LN.ClsGestorLN;
  */
 public class ClsMenuBorrarDatos {
 
-	public static void MenuBorrarDatos(ClsGestorLN objGestorMB) throws ParseException {
+	public static void MenuBorrarDatos(ClsGestorLN objGestorMB) {
 
 		/**
 		 * 
