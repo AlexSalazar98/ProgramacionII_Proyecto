@@ -25,6 +25,9 @@ import static LD.ClsConstantesBD.QUERY_PARA_DELETE_HERRAJES_POR_REFERENCIA;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_CLIENTES;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_CLIENTES;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_CLIENTES_POR_DNI_NIF;
+import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_ENVIOS;
+import static LD.ClsConstantesBD.QUERY_PARA_SELECT_ENVIOS;
+import static LD.ClsConstantesBD.QUERY_PARA_DELETE_ENVIOS_POR_NºENVIO;
 
 /**
  * Clase para hacer todos los tramites con la Base de Datos.
@@ -783,6 +786,159 @@ public class ClsDatos {
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_CLIENTES_POR_DNI_NIF);
 			objSt.setString(3, DNI_NIF);
+
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
+			objSt.execute();
+
+			System.out.println("Se ha eliminado el registro correctamente");
+			System.out.println("-----------------------------------------");
+
+			/**
+			 * Cerramos el preparedStatement
+			 */
+			objSt.close();
+
+			/**
+			 * Cerramos la conexión
+			 */
+			objConn.close();
+
+		}
+
+	}
+	
+	/**
+	 * Metodo para insertar Envios en BD
+	 * @param NºEnvio parametro recibido
+	 * @param NombreCliente parametro recibido
+	 * @param DireccionDeEnvio parametro recibido
+	 * @param PoblacionDeEnvio parametro recibido
+	 * @param CPDeEnvio parametro recibido
+	 * @param ProvinciaDeEnvio parametro recibido
+	 * @param TelefonoDeEnvio parametro recibido
+	 * @throws SQLException lanzamos la excepcion
+	 */
+	public void InsertarEnvios(int NºEnvio, String NombreCliente, String DireccionDeEnvio, String PoblacionDeEnvio,
+			String CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int Clientes_NºCliente) throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			// Creamos las preparedstaments
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_ENVIOS);
+			objSt.setInt(1, NºEnvio);
+			objSt.setString(2, NombreCliente);
+			objSt.setString(3, DireccionDeEnvio);
+			objSt.setString(4, PoblacionDeEnvio);
+			objSt.setString(5, CPDeEnvio);
+			objSt.setString(6, ProvinciaDeEnvio);
+			objSt.setInt(7, TelefonoDeEnvio);
+			objSt.setInt(8, Clientes_NºCliente);
+
+			// Ejecutamos la query que hemos preparado
+			objSt.execute();
+
+			System.out.println("Se ha insertado el registro correctamente");
+			System.out.println("-----------------------------------------");
+
+			// Cerramos el preparedStatement
+			objSt.close();
+
+			// Cerramos la conexión
+			objConn.close();
+
+		}
+
+	}
+
+	/**
+	 * Metodo para consultar Envios
+	 * @return nos devuelve parametros
+	 * @throws SQLException lanza la excepcion
+	 */
+	public ResultSet consultarEnvios() throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		ResultSet rs = null;
+
+		if (objConn != null) {
+			/**
+			 * Preparamos la consulta
+			 */
+			Statement st = objConn.createStatement();
+			rs = st.executeQuery(QUERY_PARA_SELECT_ENVIOS);
+			if (rs.isBeforeFirst()) {
+				return rs;
+			}
+			while (rs.next()) {
+
+				return rs;
+
+			}
+
+			/**
+			 * Cerramos el resulset
+			 * 
+			 */
+			rs.close();
+			/**
+			 * Cerramos el statement
+			 * 
+			 */
+			st.close();
+			/**
+			 * Cerramos la conexión
+			 * 
+			 */
+			objConn.close();
+
+		}
+		return null;
+	}
+
+	/**
+	 * Metodo para eliminar Envios de BD
+	 * @param NºEnvio parametro recibido
+	 * @throws SQLException lazamos la excepcion
+	 */
+	public void eliminarEnvios(int NºEnvio) throws SQLException {
+
+		/**
+		 * Instancias la clase que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método que tiene la clase y te devuelve una conexión
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			/**
+			 * Creamos las preparedstaments
+			 */
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_ENVIOS_POR_NºENVIO);
+			objSt.setInt(1, NºEnvio);
 
 			/**
 			 * Ejecutamos la query que hemos preparado

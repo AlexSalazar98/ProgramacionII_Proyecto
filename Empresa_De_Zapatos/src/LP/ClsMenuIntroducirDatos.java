@@ -344,8 +344,13 @@ public class ClsMenuIntroducirDatos {
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
-		objGEnvios.CrearEnvios(NumeroDeEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio, CPDeEnvio,
-				ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
+		try {
+			objGEnvios.CrearEnvios(NumeroDeEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio, CPDeEnvio,
+					ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
+		} catch (SQLException e) {
+			System.out.println("No se ha podido realizar el insert: " + e);
+		
+		}
 	}
 
 	/**

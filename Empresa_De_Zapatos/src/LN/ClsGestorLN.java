@@ -209,9 +209,10 @@ public class ClsGestorLN {
 	 * @param ProvinciaDeEnvio      parametro provincia de envio
 	 * @param TelefonoDeEnvio       parametro telefonon de envio
 	 * @param NumeroDeCliente_Envio parametro numero de cliente
+	 * @throws SQLException lanza excepcion
 	 */
 	public void CrearEnvios(int NumeroDeEnvio, String NombreCliente, String DireccionDeEnvio, String PoblacionDeEnvio,
-			String CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int NumeroDeCliente_Envio) {
+			String CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int NumeroDeCliente_Envio) throws SQLException {
 
 		/**
 		 * Crearmos el objeto
@@ -220,11 +221,20 @@ public class ClsGestorLN {
 		objEnvios = new ClsEnvios(NumeroDeEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio, CPDeEnvio,
 				ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
 
-		/**
-		 * Añadimos el objeto a el array.
-		 */
-		MiListaDeEnvios.add(objEnvios);
+		if (!ExisteEnvios(objEnvios)) {
+			/**
+			 * Añadimos el objeto a el array.
+			 */
+			MiListaDeEnvios.add(objEnvios);
+			/**
+			 * Mandamos los datos a LD para introducir a BD
+			 */
+			objDatos.InsertarEnvios(NumeroDeEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio, CPDeEnvio,
+					ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
+		}
 	}
+
+
 
 	/**
 	 * Metodo para crear Clientes.
@@ -722,4 +732,79 @@ public class ClsGestorLN {
 		objDatos.eliminarClientes(DNI_NIF);
 	}
 
+	public void ObjetosRecuperadosEnvios() throws SQLException {
+		/**
+		 * Recogemos datos desde LD y consturimos objetos.
+		 */
+		ResultSet Resultado = objDatos.consultarEnvios();
+
+		while (Resultado.next()) {
+			int NºEnvio = Resultado.getInt("NºEnvio");
+			String NombreCliente = Resultado.getString("NombreCliente");
+			String DireccionDeEnvio = Resultado.getString("DireccionDeEnvio");
+			String PoblacionDeEnvio = Resultado.getString("PoblacionDeEnvio");
+			String CPDeENVIO = Resultado.getString("CPDeEnvio");
+			String ProvinciaDeEnvio = Resultado.getString("ProvinciaDeEnvio");
+			int TelefonoDeEnvio = Resultado.getInt("TelefonoDeEnvio");
+			int NumeroDeCliente_Envio = Resultado.getInt("NumeroDeCliente_Envio");
+			ClsEnvios objEnvios = new ClsEnvios(NºEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio, CPDeENVIO,
+					ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
+			/**
+			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
+			 */
+
+			MiListaDeEnvios.add(objEnvios);
+
+		}
+
+	}
+
+	/**
+	 * Metodo para devolver objetos Cliente
+	 * 
+	 * @return nos genera un return
+	 */
+	public ArrayList<ItfProperty> DameEnvios() {
+
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		for (ClsEnvios a : MiListaDeEnvios) {
+			retorno.add(a);
+		}
+
+		return retorno;
+
+	}
+
+	/**
+	 * Metodo para comprobar que no se repite clientes.
+	 * 
+	 * @param objClientes parametro recibido
+	 * @return nos dice si esta repetido o no.
+	 */
+	public boolean ExisteEnvios(ClsEnvios objEnvios) {
+
+		boolean retorno = false;
+		for (ClsEnvios b : MiListaDeEnvios) {
+			if (b.equals(objEnvios))
+				return true;
+		}
+		return retorno;
+	}
+
+	/**
+	 * Metopo para eliminar cliente de Array y BD
+	 * 
+	 * @param DNI_NIF parametro de eliminacion
+	 * @throws SQLException lanzamos excepcion
+	 */
+	public void EliminarEnviosDeArray(int NºEnvio) throws SQLException {
+
+		objDatos.eliminarEnvios(NºEnvio);
+	}
 }

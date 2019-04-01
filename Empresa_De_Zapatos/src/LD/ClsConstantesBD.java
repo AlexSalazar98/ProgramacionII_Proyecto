@@ -115,4 +115,26 @@ public class ClsConstantesBD {
 	 */
 	public static final String QUERY_PARA_DELETE_CLIENTES_POR_DNI_NIF = "DELETE FROM `mydb`.`clientes`\r\n"
 			+ "WHERE DNI_NIF = ?;\r\n" + "";
+	/**
+	 * Constantes para INSERT Envios.
+	 */
+	public static final String QUERY_PARA_INSERTAR_ENVIOS = "INSERT INTO `mydb`.`envios`\r\n" + "(`NºEnvio`,\r\n"
+			+ "`NombreCliente`,\r\n" + "`DireccionDeEnvio`,\r\n" + "`PoblacionDeEnvio`,\r\n" + "`CPDeEnvio`,\r\n"
+			+ "`ProvinciaDeEnvio`,\r\n" + "`TelefonoDeEnvio`)\r\n" + "VALUES\n" + "(?,\r\n" + "?,\r\n" + "?,\r\n"
+			+ "?,\r\n" + "?,\r\n" + "?\r,\n" + "?\r,\n" + "?);";
+
+	/**
+	 * Constantes para la SELECT de Envios.
+	 */
+	public static final String QUERY_PARA_SELECT_ENVIOS = "SELECT `envios`.`NºEnvio`,\r\n"
+			+ "    `envios`.`NombreCliente`,\r\n" + "    `envios`.`DireccionDeEnvio`,\r\n"
+			+ "    `envios`.`PoblacionDeEnvio`,\r\n" + "    `envios`.`CPDeEnvio`,\r\n"
+			+ "    `envios`.`ProvinciaDeEnvio`,\r\n" + "    `envios`.`TelefonoDeEnvio`,\r\n" + "FROM `mydb`.`envios`;\n"
+			+ "";
+
+	/**
+	 * Constante de DELETE para Envios por NºEnvio.
+	 */
+	public static final String QUERY_PARA_DELETE_ENVIOS_POR_NºENVIO = "DELETE FROM `mydb`.`envios`\n"
+			+ "WHERE NºEnvio = ?;\r\n" + "";
 }
