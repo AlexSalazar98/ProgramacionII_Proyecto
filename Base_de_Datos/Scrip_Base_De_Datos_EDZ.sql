@@ -20,7 +20,7 @@ USE `mydb` ;
 CREATE TABLE IF NOT EXISTS `mydb`.`Clientes` (
   `NºCliente` INT NOT NULL,
   `NombreYApellidos` VARCHAR(100) NOT NULL,
-  `DNI/NIF` VARCHAR(45) NULL,
+  `DNI_NIF` VARCHAR(45) NULL,
   `DirecciónDeCliente` VARCHAR(100) NOT NULL,
   `Provincia` VARCHAR(45) NOT NULL,
   `Telefono` INT NULL,
