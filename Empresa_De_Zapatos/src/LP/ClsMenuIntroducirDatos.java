@@ -4,6 +4,9 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import LN.ClsComprobarDNI_NIF;
+import LN.ClsDNI_NIFValido;
 import LN.ClsGestorLN;
 
 /**
@@ -349,7 +352,7 @@ public class ClsMenuIntroducirDatos {
 					ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
 		} catch (SQLException e) {
 			System.out.println("No se ha podido realizar el insert: " + e);
-		
+
 		}
 	}
 
@@ -370,6 +373,8 @@ public class ClsMenuIntroducirDatos {
 		String Provincia;
 		int Telefono;
 		String Email;
+		boolean correcto = false;
+		ClsComprobarDNI_NIF objComprobarDNI_NIF = new ClsComprobarDNI_NIF();
 
 		/**
 		 * pedimos los datos.
@@ -378,8 +383,20 @@ public class ClsMenuIntroducirDatos {
 		NumeroDeCliente = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca el Nombre y los Apellidos del cliente:");
 		NombreYApellidos = UtilidadesLP.leerCadena();
-		System.out.print("Introduzca el DNI/NIF del cliente:");
-		DNI_NIF = UtilidadesLP.leerCadena();
+		/**
+		 * Comprobamos el DNI o NIF es correcto
+		 */
+		do {
+			System.out.print("Introduzca el DNI/NIF del cliente:");
+			DNI_NIF = UtilidadesLP.leerCadena().toUpperCase();
+
+			try {
+				correcto = objComprobarDNI_NIF.ComprobarDNI_NIF(DNI_NIF);
+			} catch (ClsDNI_NIFValido e) {
+				System.out.println(e.getMessage());
+
+			}
+		} while (!correcto);
 		System.out.print("Introduzca la dirección del cliente:");
 		DireccionDeCliente = UtilidadesLP.leerCadena();
 		System.out.print("Introduzca la provincia del cliente:");
@@ -393,12 +410,11 @@ public class ClsMenuIntroducirDatos {
 		 * Pasamos los parametros para generer el objeto
 		 */
 		try {
-			objGClientes.CrearClientes(NumeroDeCliente, NombreYApellidos, DNI_NIF, DireccionDeCliente, Provincia, Telefono,
-					Email);
+			objGClientes.CrearClientes(NumeroDeCliente, NombreYApellidos, DNI_NIF, DireccionDeCliente, Provincia,
+					Telefono, Email);
 		} catch (SQLException e) {
 			System.out.println("No se ha podido realizar el insert: " + e);
 		}
-
 	}
 
 	/**

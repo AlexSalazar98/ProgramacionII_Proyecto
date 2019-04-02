@@ -10,6 +10,7 @@ import java.sql.Statement;
 import static LD.ClsConstantesBD.RUTA_DE_LA_BD;
 import static LD.ClsConstantesBD.NOMBRE_DEL_USUARIO;
 import static LD.ClsConstantesBD.CONTRASEÑA_DE_LA_BD;
+
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_SERIES;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_SERIES;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_SERIES_POR_NºDESERIE;

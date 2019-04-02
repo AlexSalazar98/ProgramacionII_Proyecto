@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+
 import COMUN.ItfProperty;
 import LD.ClsDatos;
 
@@ -413,6 +414,8 @@ public class ClsGestorLN {
 	 * @throws SQLException lanzamos la excepcion.
 	 */
 	public void EliminarSeriesDeArray(int NºDeSerie) throws SQLException {
+
+		MiListaDeSeries.remove(NºDeSerie);
 
 		objDatos.eliminarSeries(NºDeSerie);
 	}
