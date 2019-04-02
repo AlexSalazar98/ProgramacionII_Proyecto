@@ -538,6 +538,7 @@ public class ClsGestorLN {
 	 * @param Referencia parametro para selecionar que borrar
 	 * @throws SQLException       lanzamos la excepcion
 	 * @throws ClsBorrarExcepcion excepcion por si no se realiza bien el borrado
+	 * @return nos dice si se ha eliminado o no.
 	 */
 	public boolean EliminarSuelasDeArray(int Referencia) throws SQLException, ClsBorrarExcepcion {
 
@@ -657,6 +658,7 @@ public class ClsGestorLN {
 	 * @param Referencia parametro por el cual borrar
 	 * @throws SQLException       lanzamos la excepcion a LP
 	 * @throws ClsBorrarExcepcion excepcion por si no se realiza el borrado
+	 * @return nos dice si se ha eliminado o no
 	 */
 	public boolean EliminarMaterialesDeArray(int Referencia) throws SQLException, ClsBorrarExcepcion {
 
@@ -778,6 +780,7 @@ public class ClsGestorLN {
 	 * @param Referencia parametro para buscar.
 	 * @throws SQLException       lanzamos la excepcion a LP.
 	 * @throws ClsBorrarExcepcion excepcion para el borrado
+	 * @return nos dice si se ha eliminado o no.
 	 */
 	public boolean EliminarHerrajesDeArray(int Referencia) throws SQLException, ClsBorrarExcepcion {
 
@@ -895,6 +898,7 @@ public class ClsGestorLN {
 	 * @param DNI_NIF parametro de eliminacion
 	 * @throws SQLException       lanzamos excepcion
 	 * @throws ClsBorrarExcepcion excepcion de borrado.
+	 * @return nos dice si se ha eliminado o no.
 	 */
 	public boolean EliminarClientesDeArray(String DNI_NIF) throws SQLException, ClsBorrarExcepcion {
 
