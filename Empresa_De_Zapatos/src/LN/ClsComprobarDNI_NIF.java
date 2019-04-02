@@ -20,9 +20,9 @@ public class ClsComprobarDNI_NIF {
 	 * 
 	 * @param DNI_NIF parametro recivido
 	 * @return nos dice si es valido o no
-	 * @throws ClsDNI_NIFValido excepcion generada por nosotros
+	 * @throws ClsDNI_NIFValidoExcepcion excepcion generada por nosotros
 	 */
-	public boolean ComprobarDNI_NIF(String DNI_NIF) throws ClsDNI_NIFValido {
+	public boolean ComprobarDNI_NIF(String DNI_NIF) throws ClsDNI_NIFValidoExcepcion {
 
 		/**
 		 * Variables para el chequeo de DNI o NIF
@@ -34,7 +34,7 @@ public class ClsComprobarDNI_NIF {
 		 * Si el largo del NIF es diferente a 9, acaba el método.
 		 */
 		if (DNI_NIF.length() != 9) {
-			throw new ClsDNI_NIFValido();
+			throw new ClsDNI_NIFValidoExcepcion();
 		}
 
 		/**
@@ -76,7 +76,7 @@ public class ClsComprobarDNI_NIF {
 		 */
 		if (letraNIF != secuenciaLetrasNIF.charAt(i)) {
 			correcto = false;
-			throw new ClsDNI_NIFValido();
+			throw new ClsDNI_NIFValidoExcepcion();
 
 		}
 		return correcto;

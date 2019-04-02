@@ -1,6 +1,7 @@
 package LP;
 
 import java.sql.SQLException;
+import LN.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
 
 /**
@@ -137,9 +138,13 @@ public class ClsMenuBorrarDatos {
 			/**
 			 * Llamamos al metodo borrar y le pasamos el parametro.
 			 */
-			objGestorBse.EliminarSeriesDeArray(NºDeSerie);
+			if(objGestorBse.EliminarSeriesDeArray(NºDeSerie)) {
+				System.out.println("Registro eliminado correctamente");
+			}
 		} catch (SQLException e) {
 			System.out.println("No se ha podido eliminar el registro: " + e);
+		}catch (ClsBorrarExcepcion e) {
+			System.out.println(e.getMessage());
 		}
 
 	}

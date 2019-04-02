@@ -7,7 +7,7 @@ package LN;
  * @author David Requeta
  */
 
-public class ClsDNI_NIFValido extends Exception {
+public class ClsDNI_NIFValidoExcepcion extends Exception {
 
 	/**
 	 * Esto no se para que lo genera pero no lo usamos.

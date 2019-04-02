@@ -7,6 +7,7 @@ import java.util.Date;
 
 import COMUN.ItfProperty;
 import LD.ClsDatos;
+import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
 
 /**
  * Clase de gestion entre LN y LP
@@ -412,12 +413,51 @@ public class ClsGestorLN {
 	 * 
 	 * @param NºDeSerie parametro para seleccionar que borrar.
 	 * @throws SQLException lanzamos la excepcion.
+	 * @return nos genera un return para saber si se ha realizado el borrado o no
+	 * @throws ClsBorrarExcepcion excepcion en caso de que falle el borrado
 	 */
-	public void EliminarSeriesDeArray(int NºDeSerie) throws SQLException {
+	public boolean EliminarSeriesDeArray(int NºDeSerie) throws SQLException, ClsBorrarExcepcion {
 
-		MiListaDeSeries.remove(NºDeSerie);
+		/**
+		 * variable para saber si se ha hecho el borrado o no
+		 */
+		boolean hecho = true;
 
-		objDatos.eliminarSeries(NºDeSerie);
+		/**
+		 * Variables para buscar la posicion de objeto en el array
+		 */
+		int index = -1;
+		int bound = MiListaDeSeries.size();
+		/**
+		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
+		 */
+		for (int userInd = 0; userInd < bound; userInd++) {
+			if (MiListaDeSeries.get(userInd).getIntegerProperty(PROPIEDAD_SERIES_NUMERO_DE_SERIE).equals(NºDeSerie)) {
+				index = userInd;
+				break;
+			}
+
+		}
+
+		/**
+		 * si encontramos posicion del objeto en el array borramos si no devolvemos
+		 * false
+		 */
+		if (index == -1) {
+			hecho = false;
+			throw new ClsBorrarExcepcion();
+		} else {
+			/**
+			 * borramos del array
+			 */
+			MiListaDeSeries.remove(index);
+			/**
+			 * mandamos borrar de la BD.
+			 */
+			objDatos.eliminarSeries(NºDeSerie);
+		}
+
+		return hecho;
 	}
 
 	/**

@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import LN.ClsComprobarDNI_NIF;
-import LN.ClsDNI_NIFValido;
+import LN.ClsDNI_NIFValidoExcepcion;
 import LN.ClsGestorLN;
 
 /**
@@ -392,7 +392,7 @@ public class ClsMenuIntroducirDatos {
 
 			try {
 				correcto = objComprobarDNI_NIF.ComprobarDNI_NIF(DNI_NIF);
-			} catch (ClsDNI_NIFValido e) {
+			} catch (ClsDNI_NIFValidoExcepcion e) {
 				System.out.println(e.getMessage());
 
 			}
