@@ -8,6 +8,10 @@ import java.util.Date;
 import COMUN.ItfProperty;
 import LD.ClsDatos;
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
+import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_REFERENCIA;
+import static COMUN.ClsConstantes.PROPIEDAD_MATERIALES_REFERENCIA;
+import static COMUN.ClsConstantes.PROPIEDAD_HERRAJES_REFERENCIA;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DNI_NIF;
 
 /**
  * Clase de gestion entre LN y LP
@@ -532,11 +536,52 @@ public class ClsGestorLN {
 	 * Metodo para borrar objetos Suelas del Array y de la BD.
 	 * 
 	 * @param Referencia parametro para selecionar que borrar
-	 * @throws SQLException lanzamos la excepcion
+	 * @throws SQLException       lanzamos la excepcion
+	 * @throws ClsBorrarExcepcion excepcion por si no se realiza bien el borrado
 	 */
-	public void EliminarSuelasDeArray(int Referencia) throws SQLException {
+	public boolean EliminarSuelasDeArray(int Referencia) throws SQLException, ClsBorrarExcepcion {
 
-		objDatos.eliminarSuelas(Referencia);
+		/**
+		 * variable para saber si se ha hecho el borrado o no
+		 */
+		boolean hecho = true;
+
+		/**
+		 * Variables para buscar la posicion de objeto en el array
+		 */
+		int index = -1;
+		int bound = MiListaDeSuelas.size();
+		/**
+		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
+		 */
+		for (int userInd = 0; userInd < bound; userInd++) {
+			if (MiListaDeSuelas.get(userInd).getIntegerProperty(PROPIEDAD_SUELAS_REFERENCIA).equals(Referencia)) {
+				index = userInd;
+				break;
+			}
+
+		}
+
+		/**
+		 * si encontramos posicion del objeto en el array borramos si no devolvemos
+		 * false
+		 */
+		if (index == -1) {
+			hecho = false;
+			throw new ClsBorrarExcepcion();
+		} else {
+
+			/**
+			 * borramos del array
+			 */
+			MiListaDeSuelas.remove(index);
+			/**
+			 * mandamos borrar de la BD.
+			 */
+			objDatos.eliminarSuelas(Referencia);
+		}
+
+		return hecho;
 	}
 
 	/**
@@ -610,11 +655,54 @@ public class ClsGestorLN {
 	 * Metodo para eliminar materiales del array y de bd
 	 * 
 	 * @param Referencia parametro por el cual borrar
-	 * @throws SQLException lanzamos la excepcion a LP
+	 * @throws SQLException       lanzamos la excepcion a LP
+	 * @throws ClsBorrarExcepcion excepcion por si no se realiza el borrado
 	 */
-	public void EliminarMaterialesDeArray(int Referencia) throws SQLException {
+	public boolean EliminarMaterialesDeArray(int Referencia) throws SQLException, ClsBorrarExcepcion {
 
-		objDatos.eliminarMateriales(Referencia);
+		/**
+		 * variable para saber si se ha hecho el borrado o no
+		 */
+		boolean hecho = true;
+
+		/**
+		 * Variables para buscar la posicion de objeto en el array
+		 */
+		int index = -1;
+		int bound = MiListaDeMateriales.size();
+		/**
+		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
+		 */
+		for (int userInd = 0; userInd < bound; userInd++) {
+			if (MiListaDeMateriales.get(userInd).getIntegerProperty(PROPIEDAD_MATERIALES_REFERENCIA)
+					.equals(Referencia)) {
+				index = userInd;
+				break;
+			}
+
+		}
+
+		/**
+		 * si encontramos posicion del objeto en el array borramos si no devolvemos
+		 * false
+		 */
+		if (index == -1) {
+			hecho = false;
+			throw new ClsBorrarExcepcion();
+		} else {
+
+			/**
+			 * borramos del array
+			 */
+			MiListaDeMateriales.remove(index);
+			/**
+			 * mandamos borrar de la BD.
+			 */
+			objDatos.eliminarMateriales(Referencia);
+		}
+
+		return hecho;
+
 	}
 
 	/**
@@ -688,11 +776,53 @@ public class ClsGestorLN {
 	 * Metodo para eliminar Herrajes por referencia de los Arrays y de BD.
 	 * 
 	 * @param Referencia parametro para buscar.
-	 * @throws SQLException lanzamos la excepcion a LP.
+	 * @throws SQLException       lanzamos la excepcion a LP.
+	 * @throws ClsBorrarExcepcion excepcion para el borrado
 	 */
-	public void EliminarHerrajesDeArray(int Referencia) throws SQLException {
+	public boolean EliminarHerrajesDeArray(int Referencia) throws SQLException, ClsBorrarExcepcion {
 
-		objDatos.eliminarHerrajes(Referencia);
+		/**
+		 * variable para saber si se ha hecho el borrado o no
+		 */
+		boolean hecho = true;
+
+		/**
+		 * Variables para buscar la posicion de objeto en el array
+		 */
+		int index = -1;
+		int bound = MiListaDeHerrajes.size();
+		/**
+		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
+		 */
+		for (int userInd = 0; userInd < bound; userInd++) {
+			if (MiListaDeHerrajes.get(userInd).getIntegerProperty(PROPIEDAD_HERRAJES_REFERENCIA).equals(Referencia)) {
+				index = userInd;
+				break;
+			}
+
+		}
+
+		/**
+		 * si encontramos posicion del objeto en el array borramos si no devolvemos
+		 * false
+		 */
+		if (index == -1) {
+			hecho = false;
+			throw new ClsBorrarExcepcion();
+		} else {
+
+			/**
+			 * borramos del array
+			 */
+			MiListaDeHerrajes.remove(index);
+			/**
+			 * mandamos borrar de la BD.
+			 */
+			objDatos.eliminarHerrajes(Referencia);
+		}
+
+		return hecho;
+
 	}
 
 	public void ObjetosRecuperadosClientes() throws SQLException {
@@ -763,11 +893,53 @@ public class ClsGestorLN {
 	 * Metopo para eliminar cliente de Array y BD
 	 * 
 	 * @param DNI_NIF parametro de eliminacion
-	 * @throws SQLException lanzamos excepcion
+	 * @throws SQLException       lanzamos excepcion
+	 * @throws ClsBorrarExcepcion excepcion de borrado.
 	 */
-	public void EliminarClientesDeArray(String DNI_NIF) throws SQLException {
+	public boolean EliminarClientesDeArray(String DNI_NIF) throws SQLException, ClsBorrarExcepcion {
 
-		objDatos.eliminarClientes(DNI_NIF);
+		/**
+		 * variable para saber si se ha hecho el borrado o no
+		 */
+		boolean hecho = true;
+
+		/**
+		 * Variables para buscar la posicion de objeto en el array
+		 */
+		int index = -1;
+		int bound = MiListaDeClientes.size();
+		/**
+		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
+		 */
+		for (int userInd = 0; userInd < bound; userInd++) {
+			if (MiListaDeClientes.get(userInd).getStringProperty(PROPIEDAD_CLIENTE_DNI_NIF).equals(DNI_NIF)) {
+				index = userInd;
+				break;
+			}
+
+		}
+
+		/**
+		 * si encontramos posicion del objeto en el array borramos si no devolvemos
+		 * false
+		 */
+		if (index == -1) {
+			hecho = false;
+			throw new ClsBorrarExcepcion();
+		} else {
+
+			/**
+			 * borramos del array
+			 */
+			MiListaDeClientes.remove(index);
+			/**
+			 * mandamos borrar de la BD.
+			 */
+			objDatos.eliminarClientes(DNI_NIF);
+		}
+
+		return hecho;
+
 	}
 
 	public void ObjetosRecuperadosEnvios() throws SQLException {

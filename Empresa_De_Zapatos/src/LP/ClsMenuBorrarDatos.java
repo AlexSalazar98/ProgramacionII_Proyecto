@@ -110,9 +110,13 @@ public class ClsMenuBorrarDatos {
 			/**
 			 * Llamamos al metodo borrar y le pasamos el parametro.
 			 */
-			objGestorBSu.EliminarSuelasDeArray(Referencia);
+			if (objGestorBSu.EliminarSuelasDeArray(Referencia)) {
+				System.out.println("Registro eliminado correctamente");
+			}
 		} catch (SQLException e) {
 			System.out.println("No se ha podido eliminar el registro: " + e);
+		} catch (ClsBorrarExcepcion e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -138,12 +142,12 @@ public class ClsMenuBorrarDatos {
 			/**
 			 * Llamamos al metodo borrar y le pasamos el parametro.
 			 */
-			if(objGestorBse.EliminarSeriesDeArray(NºDeSerie)) {
+			if (objGestorBse.EliminarSeriesDeArray(NºDeSerie)) {
 				System.out.println("Registro eliminado correctamente");
 			}
 		} catch (SQLException e) {
 			System.out.println("No se ha podido eliminar el registro: " + e);
-		}catch (ClsBorrarExcepcion e) {
+		} catch (ClsBorrarExcepcion e) {
 			System.out.println(e.getMessage());
 		}
 
@@ -180,9 +184,13 @@ public class ClsMenuBorrarDatos {
 			/**
 			 * Llamamos al metodo borrar y le pasamos el parametro.
 			 */
-			objGestorBM.EliminarMaterialesDeArray(Referencia);
+			if (objGestorBM.EliminarMaterialesDeArray(Referencia)) {
+				System.out.println("Registro eliminado correctamente");
+			}
 		} catch (SQLException e) {
 			System.out.println("No se ha podido eliminar el registro: " + e);
+		} catch (ClsBorrarExcepcion e) {
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -206,9 +214,13 @@ public class ClsMenuBorrarDatos {
 		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
 		 */
 		try {
-			objGestorBH.EliminarHerrajesDeArray(Referencia);
+			if (objGestorBH.EliminarHerrajesDeArray(Referencia)) {
+				System.out.println("Registro eliminado correctamente");
+			}
 		} catch (SQLException e) {
 			System.out.println("No se ha podido eliminar el registro: " + e);
+		} catch (ClsBorrarExcepcion e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -240,9 +252,13 @@ public class ClsMenuBorrarDatos {
 		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
 		 */
 		try {
-			objGestorBC.EliminarClientesDeArray(DNI_NIF);
+			if (objGestorBC.EliminarClientesDeArray(DNI_NIF)) {
+				System.out.println("Registro eliminado correctamente");
+			}
 		} catch (SQLException e) {
 			System.out.println("No se ha podido eliminar el registro: " + e);
+		} catch (ClsBorrarExcepcion e) {
+			System.out.println(e.getMessage());
 		}
 
 	}

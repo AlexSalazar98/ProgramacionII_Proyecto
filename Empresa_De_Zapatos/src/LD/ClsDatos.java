@@ -91,9 +91,6 @@ public class ClsDatos {
 			// Ejecutamos la query que hemos preparado
 			objSt.execute();
 
-			System.out.println("Se ha insertado el registro correctamente");
-			System.out.println("-----------------------------------------");
-
 			// Cerramos el preparedStatement
 			objSt.close();
 
@@ -192,9 +189,6 @@ public class ClsDatos {
 			 */
 			objSt.execute();
 
-			System.out.println("Se ha eliminado el registro correctamente");
-			System.out.println("-----------------------------------------");
-
 			/**
 			 * Cerramos el preparedStatement
 			 */
@@ -238,9 +232,6 @@ public class ClsDatos {
 
 			// Ejecutamos la query que hemos preparado
 			objSt.execute();
-
-			System.out.println("Se ha insertado el registro correctamente");
-			System.out.println("-----------------------------------------");
 
 			// Cerramos el preparedStatement
 			objSt.close();
@@ -340,9 +331,6 @@ public class ClsDatos {
 			 */
 			objSt.execute();
 
-			System.out.println("Se ha eliminado el registro correctamente");
-			System.out.println("-----------------------------------------");
-
 			/**
 			 * Cerramos el preparedStatement
 			 */
@@ -386,9 +374,6 @@ public class ClsDatos {
 
 			// Ejecutamos la query que hemos preparado
 			objSt.execute();
-
-			System.out.println("Se ha insertado el registro correctamente");
-			System.out.println("-----------------------------------------");
 
 			// Cerramos el preparedStatement
 			objSt.close();
@@ -489,9 +474,6 @@ public class ClsDatos {
 			 */
 			objSt.execute();
 
-			System.out.println("Se ha eliminado el registro correctamente");
-			System.out.println("-----------------------------------------");
-
 			/**
 			 * Cerramos el preparedStatement
 			 */
@@ -535,9 +517,6 @@ public class ClsDatos {
 
 			// Ejecutamos la query que hemos preparado
 			objSt.execute();
-
-			System.out.println("Se ha insertado el registro correctamente");
-			System.out.println("-----------------------------------------");
 
 			// Cerramos el preparedStatement
 			objSt.close();
@@ -637,9 +616,6 @@ public class ClsDatos {
 			 */
 			objSt.execute();
 
-			System.out.println("Se ha eliminado el registro correctamente");
-			System.out.println("-----------------------------------------");
-
 			/**
 			 * Cerramos el preparedStatement
 			 */
@@ -692,9 +668,6 @@ public class ClsDatos {
 
 			// Ejecutamos la query que hemos preparado
 			objSt.execute();
-
-			System.out.println("Se ha insertado el registro correctamente");
-			System.out.println("-----------------------------------------");
 
 			// Cerramos el preparedStatement
 			objSt.close();
@@ -792,9 +765,6 @@ public class ClsDatos {
 			 */
 			objSt.execute();
 
-			System.out.println("Se ha eliminado el registro correctamente");
-			System.out.println("-----------------------------------------");
-
 			/**
 			 * Cerramos el preparedStatement
 			 */
@@ -850,9 +820,6 @@ public class ClsDatos {
 
 			// Ejecutamos la query que hemos preparado
 			objSt.execute();
-
-			System.out.println("Se ha insertado el registro correctamente");
-			System.out.println("-----------------------------------------");
 
 			// Cerramos el preparedStatement
 			objSt.close();
@@ -949,9 +916,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			System.out.println("Se ha eliminado el registro correctamente");
-			System.out.println("-----------------------------------------");
 
 			/**
 			 * Cerramos el preparedStatement
