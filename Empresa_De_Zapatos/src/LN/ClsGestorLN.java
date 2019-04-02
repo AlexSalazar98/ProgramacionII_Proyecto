@@ -12,6 +12,7 @@ import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_REFERENCIA;
 import static COMUN.ClsConstantes.PROPIEDAD_MATERIALES_REFERENCIA;
 import static COMUN.ClsConstantes.PROPIEDAD_HERRAJES_REFERENCIA;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DNI_NIF;
+import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO;
 
 /**
  * Clase de gestion entre LN y LP
@@ -129,9 +130,10 @@ public class ClsGestorLN {
 	 * @param Entregado                 parametro entregado
 	 * @param NumeroDeCliente_Pedidos   parametro numero de cliente
 	 * @param NombreYApelliosDelCliente parametro nombre y apellidos del cliente
+	 * @throws SQLException lanzamos excepcion.
 	 */
 	public void CrearPedidos(int NumeroDePedido, Date FechaDePedido, Date FechaDeEntrega, Boolean Entregado,
-			int NumeroDeCliente_Pedidos, String NombreYApelliosDelCliente) {
+			int NumeroDeCliente_Pedidos, String NombreYApelliosDelCliente) throws SQLException {
 		/**
 		 * Crearmos el objeto
 		 */
@@ -140,9 +142,20 @@ public class ClsGestorLN {
 				NumeroDeCliente_Pedidos);
 
 		/**
-		 * Añadimos el objeto a el array.
+		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
 		 */
-		MiListaDePedidos.add(objPedido);
+		if (!ExistePedidos(objPedido)) {
+			/**
+			 * Añadimos el objeto a el array.
+			 */
+			MiListaDePedidos.add(objPedido);
+
+			/**
+			 * Llamada a introducir datos con paso de parametros
+			 */
+			objDatos.InsertarPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado, NumeroDeCliente_Pedidos,
+					NombreYApelliosDelCliente);
+		}
 	}
 
 	/**
@@ -836,9 +849,9 @@ public class ClsGestorLN {
 
 		while (Resultado.next()) {
 			int NºDeClientes = Resultado.getInt("NºCliente");
-			String NombreYApellido = Resultado.getString("NombreYApellido");
+			String NombreYApellido = Resultado.getString("NombreYApellidos");
 			String DNI_NIF = Resultado.getString("DNI_NIF");
-			String DirecciónDeClientes = Resultado.getString("DirecciónDeClientes");
+			String DirecciónDeClientes = Resultado.getString("DirecciónDeCliente");
 			String Provincia = Resultado.getString("Provincia");
 			int Telefono = Resultado.getInt("Telefono");
 			String Email = Resultado.getString("Email");
@@ -953,15 +966,15 @@ public class ClsGestorLN {
 		ResultSet Resultado = objDatos.consultarEnvios();
 
 		while (Resultado.next()) {
-			int NºEnvio = Resultado.getInt("NºEnvio");
+			int NumeroDeEnvio = Resultado.getInt("NºEnvio");
 			String NombreCliente = Resultado.getString("NombreCliente");
 			String DireccionDeEnvio = Resultado.getString("DireccionDeEnvio");
 			String PoblacionDeEnvio = Resultado.getString("PoblacionDeEnvio");
 			String CPDeENVIO = Resultado.getString("CPDeEnvio");
 			String ProvinciaDeEnvio = Resultado.getString("ProvinciaDeEnvio");
 			int TelefonoDeEnvio = Resultado.getInt("TelefonoDeEnvio");
-			int NumeroDeCliente_Envio = Resultado.getInt("NumeroDeCliente_Envio");
-			ClsEnvios objEnvios = new ClsEnvios(NºEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio, CPDeENVIO,
+			int NumeroDeCliente_Envio = Resultado.getInt("Clientes_NºCliente");
+			ClsEnvios objEnvios = new ClsEnvios(NumeroDeEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio, CPDeENVIO,
 					ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
 			/**
 			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
@@ -1020,5 +1033,103 @@ public class ClsGestorLN {
 	public void EliminarEnviosDeArray(int NºEnvio) throws SQLException {
 
 		objDatos.eliminarEnvios(NºEnvio);
+	}
+
+	public void ObjetosRecuperadosPedidos() throws SQLException {
+		/**
+		 * Recogemos datos desde LD y consturimos objetos.
+		 */
+		ResultSet Resultado = objDatos.consultarEnvios();
+
+		while (Resultado.next()) {
+			int NumeroDePedido = Resultado.getInt("NºPedido");
+			Date FechaDePedido = Resultado.getDate("Fecha_de_pedido");
+			Date FechaDeEntrega = Resultado.getDate("Fecha_de_entrega");
+			Boolean Entregado = Resultado.getBoolean("Entregado");
+			int NumeroDeCliente_Pedidos = Resultado.getInt("Clientes_NºCliente");
+			String NombreYApelliosDelCliente = Resultado.getString("NombreYApellidos");
+			ClsPedidos objPedido = new ClsPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado,
+					NombreYApelliosDelCliente, NumeroDeCliente_Pedidos);
+			/**
+			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
+			 */
+
+			MiListaDePedidos.add(objPedido);
+
+		}
+
+	}
+
+	public ArrayList<ItfProperty> DamePedidos() {
+
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		for (ClsPedidos a : MiListaDePedidos) {
+			retorno.add(a);
+		}
+
+		return retorno;
+
+	}
+
+	public boolean ExistePedidos(ClsPedidos objPedidos) {
+
+		boolean retorno = false;
+		for (ClsPedidos b : MiListaDePedidos) {
+			if (b.equals(objPedidos))
+				return true;
+		}
+		return retorno;
+	}
+	
+	public boolean EliminarPedidosDeArray(int NºPedido) throws SQLException, ClsBorrarExcepcion {
+
+		/**
+		 * variable para saber si se ha hecho el borrado o no
+		 */
+		boolean hecho = true;
+
+		/**
+		 * Variables para buscar la posicion de objeto en el array
+		 */
+		int index = -1;
+		int bound = MiListaDeClientes.size();
+		/**
+		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
+		 */
+		for (int userInd = 0; userInd < bound; userInd++) {
+			if (MiListaDeClientes.get(userInd).getIntegerProperty(PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO).equals(NºPedido)) {
+				index = userInd;
+				break;
+			}
+
+		}
+
+		/**
+		 * si encontramos posicion del objeto en el array borramos si no devolvemos
+		 * false
+		 */
+		if (index == -1) {
+			hecho = false;
+			throw new ClsBorrarExcepcion();
+		} else {
+
+			/**
+			 * borramos del array
+			 */
+			MiListaDePedidos.remove(index);
+			/**
+			 * mandamos borrar de la BD.
+			 */
+			objDatos.eliminarPedidos(NºPedido);
+		}
+
+		return hecho;
+
 	}
 }

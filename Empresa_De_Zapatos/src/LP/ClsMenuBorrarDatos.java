@@ -53,7 +53,7 @@ public class ClsMenuBorrarDatos {
 				break;
 
 			case 3:
-				BorrarDatosPedidos();
+				BorrarDatosPedidos(objGestorMB);
 				break;
 
 			case 4:
@@ -158,7 +158,30 @@ public class ClsMenuBorrarDatos {
 	 * Pedimos los datos a Borrar en la entidad Pedidos.
 	 *
 	 */
-	public static void BorrarDatosPedidos() {
+	public static void BorrarDatosPedidos(ClsGestorLN objGestorBP) {
+		/**
+		 * Pedimos el numero de pedido que se desee borrar.
+		 */
+		System.out.println("Inserte el numero de Pedido que desee borrar: ");
+		/**
+		 * Variable para recoger el numero de Pedido.
+		 */
+		int NºPedido = UtilidadesLP.leerEntero();
+		/**
+		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
+		 */
+		try {
+			/**
+			 * Llamamos al metodo borrar y le pasamos el parametro.
+			 */
+			if (objGestorBP.EliminarPedidosDeArray(NºPedido)) {
+				System.out.println("Registro eliminado correctamente");
+			}
+		} catch (SQLException e) {
+			System.out.println("No se ha podido eliminar el registro: " + e);
+		} catch (ClsBorrarExcepcion e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 

@@ -15,6 +15,20 @@ import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DIRECCION;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_PROVINCIA;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_TELEFONO;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_EMAIL;
+import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO;
+import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_FECHA_DE_PEDIDO;
+import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_FECHA_DE_ENTREGA;
+import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_ENTREGADO;
+import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NOMBRE_Y_APELLIDOS_DEL_CLIENTE;
+import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_CLIENTE_PEDIDO;
+import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_ENVIO;
+import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NOMBRE_CLIENTE;
+import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_DIRECCION_DE_ENVIO;
+import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_POBLACION_DE_ENVIO;
+import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_CPD_DE_ENVIO;
+import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_PROVINCIA_DE_ENVIO;
+import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_TELEFONO_DE_ENVIO;
+import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO;
 
 import java.util.ArrayList;
 
@@ -132,7 +146,7 @@ public class ClsMostrarDatos {
 
 		Clientes = objGestorVC.DameClientes();
 
-		System.out.println("HERRAJES RECUPERADOS");
+		System.out.println("CLIENTES RECUPERADOS");
 		System.out.println("--------------------");
 
 		for (ItfProperty a : Clientes) {
@@ -144,6 +158,48 @@ public class ClsMostrarDatos {
 					+ a.getStringProperty(PROPIEDAD_CLIENTE_PROVINCIA) + " "
 					+ a.getIntegerProperty(PROPIEDAD_CLIENTE_TELEFONO) + " "
 					+ a.getStringProperty(PROPIEDAD_CLIENTE_EMAIL));
+
+		}
+	}
+
+	public void VerPedidos(ClsGestorLN objGestorVP) {
+		ArrayList<ItfProperty> Pedidos;
+
+		Pedidos = objGestorVP.DamePedidos();
+
+		System.out.println("PEDIDOS RECUPERADOS");
+		System.out.println("--------------------");
+
+		for (ItfProperty a : Pedidos) {
+
+			System.out.println(a.getIntegerProperty(PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO) + " "
+					+ a.getDateProperty(PROPIEDAD_PEDIDOS_FECHA_DE_PEDIDO) + " "
+					+ a.getDateProperty(PROPIEDAD_PEDIDOS_FECHA_DE_ENTREGA) + " "
+					+ a.getIntegerProperty(PROPIEDAD_PEDIDOS_ENTREGADO) + " "
+					+ a.getStringProperty(PROPIEDAD_PEDIDOS_NOMBRE_Y_APELLIDOS_DEL_CLIENTE) + " "
+					+ a.getIntegerProperty(PROPIEDAD_PEDIDOS_NUMERO_DE_CLIENTE_PEDIDO));
+
+		}
+	}
+
+	public void VerEnvios(ClsGestorLN objGestorVP) {
+		ArrayList<ItfProperty> Envios;
+
+		Envios = objGestorVP.DameEnvios();
+
+		System.out.println("ENVIOS RECUPERADOS");
+		System.out.println("--------------------");
+
+		for (ItfProperty a : Envios) {
+
+			System.out.println(a.getIntegerProperty(PROPIEDAD_ENVIOS_NUMERO_DE_ENVIO) + " "
+					+ a.getStringProperty(PROPIEDAD_ENVIOS_NOMBRE_CLIENTE) + " "
+					+ a.getStringProperty(PROPIEDAD_ENVIOS_DIRECCION_DE_ENVIO) + " "
+					+ a.getStringProperty(PROPIEDAD_ENVIOS_POBLACION_DE_ENVIO) + " "
+					+ a.getStringProperty(PROPIEDAD_ENVIOS_CPD_DE_ENVIO) + " "
+					+ a.getStringProperty(PROPIEDAD_ENVIOS_PROVINCIA_DE_ENVIO) + " "
+					+ a.getIntegerProperty(PROPIEDAD_ENVIOS_TELEFONO_DE_ENVIO) + " "
+					+ a.getIntegerProperty(PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO));
 
 		}
 	}

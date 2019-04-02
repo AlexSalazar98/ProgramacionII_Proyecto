@@ -126,6 +126,11 @@ public class ClsMenuConsultarDatos {
 	 * @param objMostrarDatosP relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosPedidos(ClsGestorLN ObjGestCPedidos, ClsMostrarDatos objMostrarDatosP) {
+		
+		/**
+		 * Llamada al metodo ver datos
+		 */
+		objMostrarDatosP.VerPedidos(ObjGestCPedidos);
 
 	}
 
@@ -165,6 +170,10 @@ public class ClsMenuConsultarDatos {
 	 * @param objMostrarDatosE relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosEnvios(ClsGestorLN ObjGestCEnvios, ClsMostrarDatos objMostrarDatosE) {
+		/**
+		 * Llamamos al metodo ver Envios.
+		 */
+		objMostrarDatosE.VerEnvios(ObjGestCEnvios);
 
 	}
 
@@ -177,7 +186,7 @@ public class ClsMenuConsultarDatos {
 	public static void ConsultarDatosClientes(ClsGestorLN ObjGestCClientes, ClsMostrarDatos objMostrarDatosC) {
 
 		/**
-		 * Mostramos los datos del cliente
+		 * Llamamos al metodo ver clientes
 		 */
 		objMostrarDatosC.VerClientes(ObjGestCClientes);
 	}

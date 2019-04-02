@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 import static LD.ClsConstantesBD.RUTA_DE_LA_BD;
 import static LD.ClsConstantesBD.NOMBRE_DEL_USUARIO;
@@ -29,6 +30,9 @@ import static LD.ClsConstantesBD.QUERY_PARA_DELETE_CLIENTES_POR_DNI_NIF;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_ENVIOS;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_ENVIOS;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_ENVIOS_POR_NºENVIO;
+import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_PEDIDOS;
+import static LD.ClsConstantesBD.QUERY_PARA_SELECT_PEDIDOS;
+import static LD.ClsConstantesBD.QUERY_PARA_DELETE_PEDIDOS_POR_NºPEDIDO;
 
 /**
  * Clase para hacer todos los tramites con la Base de Datos.
@@ -911,6 +915,133 @@ public class ClsDatos {
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_ENVIOS_POR_NºENVIO);
 			objSt.setInt(1, NºEnvio);
+
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
+			objSt.execute();
+
+			/**
+			 * Cerramos el preparedStatement
+			 */
+			objSt.close();
+
+			/**
+			 * Cerramos la conexión
+			 */
+			objConn.close();
+
+		}
+
+	}
+	
+	public void InsertarPedidos(int NºPedido, Date FechaDePedido, Date FechaDeEntrega, Boolean Entregado,
+			int Clientes_NºCliente, String NombreYApellidos) throws SQLException {
+		
+		java.sql.Date Fecha_de_pedido = new java.sql.Date(FechaDePedido.getTime()); 
+		java.sql.Date Fecha_de_entrega = new java.sql.Date(FechaDeEntrega.getTime());
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			// Creamos las preparedstaments
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_PEDIDOS);
+			objSt.setInt(1, NºPedido);
+			objSt.setDate(2, Fecha_de_pedido);
+			objSt.setDate(3, Fecha_de_entrega);
+			objSt.setBoolean(4, Entregado);
+			objSt.setInt(5, Clientes_NºCliente);
+			objSt.setString(6, NombreYApellidos);
+
+			// Ejecutamos la query que hemos preparado
+			objSt.execute();
+
+			// Cerramos el preparedStatement
+			objSt.close();
+
+			// Cerramos la conexión
+			objConn.close();
+
+		}
+
+	}
+	
+	public ResultSet consultarPedidos() throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		ResultSet rs = null;
+
+		if (objConn != null) {
+			/**
+			 * Preparamos la consulta
+			 */
+			Statement st = objConn.createStatement();
+			rs = st.executeQuery(QUERY_PARA_SELECT_PEDIDOS);
+			if (rs.isBeforeFirst()) {
+				return rs;
+			}
+			while (rs.next()) {
+
+				return rs;
+
+			}
+
+			/**
+			 * Cerramos el resulset
+			 * 
+			 */
+			rs.close();
+			/**
+			 * Cerramos el statement
+			 * 
+			 */
+			st.close();
+			/**
+			 * Cerramos la conexión
+			 * 
+			 */
+			objConn.close();
+
+		}
+		return null;
+	}
+	
+	public void eliminarPedidos(int NºPedido) throws SQLException {
+
+		/**
+		 * Instancias la clase que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método que tiene la clase y te devuelve una conexión
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			/**
+			 * Creamos las preparedstaments
+			 */
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_PEDIDOS_POR_NºPEDIDO);
+			objSt.setInt(1, NºPedido);
 
 			/**
 			 * Ejecutamos la query que hemos preparado

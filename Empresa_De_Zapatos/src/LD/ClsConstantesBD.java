@@ -126,15 +126,34 @@ public class ClsConstantesBD {
 	/**
 	 * Constantes para la SELECT de Envios.
 	 */
-	public static final String QUERY_PARA_SELECT_ENVIOS = "SELECT `envios`.`NºEnvio`,\r\n"
-			+ "    `envios`.`NombreCliente`,\r\n" + "    `envios`.`DireccionDeEnvio`,\r\n"
-			+ "    `envios`.`PoblacionDeEnvio`,\r\n" + "    `envios`.`CPDeEnvio`,\r\n"
-			+ "    `envios`.`ProvinciaDeEnvio`,\r\n" + "    `envios`.`TelefonoDeEnvio`,\r\n" + "FROM `mydb`.`envios`;\n"
-			+ "";
+	public static final String QUERY_PARA_SELECT_ENVIOS = "SELECT * FROM mydb.envios;";
 
 	/**
 	 * Constante de DELETE para Envios por NºEnvio.
 	 */
 	public static final String QUERY_PARA_DELETE_ENVIOS_POR_NºENVIO = "DELETE FROM `mydb`.`envios`\n"
 			+ "WHERE NºEnvio = ?;\r\n" + "";
+
+	/**
+	 * Constante para la INSERT de Pedido.
+	 */
+	public static final String QUERY_PARA_INSERTAR_PEDIDOS = "INSERT INTO `mydb`.`pedidos`\r\n" + "	(`NºPedido`,\r\n"
+			+ "	`Fecha_de_pedido`,\r\n" + "	`Fecha_de_entrega`,\r\n" + "	`Entregado`,\r\n"
+			+ "	`Clientes_NºCliente`,\r\n" + "	`NombreYApellidos`)\r\n" + "	VALUES\r\n" + "	(?,\r\n" + "	?,\r\n"
+			+ "	?,\r\n" + "	?,\r\n" + "	?,\r\n" + "	?);";
+
+	/**
+	 * Constante para SELECT pedidos.
+	 */
+	public static final String QUERY_PARA_SELECT_PEDIDOS = "SELECT `pedidos`.`NºPedido`,\r\n"
+			+ "    `pedidos`.`Fecha_de_pedido`,\r\n" + "    `pedidos`.`Fecha_de_entrega`,\r\n"
+			+ "    `pedidos`.`Entregado`,\r\n" + "    `pedidos`.`Clientes_NºCliente`,\r\n"
+			+ "    `pedidos`.`NombreYApellidos`\r\n" + "FROM `mydb`.`pedidos`;\r\n" + "";
+
+	/**
+	 * Constante para DELETE Pedidos.
+	 */
+	public static final String QUERY_PARA_DELETE_PEDIDOS_POR_NºPEDIDO = "DELETE FROM `mydb`.`pedidos`\r\n"
+			+ "	WHERE NºEnvio = ?;";
+
 }

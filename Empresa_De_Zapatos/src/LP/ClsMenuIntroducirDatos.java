@@ -185,7 +185,7 @@ public class ClsMenuIntroducirDatos {
 		/**
 		 * Para formatear las fechas
 		 */
-		SimpleDateFormat miFormato = new SimpleDateFormat("dd-mm-yyyy");
+		SimpleDateFormat miFormato = new SimpleDateFormat("yyyy-mm-dd");
 
 		/**
 		 * pedimos los datos.
@@ -230,8 +230,12 @@ public class ClsMenuIntroducirDatos {
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
-		objGPedidos.CrearPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado, NumeroDeCliente_Pedidos,
-				NombreYApelliosDelCliente);
+		try {
+			objGPedidos.CrearPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado, NumeroDeCliente_Pedidos,
+					NombreYApelliosDelCliente);
+		} catch (SQLException e) {
+			System.out.println("No se ha podido realizar el insert: " + e);
+		}
 
 	}
 
