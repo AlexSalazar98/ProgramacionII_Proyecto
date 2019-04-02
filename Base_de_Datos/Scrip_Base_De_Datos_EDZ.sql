@@ -147,7 +147,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Envios`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Envios` (
-  `NºEnvio` INT NOT NULL,
+  `NºEnvio` INT NOT NULL AUTO_INCREMENT,
   `NombreCliente` VARCHAR(45) NOT NULL,
   `DireccionDeEnvio` VARCHAR(100) NOT NULL,
   `PoblacionDeEnvio` VARCHAR(45) NOT NULL,
