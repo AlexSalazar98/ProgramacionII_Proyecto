@@ -7,11 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
-
 import static LD.ClsConstantesBD.RUTA_DE_LA_BD;
 import static LD.ClsConstantesBD.NOMBRE_DEL_USUARIO;
 import static LD.ClsConstantesBD.CONTRASEÑA_DE_LA_BD;
-
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_SERIES;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_SERIES;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_SERIES_POR_NºDESERIE;
@@ -786,19 +784,18 @@ public class ClsDatos {
 	/**
 	 * Metodo para insertar Envios en BD
 	 * 
-	 * @param NºEnvio            parametro recibido
-	 * @param NombreCliente      parametro recibido
-	 * @param DireccionDeEnvio   parametro recibido
-	 * @param PoblacionDeEnvio   parametro recibido
-	 * @param CPDeEnvio          parametro recibido
-	 * @param ProvinciaDeEnvio   parametro recibido
-	 * @param TelefonoDeEnvio    parametro recibido
+	 * @param NºEnvio           parametro recibido
+	 * @param NombreCliente     parametro recibido
+	 * @param DireccionDeEnvio  parametro recibido
+	 * @param PoblacionDeEnvio  parametro recibido
+	 * @param CPDeEnvio         parametro recibido
+	 * @param ProvinciaDeEnvio  parametro recibido
+	 * @param TelefonoDeEnvio   parametro recibido
 	 * @param Clientes_NCliente parametro recibido
 	 * @throws SQLException lanzamos la excepcion
 	 */
 	public void InsertarEnvios(int NEnvio, String NombreCliente, String DireccionDeEnvio, String PoblacionDeEnvio,
-			int CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int Clientes_NCliente)
-			throws SQLException {
+			int CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int Clientes_NCliente) throws SQLException {
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
 		 */
@@ -934,11 +931,11 @@ public class ClsDatos {
 		}
 
 	}
-	
+
 	public void InsertarPedidos(int NPedido, Date FechaDePedido, Date FechaDeEntrega, Boolean Entregado,
 			int Clientes_NCliente, String NombreYApellidos) throws SQLException {
-		
-		java.sql.Date Fecha_de_pedido = new java.sql.Date(FechaDePedido.getTime()); 
+
+		java.sql.Date Fecha_de_pedido = new java.sql.Date(FechaDeEntrega.getTime());
 		java.sql.Date Fecha_de_entrega = new java.sql.Date(FechaDeEntrega.getTime());
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
@@ -973,7 +970,7 @@ public class ClsDatos {
 		}
 
 	}
-	
+
 	public ResultSet consultarPedidos() throws SQLException {
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
@@ -1022,7 +1019,7 @@ public class ClsDatos {
 		}
 		return null;
 	}
-	
+
 	public void eliminarPedidos(int NPedido) throws SQLException {
 
 		/**
