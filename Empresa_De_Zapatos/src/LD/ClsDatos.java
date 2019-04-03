@@ -74,7 +74,7 @@ public class ClsDatos {
 	 * @param Descripcion parametro para insert
 	 * @throws SQLException lanzamos excepciones a la capa LP
 	 */
-	public void InsertarSerie(int NºDeSerie, String Descripcion) throws SQLException {
+	public void InsertarSerie(int NDeSerie, String Descripcion) throws SQLException {
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
 		 */
@@ -89,7 +89,7 @@ public class ClsDatos {
 
 			// Creamos las preparedstaments
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_SERIES);
-			objSt.setInt(1, NºDeSerie);
+			objSt.setInt(1, NDeSerie);
 			objSt.setString(2, Descripcion);
 
 			// Ejecutamos la query que hemos preparado
@@ -168,7 +168,7 @@ public class ClsDatos {
 	 * @param NºDeSerie parametro de condicion.
 	 * @throws SQLException lanzamos excepciones hacia la capa LP
 	 */
-	public void eliminarSeries(int NºDeSerie) throws SQLException {
+	public void eliminarSeries(int NDeSerie) throws SQLException {
 
 		/**
 		 * Instancias la clase que hemos creado anteriormente
@@ -186,7 +186,7 @@ public class ClsDatos {
 			 * Creamos las preparedstaments
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_SERIES_POR_NºDESERIE);
-			objSt.setInt(1, NºDeSerie);
+			objSt.setInt(1, NDeSerie);
 
 			/**
 			 * Ejecutamos la query que hemos preparado
@@ -310,7 +310,7 @@ public class ClsDatos {
 	 * @param NºDeSerie parametro por el cual eliminar
 	 * @throws SQLException lanzamos excepcion
 	 */
-	public void eliminarSuelas(int NºDeSerie) throws SQLException {
+	public void eliminarSuelas(int NDeSerie) throws SQLException {
 
 		/**
 		 * Instancias la clase que hemos creado anteriormente
@@ -328,7 +328,7 @@ public class ClsDatos {
 			 * Creamos las preparedstaments
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_SUELAS_POR_REFERENCIA);
-			objSt.setInt(1, NºDeSerie);
+			objSt.setInt(1, NDeSerie);
 
 			/**
 			 * Ejecutamos la query que hemos preparado
@@ -595,7 +595,7 @@ public class ClsDatos {
 	 * @param NºDeSerie parametro por el cual eliminar
 	 * @throws SQLException lanzamos excepcion
 	 */
-	public void eliminarHerrajes(int NºDeSerie) throws SQLException {
+	public void eliminarHerrajes(int NDeSerie) throws SQLException {
 
 		/**
 		 * Instancias la clase que hemos creado anteriormente
@@ -613,7 +613,7 @@ public class ClsDatos {
 			 * Creamos las preparedstaments
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_HERRAJES_POR_REFERENCIA);
-			objSt.setInt(1, NºDeSerie);
+			objSt.setInt(1, NDeSerie);
 
 			/**
 			 * Ejecutamos la query que hemos preparado
@@ -646,7 +646,7 @@ public class ClsDatos {
 	 * @param Email              parametro recibido
 	 * @throws SQLException lanzamos excepcion
 	 */
-	public void InsertarClientes(int NºCliente, String NombreYApellidos, String DNI_NIF, String DirecciónDeCliente,
+	public void InsertarClientes(int NCliente, String NombreYApellidos, String DNI_NIF, String DireccionDeCliente,
 			String Provincia, int Telefono, String Email) throws SQLException {
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
@@ -662,10 +662,10 @@ public class ClsDatos {
 
 			// Creamos las preparedstaments
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_CLIENTES);
-			objSt.setInt(1, NºCliente);
+			objSt.setInt(1, NCliente);
 			objSt.setString(2, NombreYApellidos);
 			objSt.setString(3, DNI_NIF);
-			objSt.setString(4, DirecciónDeCliente);
+			objSt.setString(4, DireccionDeCliente);
 			objSt.setString(5, Provincia);
 			objSt.setInt(6, Telefono);
 			objSt.setString(7, Email);
@@ -793,11 +793,11 @@ public class ClsDatos {
 	 * @param CPDeEnvio          parametro recibido
 	 * @param ProvinciaDeEnvio   parametro recibido
 	 * @param TelefonoDeEnvio    parametro recibido
-	 * @param Clientes_NºCliente parametro recibido
+	 * @param Clientes_NCliente parametro recibido
 	 * @throws SQLException lanzamos la excepcion
 	 */
-	public void InsertarEnvios(int NºEnvio, String NombreCliente, String DireccionDeEnvio, String PoblacionDeEnvio,
-			String CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int Clientes_NºCliente)
+	public void InsertarEnvios(int NEnvio, String NombreCliente, String DireccionDeEnvio, String PoblacionDeEnvio,
+			int CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int Clientes_NCliente)
 			throws SQLException {
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
@@ -813,14 +813,14 @@ public class ClsDatos {
 
 			// Creamos las preparedstaments
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_ENVIOS);
-			objSt.setInt(1, NºEnvio);
+			objSt.setInt(1, NEnvio);
 			objSt.setString(2, NombreCliente);
 			objSt.setString(3, DireccionDeEnvio);
 			objSt.setString(4, PoblacionDeEnvio);
-			objSt.setString(5, CPDeEnvio);
+			objSt.setInt(5, CPDeEnvio);
 			objSt.setString(6, ProvinciaDeEnvio);
 			objSt.setInt(7, TelefonoDeEnvio);
-			objSt.setInt(8, Clientes_NºCliente);
+			objSt.setInt(8, Clientes_NCliente);
 
 			// Ejecutamos la query que hemos preparado
 			objSt.execute();
@@ -896,7 +896,7 @@ public class ClsDatos {
 	 * @param NºEnvio parametro recibido
 	 * @throws SQLException lazamos la excepcion
 	 */
-	public void eliminarEnvios(int NºEnvio) throws SQLException {
+	public void eliminarEnvios(int NEnvio) throws SQLException {
 
 		/**
 		 * Instancias la clase que hemos creado anteriormente
@@ -914,7 +914,7 @@ public class ClsDatos {
 			 * Creamos las preparedstaments
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_ENVIOS_POR_NºENVIO);
-			objSt.setInt(1, NºEnvio);
+			objSt.setInt(1, NEnvio);
 
 			/**
 			 * Ejecutamos la query que hemos preparado
@@ -935,8 +935,8 @@ public class ClsDatos {
 
 	}
 	
-	public void InsertarPedidos(int NºPedido, Date FechaDePedido, Date FechaDeEntrega, Boolean Entregado,
-			int Clientes_NºCliente, String NombreYApellidos) throws SQLException {
+	public void InsertarPedidos(int NPedido, Date FechaDePedido, Date FechaDeEntrega, Boolean Entregado,
+			int Clientes_NCliente, String NombreYApellidos) throws SQLException {
 		
 		java.sql.Date Fecha_de_pedido = new java.sql.Date(FechaDePedido.getTime()); 
 		java.sql.Date Fecha_de_entrega = new java.sql.Date(FechaDeEntrega.getTime());
@@ -954,11 +954,11 @@ public class ClsDatos {
 
 			// Creamos las preparedstaments
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_PEDIDOS);
-			objSt.setInt(1, NºPedido);
+			objSt.setInt(1, NPedido);
 			objSt.setDate(2, Fecha_de_pedido);
 			objSt.setDate(3, Fecha_de_entrega);
 			objSt.setBoolean(4, Entregado);
-			objSt.setInt(5, Clientes_NºCliente);
+			objSt.setInt(5, Clientes_NCliente);
 			objSt.setString(6, NombreYApellidos);
 
 			// Ejecutamos la query que hemos preparado
@@ -1023,7 +1023,7 @@ public class ClsDatos {
 		return null;
 	}
 	
-	public void eliminarPedidos(int NºPedido) throws SQLException {
+	public void eliminarPedidos(int NPedido) throws SQLException {
 
 		/**
 		 * Instancias la clase que hemos creado anteriormente
@@ -1041,7 +1041,7 @@ public class ClsDatos {
 			 * Creamos las preparedstaments
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_PEDIDOS_POR_NºPEDIDO);
-			objSt.setInt(1, NºPedido);
+			objSt.setInt(1, NPedido);
 
 			/**
 			 * Ejecutamos la query que hemos preparado

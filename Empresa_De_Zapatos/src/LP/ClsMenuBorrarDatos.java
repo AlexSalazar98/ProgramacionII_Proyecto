@@ -133,7 +133,7 @@ public class ClsMenuBorrarDatos {
 		/**
 		 * Variable para recoger el numero de serie
 		 */
-		int NºDeSerie = UtilidadesLP.leerEntero();
+		int NDeSerie = UtilidadesLP.leerEntero();
 
 		/**
 		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
@@ -142,7 +142,7 @@ public class ClsMenuBorrarDatos {
 			/**
 			 * Llamamos al metodo borrar y le pasamos el parametro.
 			 */
-			if (objGestorBse.EliminarSeriesDeArray(NºDeSerie)) {
+			if (objGestorBse.EliminarSeriesDeArray(NDeSerie)) {
 				System.out.println("Registro eliminado correctamente");
 			}
 		} catch (SQLException e) {
@@ -166,7 +166,7 @@ public class ClsMenuBorrarDatos {
 		/**
 		 * Variable para recoger el numero de Pedido.
 		 */
-		int NºPedido = UtilidadesLP.leerEntero();
+		int NPedido = UtilidadesLP.leerEntero();
 		/**
 		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
 		 */
@@ -174,7 +174,7 @@ public class ClsMenuBorrarDatos {
 			/**
 			 * Llamamos al metodo borrar y le pasamos el parametro.
 			 */
-			if (objGestorBP.EliminarPedidosDeArray(NºPedido)) {
+			if (objGestorBP.EliminarPedidosDeArray(NPedido)) {
 				System.out.println("Registro eliminado correctamente");
 			}
 		} catch (SQLException e) {
@@ -260,13 +260,13 @@ public class ClsMenuBorrarDatos {
 		/**
 		 * Variable para recoger el numero de herraje.
 		 */
-		int NºEnvio = UtilidadesLP.leerEntero();
+		int NEnvio = UtilidadesLP.leerEntero();
 
 		/**
 		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
 		 */
 		try {
-			if (objGestorBE.EliminarEnviosDeArray(NºEnvio)) {
+			if (objGestorBE.EliminarEnviosDeArray(NEnvio)) {
 				System.out.println("Registro eliminado correctamente");
 			}
 		} catch (SQLException e) {

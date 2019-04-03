@@ -1,5 +1,6 @@
 package LN;
 
+import COMUN.ClsExcepcionRuntime;
 import COMUN.ItfProperty;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_ENVIO;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NOMBRE_CLIENTE;
@@ -17,8 +18,8 @@ import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO;
  * En esta clase vamos a recoger los atributos de la tabla envios.
  * 
  * @author Alex Salazar
- * @author David Requeta 
- *         
+ * @author David Requeta
+ * 
  */
 
 public class ClsEnvios implements ItfProperty {
@@ -30,7 +31,7 @@ public class ClsEnvios implements ItfProperty {
 	private String NombreCliente;
 	private String DireccionDeEnvio;
 	private String PoblacionDeEnvio;
-	private String CPDeEnvio;
+	private int CPDeEnvio;
 	private String ProvinciaDeEnvio;
 	private int TelefonoDeEnvio;
 	private int NumeroDeCliente_Envio;
@@ -38,17 +39,17 @@ public class ClsEnvios implements ItfProperty {
 	/**
 	 * Aqui generamos el constructor de la clase
 	 * 
-	 * @param numeroDeEnvio parametro numero de envio 
-	 * @param nombreCliente parametro nombre del cliente
-	 * @param direccionDeEnvio parametro direccion de envio
-	 * @param poblacionDeEnvio parametro poblacion de envio
-	 * @param cPDeEnvio parametro codigo postal de envio
-	 * @param provinciaDeEnvio parametro provincia de envio
-	 * @param telefonoDeEnvio parametro telefono de envio
+	 * @param numeroDeEnvio         parametro numero de envio
+	 * @param nombreCliente         parametro nombre del cliente
+	 * @param direccionDeEnvio      parametro direccion de envio
+	 * @param poblacionDeEnvio      parametro poblacion de envio
+	 * @param cPDeEnvio             parametro codigo postal de envio
+	 * @param provinciaDeEnvio      parametro provincia de envio
+	 * @param telefonoDeEnvio       parametro telefono de envio
 	 * @param numeroDeCliente_Envio parametro numero de cliente.
 	 */
 	public ClsEnvios(int numeroDeEnvio, String nombreCliente, String direccionDeEnvio, String poblacionDeEnvio,
-			String cPDeEnvio, String provinciaDeEnvio, int telefonoDeEnvio, int numeroDeCliente_Envio) {
+			int cPDeEnvio, String provinciaDeEnvio, int telefonoDeEnvio, int numeroDeCliente_Envio) {
 		NumeroDeEnvio = numeroDeEnvio;
 		NombreCliente = nombreCliente;
 		DireccionDeEnvio = direccionDeEnvio;
@@ -96,11 +97,11 @@ public class ClsEnvios implements ItfProperty {
 		PoblacionDeEnvio = poblacionDeEnvio;
 	}
 
-	public String getCPDeEnvio() {
+	public int getCPDeEnvio() {
 		return CPDeEnvio;
 	}
 
-	public void setCPDeEnvio(String cPDeEnvio) {
+	public void setCPDeEnvio(int cPDeEnvio) {
 		CPDeEnvio = cPDeEnvio;
 	}
 
@@ -141,12 +142,12 @@ public class ClsEnvios implements ItfProperty {
 			return this.getDireccionDeEnvio();
 		case PROPIEDAD_ENVIOS_POBLACION_DE_ENVIO:
 			return this.getPoblacionDeEnvio();
-		case PROPIEDAD_ENVIOS_CPD_DE_ENVIO:
-			return this.getCPDeEnvio();
 		case PROPIEDAD_ENVIOS_PROVINCIA_DE_ENVIO:
 			return this.getProvinciaDeEnvio();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
 	}
 
 	@Override
@@ -159,8 +160,13 @@ public class ClsEnvios implements ItfProperty {
 			return this.getTelefonoDeEnvio();
 		case PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO:
 			return this.getNumeroDeCliente_Envio();
+		case PROPIEDAD_ENVIOS_CPD_DE_ENVIO:
+			return this.getCPDeEnvio();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
+
 	}
 
 	@Override
@@ -183,13 +189,13 @@ public class ClsEnvios implements ItfProperty {
 
 	@Override
 	public Date getDateProperty(String propiedad) {
-		
+
 		return null;
 	}
 
 	@Override
 	public Boolean getBooleanProperty(String propiedad) {
-		
+
 		return null;
 	}
 
@@ -215,5 +221,4 @@ public class ClsEnvios implements ItfProperty {
 		return true;
 	}
 
-	
 }

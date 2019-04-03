@@ -106,9 +106,9 @@ public class ClsMostrarDatos {
 		System.out.println("----------------------");
 		for (ItfProperty a : Materiales) {
 
-			System.out.println(a.getIntegerProperty(PROPIEDAD_SUELAS_REFERENCIA) + " "
-					+ a.getStringProperty(PROPIEDAD_SUELAS_DESCRIPCION) + " "
-					+ a.getDoubleProperty(PROPIEDAD_SUELAS_PRECIO));
+			System.out.println(a.getIntegerProperty(PROPIEDAD_MATERIALES_REFERENCIA) + " "
+					+ a.getStringProperty(PROPIEDAD_MATERIALES_DESCRIPCION) + " "
+					+ a.getDoubleProperty(PROPIEDAD_MATERIALES_PRECIO));
 
 		}
 

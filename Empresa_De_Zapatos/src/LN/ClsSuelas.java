@@ -4,6 +4,8 @@ import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_REFERENCIA;
 
 import java.util.Date;
 
+import COMUN.ClsExcepcionRuntime;
+
 import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_DESCRIPCION;
 import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_PRECIO;
 
@@ -40,9 +42,11 @@ public class ClsSuelas extends ClsMateriasPrimas {
 		switch (propiedad) {
 		case PROPIEDAD_SUELAS_DESCRIPCION:
 			return this.getDescripcion();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
 
-		return null;
 	}
 
 	@Override
@@ -50,8 +54,11 @@ public class ClsSuelas extends ClsMateriasPrimas {
 		switch (propiedad) {
 		case PROPIEDAD_SUELAS_REFERENCIA:
 			return this.getReferencia();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
+
 	}
 
 	@Override
@@ -66,9 +73,11 @@ public class ClsSuelas extends ClsMateriasPrimas {
 		case PROPIEDAD_SUELAS_PRECIO:
 			return this.getPrecio();
 
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
+
 		}
 
-		return null;
 	}
 
 	@Override

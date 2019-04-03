@@ -232,7 +232,7 @@ public class ClsGestorLN {
 	 * @throws SQLException lanza excepcion
 	 */
 	public void CrearEnvios(int NumeroDeEnvio, String NombreCliente, String DireccionDeEnvio, String PoblacionDeEnvio,
-			String CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int NumeroDeCliente_Envio)
+			int CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int NumeroDeCliente_Envio)
 			throws SQLException {
 
 		/**
@@ -371,7 +371,7 @@ public class ClsGestorLN {
 		ResultSet Resultado = objDatos.consultarSeries();
 
 		while (Resultado.next()) {
-			int NumeroDeSerie = Resultado.getInt("NºDeSerie");
+			int NumeroDeSerie = Resultado.getInt("NDeSerie");
 			String Descripcion_Series = Resultado.getString("Descripcion");
 			ClsSeries objSeries = new ClsSeries(NumeroDeSerie, Descripcion_Series);
 			/**
@@ -434,7 +434,7 @@ public class ClsGestorLN {
 	 * @return nos genera un return para saber si se ha realizado el borrado o no
 	 * @throws ClsBorrarExcepcion excepcion en caso de que falle el borrado
 	 */
-	public boolean EliminarSeriesDeArray(int NºDeSerie) throws SQLException, ClsBorrarExcepcion {
+	public boolean EliminarSeriesDeArray(int NDeSerie) throws SQLException, ClsBorrarExcepcion {
 
 		/**
 		 * variable para saber si se ha hecho el borrado o no
@@ -450,7 +450,7 @@ public class ClsGestorLN {
 		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
 		 */
 		for (int userInd = 0; userInd < bound; userInd++) {
-			if (MiListaDeSeries.get(userInd).getIntegerProperty(PROPIEDAD_SERIES_NUMERO_DE_SERIE).equals(NºDeSerie)) {
+			if (MiListaDeSeries.get(userInd).getIntegerProperty(PROPIEDAD_SERIES_NUMERO_DE_SERIE).equals(NDeSerie)) {
 				index = userInd;
 				break;
 			}
@@ -472,7 +472,7 @@ public class ClsGestorLN {
 			/**
 			 * mandamos borrar de la BD.
 			 */
-			objDatos.eliminarSeries(NºDeSerie);
+			objDatos.eliminarSeries(NDeSerie);
 		}
 
 		return hecho;
@@ -849,14 +849,14 @@ public class ClsGestorLN {
 		ResultSet Resultado = objDatos.consultarClientes();
 
 		while (Resultado.next()) {
-			int NºDeClientes = Resultado.getInt("NºCliente");
+			int NDeClientes = Resultado.getInt("NCliente");
 			String NombreYApellido = Resultado.getString("NombreYApellidos");
 			String DNI_NIF = Resultado.getString("DNI_NIF");
-			String DirecciónDeClientes = Resultado.getString("DirecciónDeCliente");
+			String DireccionDeClientes = Resultado.getString("DireccionDeCliente");
 			String Provincia = Resultado.getString("Provincia");
 			int Telefono = Resultado.getInt("Telefono");
 			String Email = Resultado.getString("Email");
-			ClsClientes objClientes = new ClsClientes(NºDeClientes, NombreYApellido, DNI_NIF, DirecciónDeClientes,
+			ClsClientes objClientes = new ClsClientes(NDeClientes, NombreYApellido, DNI_NIF, DireccionDeClientes,
 					Provincia, Telefono, Email);
 			/**
 			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
@@ -967,14 +967,14 @@ public class ClsGestorLN {
 		ResultSet Resultado = objDatos.consultarEnvios();
 
 		while (Resultado.next()) {
-			int NumeroDeEnvio = Resultado.getInt("NºEnvio");
+			int NumeroDeEnvio = Resultado.getInt("NEnvio");
 			String NombreCliente = Resultado.getString("NombreCliente");
 			String DireccionDeEnvio = Resultado.getString("DireccionDeEnvio");
 			String PoblacionDeEnvio = Resultado.getString("PoblacionDeEnvio");
-			String CPDeENVIO = Resultado.getString("CPDeEnvio");
+			int CPDeENVIO = Resultado.getInt("CPDeEnvio");
 			String ProvinciaDeEnvio = Resultado.getString("ProvinciaDeEnvio");
 			int TelefonoDeEnvio = Resultado.getInt("TelefonoDeEnvio");
-			int NumeroDeCliente_Envio = Resultado.getInt("Clientes_NºCliente");
+			int NumeroDeCliente_Envio = Resultado.getInt("Clientes_NCliente");
 			ClsEnvios objEnvios = new ClsEnvios(NumeroDeEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio, CPDeENVIO,
 					ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
 			/**
@@ -1032,7 +1032,7 @@ public class ClsGestorLN {
 	 * @throws SQLException lanzamos excepcion
 	 * @throws ClsBorrarExcepcion excepcion para el borrado
 	 */
-	public boolean EliminarEnviosDeArray(int NºEnvio) throws SQLException, ClsBorrarExcepcion {
+	public boolean EliminarEnviosDeArray(int NEnvio) throws SQLException, ClsBorrarExcepcion {
 
 		/**
 		 * variable para saber si se ha hecho el borrado o no
@@ -1048,7 +1048,7 @@ public class ClsGestorLN {
 		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
 		 */
 		for (int userInd = 0; userInd < bound; userInd++) {
-			if (MiListaDeEnvios.get(userInd).getIntegerProperty(PROPIEDAD_ENVIOS_NUMERO_DE_ENVIO).equals(NºEnvio)) {
+			if (MiListaDeEnvios.get(userInd).getIntegerProperty(PROPIEDAD_ENVIOS_NUMERO_DE_ENVIO).equals(NEnvio)) {
 				index = userInd;
 				break;
 			}
@@ -1071,7 +1071,7 @@ public class ClsGestorLN {
 			/**
 			 * mandamos borrar de la BD.
 			 */
-			objDatos.eliminarEnvios(NºEnvio);
+			objDatos.eliminarEnvios(NEnvio);
 		}
 
 		return hecho;
@@ -1083,14 +1083,14 @@ public class ClsGestorLN {
 		/**
 		 * Recogemos datos desde LD y consturimos objetos.
 		 */
-		ResultSet Resultado = objDatos.consultarEnvios();
+		ResultSet Resultado = objDatos.consultarPedidos();
 
 		while (Resultado.next()) {
-			int NumeroDePedido = Resultado.getInt("NºPedido");
+			int NumeroDePedido = Resultado.getInt("NPedido");
 			Date FechaDePedido = Resultado.getDate("Fecha_de_pedido");
 			Date FechaDeEntrega = Resultado.getDate("Fecha_de_entrega");
 			Boolean Entregado = Resultado.getBoolean("Entregado");
-			int NumeroDeCliente_Pedidos = Resultado.getInt("Clientes_NºCliente");
+			int NumeroDeCliente_Pedidos = Resultado.getInt("Clientes_NCliente");
 			String NombreYApelliosDelCliente = Resultado.getString("NombreYApellidos");
 			ClsPedidos objPedido = new ClsPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado,
 					NombreYApelliosDelCliente, NumeroDeCliente_Pedidos);
@@ -1131,7 +1131,7 @@ public class ClsGestorLN {
 		return retorno;
 	}
 	
-	public boolean EliminarPedidosDeArray(int NºPedido) throws SQLException, ClsBorrarExcepcion {
+	public boolean EliminarPedidosDeArray(int NPedido) throws SQLException, ClsBorrarExcepcion {
 
 		/**
 		 * variable para saber si se ha hecho el borrado o no
@@ -1147,7 +1147,7 @@ public class ClsGestorLN {
 		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
 		 */
 		for (int userInd = 0; userInd < bound; userInd++) {
-			if (MiListaDeClientes.get(userInd).getIntegerProperty(PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO).equals(NºPedido)) {
+			if (MiListaDeClientes.get(userInd).getIntegerProperty(PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO).equals(NPedido)) {
 				index = userInd;
 				break;
 			}
@@ -1170,7 +1170,7 @@ public class ClsGestorLN {
 			/**
 			 * mandamos borrar de la BD.
 			 */
-			objDatos.eliminarPedidos(NºPedido);
+			objDatos.eliminarPedidos(NPedido);
 		}
 
 		return hecho;

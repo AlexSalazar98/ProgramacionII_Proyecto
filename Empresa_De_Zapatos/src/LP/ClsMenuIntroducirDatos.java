@@ -323,7 +323,7 @@ public class ClsMenuIntroducirDatos {
 		String NombreCliente;
 		String DireccionDeEnvio;
 		String PoblacionDeEnvio;
-		String CPDeEnvio;
+		int CPDeEnvio;
 		String ProvinciaDeEnvio;
 		int TelefonoDeEnvio;
 		int NumeroDeCliente_Envio;
@@ -340,7 +340,7 @@ public class ClsMenuIntroducirDatos {
 		System.out.print("Introduzca la Población de Envio:");
 		PoblacionDeEnvio = UtilidadesLP.leerCadena();
 		System.out.print("Introduzca el Codigo Postal de Envio:");
-		CPDeEnvio = UtilidadesLP.leerCadena();
+		CPDeEnvio = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca la Provincia de Envio:");
 		ProvinciaDeEnvio = UtilidadesLP.leerCadena();
 		System.out.print("Introduzca el Número de telefono de Envio:");
