@@ -1,4 +1,4 @@
-package LN;
+package Excepciones;
 
 /**
  * Clase para generar la excepcion y el mensaje de error.

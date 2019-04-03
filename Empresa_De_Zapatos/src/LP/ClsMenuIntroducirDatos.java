@@ -5,8 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import Excepciones.ClsDNI_NIFValidoExcepcion;
 import LN.ClsComprobarDNI_NIF;
-import LN.ClsDNI_NIFValidoExcepcion;
 import LN.ClsGestorLN;
 
 /**

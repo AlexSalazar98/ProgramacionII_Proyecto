@@ -1,5 +1,7 @@
 package LN;
 
+import Excepciones.ClsDNI_NIFValidoExcepcion;
+
 /**
  * Clase para comprobar DNI o NIF y crear excepcion explicita
  * 

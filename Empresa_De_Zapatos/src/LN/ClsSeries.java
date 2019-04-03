@@ -1,6 +1,8 @@
 package LN;
 
 import COMUN.ItfProperty;
+import Excepciones.ClsExcepcionRuntime;
+
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
 
 import java.util.Date;
@@ -69,8 +71,11 @@ public class ClsSeries implements ItfProperty {
 		switch (propiedad) {
 		case PROPIEDAD_SERIES_DESCRIPCION:
 			return this.getDescripcion();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
+
 	}
 
 	@Override
@@ -78,8 +83,11 @@ public class ClsSeries implements ItfProperty {
 		switch (propiedad) {
 		case PROPIEDAD_SERIES_NUMERO_DE_SERIE:
 			return this.getNumeroDeSerie();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
+
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package LN;
 
 import COMUN.ItfProperty;
+import Excepciones.ClsExcepcionRuntime;
+
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NUMERO;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NOMBRE_Y_APELLIDOS;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DNI_NIF;
@@ -131,8 +133,11 @@ public class ClsClientes implements ItfProperty {
 			return this.getProvincia();
 		case PROPIEDAD_CLIENTE_EMAIL:
 			return this.getEmail();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
+
 	}
 
 	@Override
@@ -143,8 +148,11 @@ public class ClsClientes implements ItfProperty {
 			return this.getNumeroDeCliente();
 		case PROPIEDAD_CLIENTE_TELEFONO:
 			return this.getTelefono();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
+
 	}
 
 	@Override

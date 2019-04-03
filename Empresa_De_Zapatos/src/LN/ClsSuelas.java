@@ -4,7 +4,7 @@ import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_REFERENCIA;
 
 import java.util.Date;
 
-import COMUN.ClsExcepcionRuntime;
+import Excepciones.ClsExcepcionRuntime;
 
 import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_DESCRIPCION;
 import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_PRECIO;

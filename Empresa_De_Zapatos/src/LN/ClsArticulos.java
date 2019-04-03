@@ -1,6 +1,8 @@
 package LN;
 
 import COMUN.ItfProperty;
+import Excepciones.ClsExcepcionRuntime;
+
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_REFERENCIA;
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_SERIE;
 
@@ -17,7 +19,7 @@ import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_REFERENCIA_SUELAS;
  * 
  * @author Alex Salazar
  * @author David Requeta
- *         
+ * 
  */
 public class ClsArticulos implements ItfProperty {
 
@@ -35,12 +37,12 @@ public class ClsArticulos implements ItfProperty {
 	/**
 	 * Este seria el constructor de la entidad Articulos.
 	 * 
-	 * @param referencia parametro referencia
-	 * @param serie parametro serie
-	 * @param descripcion parametro descripcion
-	 * @param cantidadMaterial parametro cantidad de material
-	 * @param cantidadHerrajes parametro cantidad de herrajes
-	 * @param precio parametro precio
+	 * @param referencia                 parametro referencia
+	 * @param serie                      parametro serie
+	 * @param descripcion                parametro descripcion
+	 * @param cantidadMaterial           parametro cantidad de material
+	 * @param cantidadHerrajes           parametro cantidad de herrajes
+	 * @param precio                     parametro precio
 	 * @param referenciaSuelas_Articulos parametro referencia de la suela
 	 */
 	public ClsArticulos(int referencia, int serie, String descripcion, int cantidadMaterial, int cantidadHerrajes,
@@ -124,8 +126,11 @@ public class ClsArticulos implements ItfProperty {
 		switch (propiedad) {
 		case PROPIEDAD_ARTICULO_DESCRIPCION:
 			return this.getDescripcion();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
+
 	}
 
 	@Override
@@ -142,8 +147,11 @@ public class ClsArticulos implements ItfProperty {
 			return this.getCantidadHerrajes();
 		case PROPIEDAD_ARTICULO_REFERENCIA_SUELAS:
 			return this.getReferenciaSuelas_Articulo();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
+
 	}
 
 	@Override
@@ -158,8 +166,11 @@ public class ClsArticulos implements ItfProperty {
 		switch (propiedad) {
 		case PROPIEDAD_ARTICULO_PRECIO:
 			return this.getPrecio();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
+
 	}
 
 	@Override
@@ -170,16 +181,14 @@ public class ClsArticulos implements ItfProperty {
 
 	@Override
 	public Date getDateProperty(String propiedad) {
-		
+
 		return null;
 	}
 
 	@Override
 	public Boolean getBooleanProperty(String propiedad) {
-		
+
 		return null;
 	}
-	
-	
 
 }

@@ -1,4 +1,4 @@
-package COMUN;
+package Excepciones;
 
 /**
  * Clase para generar una excepcion implicita

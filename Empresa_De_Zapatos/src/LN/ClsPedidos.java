@@ -2,6 +2,8 @@ package LN;
 
 import java.util.Date;
 import COMUN.ItfProperty;
+import Excepciones.ClsExcepcionRuntime;
+
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_ENTREGADO;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_FECHA_DE_ENTREGA;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_FECHA_DE_PEDIDO;
@@ -119,10 +121,9 @@ public class ClsPedidos implements ItfProperty {
 		case PROPIEDAD_PEDIDOS_NOMBRE_Y_APELLIDOS_DEL_CLIENTE:
 			return this.getNombreYApelliosDelCliente();
 
-		default: // lanzar excepcion atributo inexistente
-			break;
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
 
 	}
 
@@ -134,8 +135,11 @@ public class ClsPedidos implements ItfProperty {
 			return this.getNumeroDePedido();
 		case PROPIEDAD_PEDIDOS_NUMERO_DE_CLIENTE_PEDIDO:
 			return this.getNumeroDeCliente_Pedidos();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
+
 	}
 
 	@Override
@@ -164,8 +168,11 @@ public class ClsPedidos implements ItfProperty {
 			return this.getFechaDePedido();
 		case PROPIEDAD_PEDIDOS_FECHA_DE_ENTREGA:
 			return this.getFechaDeEntrega();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
+
 	}
 
 	@Override
@@ -174,8 +181,11 @@ public class ClsPedidos implements ItfProperty {
 		switch (propiedad) {
 		case PROPIEDAD_PEDIDOS_ENTREGADO:
 			return this.getEntregado();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
+
 	}
 
 }

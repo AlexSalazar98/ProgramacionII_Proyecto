@@ -1,7 +1,8 @@
 package LN;
 
-import COMUN.ClsExcepcionRuntime;
 import COMUN.ItfProperty;
+import Excepciones.ClsExcepcionRuntime;
+
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_ENVIO;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NOMBRE_CLIENTE;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_DIRECCION_DE_ENVIO;

@@ -1,6 +1,8 @@
 package LN;
 
 import COMUN.ItfProperty;
+import Excepciones.ClsExcepcionRuntime;
+
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_SERIE;
@@ -25,8 +27,8 @@ import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_CLIENTE
  * Esta clase recoge y crea los objetos para la entidad Desglose De Pedido.
  * 
  * @author Alex Salazar
- * @author David Requeta 
- *         
+ * @author David Requeta
+ * 
  */
 
 public class ClsDesgloseDePedido implements ItfProperty {
@@ -270,8 +272,11 @@ public class ClsDesgloseDePedido implements ItfProperty {
 			return this.getCantidadTotal();
 		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_CLIENTE:
 			return this.getNumeroDeCliente_Desglose();
+
+		default:
+			throw new ClsExcepcionRuntime(propiedad);
 		}
-		return null;
+		
 	}
 
 	@Override
