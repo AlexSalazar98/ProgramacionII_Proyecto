@@ -65,7 +65,7 @@ public class ClsMenuBorrarDatos {
 				break;
 
 			case 6:
-				BorrarDatosEnvios();
+				BorrarDatosEnvios(objGestorMB);
 				break;
 
 			case 7:
@@ -252,8 +252,28 @@ public class ClsMenuBorrarDatos {
 	 * Pedimos los datos a Borrar en la entidad Envios.
 	 *
 	 */
-	public static void BorrarDatosEnvios() {
+	public static void BorrarDatosEnvios(ClsGestorLN objGestorBE) {
+		/**
+		 * Pedimos el numero de Herrajes que se quiera eliminar.
+		 */
+		System.out.println("Inserte el numero de Envio que desee eliminar");
+		/**
+		 * Variable para recoger el numero de herraje.
+		 */
+		int NºEnvio = UtilidadesLP.leerEntero();
 
+		/**
+		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
+		 */
+		try {
+			if (objGestorBE.EliminarEnviosDeArray(NºEnvio)) {
+				System.out.println("Registro eliminado correctamente");
+			}
+		} catch (SQLException e) {
+			System.out.println("No se ha podido eliminar el registro: " + e);
+		} catch (ClsBorrarExcepcion e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**

@@ -13,6 +13,7 @@ import static COMUN.ClsConstantes.PROPIEDAD_MATERIALES_REFERENCIA;
 import static COMUN.ClsConstantes.PROPIEDAD_HERRAJES_REFERENCIA;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DNI_NIF;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO;
+import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_ENVIO;
 
 /**
  * Clase de gestion entre LN y LP
@@ -1029,10 +1030,53 @@ public class ClsGestorLN {
 	 * 
 	 * @param NºEnvio parametro por el cual borrar.
 	 * @throws SQLException lanzamos excepcion
+	 * @throws ClsBorrarExcepcion excepcion para el borrado
 	 */
-	public void EliminarEnviosDeArray(int NºEnvio) throws SQLException {
+	public boolean EliminarEnviosDeArray(int NºEnvio) throws SQLException, ClsBorrarExcepcion {
 
-		objDatos.eliminarEnvios(NºEnvio);
+		/**
+		 * variable para saber si se ha hecho el borrado o no
+		 */
+		boolean hecho = true;
+
+		/**
+		 * Variables para buscar la posicion de objeto en el array
+		 */
+		int index = -1;
+		int bound = MiListaDeEnvios.size();
+		/**
+		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
+		 */
+		for (int userInd = 0; userInd < bound; userInd++) {
+			if (MiListaDeEnvios.get(userInd).getIntegerProperty(PROPIEDAD_ENVIOS_NUMERO_DE_ENVIO).equals(NºEnvio)) {
+				index = userInd;
+				break;
+			}
+
+		}
+
+		/**
+		 * si encontramos posicion del objeto en el array borramos si no devolvemos
+		 * false
+		 */
+		if (index == -1) {
+			hecho = false;
+			throw new ClsBorrarExcepcion();
+		} else {
+
+			/**
+			 * borramos del array
+			 */
+			MiListaDeClientes.remove(index);
+			/**
+			 * mandamos borrar de la BD.
+			 */
+			objDatos.eliminarEnvios(NºEnvio);
+		}
+
+		return hecho;
+		
+		
 	}
 
 	public void ObjetosRecuperadosPedidos() throws SQLException {

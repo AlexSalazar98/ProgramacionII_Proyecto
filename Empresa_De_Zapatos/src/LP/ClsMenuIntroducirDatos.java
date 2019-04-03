@@ -185,7 +185,7 @@ public class ClsMenuIntroducirDatos {
 		/**
 		 * Para formatear las fechas
 		 */
-		SimpleDateFormat miFormato = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat miFormato = new SimpleDateFormat("dd-mm-yyyy");
 
 		/**
 		 * pedimos los datos.
