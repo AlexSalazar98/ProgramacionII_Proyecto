@@ -135,6 +135,11 @@ public class ClsGestorLN {
 	 */
 	public void CrearPedidos(int NumeroDePedido, Date FechaDePedido, Date FechaDeEntrega, Boolean Entregado,
 			int NumeroDeCliente_Pedidos, String NombreYApelliosDelCliente) throws SQLException {
+		
+		java.sql.Date Fecha_de_pedido = new java.sql.Date(FechaDeEntrega.getTime());
+		java.sql.Date Fecha_de_entrega = new java.sql.Date(FechaDeEntrega.getTime());
+		/**
+		
 		/**
 		 * Crearmos el objeto
 		 */
@@ -154,7 +159,7 @@ public class ClsGestorLN {
 			/**
 			 * Llamada a introducir datos con paso de parametros
 			 */
-			objDatos.InsertarPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado, NumeroDeCliente_Pedidos,
+			objDatos.InsertarPedidos(NumeroDePedido, Fecha_de_pedido, Fecha_de_entrega, Entregado, NumeroDeCliente_Pedidos,
 					NombreYApelliosDelCliente);
 		}
 	}

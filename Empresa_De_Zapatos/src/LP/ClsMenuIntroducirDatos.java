@@ -185,7 +185,7 @@ public class ClsMenuIntroducirDatos {
 		/**
 		 * Para formatear las fechas
 		 */
-		SimpleDateFormat miFormato = new SimpleDateFormat("dd-mm-yyyy");
+		SimpleDateFormat miFormato = new SimpleDateFormat("DD-MM-YYYY");
 
 		/**
 		 * pedimos los datos.
@@ -199,7 +199,7 @@ public class ClsMenuIntroducirDatos {
 		 */
 		Date FechaDePedido = null;
 		try {
-			FechaDePedido = miFormato.parse(fechaDePedido);
+			FechaDePedido = (Date) miFormato.parse(fechaDePedido);
 		} catch (ParseException e1) {
 			System.out.println("¡Error en el formato!");
 		}
@@ -210,7 +210,7 @@ public class ClsMenuIntroducirDatos {
 		 */
 		Date FechaDeEntrega = null;
 		try {
-			FechaDeEntrega = miFormato.parse(fechaDeEntrega);
+			FechaDeEntrega = (Date) miFormato.parse(fechaDeEntrega);
 		} catch (ParseException e) {
 			System.out.println("¡Error en el formato!");
 		}

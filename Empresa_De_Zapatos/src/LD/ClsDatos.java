@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 import static LD.ClsConstantesBD.RUTA_DE_LA_BD;
 import static LD.ClsConstantesBD.NOMBRE_DEL_USUARIO;
 import static LD.ClsConstantesBD.CONTRASEÑA_DE_LA_BD;
@@ -932,11 +931,11 @@ public class ClsDatos {
 
 	}
 
-	public void InsertarPedidos(int NPedido, Date FechaDePedido, Date FechaDeEntrega, Boolean Entregado,
+	public void InsertarPedidos(int NPedido, java.sql.Date FechaDePedido, java.sql.Date FechaDeEntrega, Boolean Entregado,
 			int Clientes_NCliente, String NombreYApellidos) throws SQLException {
 
-		java.sql.Date Fecha_de_pedido = new java.sql.Date(FechaDeEntrega.getTime());
-		java.sql.Date Fecha_de_entrega = new java.sql.Date(FechaDeEntrega.getTime());
+		//java.sql.Date Fecha_de_pedido = new java.sql.Date(FechaDeEntrega.getTime());
+		//java.sql.Date Fecha_de_entrega = new java.sql.Date(FechaDeEntrega.getTime());
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
 		 */
@@ -952,8 +951,8 @@ public class ClsDatos {
 			// Creamos las preparedstaments
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_PEDIDOS);
 			objSt.setInt(1, NPedido);
-			objSt.setDate(2, Fecha_de_pedido);
-			objSt.setDate(3, Fecha_de_entrega);
+			objSt.setDate(2, (java.sql.Date) FechaDePedido);
+			objSt.setDate(3, (java.sql.Date) FechaDeEntrega);
 			objSt.setBoolean(4, Entregado);
 			objSt.setInt(5, Clientes_NCliente);
 			objSt.setString(6, NombreYApellidos);
