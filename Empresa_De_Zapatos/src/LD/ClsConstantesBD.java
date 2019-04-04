@@ -113,8 +113,8 @@ public class ClsConstantesBD {
 	/**
 	 * Constante de DELETE para clientes por DNI_NIF.
 	 */
-	public static final String QUERY_PARA_DELETE_CLIENTES_POR_DNI_NIF = "DELETE FROM `mydb`.`clientes`\r\n"
-			+ "WHERE DNI_NIF = ?;\r\n" + "";
+	public static final String QUERY_PARA_DELETE_CLIENTES_POR_NUMERO_DE_CLIENTE = "DELETE FROM `mydb`.`clientes`\r\n"
+			+ "WHERE NCliente = ?;";
 	/**
 	 * Constantes para INSERT Envios.
 	 */
@@ -153,7 +153,7 @@ public class ClsConstantesBD {
 	/**
 	 * Constante para DELETE Pedidos.
 	 */
-	public static final String QUERY_PARA_DELETE_PEDIDOS_POR_NºPEDIDO = "DELETE FROM `mydb`.`pedidos`\r\n"
-			+ "	WHERE NEnvio = ?;";
+	public static final String QUERY_PARA_DELETE_PEDIDOS_POR_NPEDIDO = "DELETE FROM `mydb`.`pedidos`\r\n"
+			+ "WHERE NPedido = ?;";
 
 }

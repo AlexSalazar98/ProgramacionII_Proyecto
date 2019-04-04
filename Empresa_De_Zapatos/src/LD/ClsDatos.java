@@ -23,13 +23,13 @@ import static LD.ClsConstantesBD.QUERY_PARA_SELECT_HERRAJES;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_HERRAJES_POR_REFERENCIA;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_CLIENTES;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_CLIENTES;
-import static LD.ClsConstantesBD.QUERY_PARA_DELETE_CLIENTES_POR_DNI_NIF;
+import static LD.ClsConstantesBD.QUERY_PARA_DELETE_CLIENTES_POR_NUMERO_DE_CLIENTE;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_ENVIOS;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_ENVIOS;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_ENVIOS_POR_NºENVIO;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_PEDIDOS;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_PEDIDOS;
-import static LD.ClsConstantesBD.QUERY_PARA_DELETE_PEDIDOS_POR_NºPEDIDO;
+import static LD.ClsConstantesBD.QUERY_PARA_DELETE_PEDIDOS_POR_NPEDIDO;
 
 /**
  * Clase para hacer todos los tramites con la Base de Datos.
@@ -741,7 +741,7 @@ public class ClsDatos {
 	 * @param DNI_NIF parametro de eliminacion
 	 * @throws SQLException lanzamos excepcion
 	 */
-	public void eliminarClientes(String DNI_NIF) throws SQLException {
+	public void eliminarClientes(int NCliente) throws SQLException {
 
 		/**
 		 * Instancias la clase que hemos creado anteriormente
@@ -758,8 +758,8 @@ public class ClsDatos {
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_CLIENTES_POR_DNI_NIF);
-			objSt.setString(3, DNI_NIF);
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_CLIENTES_POR_NUMERO_DE_CLIENTE);
+			objSt.setInt(1, NCliente);
 
 			/**
 			 * Ejecutamos la query que hemos preparado
@@ -1036,7 +1036,7 @@ public class ClsDatos {
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_PEDIDOS_POR_NºPEDIDO);
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_PEDIDOS_POR_NPEDIDO);
 			objSt.setInt(1, NPedido);
 
 			/**

@@ -175,7 +175,7 @@ public class ClsMostrarDatos {
 			System.out.println(a.getIntegerProperty(PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO) + " "
 					+ a.getDateProperty(PROPIEDAD_PEDIDOS_FECHA_DE_PEDIDO) + " "
 					+ a.getDateProperty(PROPIEDAD_PEDIDOS_FECHA_DE_ENTREGA) + " "
-					+ a.getIntegerProperty(PROPIEDAD_PEDIDOS_ENTREGADO) + " "
+					+ a.getBooleanProperty(PROPIEDAD_PEDIDOS_ENTREGADO) + " "
 					+ a.getStringProperty(PROPIEDAD_PEDIDOS_NOMBRE_Y_APELLIDOS_DEL_CLIENTE) + " "
 					+ a.getIntegerProperty(PROPIEDAD_PEDIDOS_NUMERO_DE_CLIENTE_PEDIDO));
 
@@ -196,7 +196,7 @@ public class ClsMostrarDatos {
 					+ a.getStringProperty(PROPIEDAD_ENVIOS_NOMBRE_CLIENTE) + " "
 					+ a.getStringProperty(PROPIEDAD_ENVIOS_DIRECCION_DE_ENVIO) + " "
 					+ a.getStringProperty(PROPIEDAD_ENVIOS_POBLACION_DE_ENVIO) + " "
-					+ a.getStringProperty(PROPIEDAD_ENVIOS_CPD_DE_ENVIO) + " "
+					+ a.getIntegerProperty(PROPIEDAD_ENVIOS_CPD_DE_ENVIO) + " "
 					+ a.getStringProperty(PROPIEDAD_ENVIOS_PROVINCIA_DE_ENVIO) + " "
 					+ a.getIntegerProperty(PROPIEDAD_ENVIOS_TELEFONO_DE_ENVIO) + " "
 					+ a.getIntegerProperty(PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO));

@@ -11,7 +11,7 @@ import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
 import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_REFERENCIA;
 import static COMUN.ClsConstantes.PROPIEDAD_MATERIALES_REFERENCIA;
 import static COMUN.ClsConstantes.PROPIEDAD_HERRAJES_REFERENCIA;
-import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DNI_NIF;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NUMERO;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_ENVIO;
 
@@ -919,7 +919,7 @@ public class ClsGestorLN {
 	 * @throws ClsBorrarExcepcion excepcion de borrado.
 	 * @return nos dice si se ha eliminado o no.
 	 */
-	public boolean EliminarClientesDeArray(String DNI_NIF) throws SQLException, ClsBorrarExcepcion {
+	public boolean EliminarClientesDeArray(int NCliente) throws SQLException, ClsBorrarExcepcion {
 
 		/**
 		 * variable para saber si se ha hecho el borrado o no
@@ -935,7 +935,7 @@ public class ClsGestorLN {
 		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
 		 */
 		for (int userInd = 0; userInd < bound; userInd++) {
-			if (MiListaDeClientes.get(userInd).getStringProperty(PROPIEDAD_CLIENTE_DNI_NIF).equals(DNI_NIF)) {
+			if (MiListaDeClientes.get(userInd).getIntegerProperty(PROPIEDAD_CLIENTE_NUMERO).equals(NCliente)) {
 				index = userInd;
 				break;
 			}
@@ -958,7 +958,7 @@ public class ClsGestorLN {
 			/**
 			 * mandamos borrar de la BD.
 			 */
-			objDatos.eliminarClientes(DNI_NIF);
+			objDatos.eliminarClientes(NCliente);
 		}
 
 		return hecho;
@@ -1072,7 +1072,7 @@ public class ClsGestorLN {
 			/**
 			 * borramos del array
 			 */
-			MiListaDeClientes.remove(index);
+			MiListaDeEnvios.remove(index);
 			/**
 			 * mandamos borrar de la BD.
 			 */
@@ -1147,12 +1147,12 @@ public class ClsGestorLN {
 		 * Variables para buscar la posicion de objeto en el array
 		 */
 		int index = -1;
-		int bound = MiListaDeClientes.size();
+		int bound = MiListaDePedidos.size();
 		/**
 		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
 		 */
 		for (int userInd = 0; userInd < bound; userInd++) {
-			if (MiListaDeClientes.get(userInd).getIntegerProperty(PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO).equals(NPedido)) {
+			if (MiListaDePedidos.get(userInd).getIntegerProperty(PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO).equals(NPedido)) {
 				index = userInd;
 				break;
 			}

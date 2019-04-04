@@ -99,7 +99,7 @@ public class ClsMenuBorrarDatos {
 		 */
 		System.out.println("Inserte el numero de Suela que desee eliminar:");
 		/**
-		 * Variable para regoger el numero de serie
+		 * Variable para recoger el numero de serie
 		 */
 		int Referencia = UtilidadesLP.leerEntero();
 
@@ -285,17 +285,17 @@ public class ClsMenuBorrarDatos {
 		/**
 		 * Pedimos el numero de Herrajes que se quiera eliminar.
 		 */
-		System.out.println("Inserte el DNI_NIF del Cliente que desee eliminar");
+		System.out.println("Inserte el Numero del Cliente que desee eliminar:");
 		/**
 		 * Variable para recoger el numero de herraje.
 		 */
-		String DNI_NIF = UtilidadesLP.leerCadena();
+		int NCliente = UtilidadesLP.leerEntero();
 
 		/**
 		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
 		 */
 		try {
-			if (objGestorBC.EliminarClientesDeArray(DNI_NIF)) {
+			if (objGestorBC.EliminarClientesDeArray(NCliente)) {
 				System.out.println("Registro eliminado correctamente");
 			}
 		} catch (SQLException e) {
