@@ -236,12 +236,12 @@ public class ClsMostrarDatos {
 		for (ItfProperty a : Articulos) {
 
 			System.out.println(a.getIntegerProperty(PROPIEDAD_ARTICULO_REFERENCIA) + " "
-					+ a.getStringProperty(PROPIEDAD_ARTICULO_SERIE) + " "
+					+ a.getIntegerProperty(PROPIEDAD_ARTICULO_SERIE) + " "
 					+ a.getStringProperty(PROPIEDAD_ARTICULO_DESCRIPCION) + " "
-					+ a.getStringProperty(PROPIEDAD_ARTICULO_CANTIDAD_DE_MATERIAL) + " "
-					+ a.getStringProperty(PROPIEDAD_ARTICULO_CANTIDAD_DE_HERRAJES) + " "
-					+ a.getIntegerProperty(PROPIEDAD_ARTICULO_PRECIO) + " "
-					+ a.getStringProperty(PROPIEDAD_ARTICULO_REFERENCIA_SUELAS));
+					+ a.getIntegerProperty(PROPIEDAD_ARTICULO_CANTIDAD_DE_MATERIAL) + " "
+					+ a.getIntegerProperty(PROPIEDAD_ARTICULO_CANTIDAD_DE_HERRAJES) + " "
+					+ a.getDoubleProperty(PROPIEDAD_ARTICULO_PRECIO) + " "
+					+ a.getIntegerProperty(PROPIEDAD_ARTICULO_REFERENCIA_SUELAS));
 		}
 	}
 }

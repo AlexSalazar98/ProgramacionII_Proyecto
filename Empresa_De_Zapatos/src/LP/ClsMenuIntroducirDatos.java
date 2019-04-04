@@ -535,9 +535,13 @@ public class ClsMenuIntroducirDatos {
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
-		objGDesgloseDePedido.CrearDesgloseDePedido(NumeroDePedido, ReferenciaDelArticulo, Serie, Color, NumeroDePie5,
-				NumeroDePie6, NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1, NumeroDePie2,
-				NumeroDePie3, NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
+		try {
+			objGDesgloseDePedido.CrearDesgloseDePedido(NumeroDePedido, ReferenciaDelArticulo, Serie, Color,
+					NumeroDePie5, NumeroDePie6, NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1,
+					NumeroDePie2, NumeroDePie3, NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
+		} catch (SQLException e) {
+			System.out.println("No se ha podido realizar el insert: " + e);
+		}
 
 	}
 }

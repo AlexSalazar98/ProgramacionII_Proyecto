@@ -33,7 +33,9 @@ import static LD.ClsConstantesBD.QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_ARTICULOS;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_ARTICULOS;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_ARTICULOS_POR_REFERENCIA;
-
+import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_DE_DESGLOSE_DE_PEDIDO;
+import static LD.ClsConstantesBD.QUERY_PARA_SELECT_DESGLOSE_DE_PEDIDOS;
+import static LD.ClsConstantesBD.QUERY_PARA_DELETE_DESGLOSE_DE_PEDIDO_POR_NUMERO_DE_PEDIDO_DESGLOSE;
 
 /**
  * Clase para hacer todos los tramites con la Base de Datos.
@@ -1214,6 +1216,177 @@ public class ClsDatos {
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_ARTICULOS_POR_REFERENCIA);
 			objSt.setInt(1, Referencia);
+
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
+			objSt.execute();
+
+			/**
+			 * Cerramos el preparedStatement
+			 */
+			objSt.close();
+
+			/**
+			 * Cerramos la conexión
+			 */
+			objConn.close();
+
+		}
+
+	}
+
+	/**
+	 * 
+	 * Metodo para insertar desgloses de pedido
+	 * 
+	 * @param NumeroDePedido           parametro numero de pedido
+	 * @param ReferenciaDelArticulo    parametro numero de referencia del articulo
+	 * @param Serie                    parametro numero de serie
+	 * @param Color                    parametro numero de color
+	 * @param NumeroDePie5             parametro cantidad del numero 5
+	 * @param NumeroDePie6             parametro cantidad del numero 6
+	 * @param NumeroDePie7             parametro cantidad del numero 7
+	 * @param NumeroDePie8             parametro cantidad del numero 8
+	 * @param NumeroDePie9             parametro cantidad del numero 9
+	 * @param NumeroDePie0             parametro cantidad del numero 0
+	 * @param NumeroDePie1             parametro cantidad del numero 1
+	 * @param NumeroDePie2             parametro cantidad del numero 2
+	 * @param NumeroDePie3             parametro cantidad del numero 3
+	 * @param NumeroDePie4             parametro cantidad del numero 4
+	 * @param CantidadTotal            parametro de cantidad total de numeros.
+	 * @param NumeroDeCliente_Desglose parametro del numero del cliente.
+	 * @throws SQLException lanza excepcion
+	 */
+	public void InsertarDesglose(int NPedidoD, int Articulos_Referencia, int Serie, int Color, int P5,
+			int P6, int P7, int P8, int P9, int P0, int P1,
+			int P2, int P3, int P4, int CantidadTotalPies, int Pedidos_Clientes_NCliente)
+			throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			// Creamos las preparedstaments
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_DE_DESGLOSE_DE_PEDIDO);
+			objSt.setInt(1, NPedidoD);
+			objSt.setInt(2, Serie);
+			objSt.setInt(3, Color);
+			objSt.setInt(4, Articulos_Referencia);
+			objSt.setInt(5, Pedidos_Clientes_NCliente);
+			objSt.setInt(6, P5);
+			objSt.setInt(7, P6);
+			objSt.setInt(8, P7);
+			objSt.setInt(9, P8);
+			objSt.setInt(10, P9);
+			objSt.setInt(11, P0);
+			objSt.setInt(12, P1);
+			objSt.setInt(13, P2);
+			objSt.setInt(14, P3);
+			objSt.setInt(15, P4);
+			objSt.setInt(16, CantidadTotalPies);
+			
+
+			// Ejecutamos la query que hemos preparado
+			objSt.execute();
+
+			// Cerramos el preparedStatement
+			objSt.close();
+
+			// Cerramos la conexión
+			objConn.close();
+
+		}
+
+	}
+
+	/**
+	 * Metodo para consultar desgloses de pedidos en la BD
+	 * 
+	 * @return nos devuelve los datos
+	 * @throws SQLException lanza excepcion
+	 */
+	public ResultSet consultarDesglose() throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		ResultSet rs = null;
+
+		if (objConn != null) {
+			/**
+			 * Preparamos la consulta
+			 */
+			Statement st = objConn.createStatement();
+			rs = st.executeQuery(QUERY_PARA_SELECT_DESGLOSE_DE_PEDIDOS);
+			if (rs.isBeforeFirst()) {
+				return rs;
+			}
+			while (rs.next()) {
+
+				return rs;
+
+			}
+
+			/**
+			 * Cerramos el resulset
+			 * 
+			 */
+			rs.close();
+			/**
+			 * Cerramos el statement
+			 * 
+			 */
+			st.close();
+			/**
+			 * Cerramos la conexión
+			 * 
+			 */
+			objConn.close();
+
+		}
+		return null;
+	}
+
+	/**
+	 * Metodo para eliminar Desgloses de Pedido de la BD
+	 * 
+	 * @param NPedidosD parametro por el cual borrar
+	 * @throws SQLException lanza excepcion
+	 */
+	public void eliminarDesglose(int NPedidosD) throws SQLException {
+
+		/**
+		 * Instancias la clase que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método que tiene la clase y te devuelve una conexión
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			/**
+			 * Creamos las preparedstaments
+			 */
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_DESGLOSE_DE_PEDIDO_POR_NUMERO_DE_PEDIDO_DESGLOSE);
+			objSt.setInt(1, NPedidosD);
 
 			/**
 			 * Ejecutamos la query que hemos preparado

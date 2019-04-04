@@ -305,7 +305,7 @@ public class ClsGestorLN {
 	 * @param CantidadHerrajes           parametro cantidad de herrajes
 	 * @param Precio                     parametro precio
 	 * @param ReferenciaSuelas_Articulos parametro referencia de la suela
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	public void CrearArticulos(int Referencia, int Serie, String Descripcion, int CantidadMaterial,
 			int CantidadHerrajes, double Precio, int ReferenciaSuelas_Articulos) throws SQLException {
@@ -349,25 +349,53 @@ public class ClsGestorLN {
 	 * @param NumeroDePie4             parametro cantidad del numero 4
 	 * @param CantidadTotal            parametro de cantidad total de numeros.
 	 * @param NumeroDeCliente_Desglose parametro del numero del cliente.
+	 * @throws SQLException lanza excepcion.
 	 */
 	public void CrearDesgloseDePedido(int NumeroDePedido, int ReferenciaDelArticulo, int Serie, int Color,
 			int NumeroDePie5, int NumeroDePie6, int NumeroDePie7, int NumeroDePie8, int NumeroDePie9, int NumeroDePie0,
 			int NumeroDePie1, int NumeroDePie2, int NumeroDePie3, int NumeroDePie4, int CantidadTotal,
-			int NumeroDeCliente_Desglose) {
+			int NumeroDeCliente_Desglose) throws SQLException {
 
 		/**
 		 * Crearmos el objeto
 		 */
-		ClsDesgloseDePedido objClsDesgloseDePedido;
-		objClsDesgloseDePedido = new ClsDesgloseDePedido(NumeroDePedido, ReferenciaDelArticulo, Serie, Color,
-				NumeroDePie5, NumeroDePie6, NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1,
-				NumeroDePie2, NumeroDePie3, NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
+		ClsDesgloseDePedido objDesgloseDePedido;
+		objDesgloseDePedido = new ClsDesgloseDePedido(NumeroDePedido, ReferenciaDelArticulo, Serie, Color, NumeroDePie5,
+				NumeroDePie6, NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1, NumeroDePie2,
+				NumeroDePie3, NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
 
-		/**
-		 * Añadimos el objeto a el array.
-		 */
-		MiListaDeDesgloses.add(objClsDesgloseDePedido);
+		if (ExisteDesglose(objDesgloseDePedido)) {
+			/**
+			 * Añadimos el objeto a el array.
+			 */
+			MiListaDeDesgloses.add(objDesgloseDePedido);
+			/**
+			 * Añadimos los datos a la BD
+			 */
+			objDatos.InsertarDesglose(NumeroDePedido, ReferenciaDelArticulo, Serie, Color, NumeroDePie5, NumeroDePie6,
+					NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1, NumeroDePie2, NumeroDePie3,
+					NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
+		}
 
+	}
+
+	/**
+	 * Metodo para comprobar que no existan dos objetos desglose iguales
+	 * 
+	 * @param Desglose objeto desglose
+	 * @return nos dice si esta repetido o no.
+	 */
+	public boolean ExisteDesglose(ClsDesgloseDePedido Desglose) {
+
+		boolean retorno = false;
+
+		for (ClsDesgloseDePedido b : MiListaDeDesgloses) {
+			if (b.equals(Desglose))
+				return true;
+
+		}
+
+		return retorno;
 	}
 
 	/**
@@ -1188,7 +1216,6 @@ public class ClsGestorLN {
 
 	}
 
-	
 	public void ObjetosRecuperadosArticulos() throws SQLException {
 
 		/**
@@ -1204,8 +1231,8 @@ public class ClsGestorLN {
 			int CantidadHerraje = Resultado.getInt("CantidadHerraje");
 			double Precio = Resultado.getDouble("Precio");
 			int Suelas_Referencia = Resultado.getInt("Suelas_Referencia");
-			ClsArticulos objArticulos = new ClsArticulos(Referencia, Serie, Descripcion, CantidadMaterial, CantidadHerraje,
-					Precio, Suelas_Referencia);
+			ClsArticulos objArticulos = new ClsArticulos(Referencia, Serie, Descripcion, CantidadMaterial,
+					CantidadHerraje, Precio, Suelas_Referencia);
 			/**
 			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
 			 */
@@ -1216,7 +1243,6 @@ public class ClsGestorLN {
 
 	}
 
-	
 	public ArrayList<ItfProperty> DameArticulos() {
 
 		/**
@@ -1234,7 +1260,6 @@ public class ClsGestorLN {
 
 	}
 
-	
 	public boolean ExisteArticulos(ClsArticulos Articulos) {
 
 		boolean retorno = false;
@@ -1248,7 +1273,6 @@ public class ClsGestorLN {
 		return retorno;
 	}
 
-	
 	public boolean EliminarArticulosDeArray(int Referencia) throws SQLException, ClsBorrarExcepcion {
 
 		/**
@@ -1291,5 +1315,44 @@ public class ClsGestorLN {
 		}
 
 		return hecho;
+	}
+
+	public void ObjetosRecuperadosDesglose() throws SQLException {
+
+		/**
+		 * Recogemos datos desde LD y consturimos objetos.
+		 */
+		ResultSet Resultado = objDatos.consultarDesglose();
+
+		while (Resultado.next()) {
+			int NumeroDePedido = Resultado.getInt("NPedidoD");
+			int ReferenciaDelArticulo = Resultado.getInt("Articulos_Referencia");
+			int Serie = Resultado.getInt("Serie");
+			int Color = Resultado.getInt("Color");
+			int NumeroDePie5 = Resultado.getInt("P5");
+			int NumeroDePie6 = Resultado.getInt("P6");
+			int NumeroDePie7 = Resultado.getInt("P7");
+			int NumeroDePie8 = Resultado.getInt("P8");
+			int NumeroDePie9 = Resultado.getInt("P9");
+			int NumeroDePie0 = Resultado.getInt("P0");
+			int NumeroDePie1 = Resultado.getInt("P1");
+			int NumeroDePie2 = Resultado.getInt("P2");
+			int NumeroDePie3 = Resultado.getInt("P3");
+			int NumeroDePie4 = Resultado.getInt("P4");
+			int CantidadTotal = Resultado.getInt("CantidadTotalPies");
+			int NumeroDeCliente_Desglose = Resultado.getInt("Pedidos_Clientes_NCliente");
+
+			ClsDesgloseDePedido objDesgloseDePedido = new ClsDesgloseDePedido(NumeroDePedido, ReferenciaDelArticulo,
+					Serie, Color, NumeroDePie5, NumeroDePie6, NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0,
+					NumeroDePie1, NumeroDePie2, NumeroDePie3, NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
+
+			/**
+			 * Los añadimos al Array
+			 */
+
+			MiListaDeDesgloses.add(objDesgloseDePedido);
+
+		}
+
 	}
 }

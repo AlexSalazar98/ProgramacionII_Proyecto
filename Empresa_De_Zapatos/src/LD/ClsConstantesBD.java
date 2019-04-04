@@ -159,10 +159,10 @@ public class ClsConstantesBD {
 	/**
 	 * Constante para la INSERT de Articulos.
 	 */
-	public static final String QUERY_PARA_INSERTAR_ARTICULOS = "INSERT INTO `mydb`.`articulos`\n" + "(`Referencia`,\r\n"
-			+ "`Serie`,\r\n" + "`Descripcion`,\r\n" + "`CantidadMaterial`,\r\n" + "`CantidadHerraje`,\r\n"
-			+ "`Precio`,\r\n" + "`Suelas_Referencia`)\r\n" + "VALUES\r\n" + "(?,\r\n" + "<?,\r\n" + "<?,\r\n"
-			+ "<?,\r\n" + "<?,\r\n" + "<?,\r\n" + "<?;\r\n" + "";
+	public static final String QUERY_PARA_INSERTAR_ARTICULOS = "INSERT INTO `mydb`.`articulos`\r\n"
+			+ "(`Referencia`,\r\n" + "`Serie`,\r\n" + "`Descripcion`,\r\n" + "`CantidadMaterial`,\r\n"
+			+ "`CantidadHerraje`,\r\n" + "`Precio`,\r\n" + "`Suelas_Referencia`)\r\n" + "VALUES\r\n" + "(?,\r\n"
+			+ "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?);";
 
 	/**
 	 * Constante para SELECT Articulos.
@@ -178,4 +178,35 @@ public class ClsConstantesBD {
 	 */
 	public static final String QUERY_PARA_DELETE_ARTICULOS_POR_REFERENCIA = "DELETE FROM `mydb`.`articulos`\r\n"
 			+ "WHERE Referencia = ?;";
+
+	/**
+	 * Constante para INSERT de desglose de pedidos.
+	 */
+	public static final String QUERY_PARA_INSERTAR_DE_DESGLOSE_DE_PEDIDO = "INSERT INTO `mydb`.`desglosedepedidos`\r\n"
+			+ "(`NPedidoD`,\r\n" + "`Serie`,\r\n" + "`Color`,\r\n" + "`Articulos_Referencia`,\r\n"
+			+ "`Pedidos_Clientes_NCliente`,\r\n" + "`5`,\r\n" + "`6`,\r\n" + "`7`,\r\n" + "`8`,\r\n" + "`9`,\r\n"
+			+ "`0`,\r\n" + "`1`,\r\n" + "`2`,\r\n" + "`3`,\r\n" + "`4`)\r\n" + "VALUES\r\n" + "(?,\r\n" + "?,\r\n"
+			+ "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n"
+			+ "?,\r\n" + "?,\r\n" + "?,\r\n" + "?);";
+
+	/**
+	 * Constante para SELECT de desglose de pedidos.
+	 */
+	public static final String QUERY_PARA_SELECT_DESGLOSE_DE_PEDIDOS = "SELECT `desglosedepedidos`.`NPedidoD`,\r\n"
+			+ "    `desglosedepedidos`.`Serie`,\r\n" + "    `desglosedepedidos`.`Color`,\r\n"
+			+ "    `desglosedepedidos`.`Articulos_Referencia`,\r\n"
+			+ "    `desglosedepedidos`.`Pedidos_Clientes_NCliente`,\r\n" + "    `desglosedepedidos`.`P5`,\r\n"
+			+ "    `desglosedepedidos`.`P6`,\r\n" + "    `desglosedepedidos`.`P7`,\r\n"
+			+ "    `desglosedepedidos`.`P8`,\r\n" + "    `desglosedepedidos`.`P9`,\r\n"
+			+ "    `desglosedepedidos`.`P0`,\r\n" + "    `desglosedepedidos`.`P1`,\r\n"
+			+ "    `desglosedepedidos`.`P2`,\r\n" + "    `desglosedepedidos`.`P3`,\r\n"
+			+ "    `desglosedepedidos`.`P4`,\r\n" + "    `desglosedepedidos`.`CantidadTotalPies`\r\n"
+			+ "FROM `mydb`.`desglosedepedidos`;";
+
+	/**
+	 * Constante para DELETE desglose de pedido por numero de Pedido Desglose.
+	 */
+	public static final String QUERY_PARA_DELETE_DESGLOSE_DE_PEDIDO_POR_NUMERO_DE_PEDIDO_DESGLOSE = "DELETE FROM `mydb`.`desglosedepedidos`\r\n"
+			+ "WHERE NPedidoD = ?;";
+
 }
