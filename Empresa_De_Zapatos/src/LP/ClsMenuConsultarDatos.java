@@ -198,7 +198,10 @@ public class ClsMenuConsultarDatos {
 	 * @param objMostrarDatosA  relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosArticulos(ClsGestorLN ObjGestCArticulos, ClsMostrarDatos objMostrarDatosA) {
-
+		/**
+		 * Llamamos al metodo ver Articulos.
+		 */
+		objMostrarDatosA.VerArticulos(ObjGestCArticulos);
 	}
 
 	/**

@@ -14,6 +14,7 @@ import static COMUN.ClsConstantes.PROPIEDAD_HERRAJES_REFERENCIA;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NUMERO;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_ENVIO;
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_REFERENCIA;
 
 /**
  * Clase de gestion entre LN y LP
@@ -135,13 +136,12 @@ public class ClsGestorLN {
 	 */
 	public void CrearPedidos(int NumeroDePedido, Date FechaDePedido, Date FechaDeEntrega, Boolean Entregado,
 			int NumeroDeCliente_Pedidos, String NombreYApelliosDelCliente) throws SQLException {
-		
+
 		java.sql.Date Fecha_de_pedido = new java.sql.Date(FechaDeEntrega.getTime());
 		java.sql.Date Fecha_de_entrega = new java.sql.Date(FechaDeEntrega.getTime());
 		/**
-		
-		/**
-		 * Crearmos el objeto
+		 * 
+		 * /** Crearmos el objeto
 		 */
 		ClsPedidos objPedido;
 		objPedido = new ClsPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado, NombreYApelliosDelCliente,
@@ -159,8 +159,8 @@ public class ClsGestorLN {
 			/**
 			 * Llamada a introducir datos con paso de parametros
 			 */
-			objDatos.InsertarPedidos(NumeroDePedido, Fecha_de_pedido, Fecha_de_entrega, Entregado, NumeroDeCliente_Pedidos,
-					NombreYApelliosDelCliente);
+			objDatos.InsertarPedidos(NumeroDePedido, Fecha_de_pedido, Fecha_de_entrega, Entregado,
+					NumeroDeCliente_Pedidos, NombreYApelliosDelCliente);
 		}
 	}
 
@@ -305,9 +305,10 @@ public class ClsGestorLN {
 	 * @param CantidadHerrajes           parametro cantidad de herrajes
 	 * @param Precio                     parametro precio
 	 * @param ReferenciaSuelas_Articulos parametro referencia de la suela
+	 * @throws SQLException 
 	 */
 	public void CrearArticulos(int Referencia, int Serie, String Descripcion, int CantidadMaterial,
-			int CantidadHerrajes, double Precio, int ReferenciaSuelas_Articulos) {
+			int CantidadHerrajes, double Precio, int ReferenciaSuelas_Articulos) throws SQLException {
 
 		/**
 		 * Crearmos el objeto
@@ -316,11 +317,17 @@ public class ClsGestorLN {
 		objArticulos = new ClsArticulos(Referencia, Serie, Descripcion, CantidadMaterial, CantidadHerrajes, Precio,
 				ReferenciaSuelas_Articulos);
 
-		/**
-		 * Añadimos el objeto a el array.
-		 */
-		MiListaDeArticulos.add(objArticulos);
-
+		if (!ExisteArticulos(objArticulos)) {
+			/**
+			 * Añadimos el objeto a el array.
+			 */
+			MiListaDeArticulos.add(objArticulos);
+			/**
+			 * Mandamos los datos a LD para introducir a BD
+			 */
+			objDatos.InsertarArticulos(Referencia, Serie, Descripcion, CantidadMaterial, CantidadHerrajes, Precio,
+					ReferenciaSuelas_Articulos);
+		}
 	}
 
 	/**
@@ -980,8 +987,8 @@ public class ClsGestorLN {
 			String ProvinciaDeEnvio = Resultado.getString("ProvinciaDeEnvio");
 			int TelefonoDeEnvio = Resultado.getInt("TelefonoDeEnvio");
 			int NumeroDeCliente_Envio = Resultado.getInt("Clientes_NCliente");
-			ClsEnvios objEnvios = new ClsEnvios(NumeroDeEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio, CPDeENVIO,
-					ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
+			ClsEnvios objEnvios = new ClsEnvios(NumeroDeEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio,
+					CPDeENVIO, ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
 			/**
 			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
 			 */
@@ -1034,7 +1041,7 @@ public class ClsGestorLN {
 	 * Metopo para eliminar cliente de Array y BD
 	 * 
 	 * @param NºEnvio parametro por el cual borrar.
-	 * @throws SQLException lanzamos excepcion
+	 * @throws SQLException       lanzamos excepcion
 	 * @throws ClsBorrarExcepcion excepcion para el borrado
 	 */
 	public boolean EliminarEnviosDeArray(int NEnvio) throws SQLException, ClsBorrarExcepcion {
@@ -1080,8 +1087,7 @@ public class ClsGestorLN {
 		}
 
 		return hecho;
-		
-		
+
 	}
 
 	public void ObjetosRecuperadosPedidos() throws SQLException {
@@ -1135,7 +1141,7 @@ public class ClsGestorLN {
 		}
 		return retorno;
 	}
-	
+
 	public boolean EliminarPedidosDeArray(int NPedido) throws SQLException, ClsBorrarExcepcion {
 
 		/**
@@ -1180,5 +1186,110 @@ public class ClsGestorLN {
 
 		return hecho;
 
+	}
+
+	
+	public void ObjetosRecuperadosArticulos() throws SQLException {
+
+		/**
+		 * Recogemos datos desde LD y consturimos objetos.
+		 */
+		ResultSet Resultado = objDatos.consultarArticulos();
+
+		while (Resultado.next()) {
+			int Referencia = Resultado.getInt("Referencia");
+			int Serie = Resultado.getInt("Serie");
+			String Descripcion = Resultado.getString("Descripcion");
+			int CantidadMaterial = Resultado.getInt("CantidadMaterial");
+			int CantidadHerraje = Resultado.getInt("CantidadHerraje");
+			double Precio = Resultado.getDouble("Precio");
+			int Suelas_Referencia = Resultado.getInt("Suelas_Referencia");
+			ClsArticulos objArticulos = new ClsArticulos(Referencia, Serie, Descripcion, CantidadMaterial, CantidadHerraje,
+					Precio, Suelas_Referencia);
+			/**
+			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
+			 */
+
+			MiListaDeArticulos.add(objArticulos);
+
+		}
+
+	}
+
+	
+	public ArrayList<ItfProperty> DameArticulos() {
+
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		for (ClsArticulos a : MiListaDeArticulos) {
+			retorno.add(a);
+		}
+
+		return retorno;
+
+	}
+
+	
+	public boolean ExisteArticulos(ClsArticulos Articulos) {
+
+		boolean retorno = false;
+
+		for (ClsArticulos b : MiListaDeArticulos) {
+			if (b.equals(Articulos))
+				return true;
+
+		}
+
+		return retorno;
+	}
+
+	
+	public boolean EliminarArticulosDeArray(int Referencia) throws SQLException, ClsBorrarExcepcion {
+
+		/**
+		 * variable para saber si se ha hecho el borrado o no
+		 */
+		boolean hecho = true;
+
+		/**
+		 * Variables para buscar la posicion de objeto en el array
+		 */
+		int index = -1;
+		int bound = MiListaDeArticulos.size();
+		/**
+		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
+		 */
+		for (int userInd = 0; userInd < bound; userInd++) {
+			if (MiListaDeArticulos.get(userInd).getIntegerProperty(PROPIEDAD_ARTICULO_REFERENCIA).equals(Referencia)) {
+				index = userInd;
+				break;
+			}
+
+		}
+
+		/**
+		 * si encontramos posicion del objeto en el array borramos si no devolvemos
+		 * false
+		 */
+		if (index == -1) {
+			hecho = false;
+			throw new ClsBorrarExcepcion();
+		} else {
+			/**
+			 * borramos del array
+			 */
+			MiListaDeArticulos.remove(index);
+			/**
+			 * mandamos borrar de la BD.
+			 */
+			objDatos.eliminarArticulos(Referencia);
+		}
+
+		return hecho;
 	}
 }

@@ -131,7 +131,7 @@ public class ClsConstantesBD {
 	/**
 	 * Constante de DELETE para Envios por NºEnvio.
 	 */
-	public static final String QUERY_PARA_DELETE_ENVIOS_POR_NºENVIO = "DELETE FROM `mydb`.`envios`\n"
+	public static final String QUERY_PARA_DELETE_ENVIOS_POR_NUMERO_DE_ENVIO = "DELETE FROM `mydb`.`envios`\n"
 			+ "WHERE NEnvio = ?;\r\n" + "";
 
 	/**
@@ -153,7 +153,29 @@ public class ClsConstantesBD {
 	/**
 	 * Constante para DELETE Pedidos.
 	 */
-	public static final String QUERY_PARA_DELETE_PEDIDOS_POR_NPEDIDO = "DELETE FROM `mydb`.`pedidos`\r\n"
+	public static final String QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO = "DELETE FROM `mydb`.`pedidos`\r\n"
 			+ "WHERE NPedido = ?;";
 
+	/**
+	 * Constante para la INSERT de Articulos.
+	 */
+	public static final String QUERY_PARA_INSERTAR_ARTICULOS = "INSERT INTO `mydb`.`articulos`\n" + "(`Referencia`,\r\n"
+			+ "`Serie`,\r\n" + "`Descripcion`,\r\n" + "`CantidadMaterial`,\r\n" + "`CantidadHerraje`,\r\n"
+			+ "`Precio`,\r\n" + "`Suelas_Referencia`)\r\n" + "VALUES\r\n" + "(?,\r\n" + "<?,\r\n" + "<?,\r\n"
+			+ "<?,\r\n" + "<?,\r\n" + "<?,\r\n" + "<?;\r\n" + "";
+
+	/**
+	 * Constante para SELECT Articulos.
+	 */
+	public static final String QUERY_PARA_SELECT_ARTICULOS = "SELECT `articulos`.`Referencia`,\r\n"
+			+ "    `articulos`.`Serie`,\r\n" + "    `articulos`.`Descripcion`,\r\n"
+			+ "    `articulos`.`CantidadMaterial`,\r\n" + "    `articulos`.`CantidadHerraje`,\r\n"
+			+ "    `articulos`.`Precio`,\r\n" + "    `articulos`.`Suelas_Referencia`\r\n"
+			+ "FROM `mydb`.`articulos`;\r\n" + "";
+
+	/**
+	 * Constante para DELETE Articulos.
+	 */
+	public static final String QUERY_PARA_DELETE_ARTICULOS_POR_REFERENCIA = "DELETE FROM `mydb`.`articulos`\r\n"
+			+ "WHERE Referencia = ?;";
 }
