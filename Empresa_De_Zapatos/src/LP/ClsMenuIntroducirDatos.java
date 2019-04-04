@@ -460,8 +460,12 @@ public class ClsMenuIntroducirDatos {
 		/**
 		 * Pasamos los parametros para generer el objeto
 		 */
-		objGArticulos.CrearArticulos(Referencia, Serie, Descripcion, CantidadMaterial, CantidadHerrajes, Precio,
-				ReferenciaSuelas_Articulos);
+		try {
+			objGArticulos.CrearArticulos(Referencia, Serie, Descripcion, CantidadMaterial, CantidadHerrajes, Precio,
+					ReferenciaSuelas_Articulos);
+		} catch (SQLException e) {
+			System.out.println("No se ha podido realizar el insert: " + e);
+		}
 
 	}
 

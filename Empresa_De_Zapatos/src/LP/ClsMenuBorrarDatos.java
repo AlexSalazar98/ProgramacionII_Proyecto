@@ -73,7 +73,7 @@ public class ClsMenuBorrarDatos {
 				break;
 
 			case 8:
-				BorrarDatosArticulos();
+				BorrarDatosArticulos(objGestorMB);
 				break;
 
 			case 9:
@@ -307,12 +307,32 @@ public class ClsMenuBorrarDatos {
 	}
 
 	/**
+	 * Pedimos datos a Borrar en la entidad Articulos
 	 * 
-	 * Pedimos los datos a Borrar en la entidad Articulo
-	 *
+	 * @param objGestorBA parametro para acceder a borrar articulos del array
 	 */
-	public static void BorrarDatosArticulos() {
+	public static void BorrarDatosArticulos(ClsGestorLN objGestorBA) {
+		/**
+		 * Pedimos el numero de Herrajes que se quiera eliminar.
+		 */
+		System.out.println("Inserte la Referencia del Articulo que desee eliminar");
+		/**
+		 * Variable para recoger el numero de herraje.
+		 */
+		int Referencia = UtilidadesLP.leerEntero();
 
+		/**
+		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
+		 */
+		try {
+			if (objGestorBA.EliminarArticulosDeArray(Referencia)) {
+				System.out.println("Registro eliminado correctamente");
+			}
+		} catch (SQLException e) {
+			System.out.println("No se ha podido eliminar el registro: " + e);
+		} catch (ClsBorrarExcepcion e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**

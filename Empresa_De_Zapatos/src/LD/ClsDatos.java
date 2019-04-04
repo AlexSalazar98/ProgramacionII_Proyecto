@@ -30,6 +30,9 @@ import static LD.ClsConstantesBD.QUERY_PARA_DELETE_ENVIOS_POR_NºENVIO;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_PEDIDOS;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_PEDIDOS;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_PEDIDOS_POR_NºPEDIDO;
+import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_ARTICULOS;
+import static LD.ClsConstantesBD.QUERY_PARA_SELECT_ARTICULOS;
+import static LD.ClsConstantesBD.QUERY_PARA_DELETE_ARTICULOS_POR_REFERENCIA;
 
 /**
  * Clase para hacer todos los tramites con la Base de Datos.
@@ -931,11 +934,22 @@ public class ClsDatos {
 
 	}
 
-	public void InsertarPedidos(int NPedido, java.sql.Date FechaDePedido, java.sql.Date FechaDeEntrega, Boolean Entregado,
-			int Clientes_NCliente, String NombreYApellidos) throws SQLException {
+	/**
+	 * Metodo para insertar pedidos en BD
+	 * 
+	 * @param NPedido
+	 * @param FechaDePedido
+	 * @param FechaDeEntrega
+	 * @param Entregado
+	 * @param Clientes_NCliente
+	 * @param NombreYApellidos
+	 * @throws SQLException
+	 */
+	public void InsertarPedidos(int NPedido, java.sql.Date FechaDePedido, java.sql.Date FechaDeEntrega,
+			Boolean Entregado, int Clientes_NCliente, String NombreYApellidos) throws SQLException {
 
-		//java.sql.Date Fecha_de_pedido = new java.sql.Date(FechaDeEntrega.getTime());
-		//java.sql.Date Fecha_de_entrega = new java.sql.Date(FechaDeEntrega.getTime());
+		// java.sql.Date Fecha_de_pedido = new java.sql.Date(FechaDeEntrega.getTime());
+		// java.sql.Date Fecha_de_entrega = new java.sql.Date(FechaDeEntrega.getTime());
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
 		 */
@@ -970,6 +984,12 @@ public class ClsDatos {
 
 	}
 
+	/**
+	 * Metodo para consultar pedidos en BD
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
 	public ResultSet consultarPedidos() throws SQLException {
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
@@ -1019,6 +1039,12 @@ public class ClsDatos {
 		return null;
 	}
 
+	/**
+	 * Metodo para eliminar pedidos en la BD
+	 * 
+	 * @param NPedido
+	 * @throws SQLException
+	 */
 	public void eliminarPedidos(int NPedido) throws SQLException {
 
 		/**
@@ -1038,6 +1064,155 @@ public class ClsDatos {
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_PEDIDOS_POR_NºPEDIDO);
 			objSt.setInt(1, NPedido);
+
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
+			objSt.execute();
+
+			/**
+			 * Cerramos el preparedStatement
+			 */
+			objSt.close();
+
+			/**
+			 * Cerramos la conexión
+			 */
+			objConn.close();
+
+		}
+
+	}
+
+	/**
+	 * Metodo para introducir Articulos en la BD
+	 * 
+	 * @param Referencia
+	 * @param Serie
+	 * @param Descripcion
+	 * @param CantidadMaterial
+	 * @param CantidadHerrajes
+	 * @param Precio
+	 * @param ReferenciaSuelas_Articulos
+	 * @throws SQLException
+	 */
+	public void InsertarArticulos(int Referencia, int Serie, String Descripcion, int CantidadMaterial,
+			int CantidadHerrajes, double Precio, int ReferenciaSuelas_Articulos) throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			// Creamos las preparedstaments
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_ARTICULOS);
+			objSt.setInt(1, Referencia);
+			objSt.setInt(2, Serie);
+			objSt.setString(3, Descripcion);
+			objSt.setInt(4, CantidadMaterial);
+			objSt.setInt(5, CantidadHerrajes);
+			objSt.setDouble(6, Precio);
+			objSt.setInt(7, ReferenciaSuelas_Articulos);
+
+			// Ejecutamos la query que hemos preparado
+			objSt.execute();
+
+			// Cerramos el preparedStatement
+			objSt.close();
+
+			// Cerramos la conexión
+			objConn.close();
+
+		}
+
+	}
+
+	/**
+	 * Metodo para consultar datos en la BD
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
+	public ResultSet consultarArticulos() throws SQLException {
+		/**
+		 * Instancias el metodo que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método y te devuelve una conexión
+		 * 
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		ResultSet rs = null;
+
+		if (objConn != null) {
+			/**
+			 * Preparamos la consulta
+			 */
+			Statement st = objConn.createStatement();
+			rs = st.executeQuery(QUERY_PARA_SELECT_ARTICULOS);
+			if (rs.isBeforeFirst()) {
+				return rs;
+			}
+			while (rs.next()) {
+
+				return rs;
+
+			}
+
+			/**
+			 * Cerramos el resulset
+			 * 
+			 */
+			rs.close();
+			/**
+			 * Cerramos el statement
+			 * 
+			 */
+			st.close();
+			/**
+			 * Cerramos la conexión
+			 * 
+			 */
+			objConn.close();
+
+		}
+		return null;
+	}
+
+	/**
+	 * Metodo para eliminar Articulos de la BD
+	 * 
+	 * @param Referencia
+	 * @throws SQLException
+	 */
+	public void eliminarArticulos(int Referencia) throws SQLException {
+
+		/**
+		 * Instancias la clase que hemos creado anteriormente
+		 */
+		ClsDatos SQL = new ClsDatos();
+
+		/**
+		 * Llamas al método que tiene la clase y te devuelve una conexión
+		 */
+		Connection objConn = SQL.conectarBD();
+
+		if (objConn != null) {
+
+			/**
+			 * Creamos las preparedstaments
+			 */
+			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_ARTICULOS_POR_REFERENCIA);
+			objSt.setInt(1, Referencia);
 
 			/**
 			 * Ejecutamos la query que hemos preparado

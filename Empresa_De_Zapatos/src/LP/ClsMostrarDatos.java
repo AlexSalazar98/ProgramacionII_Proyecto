@@ -29,7 +29,13 @@ import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_CPD_DE_ENVIO;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_PROVINCIA_DE_ENVIO;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_TELEFONO_DE_ENVIO;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO;
-
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_REFERENCIA;
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_SERIE;
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_DESCRIPCION;
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_CANTIDAD_DE_MATERIAL;
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_CANTIDAD_DE_HERRAJES;
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_PRECIO;
+import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_REFERENCIA_SUELAS;
 import java.util.ArrayList;
 
 import COMUN.ItfProperty;
@@ -162,6 +168,11 @@ public class ClsMostrarDatos {
 		}
 	}
 
+	/**
+	 * Metodo sacar por consola Pedidos
+	 * 
+	 * @param objGestorVP
+	 */
 	public void VerPedidos(ClsGestorLN objGestorVP) {
 		ArrayList<ItfProperty> Pedidos;
 
@@ -182,6 +193,11 @@ public class ClsMostrarDatos {
 		}
 	}
 
+	/**
+	 * Metodo sacar por consola Envios
+	 * 
+	 * @param objGestorVP
+	 */
 	public void VerEnvios(ClsGestorLN objGestorVP) {
 		ArrayList<ItfProperty> Envios;
 
@@ -201,6 +217,31 @@ public class ClsMostrarDatos {
 					+ a.getIntegerProperty(PROPIEDAD_ENVIOS_TELEFONO_DE_ENVIO) + " "
 					+ a.getIntegerProperty(PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO));
 
+		}
+	}
+
+	/**
+	 * Metodo sacar por consola Articulos
+	 * 
+	 * @param objGestorVA
+	 */
+	public void VerArticulos(ClsGestorLN objGestorVA) {
+		ArrayList<ItfProperty> Articulos;
+
+		Articulos = objGestorVA.DameArticulos();
+
+		System.out.println("ARTICULOS RECUPERADOS");
+		System.out.println("--------------------");
+
+		for (ItfProperty a : Articulos) {
+
+			System.out.println(a.getIntegerProperty(PROPIEDAD_ARTICULO_REFERENCIA) + " "
+					+ a.getStringProperty(PROPIEDAD_ARTICULO_SERIE) + " "
+					+ a.getStringProperty(PROPIEDAD_ARTICULO_DESCRIPCION) + " "
+					+ a.getStringProperty(PROPIEDAD_ARTICULO_CANTIDAD_DE_MATERIAL) + " "
+					+ a.getStringProperty(PROPIEDAD_ARTICULO_CANTIDAD_DE_HERRAJES) + " "
+					+ a.getIntegerProperty(PROPIEDAD_ARTICULO_PRECIO) + " "
+					+ a.getStringProperty(PROPIEDAD_ARTICULO_REFERENCIA_SUELAS));
 		}
 	}
 }
