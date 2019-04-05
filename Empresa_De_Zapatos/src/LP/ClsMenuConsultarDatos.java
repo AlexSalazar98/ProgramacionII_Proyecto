@@ -211,6 +211,11 @@ public class ClsMenuConsultarDatos {
 	 * @param objMostrarDatosD relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosDesgloseDePedido(ClsGestorLN ObjGestCDesglose, ClsMostrarDatos objMostrarDatosD) {
+		
+		/**
+		 * Llamamos al metodo ver Desgloses.
+		 */
+		objMostrarDatosD.VerDesgloses(ObjGestCDesglose);
 
 	}
 }

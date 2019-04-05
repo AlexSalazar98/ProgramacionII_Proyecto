@@ -184,10 +184,10 @@ public class ClsConstantesBD {
 	 */
 	public static final String QUERY_PARA_INSERTAR_DE_DESGLOSE_DE_PEDIDO = "INSERT INTO `mydb`.`desglosedepedidos`\r\n"
 			+ "(`NPedidoD`,\r\n" + "`Serie`,\r\n" + "`Color`,\r\n" + "`Articulos_Referencia`,\r\n"
-			+ "`Pedidos_Clientes_NCliente`,\r\n" + "`5`,\r\n" + "`6`,\r\n" + "`7`,\r\n" + "`8`,\r\n" + "`9`,\r\n"
-			+ "`0`,\r\n" + "`1`,\r\n" + "`2`,\r\n" + "`3`,\r\n" + "`4`)\r\n" + "VALUES\r\n" + "(?,\r\n" + "?,\r\n"
-			+ "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n"
-			+ "?,\r\n" + "?,\r\n" + "?,\r\n" + "?);";
+			+ "`Pedidos_Clientes_NCliente`,\r\n" + "`P5`,\r\n" + "`P6`,\r\n" + "`P7`,\r\n" + "`P8`,\r\n" + "`P9`,\r\n"
+			+ "`P0`,\r\n" + "`P1`,\r\n" + "`P2`,\r\n" + "`P3`,\r\n" + "`P4`,\r\n" + "`CantidadTotalPies`)\r\n"
+			+ "VALUES\r\n" + "(?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n"
+			+ "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?,\r\n" + "?);";
 
 	/**
 	 * Constante para SELECT de desglose de pedidos.
@@ -201,7 +201,7 @@ public class ClsConstantesBD {
 			+ "    `desglosedepedidos`.`P0`,\r\n" + "    `desglosedepedidos`.`P1`,\r\n"
 			+ "    `desglosedepedidos`.`P2`,\r\n" + "    `desglosedepedidos`.`P3`,\r\n"
 			+ "    `desglosedepedidos`.`P4`,\r\n" + "    `desglosedepedidos`.`CantidadTotalPies`\r\n"
-			+ "FROM `mydb`.`desglosedepedidos`;";
+			+ "FROM `mydb`.`desglosedepedidos`;\r\n" + "";
 
 	/**
 	 * Constante para DELETE desglose de pedido por numero de Pedido Desglose.

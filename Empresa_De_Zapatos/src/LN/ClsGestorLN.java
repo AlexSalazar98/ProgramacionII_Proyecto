@@ -15,6 +15,7 @@ import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NUMERO;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_ENVIO;
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_REFERENCIA;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO;
 
 /**
  * Clase de gestion entre LN y LP
@@ -364,7 +365,7 @@ public class ClsGestorLN {
 				NumeroDePie6, NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1, NumeroDePie2,
 				NumeroDePie3, NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
 
-		if (ExisteDesglose(objDesgloseDePedido)) {
+		if (!ExisteDesglose(objDesgloseDePedido)) {
 			/**
 			 * Añadimos el objeto a el array.
 			 */
@@ -1354,5 +1355,66 @@ public class ClsGestorLN {
 
 		}
 
+	}
+	
+	public ArrayList<ItfProperty> DameDesgloses() {
+
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		for (ClsDesgloseDePedido a : MiListaDeDesgloses) {
+			retorno.add(a);
+		}
+
+		return retorno;
+
+	}
+	
+	public boolean EliminarDesglosesDeArray(int NPedidoD) throws SQLException, ClsBorrarExcepcion {
+
+		/**
+		 * variable para saber si se ha hecho el borrado o no
+		 */
+		boolean hecho = true;
+
+		/**
+		 * Variables para buscar la posicion de objeto en el array
+		 */
+		int index = -1;
+		int bound = MiListaDeDesgloses.size();
+		/**
+		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
+		 */
+		for (int userInd = 0; userInd < bound; userInd++) {
+			if (MiListaDeDesgloses.get(userInd).getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO).equals(NPedidoD)) {
+				index = userInd;
+				break;
+			}
+
+		}
+
+		/**
+		 * si encontramos posicion del objeto en el array borramos si no devolvemos
+		 * false
+		 */
+		if (index == -1) {
+			hecho = false;
+			throw new ClsBorrarExcepcion();
+		} else {
+			/**
+			 * borramos del array
+			 */
+			MiListaDeDesgloses.remove(index);
+			/**
+			 * mandamos borrar de la BD.
+			 */
+			objDatos.eliminarDesglose(NPedidoD);
+		}
+
+		return hecho;
 	}
 }

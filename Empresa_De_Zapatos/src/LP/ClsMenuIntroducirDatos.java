@@ -499,13 +499,13 @@ public class ClsMenuIntroducirDatos {
 		/**
 		 * pedimos los datos.
 		 */
-		System.out.print("Introduzca el Número de Pedido:");
+		System.out.print("Introduzca el Numero de Desglose:");
 		NumeroDePedido = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca la Referencia del Artículo:");
 		ReferenciaDelArticulo = UtilidadesLP.leerEntero();
-		System.out.print("Introduzca ");
+		System.out.print("Introduzca el Numero de Serie:");
 		Serie = UtilidadesLP.leerEntero();
-		System.out.print("Introduzca el Número del Color:");
+		System.out.print("Introduzca el Numero del Color:");
 		Color = UtilidadesLP.leerEntero();
 		System.out.print("Introduzca la cantidad de pares de zapatos del Número 5:");
 		NumeroDePie5 = UtilidadesLP.leerEntero();

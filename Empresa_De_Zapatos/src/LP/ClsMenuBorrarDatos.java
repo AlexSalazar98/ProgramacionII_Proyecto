@@ -77,7 +77,7 @@ public class ClsMenuBorrarDatos {
 				break;
 
 			case 9:
-				BorrarDatosDesgloseDePedido();
+				BorrarDatosDesgloseDePedido(objGestorMB);
 				break;
 
 			default:
@@ -340,7 +340,28 @@ public class ClsMenuBorrarDatos {
 	 * Pedimos los datos a Borrar en la entidad Desglose de Pedidos.
 	 *
 	 */
-	public static void BorrarDatosDesgloseDePedido() {
+	public static void BorrarDatosDesgloseDePedido(ClsGestorLN objGestorBD) {
+		/**
+		 * Pedimos el numero de Herrajes que se quiera eliminar.
+		 */
+		System.out.println("Inserte el Numero de Desglose que desee eliminar");
+		/**
+		 * Variable para recoger el numero de herraje.
+		 */
+		int NPedidoD = UtilidadesLP.leerEntero();
 
+		/**
+		 * Rodeamos con TRY CATCH para tratar excepciones y sacar mensaje de aviso
+		 */
+		try {
+			if (objGestorBD.EliminarDesglosesDeArray(NPedidoD)) {
+				System.out.println("Registro eliminado correctamente");
+			}
+		} catch (SQLException e) {
+			System.out.println("No se ha podido eliminar el registro: " + e);
+		} catch (ClsBorrarExcepcion e) {
+			System.out.println(e.getMessage());
+		}
 	}
+
 }

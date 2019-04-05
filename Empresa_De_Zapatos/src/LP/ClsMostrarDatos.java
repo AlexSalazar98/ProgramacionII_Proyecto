@@ -36,6 +36,22 @@ import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_CANTIDAD_DE_MATERIAL;
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_CANTIDAD_DE_HERRAJES;
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_PRECIO;
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_REFERENCIA_SUELAS;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_SERIE;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_COLOR;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_CLIENTE;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_5;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_6;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_7;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_8;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_9;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_0;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_1;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_2;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_3;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_4;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_CANTIDAD_TOTAL;
 import java.util.ArrayList;
 
 import COMUN.ItfProperty;
@@ -60,11 +76,11 @@ public class ClsMostrarDatos {
 	 * 
 	 * @param ObjGestorVS parametro para acceder al metodo DameSeries.
 	 */
-	public void VerSeries(ClsGestorLN ObjGestorVS) {
+	public void VerSeries(ClsGestorLN ObjGestorVSe) {
 
 		ArrayList<ItfProperty> Series;
 
-		Series = ObjGestorVS.DameSeries();
+		Series = ObjGestorVSe.DameSeries();
 
 		System.out.println("SERIES RECUPERADAS");
 		System.out.println("-------------------");
@@ -198,10 +214,10 @@ public class ClsMostrarDatos {
 	 * 
 	 * @param objGestorVP
 	 */
-	public void VerEnvios(ClsGestorLN objGestorVP) {
+	public void VerEnvios(ClsGestorLN objGestorVE) {
 		ArrayList<ItfProperty> Envios;
 
-		Envios = objGestorVP.DameEnvios();
+		Envios = objGestorVE.DameEnvios();
 
 		System.out.println("ENVIOS RECUPERADOS");
 		System.out.println("--------------------");
@@ -242,6 +258,35 @@ public class ClsMostrarDatos {
 					+ a.getIntegerProperty(PROPIEDAD_ARTICULO_CANTIDAD_DE_HERRAJES) + " "
 					+ a.getDoubleProperty(PROPIEDAD_ARTICULO_PRECIO) + " "
 					+ a.getIntegerProperty(PROPIEDAD_ARTICULO_REFERENCIA_SUELAS));
+		}
+	}
+
+	public void VerDesgloses(ClsGestorLN objGestorVD) {
+		ArrayList<ItfProperty> Desgloses;
+
+		Desgloses = objGestorVD.DameDesgloses();
+
+		System.out.println("ARTICULOS RECUPERADOS");
+		System.out.println("--------------------");
+
+		for (ItfProperty a : Desgloses) {
+
+			System.out.println(a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_SERIE) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_COLOR) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_CLIENTE) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_5) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_6) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_7) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_8) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_9) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_0) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_1) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_2) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_3) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_4) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_CANTIDAD_TOTAL));
 		}
 	}
 }
