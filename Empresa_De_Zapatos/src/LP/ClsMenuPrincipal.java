@@ -18,7 +18,7 @@ public class ClsMenuPrincipal {
 	public static void MenuPrincipal() {
 
 		/**
-		 * Creamos un objeto Gestor.
+		 * Creamos un objeto Gestor y un objeto Datos.
 		 */
 		ClsGestorLN objGestor = new ClsGestorLN();
 		ClsMostrarDatos objMostrarDatos = new ClsMostrarDatos();
@@ -38,6 +38,9 @@ public class ClsMenuPrincipal {
 			objGestor.ObjetosRecuperadosDesglose();
 		} catch (SQLException e) {
 
+			/**
+			 * Lanza mensaje de excepcion en caso de que no pueda cargar la informacion
+			 */
 			System.out.println("Ejecute la aplicacion MySQLWorkBench");
 			System.out.println(e);
 		}
@@ -54,6 +57,9 @@ public class ClsMenuPrincipal {
 		 */
 		System.out.println("¡Bienvenido!");
 
+		/**
+		 * Mostaramos el menu.
+		 */
 		do {
 			System.out.println("Elije la opcion que desees realizar: ");
 			System.out.println(

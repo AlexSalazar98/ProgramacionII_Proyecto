@@ -78,6 +78,9 @@ public class ClsComprobarDNI_NIF {
 		 */
 		if (letraNIF != secuenciaLetrasNIF.charAt(i)) {
 			correcto = false;
+			/**
+			 * Lanza una nueva excepcion
+			 */
 			throw new ClsDNI_NIFValidoExcepcion();
 
 		}

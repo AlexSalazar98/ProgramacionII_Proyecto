@@ -153,8 +153,8 @@ public class ClsConstantesBD {
 	/**
 	 * Constante para DELETE Pedidos.
 	 */
-	public static final String QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO = "DELETE FROM `mydb`.`pedidos`\r\n"
-			+ "WHERE NPedido = ?;";
+	public static final String QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO = "DELETE FROM `mydb`.`pedidos`\r\n" + 
+			"WHERE NPedido = ?;";
 
 	/**
 	 * Constante para la INSERT de Articulos.

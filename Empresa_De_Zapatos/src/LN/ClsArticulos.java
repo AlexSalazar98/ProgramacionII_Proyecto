@@ -191,6 +191,9 @@ public class ClsArticulos implements ItfProperty {
 		return null;
 	}
 
+	/**
+	 * Implementacion del metodo HashCode para comprobar
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -199,6 +202,9 @@ public class ClsArticulos implements ItfProperty {
 		return result;
 	}
 
+	/**
+	 * Implementacion de metodo Equals para comprobar.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

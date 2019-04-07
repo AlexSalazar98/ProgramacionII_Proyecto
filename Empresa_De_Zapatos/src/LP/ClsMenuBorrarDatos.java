@@ -1,7 +1,8 @@
 package LP;
 
 import java.sql.SQLException;
-import LN.ClsBorrarExcepcion;
+
+import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
 
 /**
@@ -84,6 +85,9 @@ public class ClsMenuBorrarDatos {
 				break;
 			}
 
+			/**
+			 * Si la opcion es 10 regresamos al menu principarl.
+			 */
 		} while (opcionBorrar != 10);
 	}
 
@@ -111,11 +115,20 @@ public class ClsMenuBorrarDatos {
 			 * Llamamos al metodo borrar y le pasamos el parametro.
 			 */
 			if (objGestorBSu.EliminarSuelasDeArray(Referencia)) {
+				/**
+				 * Mensaje para confirmar borrado
+				 */
 				System.out.println("Registro eliminado correctamente");
 			}
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion de BD
+			 */
 			System.out.println("No se ha podido eliminar el registro: " + e);
 		} catch (ClsBorrarExcepcion e) {
+			/**
+			 * Mensaje de excepcion generada
+			 */
 			System.out.println(e.getMessage());
 		}
 	}
@@ -143,20 +156,29 @@ public class ClsMenuBorrarDatos {
 			 * Llamamos al metodo borrar y le pasamos el parametro.
 			 */
 			if (objGestorBse.EliminarSeriesDeArray(NDeSerie)) {
+				/**
+				 * Mensaje para confirmar borrado
+				 */
 				System.out.println("Registro eliminado correctamente");
 			}
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion de BD
+			 */
 			System.out.println("No se ha podido eliminar el registro: " + e);
 		} catch (ClsBorrarExcepcion e) {
+			/**
+			 * Mensaje de excepcion generada
+			 */
 			System.out.println(e.getMessage());
 		}
 
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a Borrar en la entidad Pedidos.
-	 *
+	 * 
+	 * @param objGestorBP parametro objeto para acceder al metodo borrar.
 	 */
 	public static void BorrarDatosPedidos(ClsGestorLN objGestorBP) {
 		/**
@@ -175,11 +197,20 @@ public class ClsMenuBorrarDatos {
 			 * Llamamos al metodo borrar y le pasamos el parametro.
 			 */
 			if (objGestorBP.EliminarPedidosDeArray(NPedido)) {
+				/**
+				 * Mensaje para confirmar borrado
+				 */
 				System.out.println("Registro eliminado correctamente");
 			}
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion de BD
+			 */
 			System.out.println("No se ha podido eliminar el registro: " + e);
 		} catch (ClsBorrarExcepcion e) {
+			/**
+			 * Mensaje de excepcion generada
+			 */
 			System.out.println(e.getMessage());
 		}
 
@@ -208,11 +239,20 @@ public class ClsMenuBorrarDatos {
 			 * Llamamos al metodo borrar y le pasamos el parametro.
 			 */
 			if (objGestorBM.EliminarMaterialesDeArray(Referencia)) {
+				/**
+				 * Mensaje para confirmar borrado
+				 */
 				System.out.println("Registro eliminado correctamente");
 			}
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion de BD
+			 */
 			System.out.println("No se ha podido eliminar el registro: " + e);
 		} catch (ClsBorrarExcepcion e) {
+			/**
+			 * Mensaje de excepcion generada
+			 */
 			System.out.println(e.getMessage());
 		}
 
@@ -238,19 +278,28 @@ public class ClsMenuBorrarDatos {
 		 */
 		try {
 			if (objGestorBH.EliminarHerrajesDeArray(Referencia)) {
+				/**
+				 * Mensaje para confirmar borrado
+				 */
 				System.out.println("Registro eliminado correctamente");
 			}
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion de BD
+			 */
 			System.out.println("No se ha podido eliminar el registro: " + e);
 		} catch (ClsBorrarExcepcion e) {
+			/**
+			 * Mensaje de excepcion generada
+			 */
 			System.out.println(e.getMessage());
 		}
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a Borrar en la entidad Envios.
-	 *
+	 * 
+	 * @param objGestorBE objeto para acceder a borrar.
 	 */
 	public static void BorrarDatosEnvios(ClsGestorLN objGestorBE) {
 		/**
@@ -267,11 +316,20 @@ public class ClsMenuBorrarDatos {
 		 */
 		try {
 			if (objGestorBE.EliminarEnviosDeArray(NEnvio)) {
+				/**
+				 * Mensaje para confirmar borrado
+				 */
 				System.out.println("Registro eliminado correctamente");
 			}
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion de BD
+			 */
 			System.out.println("No se ha podido eliminar el registro: " + e);
 		} catch (ClsBorrarExcepcion e) {
+			/**
+			 * Mensaje de excepcion generada
+			 */
 			System.out.println(e.getMessage());
 		}
 	}
@@ -296,11 +354,20 @@ public class ClsMenuBorrarDatos {
 		 */
 		try {
 			if (objGestorBC.EliminarClientesDeArray(NCliente)) {
+				/**
+				 * Mensaje para confirmar borrado
+				 */
 				System.out.println("Registro eliminado correctamente");
 			}
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion de BD
+			 */
 			System.out.println("No se ha podido eliminar el registro: " + e);
 		} catch (ClsBorrarExcepcion e) {
+			/**
+			 * Mensaje de excepcion generada
+			 */
 			System.out.println(e.getMessage());
 		}
 
@@ -326,19 +393,28 @@ public class ClsMenuBorrarDatos {
 		 */
 		try {
 			if (objGestorBA.EliminarArticulosDeArray(Referencia)) {
+				/**
+				 * Mensaje para confirmar borrado
+				 */
 				System.out.println("Registro eliminado correctamente");
 			}
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion de BD
+			 */
 			System.out.println("No se ha podido eliminar el registro: " + e);
 		} catch (ClsBorrarExcepcion e) {
+			/**
+			 * Mensaje de excepcion generada
+			 */
 			System.out.println(e.getMessage());
 		}
 	}
 
 	/**
-	 * 
 	 * Pedimos los datos a Borrar en la entidad Desglose de Pedidos.
-	 *
+	 * 
+	 * @param objGestorBD objeto para acceder a borrar
 	 */
 	public static void BorrarDatosDesgloseDePedido(ClsGestorLN objGestorBD) {
 		/**
@@ -355,11 +431,20 @@ public class ClsMenuBorrarDatos {
 		 */
 		try {
 			if (objGestorBD.EliminarDesglosesDeArray(NPedidoD)) {
+				/**
+				 * Mensaje para confirmar borrado
+				 */
 				System.out.println("Registro eliminado correctamente");
 			}
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion de BD
+			 */
 			System.out.println("No se ha podido eliminar el registro: " + e);
 		} catch (ClsBorrarExcepcion e) {
+			/**
+			 * Mensaje de excepcion generada
+			 */
 			System.out.println(e.getMessage());
 		}
 	}

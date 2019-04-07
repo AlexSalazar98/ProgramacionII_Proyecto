@@ -3,11 +3,12 @@ package LN;
 import COMUN.ItfProperty;
 
 /**
- * Esta clase nos da los atributos padre para las  herencias de las clases "Materiales, Herrajes, Suelas".
+ * Esta clase nos da los atributos padre para las herencias de las clases
+ * "Materiales, Herrajes, Suelas".
  * 
  * @author Alex Salazar
- * @author David Requeta 
- *        
+ * @author David Requeta
+ * 
  *
  */
 public abstract class ClsMateriasPrimas implements ItfProperty {
@@ -25,9 +26,9 @@ public abstract class ClsMateriasPrimas implements ItfProperty {
 	 * 
 	 * Este seria el constructor de la clase.
 	 * 
-	 * @param referencia prametro referencia
+	 * @param referencia  prametro referencia
 	 * @param descripcion parametro descripcion
-	 * @param precio parametro precio
+	 * @param precio      parametro precio
 	 * 
 	 */
 	public ClsMateriasPrimas(int referencia, String descripcion, double precio) {
@@ -68,6 +69,9 @@ public abstract class ClsMateriasPrimas implements ItfProperty {
 		Precio = precio;
 	}
 
+	/**
+	 * Metodos HashCode y equals implementados para el chequeo de objetos repetidoss
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -89,7 +93,5 @@ public abstract class ClsMateriasPrimas implements ItfProperty {
 			return false;
 		return true;
 	}
-	
-	
 
 }

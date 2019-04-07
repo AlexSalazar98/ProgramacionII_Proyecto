@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
+
 import static LD.ClsConstantesBD.RUTA_DE_LA_BD;
 import static LD.ClsConstantesBD.NOMBRE_DEL_USUARIO;
 import static LD.ClsConstantesBD.CONTRASEÑA_DE_LA_BD;
@@ -62,8 +64,14 @@ public class ClsDatos {
 	 */
 	public Connection conectarBD() throws SQLException {
 
+		/**
+		 * objeto conecxio
+		 */
 		Connection objConn = null;
 
+		/**
+		 * Realizamos la conexio
+		 */
 		objConn = DriverManager.getConnection(RUTA_DE_LA_BD, NOMBRE_DEL_USUARIO, CONTRASEÑA_DE_LA_BD);
 
 		return objConn;
@@ -73,7 +81,7 @@ public class ClsDatos {
 	/**
 	 * Para hacer insert de Series
 	 * 
-	 * @param NºDeSerie   parametro para insert
+	 * @param NDeSerie    parametro para insert
 	 * @param Descripcion parametro para insert
 	 * @throws SQLException lanzamos excepciones a la capa LP
 	 */
@@ -90,18 +98,29 @@ public class ClsDatos {
 
 		if (objConn != null) {
 
-			// Creamos las preparedstaments
+			/**
+			 * Creamos las preparedstaments
+			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_SERIES);
+			/**
+			 * Datos a insertar
+			 */
 			objSt.setInt(1, NDeSerie);
 			objSt.setString(2, Descripcion);
 
-			// Ejecutamos la query que hemos preparado
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
 			objSt.execute();
 
-			// Cerramos el preparedStatement
+			/**
+			 * Cerramos el preparedStatement
+			 */
 			objSt.close();
 
-			// Cerramos la conexión
+			/**
+			 * Cerramos la conexión
+			 */
 			objConn.close();
 
 		}
@@ -134,6 +153,9 @@ public class ClsDatos {
 			 * Preparamos la consulta
 			 */
 			Statement st = objConn.createStatement();
+			/**
+			 * Proceso de recuperacion de datos
+			 */
 			rs = st.executeQuery(QUERY_PARA_SELECT_SERIES);
 			if (rs.isBeforeFirst()) {
 				return rs;
@@ -168,7 +190,7 @@ public class ClsDatos {
 	/**
 	 * Para hacer delete en Series
 	 * 
-	 * @param NºDeSerie parametro de condicion.
+	 * @param NDeSerie parametro de condicion.
 	 * @throws SQLException lanzamos excepciones hacia la capa LP
 	 */
 	public void eliminarSeries(int NDeSerie) throws SQLException {
@@ -189,6 +211,9 @@ public class ClsDatos {
 			 * Creamos las preparedstaments
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_SERIES_POR_NºDESERIE);
+			/**
+			 * Dato por el cual borramos
+			 */
 			objSt.setInt(1, NDeSerie);
 
 			/**
@@ -231,19 +256,30 @@ public class ClsDatos {
 
 		if (objConn != null) {
 
-			// Creamos las preparedstaments
+			/**
+			 * Creamos las preparedstaments
+			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_SUELAS);
+			/**
+			 * Datos a guardar
+			 */
 			objSt.setInt(1, Referencia);
 			objSt.setString(2, Descripcion);
 			objSt.setDouble(3, Precio);
 
-			// Ejecutamos la query que hemos preparado
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
 			objSt.execute();
 
-			// Cerramos el preparedStatement
+			/**
+			 * Cerramos el preparedStatement
+			 */
 			objSt.close();
 
-			// Cerramos la conexión
+			/**
+			 * Cerramos la conexión
+			 */
 			objConn.close();
 
 		}
@@ -275,6 +311,9 @@ public class ClsDatos {
 			 * Preparamos la consulta
 			 */
 			Statement st = objConn.createStatement();
+			/**
+			 * Proceso de recuperacion de datos
+			 */
 			rs = st.executeQuery(QUERY_PARA_SELECT_SUELAS);
 
 			if (rs.isBeforeFirst()) {
@@ -310,7 +349,7 @@ public class ClsDatos {
 	/**
 	 * Para eliminar suelas por numero de serie
 	 * 
-	 * @param NºDeSerie parametro por el cual eliminar
+	 * @param NDeSerie parametro por el cual eliminar
 	 * @throws SQLException lanzamos excepcion
 	 */
 	public void eliminarSuelas(int NDeSerie) throws SQLException {
@@ -331,6 +370,9 @@ public class ClsDatos {
 			 * Creamos las preparedstaments
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_SUELAS_POR_REFERENCIA);
+			/**
+			 * Dato por el cual borramos
+			 */
 			objSt.setInt(1, NDeSerie);
 
 			/**
@@ -375,17 +417,26 @@ public class ClsDatos {
 
 			// Creamos las preparedstaments
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_MATERIALES);
+			/**
+			 * Datos a insertar
+			 */
 			objSt.setInt(1, Referencia);
 			objSt.setString(2, Descripcion);
 			objSt.setDouble(3, Precio);
 
-			// Ejecutamos la query que hemos preparado
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
 			objSt.execute();
 
-			// Cerramos el preparedStatement
+			/**
+			 * Cerramos el preparedStatement
+			 */
 			objSt.close();
 
-			// Cerramos la conexión
+			/**
+			 * Cerramos la conexión
+			 */
 			objConn.close();
 
 		}
@@ -417,6 +468,9 @@ public class ClsDatos {
 			 * Preparamos la consulta
 			 */
 			Statement st = objConn.createStatement();
+			/**
+			 * Proceso de recuperar datos
+			 */
 			rs = st.executeQuery(QUERY_PARA_SELECT_MATERIALES);
 
 			if (rs.isBeforeFirst()) {
@@ -474,6 +528,9 @@ public class ClsDatos {
 			 * Creamos las preparedstaments
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_MATERIALES_POR_REFERENCIA);
+			/**
+			 * Dato por el cual borramos
+			 */
 			objSt.setInt(1, Referencia);
 
 			/**
@@ -518,17 +575,26 @@ public class ClsDatos {
 
 			// Creamos las preparedstaments
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_HERRAJES);
+			/**
+			 * Datos a insertar
+			 */
 			objSt.setInt(1, Referencia);
 			objSt.setString(2, Descripcion);
 			objSt.setDouble(3, Precio);
 
-			// Ejecutamos la query que hemos preparado
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
 			objSt.execute();
 
-			// Cerramos el preparedStatement
+			/**
+			 * Cerramos el preparedStatement
+			 */
 			objSt.close();
 
-			// Cerramos la conexión
+			/**
+			 * Cerramos la conexión
+			 */
 			objConn.close();
 
 		}
@@ -560,6 +626,9 @@ public class ClsDatos {
 			 * Preparamos la consulta
 			 */
 			Statement st = objConn.createStatement();
+			/**
+			 * Proceso de recuperar datos
+			 */
 			rs = st.executeQuery(QUERY_PARA_SELECT_HERRAJES);
 
 			if (rs.isBeforeFirst()) {
@@ -595,7 +664,7 @@ public class ClsDatos {
 	/**
 	 * Para eliminar herrajes por numero de serie
 	 * 
-	 * @param NºDeSerie parametro por el cual eliminar
+	 * @param NDeSerie parametro por el cual eliminar
 	 * @throws SQLException lanzamos excepcion
 	 */
 	public void eliminarHerrajes(int NDeSerie) throws SQLException {
@@ -616,6 +685,9 @@ public class ClsDatos {
 			 * Creamos las preparedstaments
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_HERRAJES_POR_REFERENCIA);
+			/**
+			 * Parametro por el cual borramos
+			 */
 			objSt.setInt(1, NDeSerie);
 
 			/**
@@ -640,10 +712,10 @@ public class ClsDatos {
 	/**
 	 * Metodo para insertar clientes en BD
 	 * 
-	 * @param NºCliente          parametro recibido.
+	 * @param NCliente           parametro recibido.
 	 * @param NombreYApellidos   parametro recibido
 	 * @param DNI_NIF            parametro recibido
-	 * @param DirecciónDeCliente parametro recibido
+	 * @param DireccionDeCliente parametro recibido
 	 * @param Provincia          parametro recibido
 	 * @param Telefono           parametro recibido
 	 * @param Email              parametro recibido
@@ -665,6 +737,9 @@ public class ClsDatos {
 
 			// Creamos las preparedstaments
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_CLIENTES);
+			/**
+			 * Datos a insertar
+			 */
 			objSt.setInt(1, NCliente);
 			objSt.setString(2, NombreYApellidos);
 			objSt.setString(3, DNI_NIF);
@@ -673,13 +748,20 @@ public class ClsDatos {
 			objSt.setInt(6, Telefono);
 			objSt.setString(7, Email);
 
-			// Ejecutamos la query que hemos preparado
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
 			objSt.execute();
 
-			// Cerramos el preparedStatement
+			/*
+			 * Cerramos el preparedStatement
+			 * 
+			 */
 			objSt.close();
 
-			// Cerramos la conexión
+			/**
+			 * Cerramos la conexión
+			 */
 			objConn.close();
 
 		}
@@ -711,6 +793,9 @@ public class ClsDatos {
 			 * Preparamos la consulta
 			 */
 			Statement st = objConn.createStatement();
+			/**
+			 * Proceso de recuperar datos
+			 */
 			rs = st.executeQuery(QUERY_PARA_SELECT_CLIENTES);
 			if (rs.isBeforeFirst()) {
 				return rs;
@@ -744,7 +829,7 @@ public class ClsDatos {
 	/**
 	 * Metodo para eliminar clientes de BD
 	 * 
-	 * @param DNI_NIF parametro de eliminacion
+	 * @param NCliente parametro de eliminacion
 	 * @throws SQLException lanzamos excepcion
 	 */
 	public void eliminarClientes(int NCliente) throws SQLException {
@@ -765,6 +850,9 @@ public class ClsDatos {
 			 * Creamos las preparedstaments
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_CLIENTES_POR_NUMERO_DE_CLIENTE);
+			/**
+			 * Dato por el cual borramos
+			 */
 			objSt.setInt(1, NCliente);
 
 			/**
@@ -789,7 +877,7 @@ public class ClsDatos {
 	/**
 	 * Metodo para insertar Envios en BD
 	 * 
-	 * @param NºEnvio           parametro recibido
+	 * @param NEnvio            parametro recibido
 	 * @param NombreCliente     parametro recibido
 	 * @param DireccionDeEnvio  parametro recibido
 	 * @param PoblacionDeEnvio  parametro recibido
@@ -815,6 +903,9 @@ public class ClsDatos {
 
 			// Creamos las preparedstaments
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_ENVIOS);
+			/**
+			 * Datos a insertar
+			 */
 			objSt.setInt(1, NEnvio);
 			objSt.setString(2, NombreCliente);
 			objSt.setString(3, DireccionDeEnvio);
@@ -824,13 +915,19 @@ public class ClsDatos {
 			objSt.setInt(7, TelefonoDeEnvio);
 			objSt.setInt(8, Clientes_NCliente);
 
-			// Ejecutamos la query que hemos preparado
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
 			objSt.execute();
 
-			// Cerramos el preparedStatement
+			/**
+			 * Cerramos el preparedStatement
+			 */
 			objSt.close();
 
-			// Cerramos la conexión
+			/**
+			 * Cerramos la conexión
+			 */
 			objConn.close();
 
 		}
@@ -862,6 +959,9 @@ public class ClsDatos {
 			 * Preparamos la consulta
 			 */
 			Statement st = objConn.createStatement();
+			/**
+			 * Proceso de recuperar datos
+			 */
 			rs = st.executeQuery(QUERY_PARA_SELECT_ENVIOS);
 			if (rs.isBeforeFirst()) {
 				return rs;
@@ -895,7 +995,7 @@ public class ClsDatos {
 	/**
 	 * Metodo para eliminar Envios de BD
 	 * 
-	 * @param NºEnvio parametro recibido
+	 * @param NEnvio parametro recibido
 	 * @throws SQLException lazamos la excepcion
 	 */
 	public void eliminarEnvios(int NEnvio) throws SQLException {
@@ -916,6 +1016,9 @@ public class ClsDatos {
 			 * Creamos las preparedstaments
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_ENVIOS_POR_NUMERO_DE_ENVIO);
+			/**
+			 * Parametro por el cual borramos
+			 */
 			objSt.setInt(1, NEnvio);
 
 			/**
@@ -940,19 +1043,22 @@ public class ClsDatos {
 	/**
 	 * Metodo para insertar pedidos en BD
 	 * 
-	 * @param NPedido
-	 * @param FechaDePedido
-	 * @param FechaDeEntrega
-	 * @param Entregado
-	 * @param Clientes_NCliente
-	 * @param NombreYApellidos
-	 * @throws SQLException
+	 * @param NPedido           parametro recibido
+	 * @param FechaDePedido     parametro recibido
+	 * @param FechaDeEntrega    parametro recibido
+	 * @param Entregado         parametro recibido
+	 * @param Clientes_NCliente parametro recibido
+	 * @param NombreYApellidos  parametro recibido
+	 * @throws SQLException lanzamos excepcion.
 	 */
-	public void InsertarPedidos(int NPedido, java.sql.Date FechaDePedido, java.sql.Date FechaDeEntrega,
-			Boolean Entregado, int Clientes_NCliente, String NombreYApellidos) throws SQLException {
+	public void InsertarPedidos(int NPedido, Date FechaDePedido, Date FechaDeEntrega, Boolean Entregado,
+			int Clientes_NCliente, String NombreYApellidos) throws SQLException {
 
-		// java.sql.Date Fecha_de_pedido = new java.sql.Date(FechaDeEntrega.getTime());
-		// java.sql.Date Fecha_de_entrega = new java.sql.Date(FechaDeEntrega.getTime());
+		/**
+		 * Traspaso de fechas de util.Date a long y despues a sql.Date
+		 */
+		java.sql.Date Fecha_de_pedido = new java.sql.Date(FechaDePedido.getTime());
+		java.sql.Date Fecha_de_entrega = new java.sql.Date(FechaDeEntrega.getTime());
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
 		 */
@@ -967,20 +1073,29 @@ public class ClsDatos {
 
 			// Creamos las preparedstaments
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_PEDIDOS);
+			/**
+			 * Datos a insertar
+			 */
 			objSt.setInt(1, NPedido);
-			objSt.setDate(2, (java.sql.Date) FechaDePedido);
-			objSt.setDate(3, (java.sql.Date) FechaDeEntrega);
+			objSt.setDate(2, (java.sql.Date) Fecha_de_pedido);
+			objSt.setDate(3, (java.sql.Date) Fecha_de_entrega);
 			objSt.setBoolean(4, Entregado);
 			objSt.setInt(5, Clientes_NCliente);
 			objSt.setString(6, NombreYApellidos);
 
-			// Ejecutamos la query que hemos preparado
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
 			objSt.execute();
 
-			// Cerramos el preparedStatement
+			/**
+			 * Cerramos el preparedStatement
+			 */
 			objSt.close();
 
-			// Cerramos la conexión
+			/**
+			 * Cerramos la conexión
+			 */
 			objConn.close();
 
 		}
@@ -990,8 +1105,8 @@ public class ClsDatos {
 	/**
 	 * Metodo para consultar pedidos en BD
 	 * 
-	 * @return
-	 * @throws SQLException
+	 * @return nos devuelve los datos
+	 * @throws SQLException lanzamos excepcion
 	 */
 	public ResultSet consultarPedidos() throws SQLException {
 		/**
@@ -1012,6 +1127,9 @@ public class ClsDatos {
 			 * Preparamos la consulta
 			 */
 			Statement st = objConn.createStatement();
+			/**
+			 * Proceso de recuperar datos
+			 */
 			rs = st.executeQuery(QUERY_PARA_SELECT_PEDIDOS);
 			if (rs.isBeforeFirst()) {
 				return rs;
@@ -1045,8 +1163,8 @@ public class ClsDatos {
 	/**
 	 * Metodo para eliminar pedidos en la BD
 	 * 
-	 * @param NPedido
-	 * @throws SQLException
+	 * @param NPedido parametro recibido
+	 * @throws SQLException lanzamos excepcion
 	 */
 	public void eliminarPedidos(int NPedido) throws SQLException {
 
@@ -1066,6 +1184,9 @@ public class ClsDatos {
 			 * Creamos las preparedstaments
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO);
+			/**
+			 * Parametro por el cual borramos
+			 */
 			objSt.setInt(1, NPedido);
 
 			/**
@@ -1090,14 +1211,14 @@ public class ClsDatos {
 	/**
 	 * Metodo para introducir Articulos en la BD
 	 * 
-	 * @param Referencia
-	 * @param Serie
-	 * @param Descripcion
-	 * @param CantidadMaterial
-	 * @param CantidadHerrajes
-	 * @param Precio
-	 * @param ReferenciaSuelas_Articulos
-	 * @throws SQLException
+	 * @param Referencia                 parametro recibido
+	 * @param Serie                      parametro recibido
+	 * @param Descripcion                parametro recibido
+	 * @param CantidadMaterial           parametro recibido
+	 * @param CantidadHerrajes           parametro recibido
+	 * @param Precio                     parametro recibido
+	 * @param ReferenciaSuelas_Articulos parametro recibido
+	 * @throws SQLException lanzamos excpcion.
 	 */
 	public void InsertarArticulos(int Referencia, int Serie, String Descripcion, int CantidadMaterial,
 			int CantidadHerrajes, double Precio, int ReferenciaSuelas_Articulos) throws SQLException {
@@ -1115,6 +1236,9 @@ public class ClsDatos {
 
 			// Creamos las preparedstaments
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_ARTICULOS);
+			/**
+			 * Datos a insertar
+			 */
 			objSt.setInt(1, Referencia);
 			objSt.setInt(2, Serie);
 			objSt.setString(3, Descripcion);
@@ -1123,13 +1247,19 @@ public class ClsDatos {
 			objSt.setDouble(6, Precio);
 			objSt.setInt(7, ReferenciaSuelas_Articulos);
 
-			// Ejecutamos la query que hemos preparado
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
 			objSt.execute();
 
-			// Cerramos el preparedStatement
+			/**
+			 * Cerramos el preparedStatement
+			 */
 			objSt.close();
 
-			// Cerramos la conexión
+			/**
+			 * Cerramos la conexión
+			 */
 			objConn.close();
 
 		}
@@ -1139,8 +1269,8 @@ public class ClsDatos {
 	/**
 	 * Metodo para consultar datos en la BD
 	 * 
-	 * @return
-	 * @throws SQLException
+	 * @return nos devuelve los datos
+	 * @throws SQLException lanzamos excepcion
 	 */
 	public ResultSet consultarArticulos() throws SQLException {
 		/**
@@ -1161,6 +1291,9 @@ public class ClsDatos {
 			 * Preparamos la consulta
 			 */
 			Statement st = objConn.createStatement();
+			/**
+			 * Proceso de recuperar datos
+			 */
 			rs = st.executeQuery(QUERY_PARA_SELECT_ARTICULOS);
 			if (rs.isBeforeFirst()) {
 				return rs;
@@ -1194,8 +1327,8 @@ public class ClsDatos {
 	/**
 	 * Metodo para eliminar Articulos de la BD
 	 * 
-	 * @param Referencia
-	 * @throws SQLException
+	 * @param Referencia parametro recibido
+	 * @throws SQLException lanzamos expcion
 	 */
 	public void eliminarArticulos(int Referencia) throws SQLException {
 
@@ -1215,6 +1348,9 @@ public class ClsDatos {
 			 * Creamos las preparedstaments
 			 */
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_ARTICULOS_POR_REFERENCIA);
+			/**
+			 * Parametro por el cual borramos
+			 */
 			objSt.setInt(1, Referencia);
 
 			/**
@@ -1240,28 +1376,27 @@ public class ClsDatos {
 	 * 
 	 * Metodo para insertar desgloses de pedido
 	 * 
-	 * @param NumeroDePedido           parametro numero de pedido
-	 * @param ReferenciaDelArticulo    parametro numero de referencia del articulo
-	 * @param Serie                    parametro numero de serie
-	 * @param Color                    parametro numero de color
-	 * @param NumeroDePie5             parametro cantidad del numero 5
-	 * @param NumeroDePie6             parametro cantidad del numero 6
-	 * @param NumeroDePie7             parametro cantidad del numero 7
-	 * @param NumeroDePie8             parametro cantidad del numero 8
-	 * @param NumeroDePie9             parametro cantidad del numero 9
-	 * @param NumeroDePie0             parametro cantidad del numero 0
-	 * @param NumeroDePie1             parametro cantidad del numero 1
-	 * @param NumeroDePie2             parametro cantidad del numero 2
-	 * @param NumeroDePie3             parametro cantidad del numero 3
-	 * @param NumeroDePie4             parametro cantidad del numero 4
-	 * @param CantidadTotal            parametro de cantidad total de numeros.
-	 * @param NumeroDeCliente_Desglose parametro del numero del cliente.
+	 * @param NPedidoD                  parametro numero de pedido
+	 * @param Articulos_Referencia      parametro numero de referencia del articulo
+	 * @param Serie                     parametro numero de serie
+	 * @param Color                     parametro numero de color
+	 * @param P5                        parametro cantidad del numero 5
+	 * @param P6                        parametro cantidad del numero 6
+	 * @param P7                        parametro cantidad del numero 7
+	 * @param P8                        parametro cantidad del numero 8
+	 * @param P9                        parametro cantidad del numero 9
+	 * @param P0                        parametro cantidad del numero 0
+	 * @param P1                        parametro cantidad del numero 1
+	 * @param P2                        parametro cantidad del numero 2
+	 * @param P3                        parametro cantidad del numero 3
+	 * @param P4                        parametro cantidad del numero 4
+	 * @param CantidadTotalPies         parametro de cantidad total de numeros.
+	 * @param Pedidos_Clientes_NCliente parametro del numero del cliente.
 	 * @throws SQLException lanza excepcion
 	 */
-	public void InsertarDesglose(int NPedidoD, int Articulos_Referencia, int Serie, int Color, int P5,
-			int P6, int P7, int P8, int P9, int P0, int P1,
-			int P2, int P3, int P4, int CantidadTotalPies, int Pedidos_Clientes_NCliente)
-			throws SQLException {
+	public void InsertarDesglose(int NPedidoD, int Articulos_Referencia, int Serie, int Color, int P5, int P6, int P7,
+			int P8, int P9, int P0, int P1, int P2, int P3, int P4, int CantidadTotalPies,
+			int Pedidos_Clientes_NCliente) throws SQLException {
 		/**
 		 * Instancias el metodo que hemos creado anteriormente
 		 */
@@ -1276,6 +1411,9 @@ public class ClsDatos {
 
 			// Creamos las preparedstaments
 			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_DE_DESGLOSE_DE_PEDIDO);
+			/**
+			 * Datos a insertar
+			 */
 			objSt.setInt(1, NPedidoD);
 			objSt.setInt(2, Serie);
 			objSt.setInt(3, Color);
@@ -1292,15 +1430,20 @@ public class ClsDatos {
 			objSt.setInt(14, P3);
 			objSt.setInt(15, P4);
 			objSt.setInt(16, CantidadTotalPies);
-			
 
-			// Ejecutamos la query que hemos preparado
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
 			objSt.execute();
 
-			// Cerramos el preparedStatement
+			/**
+			 * Cerramos el preparedStatement
+			 */
 			objSt.close();
 
-			// Cerramos la conexión
+			/**
+			 * Cerramos la conexión
+			 */
 			objConn.close();
 
 		}
@@ -1332,6 +1475,9 @@ public class ClsDatos {
 			 * Preparamos la consulta
 			 */
 			Statement st = objConn.createStatement();
+			/**
+			 * Proceso de recuperar datos
+			 */
 			rs = st.executeQuery(QUERY_PARA_SELECT_DESGLOSE_DE_PEDIDOS);
 			if (rs.isBeforeFirst()) {
 				return rs;
@@ -1385,7 +1531,11 @@ public class ClsDatos {
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_DESGLOSE_DE_PEDIDO_POR_NUMERO_DE_PEDIDO_DESGLOSE);
+			PreparedStatement objSt = objConn
+					.prepareStatement(QUERY_PARA_DELETE_DESGLOSE_DE_PEDIDO_POR_NUMERO_DE_PEDIDO_DESGLOSE);
+			/**
+			 * Parametro por el cual borramos
+			 */
 			objSt.setInt(1, NPedidosD);
 
 			/**

@@ -74,22 +74,37 @@ public class ClsMostrarDatos {
 	/**
 	 * Metodo para sacar por consola las series.
 	 * 
-	 * @param ObjGestorVS parametro para acceder al metodo DameSeries.
+	 * @param ObjGestorVSe parametro para acceder al metodo DameSeries.
 	 */
 	public void VerSeries(ClsGestorLN ObjGestorVSe) {
 
+		/**
+		 * Insatnciamos un Array de tipo ITF
+		 */
 		ArrayList<ItfProperty> Series;
 
+		/**
+		 * Recogemos los objetos del Array de la clase y los pasamos al de ITF
+		 */
 		Series = ObjGestorVSe.DameSeries();
 
+		/**
+		 * Mostramos mensaje a partir del cual va e salir la informacion obtenida
+		 */
 		System.out.println("SERIES RECUPERADAS");
 		System.out.println("-------------------");
+
+		/**
+		 * obtenemos cada propiedad de cada uno de los objetos y los sacamos por
+		 * pantalla
+		 */
 		for (ItfProperty a : Series) {
 
 			System.out.println(a.getIntegerProperty(PROPIEDAD_SERIES_NUMERO_DE_SERIE) + " "
 					+ a.getStringProperty(PROPIEDAD_SERIES_DESCRIPCION));
 
 		}
+		System.out.println("-------------------");
 	}
 
 	/**
@@ -99,12 +114,26 @@ public class ClsMostrarDatos {
 	 */
 	public void VerSuelas(ClsGestorLN ObjGestorVS) {
 
+		/**
+		 * Insatnciamos un Array de tipo ITF
+		 */
 		ArrayList<ItfProperty> Suelas;
 
+		/**
+		 * Recogemos los objetos del Array de la clase y los pasamos al de ITF
+		 */
 		Suelas = ObjGestorVS.DameSuelas();
 
+		/**
+		 * Mostramos mensaje a partir del cual va e salir la informacion obtenida
+		 */
 		System.out.println("SUELAS RECUPERADAS");
 		System.out.println("-------------------");
+
+		/**
+		 * obtenemos cada propiedad de cada uno de los objetos y los sacamos por
+		 * pantalla
+		 */
 		for (ItfProperty a : Suelas) {
 
 			System.out.println(a.getIntegerProperty(PROPIEDAD_SUELAS_REFERENCIA) + " "
@@ -112,6 +141,7 @@ public class ClsMostrarDatos {
 					+ a.getDoubleProperty(PROPIEDAD_SUELAS_PRECIO));
 
 		}
+		System.out.println("-------------------");
 	}
 
 	/**
@@ -120,12 +150,27 @@ public class ClsMostrarDatos {
 	 * @param ObjGestorVM parametro para acceder a DameMateriales
 	 */
 	public void VerMateriales(ClsGestorLN ObjGestorVM) {
+
+		/**
+		 * Insatnciamos un Array de tipo ITF
+		 */
 		ArrayList<ItfProperty> Materiales;
 
+		/**
+		 * Recogemos los objetos del Array de la clase y los pasamos al de ITF
+		 */
 		Materiales = ObjGestorVM.DameMateriales();
 
+		/**
+		 * Mostramos mensaje a partir del cual va e salir la informacion obtenida
+		 */
 		System.out.println("MATERIALES RECUPERADOS");
 		System.out.println("----------------------");
+
+		/**
+		 * obtenemos cada propiedad de cada uno de los objetos y los sacamos por
+		 * pantalla
+		 */
 		for (ItfProperty a : Materiales) {
 
 			System.out.println(a.getIntegerProperty(PROPIEDAD_MATERIALES_REFERENCIA) + " "
@@ -133,6 +178,7 @@ public class ClsMostrarDatos {
 					+ a.getDoubleProperty(PROPIEDAD_MATERIALES_PRECIO));
 
 		}
+		System.out.println("-------------------");
 
 	}
 
@@ -142,13 +188,27 @@ public class ClsMostrarDatos {
 	 * @param objGestorVH parametro para acceder a dame herrajes
 	 */
 	public void VerHerrajes(ClsGestorLN objGestorVH) {
+
+		/**
+		 * Insatnciamos un Array de tipo ITF
+		 */
 		ArrayList<ItfProperty> Herrajes;
 
+		/**
+		 * Recogemos los objetos del Array de la clase y los pasamos al de ITF
+		 */
 		Herrajes = objGestorVH.DameHerrajes();
 
+		/**
+		 * Mostramos mensaje a partir del cual va e salir la informacion obtenida
+		 */
 		System.out.println("HERRAJES RECUPERADOS");
 		System.out.println("--------------------");
 
+		/**
+		 * obtenemos cada propiedad de cada uno de los objetos y los sacamos por
+		 * pantalla
+		 */
 		for (ItfProperty a : Herrajes) {
 
 			System.out.println(a.getIntegerProperty(PROPIEDAD_MATERIALES_REFERENCIA) + " "
@@ -156,6 +216,7 @@ public class ClsMostrarDatos {
 					+ a.getDoubleProperty(PROPIEDAD_MATERIALES_PRECIO));
 
 		}
+		System.out.println("-------------------");
 	}
 
 	/**
@@ -164,13 +225,27 @@ public class ClsMostrarDatos {
 	 * @param objGestorVC parametro para acceder a dame clientes
 	 */
 	public void VerClientes(ClsGestorLN objGestorVC) {
+
+		/**
+		 * Insatnciamos un Array de tipo ITF
+		 */
 		ArrayList<ItfProperty> Clientes;
 
+		/**
+		 * Recogemos los objetos del Array de la clase y los pasamos al de ITF
+		 */
 		Clientes = objGestorVC.DameClientes();
 
+		/**
+		 * Mostramos mensaje a partir del cual va e salir la informacion obtenida
+		 */
 		System.out.println("CLIENTES RECUPERADOS");
 		System.out.println("--------------------");
 
+		/**
+		 * obtenemos cada propiedad de cada uno de los objetos y los sacamos por
+		 * pantalla
+		 */
 		for (ItfProperty a : Clientes) {
 
 			System.out.println(a.getIntegerProperty(PROPIEDAD_CLIENTE_NUMERO) + " "
@@ -182,21 +257,36 @@ public class ClsMostrarDatos {
 					+ a.getStringProperty(PROPIEDAD_CLIENTE_EMAIL));
 
 		}
+		System.out.println("-------------------");
 	}
 
 	/**
 	 * Metodo sacar por consola Pedidos
 	 * 
-	 * @param objGestorVP
+	 * @param objGestorVP objeto para acceder a DamePedidos
 	 */
 	public void VerPedidos(ClsGestorLN objGestorVP) {
+
+		/**
+		 * Insatnciamos un Array de tipo ITF
+		 */
 		ArrayList<ItfProperty> Pedidos;
 
+		/**
+		 * Recogemos los objetos del Array de la clase y los pasamos al de ITF
+		 */
 		Pedidos = objGestorVP.DamePedidos();
 
+		/**
+		 * Mostramos mensaje a partir del cual va e salir la informacion obtenida
+		 */
 		System.out.println("PEDIDOS RECUPERADOS");
 		System.out.println("--------------------");
 
+		/**
+		 * obtenemos cada propiedad de cada uno de los objetos y los sacamos por
+		 * pantalla
+		 */
 		for (ItfProperty a : Pedidos) {
 
 			System.out.println(a.getIntegerProperty(PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO) + " "
@@ -207,21 +297,36 @@ public class ClsMostrarDatos {
 					+ a.getIntegerProperty(PROPIEDAD_PEDIDOS_NUMERO_DE_CLIENTE_PEDIDO));
 
 		}
+		System.out.println("-------------------");
 	}
 
 	/**
 	 * Metodo sacar por consola Envios
 	 * 
-	 * @param objGestorVP
+	 * @param objGestorVE objeto para acceder a DameEnvios
 	 */
 	public void VerEnvios(ClsGestorLN objGestorVE) {
+
+		/**
+		 * Insatnciamos un Array de tipo ITF
+		 */
 		ArrayList<ItfProperty> Envios;
 
+		/**
+		 * Recogemos los objetos del Array de la clase y los pasamos al de ITF
+		 */
 		Envios = objGestorVE.DameEnvios();
 
+		/**
+		 * Mostramos mensaje a partir del cual va e salir la informacion obtenida
+		 */
 		System.out.println("ENVIOS RECUPERADOS");
 		System.out.println("--------------------");
 
+		/**
+		 * obtenemos cada propiedad de cada uno de los objetos y los sacamos por
+		 * pantalla
+		 */
 		for (ItfProperty a : Envios) {
 
 			System.out.println(a.getIntegerProperty(PROPIEDAD_ENVIOS_NUMERO_DE_ENVIO) + " "
@@ -234,21 +339,36 @@ public class ClsMostrarDatos {
 					+ a.getIntegerProperty(PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO));
 
 		}
+		System.out.println("-------------------");
 	}
 
 	/**
 	 * Metodo sacar por consola Articulos
 	 * 
-	 * @param objGestorVA
+	 * @param objGestorVA objeto para acceder a DameArticulos.
 	 */
 	public void VerArticulos(ClsGestorLN objGestorVA) {
+
+		/**
+		 * Insatnciamos un Array de tipo ITF
+		 */
 		ArrayList<ItfProperty> Articulos;
 
+		/**
+		 * Recogemos los objetos del Array de la clase y los pasamos al de ITF
+		 */
 		Articulos = objGestorVA.DameArticulos();
 
+		/**
+		 * Mostramos mensaje a partir del cual va e salir la informacion obtenida
+		 */
 		System.out.println("ARTICULOS RECUPERADOS");
 		System.out.println("--------------------");
 
+		/**
+		 * obtenemos cada propiedad de cada uno de los objetos y los sacamos por
+		 * pantalla
+		 */
 		for (ItfProperty a : Articulos) {
 
 			System.out.println(a.getIntegerProperty(PROPIEDAD_ARTICULO_REFERENCIA) + " "
@@ -259,16 +379,31 @@ public class ClsMostrarDatos {
 					+ a.getDoubleProperty(PROPIEDAD_ARTICULO_PRECIO) + " "
 					+ a.getIntegerProperty(PROPIEDAD_ARTICULO_REFERENCIA_SUELAS));
 		}
+		System.out.println("-------------------");
 	}
 
 	public void VerDesgloses(ClsGestorLN objGestorVD) {
+
+		/**
+		 * Insatnciamos un Array de tipo ITF
+		 */
 		ArrayList<ItfProperty> Desgloses;
 
+		/**
+		 * Recogemos los objetos del Array de la clase y los pasamos al de ITF
+		 */
 		Desgloses = objGestorVD.DameDesgloses();
 
-		System.out.println("ARTICULOS RECUPERADOS");
-		System.out.println("--------------------");
+		/**
+		 * Mostramos mensaje a partir del cual va e salir la informacion obtenida
+		 */
+		System.out.println("DESGLOSES RECUPERADOS");
+		System.out.println("---------------------");
 
+		/**
+		 * obtenemos cada propiedad de cada uno de los objetos y los sacamos por
+		 * pantalla
+		 */
 		for (ItfProperty a : Desgloses) {
 
 			System.out.println(a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO) + " "
@@ -288,5 +423,6 @@ public class ClsMostrarDatos {
 					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_4) + " "
 					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_CANTIDAD_TOTAL));
 		}
+		System.out.println("-------------------");
 	}
 }

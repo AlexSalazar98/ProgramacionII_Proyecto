@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Collections;
 import COMUN.ItfProperty;
+import Excepciones.ClsBorrarExcepcion;
 import LD.ClsDatos;
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
 import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_REFERENCIA;
@@ -74,7 +75,7 @@ public class ClsGestorLN {
 	public void CrearSuelas(int Referencia_Suelas, String Descripcion_Suelas, Double Precio_Suelas)
 			throws SQLException {
 		/**
-		 * Crearmos el objeto
+		 * Instanciamos y crearmos el objeto
 		 */
 		ClsSuelas objSuelas;
 		objSuelas = new ClsSuelas(Referencia_Suelas, Descripcion_Suelas, Precio_Suelas);
@@ -102,7 +103,7 @@ public class ClsGestorLN {
 	 */
 	public void CrearSerie(int NumeroDeSerie, String Descripcion_Serie) throws SQLException {
 		/**
-		 * Crearmos el objeto
+		 * Instanciamos y crearmos el objeto
 		 */
 		ClsSeries objSeries;
 		objSeries = new ClsSeries(NumeroDeSerie, Descripcion_Serie);
@@ -138,11 +139,8 @@ public class ClsGestorLN {
 	public void CrearPedidos(int NumeroDePedido, Date FechaDePedido, Date FechaDeEntrega, Boolean Entregado,
 			int NumeroDeCliente_Pedidos, String NombreYApelliosDelCliente) throws SQLException {
 
-		java.sql.Date Fecha_de_pedido = new java.sql.Date(FechaDeEntrega.getTime());
-		java.sql.Date Fecha_de_entrega = new java.sql.Date(FechaDeEntrega.getTime());
 		/**
-		 * 
-		 * /** Crearmos el objeto
+		 * Instanciamos y crearmos el objeto
 		 */
 		ClsPedidos objPedido;
 		objPedido = new ClsPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado, NombreYApelliosDelCliente,
@@ -160,8 +158,8 @@ public class ClsGestorLN {
 			/**
 			 * Llamada a introducir datos con paso de parametros
 			 */
-			objDatos.InsertarPedidos(NumeroDePedido, Fecha_de_pedido, Fecha_de_entrega, Entregado,
-					NumeroDeCliente_Pedidos, NombreYApelliosDelCliente);
+			objDatos.InsertarPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado, NumeroDeCliente_Pedidos,
+					NombreYApelliosDelCliente);
 		}
 	}
 
@@ -175,7 +173,7 @@ public class ClsGestorLN {
 	 */
 	public void CrearMateriales(int Referencia, String Descripcion, double Precio) throws SQLException {
 		/**
-		 * Crearmos el objeto
+		 * Instanciamos y crearmos el objeto
 		 */
 		ClsMateriales objMateriales;
 		objMateriales = new ClsMateriales(Referencia, Descripcion, Precio);
@@ -206,11 +204,14 @@ public class ClsGestorLN {
 	 */
 	public void CrearHerrajes(int Referencia, String Descripcion, double Precio) throws SQLException {
 		/**
-		 * Crearmos el objeto
+		 * Instanciamos y crearmos el objeto
 		 */
 		ClsHerrajes objHerrajes;
 		objHerrajes = new ClsHerrajes(Referencia, Descripcion, Precio);
 
+		/**
+		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
+		 */
 		if (!ExisteHerrajes(objHerrajes)) {
 			/**
 			 * Añadimos el objeto a el array.
@@ -242,12 +243,15 @@ public class ClsGestorLN {
 			throws SQLException {
 
 		/**
-		 * Crearmos el objeto
+		 * Instanciamos y crearmos el objeto
 		 */
 		ClsEnvios objEnvios;
 		objEnvios = new ClsEnvios(NumeroDeEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio, CPDeEnvio,
 				ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
 
+		/**
+		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
+		 */
 		if (!ExisteEnvios(objEnvios)) {
 			/**
 			 * Añadimos el objeto a el array.
@@ -277,12 +281,15 @@ public class ClsGestorLN {
 			String Provincia, int Telefono, String Email) throws SQLException {
 
 		/**
-		 * Crearmos el objeto
+		 * Instanciamos y crearmos el objeto
 		 */
 		ClsClientes objClientes;
 		objClientes = new ClsClientes(NumeroDeCliente, NombreYApellidos, DNI_NIF, DireccionDeCliente, Provincia,
 				Telefono, Email);
 
+		/**
+		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
+		 */
 		if (!ExisteCliente(objClientes)) {
 			/**
 			 * Añadimos el objeto a el array.
@@ -306,18 +313,21 @@ public class ClsGestorLN {
 	 * @param CantidadHerrajes           parametro cantidad de herrajes
 	 * @param Precio                     parametro precio
 	 * @param ReferenciaSuelas_Articulos parametro referencia de la suela
-	 * @throws SQLException
+	 * @throws SQLException lanza excepcion
 	 */
 	public void CrearArticulos(int Referencia, int Serie, String Descripcion, int CantidadMaterial,
 			int CantidadHerrajes, double Precio, int ReferenciaSuelas_Articulos) throws SQLException {
 
 		/**
-		 * Crearmos el objeto
+		 * Instanciamos y crearmos el objeto
 		 */
 		ClsArticulos objArticulos;
 		objArticulos = new ClsArticulos(Referencia, Serie, Descripcion, CantidadMaterial, CantidadHerrajes, Precio,
 				ReferenciaSuelas_Articulos);
 
+		/**
+		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
+		 */
 		if (!ExisteArticulos(objArticulos)) {
 			/**
 			 * Añadimos el objeto a el array.
@@ -358,13 +368,16 @@ public class ClsGestorLN {
 			int NumeroDeCliente_Desglose) throws SQLException {
 
 		/**
-		 * Crearmos el objeto
+		 * Instanciamos y crearmos el objeto
 		 */
 		ClsDesgloseDePedido objDesgloseDePedido;
 		objDesgloseDePedido = new ClsDesgloseDePedido(NumeroDePedido, ReferenciaDelArticulo, Serie, Color, NumeroDePie5,
 				NumeroDePie6, NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1, NumeroDePie2,
 				NumeroDePie3, NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
 
+		/**
+		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
+		 */
 		if (!ExisteDesglose(objDesgloseDePedido)) {
 			/**
 			 * Añadimos el objeto a el array.
@@ -388,10 +401,19 @@ public class ClsGestorLN {
 	 */
 	public boolean ExisteDesglose(ClsDesgloseDePedido Desglose) {
 
+		/**
+		 * Variable que determina resultado.
+		 */
 		boolean retorno = false;
 
+		/**
+		 * comprobacion a traves del metodo equals
+		 */
 		for (ClsDesgloseDePedido b : MiListaDeDesgloses) {
 			if (b.equals(Desglose))
+				/**
+				 * devuelve true si se repiten.
+				 */
 				return true;
 
 		}
@@ -411,14 +433,23 @@ public class ClsGestorLN {
 		 */
 		ResultSet Resultado = objDatos.consultarSeries();
 
+		/**
+		 * recorremos los parametros del objeto
+		 */
 		while (Resultado.next()) {
+			/**
+			 * los guardamos en variables
+			 */
 			int NumeroDeSerie = Resultado.getInt("NDeSerie");
 			String Descripcion_Series = Resultado.getString("Descripcion");
-			ClsSeries objSeries = new ClsSeries(NumeroDeSerie, Descripcion_Series);
 			/**
-			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
+			 * generamos objeto del tipo de la clase
 			 */
+			ClsSeries objSeries = new ClsSeries(NumeroDeSerie, Descripcion_Series);
 
+			/**
+			 * Añadimos el objeto al Array
+			 */
 			MiListaDeSeries.add(objSeries);
 
 		}
@@ -439,6 +470,9 @@ public class ClsGestorLN {
 		ArrayList<ItfProperty> retorno;
 		retorno = new ArrayList<ItfProperty>();
 
+		/**
+		 * grabamos un array en otro y lo devolvemos
+		 */
 		for (ClsSeries a : MiListaDeSeries) {
 			retorno.add(a);
 		}
@@ -456,10 +490,19 @@ public class ClsGestorLN {
 	 */
 	public boolean ExisteSeries(ClsSeries Series) {
 
+		/**
+		 * Variable que determina el resultado
+		 */
 		boolean retorno = false;
 
+		/**
+		 * comprobacion a traves del metodo Equals
+		 */
 		for (ClsSeries b : MiListaDeSeries) {
 			if (b.equals(Series))
+				/**
+				 * si se repiten devuelve true
+				 */
 				return true;
 
 		}
@@ -470,7 +513,7 @@ public class ClsGestorLN {
 	/**
 	 * Metodo para borrar objetos Serie del Array y de la BD.
 	 * 
-	 * @param NºDeSerie parametro para seleccionar que borrar.
+	 * @param NDeSerie parametro para seleccionar que borrar.
 	 * @throws SQLException lanzamos la excepcion.
 	 * @return nos genera un return para saber si se ha realizado el borrado o no
 	 * @throws ClsBorrarExcepcion excepcion en caso de que falle el borrado
@@ -531,15 +574,24 @@ public class ClsGestorLN {
 		 */
 		ResultSet Resultado = objDatos.consultarSuelas();
 
+		/**
+		 * obtenemos lo dato del objeto devuelto
+		 */
 		while (Resultado.next()) {
+			/**
+			 * guardamos los datos en variables
+			 */
 			int Referencia = Resultado.getInt("Referencia");
 			String Descripcion = Resultado.getString("Descripcion");
 			Double Precio = Resultado.getDouble("Precio");
-			ClsSuelas ObjSuelas = new ClsSuelas(Referencia, Descripcion, Precio);
 			/**
-			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
+			 * generamos un objeto del tipo de la clase
 			 */
+			ClsSuelas ObjSuelas = new ClsSuelas(Referencia, Descripcion, Precio);
 
+			/**
+			 * Añadimos el objetos al Array
+			 */
 			MiListaDeSuelas.add(ObjSuelas);
 
 		}
@@ -560,6 +612,9 @@ public class ClsGestorLN {
 		ArrayList<ItfProperty> retorno;
 		retorno = new ArrayList<ItfProperty>();
 
+		/**
+		 * grabamos de un array a otro y lo devolvemos
+		 */
 		for (ClsSuelas a : MiListaDeSuelas) {
 			retorno.add(a);
 		}
@@ -576,10 +631,19 @@ public class ClsGestorLN {
 	 */
 	public boolean ExisteSuelas(ClsSuelas Suelas) {
 
+		/**
+		 * variable para determinar el proceso
+		 */
 		boolean retorno = false;
 
+		/**
+		 * comparamos a traves del metodo equals
+		 */
 		for (ClsMateriasPrimas b : MiListaDeSuelas) {
 			if (b.equals(Suelas))
+				/**
+				 * si coinciden devolvemos true
+				 */
 				return true;
 
 		}
@@ -656,10 +720,10 @@ public class ClsGestorLN {
 			String Descripcion = Resultado.getString("Descripcion");
 			Double Precio = Resultado.getDouble("Precio");
 			ClsMateriales ObjMateriales = new ClsMateriales(Referencia, Descripcion, Precio);
-			/**
-			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
-			 */
 
+			/**
+			 * Añadimos el objetos al Array
+			 */
 			MiListaDeMateriales.add(ObjMateriales);
 
 		}
@@ -680,6 +744,9 @@ public class ClsGestorLN {
 		ArrayList<ItfProperty> retorno;
 		retorno = new ArrayList<ItfProperty>();
 
+		/**
+		 * copiamos un array en otro y lo devolvemos
+		 */
 		for (ClsMateriales a : MiListaDeMateriales) {
 			retorno.add(a);
 		}
@@ -696,10 +763,19 @@ public class ClsGestorLN {
 	 */
 	public boolean ExisteMateriales(ClsMateriales Materiales) {
 
+		/**
+		 * Variable que determina el proceso.
+		 */
 		boolean retorno = false;
 
+		/**
+		 * comparamos a traves del metodo equals
+		 */
 		for (ClsMateriasPrimas b : MiListaDeMateriales) {
 			if (b.equals(Materiales))
+				/**
+				 * si coinciden devolvemos un true
+				 */
 				return true;
 
 		}
@@ -773,15 +849,24 @@ public class ClsGestorLN {
 		 */
 		ResultSet Resultado = objDatos.consultarHerrajes();
 
+		/**
+		 * separamos los datos del objeto
+		 */
 		while (Resultado.next()) {
+			/**
+			 * los guardamos en variables
+			 */
 			int Referencia = Resultado.getInt("Referencia");
 			String Descripcion = Resultado.getString("Descripcion");
 			Double Precio = Resultado.getDouble("Precio");
-			ClsHerrajes ObjHerrajes = new ClsHerrajes(Referencia, Descripcion, Precio);
 			/**
-			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
+			 * hacemos un objeto del tipo de la clase.
 			 */
+			ClsHerrajes ObjHerrajes = new ClsHerrajes(Referencia, Descripcion, Precio);
 
+			/**
+			 * Añadimos el objeto al Array
+			 */
 			MiListaDeHerrajes.add(ObjHerrajes);
 
 		}
@@ -802,6 +887,9 @@ public class ClsGestorLN {
 		ArrayList<ItfProperty> retorno;
 		retorno = new ArrayList<ItfProperty>();
 
+		/**
+		 * Compiamos un array en el otro y lo devolvemos
+		 */
 		for (ClsHerrajes a : MiListaDeHerrajes) {
 			retorno.add(a);
 		}
@@ -818,10 +906,19 @@ public class ClsGestorLN {
 	 */
 	public boolean ExisteHerrajes(ClsHerrajes objHerrajes) {
 
+		/**
+		 * Variable para chequear el proceso
+		 */
 		boolean retorno = false;
 
+		/**
+		 * comparamos a traves del metodo equals
+		 */
 		for (ClsMateriasPrimas b : MiListaDeHerrajes) {
 			if (b.equals(objHerrajes))
+				/**
+				 * Si coinciden devolvemos true
+				 */
 				return true;
 
 		}
@@ -889,7 +986,13 @@ public class ClsGestorLN {
 		 */
 		ResultSet Resultado = objDatos.consultarClientes();
 
+		/**
+		 * Optenemos los datos del objeto
+		 */
 		while (Resultado.next()) {
+			/**
+			 * los guardamos en variables
+			 */
 			int NDeClientes = Resultado.getInt("NCliente");
 			String NombreYApellido = Resultado.getString("NombreYApellidos");
 			String DNI_NIF = Resultado.getString("DNI_NIF");
@@ -897,12 +1000,15 @@ public class ClsGestorLN {
 			String Provincia = Resultado.getString("Provincia");
 			int Telefono = Resultado.getInt("Telefono");
 			String Email = Resultado.getString("Email");
+			/**
+			 * Creamos un objeto del tipo de la clase
+			 */
 			ClsClientes objClientes = new ClsClientes(NDeClientes, NombreYApellido, DNI_NIF, DireccionDeClientes,
 					Provincia, Telefono, Email);
-			/**
-			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
-			 */
 
+			/**
+			 * Añadimos el objeto al Array
+			 */
 			MiListaDeClientes.add(objClientes);
 
 		}
@@ -923,6 +1029,9 @@ public class ClsGestorLN {
 		ArrayList<ItfProperty> retorno;
 		retorno = new ArrayList<ItfProperty>();
 
+		/**
+		 * copiamos un array en el otro y lo devolvemos
+		 */
 		for (ClsClientes a : MiListaDeClientes) {
 			retorno.add(a);
 		}
@@ -939,9 +1048,19 @@ public class ClsGestorLN {
 	 */
 	public boolean ExisteCliente(ClsClientes objClientes) {
 
+		/**
+		 * Variable para chequear el proceso
+		 */
 		boolean retorno = false;
+
+		/**
+		 * comprobamos a traves del metodo equals
+		 */
 		for (ClsClientes b : MiListaDeClientes) {
 			if (b.equals(objClientes))
+				/**
+				 * Si estan repetido devolvemos un true
+				 */
 				return true;
 		}
 		return retorno;
@@ -950,7 +1069,7 @@ public class ClsGestorLN {
 	/**
 	 * Metopo para eliminar cliente de Array y BD
 	 * 
-	 * @param DNI_NIF parametro de eliminacion
+	 * @param NCliente parametro de eliminacion
 	 * @throws SQLException       lanzamos excepcion
 	 * @throws ClsBorrarExcepcion excepcion de borrado.
 	 * @return nos dice si se ha eliminado o no.
@@ -1007,7 +1126,13 @@ public class ClsGestorLN {
 		 */
 		ResultSet Resultado = objDatos.consultarEnvios();
 
+		/**
+		 * Obtenemos los datos del objeto
+		 */
 		while (Resultado.next()) {
+			/**
+			 * Los guardamos en variables
+			 */
 			int NumeroDeEnvio = Resultado.getInt("NEnvio");
 			String NombreCliente = Resultado.getString("NombreCliente");
 			String DireccionDeEnvio = Resultado.getString("DireccionDeEnvio");
@@ -1016,12 +1141,15 @@ public class ClsGestorLN {
 			String ProvinciaDeEnvio = Resultado.getString("ProvinciaDeEnvio");
 			int TelefonoDeEnvio = Resultado.getInt("TelefonoDeEnvio");
 			int NumeroDeCliente_Envio = Resultado.getInt("Clientes_NCliente");
+			/**
+			 * Creamos un objeto del tipo de la clase
+			 */
 			ClsEnvios objEnvios = new ClsEnvios(NumeroDeEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio,
 					CPDeENVIO, ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
-			/**
-			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
-			 */
 
+			/**
+			 * Añadimos el objeto al Array
+			 */
 			MiListaDeEnvios.add(objEnvios);
 
 		}
@@ -1035,7 +1163,10 @@ public class ClsGestorLN {
 	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<ItfProperty> DameEnvios() {
-		
+
+		/**
+		 * LLamamos al metodo de ordenacion que hemos generado
+		 */
 		Collections.sort(MiListaDeEnvios);
 
 		/**
@@ -1045,6 +1176,9 @@ public class ClsGestorLN {
 		ArrayList<ItfProperty> retorno;
 		retorno = new ArrayList<ItfProperty>();
 
+		/**
+		 * Copiamos un array en el otro y lo devolvemos
+		 */
 		for (ClsEnvios a : MiListaDeEnvios) {
 			retorno.add(a);
 		}
@@ -1061,9 +1195,19 @@ public class ClsGestorLN {
 	 */
 	public boolean ExisteEnvios(ClsEnvios objEnvios) {
 
+		/**
+		 * Variable que chequea el proceso
+		 */
 		boolean retorno = false;
+
+		/**
+		 * Comprobamos a traves del metodo equals
+		 */
 		for (ClsEnvios b : MiListaDeEnvios) {
 			if (b.equals(objEnvios))
+				/**
+				 * Si coinciden devolvemos un true
+				 */
 				return true;
 		}
 		return retorno;
@@ -1072,9 +1216,10 @@ public class ClsGestorLN {
 	/**
 	 * Metopo para eliminar cliente de Array y BD
 	 * 
-	 * @param NºEnvio parametro por el cual borrar.
+	 * @param NEnvio parametro por el cual borrar.
 	 * @throws SQLException       lanzamos excepcion
 	 * @throws ClsBorrarExcepcion excepcion para el borrado
+	 * @return nos devuelve si lo ha hecho o no.
 	 */
 	public boolean EliminarEnviosDeArray(int NEnvio) throws SQLException, ClsBorrarExcepcion {
 
@@ -1128,19 +1273,28 @@ public class ClsGestorLN {
 		 */
 		ResultSet Resultado = objDatos.consultarPedidos();
 
+		/**
+		 * Obtenemos los datos del objeto
+		 */
 		while (Resultado.next()) {
+			/**
+			 * guardamos los datos en variables
+			 */
 			int NumeroDePedido = Resultado.getInt("NPedido");
 			Date FechaDePedido = Resultado.getDate("Fecha_de_pedido");
 			Date FechaDeEntrega = Resultado.getDate("Fecha_de_entrega");
 			Boolean Entregado = Resultado.getBoolean("Entregado");
 			int NumeroDeCliente_Pedidos = Resultado.getInt("Clientes_NCliente");
 			String NombreYApelliosDelCliente = Resultado.getString("NombreYApellidos");
+			/**
+			 * Creamos un objeto del tipo de la clase
+			 */
 			ClsPedidos objPedido = new ClsPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado,
 					NombreYApelliosDelCliente, NumeroDeCliente_Pedidos);
-			/**
-			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
-			 */
 
+			/**
+			 * Añadimos el objeto al Array
+			 */
 			MiListaDePedidos.add(objPedido);
 
 		}
@@ -1149,10 +1303,16 @@ public class ClsGestorLN {
 
 	public ArrayList<ItfProperty> DamePedidos() {
 
+		/**
+		 * Instanciamos y creamos un objeto del tipo que nos ordena el array
+		 */
 		ClsComparadorPorFechas comp = new ClsComparadorPorFechas();
-		
+
+		/**
+		 * LLamamos al metodo que nos ordena pasandole el array a ordenar
+		 */
 		Collections.sort(MiListaDePedidos, comp);
-		
+
 		/**
 		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
 		 * pasarlas a ClsMostrarDatos para verlos por pantalla
@@ -1160,6 +1320,9 @@ public class ClsGestorLN {
 		ArrayList<ItfProperty> retorno;
 		retorno = new ArrayList<ItfProperty>();
 
+		/**
+		 * compiamos un array en el otro ya ordenado
+		 */
 		for (ClsPedidos a : MiListaDePedidos) {
 			retorno.add(a);
 		}
@@ -1170,9 +1333,19 @@ public class ClsGestorLN {
 
 	public boolean ExistePedidos(ClsPedidos objPedidos) {
 
+		/**
+		 * Variable que chequea el proceso
+		 */
 		boolean retorno = false;
+
+		/**
+		 * Comprobamos a traves del metodo equals
+		 */
 		for (ClsPedidos b : MiListaDePedidos) {
 			if (b.equals(objPedidos))
+				/**
+				 * Si coinciden nos devuelve un true
+				 */
 				return true;
 		}
 		return retorno;
@@ -1231,7 +1404,13 @@ public class ClsGestorLN {
 		 */
 		ResultSet Resultado = objDatos.consultarArticulos();
 
+		/**
+		 * Obtenemos los datos del objeto
+		 */
 		while (Resultado.next()) {
+			/**
+			 * Los guardamos en variables
+			 */
 			int Referencia = Resultado.getInt("Referencia");
 			int Serie = Resultado.getInt("Serie");
 			String Descripcion = Resultado.getString("Descripcion");
@@ -1239,12 +1418,15 @@ public class ClsGestorLN {
 			int CantidadHerraje = Resultado.getInt("CantidadHerraje");
 			double Precio = Resultado.getDouble("Precio");
 			int Suelas_Referencia = Resultado.getInt("Suelas_Referencia");
+			/**
+			 * Creamos un objeto del tipo de la clase
+			 */
 			ClsArticulos objArticulos = new ClsArticulos(Referencia, Serie, Descripcion, CantidadMaterial,
 					CantidadHerraje, Precio, Suelas_Referencia);
-			/**
-			 * Aseguramos que esos objetos no esta repetidos y los añadimos al Array
-			 */
 
+			/**
+			 * Añadimos el objeto al Array
+			 */
 			MiListaDeArticulos.add(objArticulos);
 
 		}
@@ -1260,6 +1442,9 @@ public class ClsGestorLN {
 		ArrayList<ItfProperty> retorno;
 		retorno = new ArrayList<ItfProperty>();
 
+		/**
+		 * Copiamos un array en el otro y lo devolvemos
+		 */
 		for (ClsArticulos a : MiListaDeArticulos) {
 			retorno.add(a);
 		}
@@ -1270,10 +1455,19 @@ public class ClsGestorLN {
 
 	public boolean ExisteArticulos(ClsArticulos Articulos) {
 
+		/**
+		 * Varaible que chequea el proceso
+		 */
 		boolean retorno = false;
 
+		/**
+		 * Comprobamos a traves del metodo equals
+		 */
 		for (ClsArticulos b : MiListaDeArticulos) {
 			if (b.equals(Articulos))
+				/**
+				 * Si coinciden devolvemos un true
+				 */
 				return true;
 
 		}
@@ -1281,6 +1475,14 @@ public class ClsGestorLN {
 		return retorno;
 	}
 
+	/**
+	 * Metodo para eliminar Articulos de Array y de BD
+	 * 
+	 * @param Referencia parametro por el cual borrar
+	 * @return genera un return
+	 * @throws SQLException       lanza excepcion de BD
+	 * @throws ClsBorrarExcepcion lanza excepcion si no se ha borrado
+	 */
 	public boolean EliminarArticulosDeArray(int Referencia) throws SQLException, ClsBorrarExcepcion {
 
 		/**
@@ -1325,6 +1527,11 @@ public class ClsGestorLN {
 		return hecho;
 	}
 
+	/**
+	 * Metodo para recuperar objetos desglose de BD
+	 * 
+	 * @throws SQLException lanza excepcion de BD
+	 */
 	public void ObjetosRecuperadosDesglose() throws SQLException {
 
 		/**
@@ -1332,7 +1539,13 @@ public class ClsGestorLN {
 		 */
 		ResultSet Resultado = objDatos.consultarDesglose();
 
+		/**
+		 * obtenemos lo datos del objeto
+		 */
 		while (Resultado.next()) {
+			/**
+			 * Guardamos los datos en variables
+			 */
 			int NumeroDePedido = Resultado.getInt("NPedidoD");
 			int ReferenciaDelArticulo = Resultado.getInt("Articulos_Referencia");
 			int Serie = Resultado.getInt("Serie");
@@ -1350,6 +1563,9 @@ public class ClsGestorLN {
 			int CantidadTotal = Resultado.getInt("CantidadTotalPies");
 			int NumeroDeCliente_Desglose = Resultado.getInt("Pedidos_Clientes_NCliente");
 
+			/**
+			 * Generamos un objeto del tipo de la clase
+			 */
 			ClsDesgloseDePedido objDesgloseDePedido = new ClsDesgloseDePedido(NumeroDePedido, ReferenciaDelArticulo,
 					Serie, Color, NumeroDePie5, NumeroDePie6, NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0,
 					NumeroDePie1, NumeroDePie2, NumeroDePie3, NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
@@ -1357,13 +1573,17 @@ public class ClsGestorLN {
 			/**
 			 * Los añadimos al Array
 			 */
-
 			MiListaDeDesgloses.add(objDesgloseDePedido);
 
 		}
 
 	}
-	
+
+	/**
+	 * Metodo para devolver el array de desglose
+	 * 
+	 * @return nos devuelve todo el array
+	 */
 	public ArrayList<ItfProperty> DameDesgloses() {
 
 		/**
@@ -1373,6 +1593,9 @@ public class ClsGestorLN {
 		ArrayList<ItfProperty> retorno;
 		retorno = new ArrayList<ItfProperty>();
 
+		/**
+		 * Copiamos un array en otro y lo devolvemos
+		 */
 		for (ClsDesgloseDePedido a : MiListaDeDesgloses) {
 			retorno.add(a);
 		}
@@ -1380,7 +1603,16 @@ public class ClsGestorLN {
 		return retorno;
 
 	}
-	
+
+	/**
+	 * Metodo para eliminar Desgloses de Array y de BD
+	 * 
+	 * @param NPedidoD parametro por el cual borramos
+	 * @return nos devuelve un resultado
+	 * @throws SQLException       lanza la excepcion de BD
+	 * @throws ClsBorrarExcepcion lanza excepcion si no se ha podido hacer el
+	 *                            borrado
+	 */
 	public boolean EliminarDesglosesDeArray(int NPedidoD) throws SQLException, ClsBorrarExcepcion {
 
 		/**
@@ -1397,7 +1629,8 @@ public class ClsGestorLN {
 		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
 		 */
 		for (int userInd = 0; userInd < bound; userInd++) {
-			if (MiListaDeDesgloses.get(userInd).getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO).equals(NPedidoD)) {
+			if (MiListaDeDesgloses.get(userInd).getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO)
+					.equals(NPedidoD)) {
 				index = userInd;
 				break;
 			}

@@ -19,6 +19,9 @@ public class ClsDNI_NIFValidoExcepcion extends Exception {
 	 */
 	private final String MENSAJE = "El DNI o NIF es incorrecto";
 
+	/**
+	 * Devolvemos el mansaje en caso de que salte la excepcion
+	 */
 	@Override
 	public String getMessage() {
 		return MENSAJE;

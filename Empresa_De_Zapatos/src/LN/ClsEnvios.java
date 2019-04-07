@@ -201,12 +201,10 @@ public class ClsEnvios implements ItfProperty, Comparable {
 		return null;
 	}
 
-	
 	/**
 	 * Implementacion del metodo HashCode para comprobar
-	 * 
-	 * @Override
 	 */
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -216,9 +214,8 @@ public class ClsEnvios implements ItfProperty, Comparable {
 
 	/**
 	 * Implementacion de metodo Equals para comprobar.
-	 * 
-	 * @Override
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -234,26 +231,23 @@ public class ClsEnvios implements ItfProperty, Comparable {
 
 	/**
 	 * Implementacion de metodo CompareTo para ordenar.
-	 * 
-	 * @Override
 	 */
+	@Override
 	public int compareTo(Object arg0) {
 
 		String Nombre;
 		ClsEnvios objEnv;
-		
+
 		Nombre = NombreCliente;
-		
-		if(arg0==null)
+
+		if (arg0 == null)
 			throw new NullPointerException();
-		if(arg0.getClass()!=this.getClass())
+		if (arg0.getClass() != this.getClass())
 			throw new ClassCastException();
 
-		objEnv = (ClsEnvios)arg0;
-		
+		objEnv = (ClsEnvios) arg0;
+
 		return Nombre.compareTo(objEnv.getNombreCliente());
 	}
-	
-	
 
 }

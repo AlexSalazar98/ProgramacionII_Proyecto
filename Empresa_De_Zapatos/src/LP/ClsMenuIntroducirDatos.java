@@ -90,6 +90,9 @@ public class ClsMenuIntroducirDatos {
 				break;
 			}
 
+			/**
+			 * si es opcion 10 regresamos al menu principal
+			 */
 		} while (opcionIntroducir != 10);
 
 	}
@@ -119,11 +122,21 @@ public class ClsMenuIntroducirDatos {
 		Precio_Suelas = UtilidadesLP.leerReal();
 
 		/**
-		 * Pasamos los parametros para generer el objeto
+		 * Rodeamos con TRY CATCH para tratar excepcion.
 		 */
 		try {
+			/**
+			 * Pasamos los parametros para generer el objeto
+			 */
 			objGSuelas.CrearSuelas(Referencia_Suelas, Descripcion_Suelas, Precio_Suelas);
+			/**
+			 * Mensaje para confirmar la introduccion de datos
+			 */
+			System.out.println("Datos introducidos correctamente!");
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion
+			 */
 			System.out.println("No se ha podido realizar el insert: " + e);
 		}
 
@@ -158,7 +171,14 @@ public class ClsMenuIntroducirDatos {
 			 * Pasamos los datos al gestor para que los gestione
 			 */
 			objGSeries.CrearSerie(NumeroDeSerie, descripcion_Serie);
+			/**
+			 * Mensaje para confirmar la introduccion de datos
+			 */
+			System.out.println("Datos introducidos correctamente!");
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion
+			 */
 			System.out.println("No se ha podido realizar el insert: " + e);
 		}
 	}
@@ -180,39 +200,58 @@ public class ClsMenuIntroducirDatos {
 		Boolean Entregado;
 		int NumeroDeCliente_Pedidos;
 		String NombreYApelliosDelCliente;
+		Date FechaDePedido;
+		Date FechaDeEntrega;
+		/**
+		 * Variables de chequeo
+		 */
+		boolean primera = false;
+		boolean segunda = false;
 
 		/**
 		 * Para formatear las fechas
 		 */
-		SimpleDateFormat miFormato = new SimpleDateFormat("DD-MM-YYYY");
+		SimpleDateFormat miFormato = new SimpleDateFormat("dd/MM/yyyy");
 
 		/**
 		 * pedimos los datos.
 		 */
 		System.out.println("Introduzca el Número de Pedido:");
 		NumeroDePedido = UtilidadesLP.leerEntero();
-		System.out.print("Introduzca la Fecha del Pedido (Formato: 00-00-0000):");
-		fechaDePedido = UtilidadesLP.leerCadena();
-		/**
-		 * Pasamos de String a date tratando la excepcion.
-		 */
-		Date FechaDePedido = null;
-		try {
-			FechaDePedido = (Date) miFormato.parse(fechaDePedido);
-		} catch (ParseException e1) {
-			System.out.println("¡Error en el formato!");
-		}
-		System.out.print("Introduzca la Fecha de Entrega (Formato: 00-00-0000):");
-		fechaDeEntrega = UtilidadesLP.leerCadena();
-		/**
-		 * Pasamos de String a date tratando la excepcion.
-		 */
-		Date FechaDeEntrega = null;
-		try {
-			FechaDeEntrega = (Date) miFormato.parse(fechaDeEntrega);
-		} catch (ParseException e) {
-			System.out.println("¡Error en el formato!");
-		}
+
+		do {
+			System.out.print("Introduzca la Fecha del Pedido (Formato: 00/00/0000):");
+			fechaDePedido = UtilidadesLP.leerCadena();
+			/**
+			 * Pasamos de String a date tratando la excepcion.
+			 */
+			FechaDePedido = null;
+			/**
+			 * Rodeamos con TRY CATCH para tratar excepcion.
+			 */
+			try {
+				FechaDePedido = (Date) miFormato.parse(fechaDePedido);
+				primera = true;
+			} catch (ParseException e1) {
+				System.out.println("¡Error en el formato!");
+			}
+		} while (!primera);
+
+		do {
+			System.out.print("Introduzca la Fecha de Entrega (Formato: 00/00/0000):");
+			fechaDeEntrega = UtilidadesLP.leerCadena();
+			/**
+			 * Rodeamos con TRY CATCH para tratar excepcion.
+			 */
+			FechaDeEntrega = null;
+			try {
+				FechaDeEntrega = (Date) miFormato.parse(fechaDeEntrega);
+				segunda = true;
+			} catch (ParseException e) {
+				System.out.println("¡Error en el formato!");
+			}
+		} while (!segunda);
+
 		System.out.print("Introduce 1 (Si) o 0 (No) para indicar si el pedido esta entregado o no:");
 		comprobar = UtilidadesLP.leerEntero();
 		if (comprobar == 1) {
@@ -227,12 +266,22 @@ public class ClsMenuIntroducirDatos {
 		NombreYApelliosDelCliente = UtilidadesLP.leerCadena();
 
 		/**
-		 * Pasamos los parametros para generer el objeto
+		 * Rodeamos con TRY CATCH para tratar excepcion.
 		 */
 		try {
+			/**
+			 * Pasamos los parametros para generer el objeto
+			 */
 			objGPedidos.CrearPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado, NumeroDeCliente_Pedidos,
 					NombreYApelliosDelCliente);
+			/**
+			 * Mensaje para confirmar la introduccion de datos
+			 */
+			System.out.println("Datos introducidos correctamente!");
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion
+			 */
 			System.out.println("No se ha podido realizar el insert: " + e);
 		}
 
@@ -263,11 +312,21 @@ public class ClsMenuIntroducirDatos {
 		Precio_Materiales = UtilidadesLP.leerReal();
 
 		/**
-		 * Pasamos los parametros para generer el objeto
+		 * Rodeamos con TRY CATCH para tratar excepcion.
 		 */
 		try {
+			/**
+			 * Pasamos los parametros para generer el objeto
+			 */
 			objGMateriales.CrearMateriales(Referencia_Materiales, Descripcion_Materiales, Precio_Materiales);
+			/**
+			 * Mensaje para confirmar la introduccion de datos
+			 */
+			System.out.println("Datos introducidos correctamente!");
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion
+			 */
 			System.out.println("No se ha podido realizar el insert: " + e);
 		}
 
@@ -298,11 +357,21 @@ public class ClsMenuIntroducirDatos {
 		Precio_Herrajes = UtilidadesLP.leerReal();
 
 		/**
-		 * Pasamos los parametros para generer el objeto
+		 * Rodeamos con TRY CATCH para tratar excepcion.
 		 */
 		try {
+			/**
+			 * Pasamos los parametros para generer el objeto
+			 */
 			objGHerrajes.CrearHerrajes(Referencia_Herrajes, Descripcion_Herrajes, Precio_Herrajes);
+			/**
+			 * Mensaje para confirmar la introduccion de datos
+			 */
+			System.out.println("Datos introducidos correctamente!");
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion
+			 */
 			System.out.println("No se ha podido realizar el insert: " + e);
 		}
 
@@ -348,12 +417,22 @@ public class ClsMenuIntroducirDatos {
 		NumeroDeCliente_Envio = UtilidadesLP.leerEntero();
 
 		/**
-		 * Pasamos los parametros para generer el objeto
+		 * Rodeamos con TRY CATCH para tratar excepcion.
 		 */
 		try {
+			/**
+			 * Pasamos los parametros para generer el objeto
+			 */
 			objGEnvios.CrearEnvios(NumeroDeEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio, CPDeEnvio,
 					ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
+			/**
+			 * Mensaje para confirmar la introduccion de datos
+			 */
+			System.out.println("Datos introducidos correctamente!");
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion
+			 */
 			System.out.println("No se ha podido realizar el insert: " + e);
 
 		}
@@ -396,6 +475,9 @@ public class ClsMenuIntroducirDatos {
 			try {
 				correcto = objComprobarDNI_NIF.ComprobarDNI_NIF(DNI_NIF);
 			} catch (ClsDNI_NIFValidoExcepcion e) {
+				/**
+				 * Mensaje de excepcion
+				 */
 				System.out.println(e.getMessage());
 
 			}
@@ -410,12 +492,22 @@ public class ClsMenuIntroducirDatos {
 		Email = UtilidadesLP.leerCadena();
 
 		/**
-		 * Pasamos los parametros para generer el objeto
+		 * Rodeamos con TRY CATCH para tratar excepcion.
 		 */
 		try {
+			/**
+			 * Pasamos los parametros para generer el objeto
+			 */
 			objGClientes.CrearClientes(NumeroDeCliente, NombreYApellidos, DNI_NIF, DireccionDeCliente, Provincia,
 					Telefono, Email);
+			/**
+			 * Mensaje para confirmar la introduccion de datos
+			 */
+			System.out.println("Datos introducidos correctamente!");
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion
+			 */
 			System.out.println("No se ha podido realizar el insert: " + e);
 		}
 	}
@@ -457,12 +549,22 @@ public class ClsMenuIntroducirDatos {
 		ReferenciaSuelas_Articulos = UtilidadesLP.leerEntero();
 
 		/**
-		 * Pasamos los parametros para generer el objeto
+		 * Rodeamos con TRY CATCH para tratar excepcion.
 		 */
 		try {
+			/**
+			 * Pasamos los parametros para generer el objeto
+			 */
 			objGArticulos.CrearArticulos(Referencia, Serie, Descripcion, CantidadMaterial, CantidadHerrajes, Precio,
 					ReferenciaSuelas_Articulos);
+			/**
+			 * Mensaje para confirmar la introduccion de datos
+			 */
+			System.out.println("Datos introducidos correctamente!");
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion
+			 */
 			System.out.println("No se ha podido realizar el insert: " + e);
 		}
 
@@ -532,13 +634,23 @@ public class ClsMenuIntroducirDatos {
 		NumeroDeCliente_Desglose = UtilidadesLP.leerEntero();
 
 		/**
-		 * Pasamos los parametros para generer el objeto
+		 * Rodeamos con TRY CATCH para tratar excepcion.
 		 */
 		try {
+			/**
+			 * llamada al metodo Crear Desgloses con paso de parametros
+			 */
 			objGDesgloseDePedido.CrearDesgloseDePedido(NumeroDePedido, ReferenciaDelArticulo, Serie, Color,
 					NumeroDePie5, NumeroDePie6, NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1,
 					NumeroDePie2, NumeroDePie3, NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
+			/**
+			 * Mensaje para confirmar la introduccion de datos
+			 */
+			System.out.println("Datos introducidos correctamente!");
 		} catch (SQLException e) {
+			/**
+			 * Mensaje de excepcion
+			 */
 			System.out.println("No se ha podido realizar el insert: " + e);
 		}
 

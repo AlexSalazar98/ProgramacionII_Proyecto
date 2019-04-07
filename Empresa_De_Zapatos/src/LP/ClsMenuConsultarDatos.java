@@ -16,10 +16,6 @@ public class ClsMenuConsultarDatos {
 	public static void MenuConsultarDatos(ClsGestorLN objGestorMC, ClsMostrarDatos objMostrarDatos) {
 
 		/**
-		 * Intanciamos el objeto gestor para tener acceso a la clase gestor
-		 */
-
-		/**
 		 * 
 		 * Variable para guardar la opcion elegida por el usuario.
 		 *
@@ -87,6 +83,9 @@ public class ClsMenuConsultarDatos {
 				break;
 			}
 
+			/**
+			 * Si la opcion es 10 regresamos al menu principal
+			 */
 		} while (opcionConsultar != 10);
 
 	}
@@ -126,7 +125,7 @@ public class ClsMenuConsultarDatos {
 	 * @param objMostrarDatosP relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosPedidos(ClsGestorLN ObjGestCPedidos, ClsMostrarDatos objMostrarDatosP) {
-		
+
 		/**
 		 * Llamada al metodo ver datos
 		 */
@@ -211,7 +210,7 @@ public class ClsMenuConsultarDatos {
 	 * @param objMostrarDatosD relacion con ClsMostrarDatos
 	 */
 	public static void ConsultarDatosDesgloseDePedido(ClsGestorLN ObjGestCDesglose, ClsMostrarDatos objMostrarDatosD) {
-		
+
 		/**
 		 * Llamamos al metodo ver Desgloses.
 		 */
