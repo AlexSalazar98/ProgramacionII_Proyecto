@@ -2,6 +2,7 @@ package LP;
 
 import java.sql.SQLException;
 import LN.ClsGestorLN;
+import PANTALLA_LP.ClsVerPantallaPrincipal;
 
 /**
  * Generamos un menu principal para poder insertar, consultar, borrar datos o
@@ -26,6 +27,7 @@ public class ClsMenuPrincipal {
 		 * Llamadas a metodos para cargar los datos en Arrays nada mas iniciar la
 		 * aplicacion.
 		 */
+		ClsVerPantallaPrincipal.main(objGestor);
 		try {
 			objGestor.ObjetosRecuperadosSerie();
 			objGestor.ObjetosRecuperadosSuelas();

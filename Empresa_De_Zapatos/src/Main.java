@@ -1,6 +1,7 @@
 
 import LP.ClsMenuPrincipal;
 
+
 /**
  * 
  * @author Alex Salazar
@@ -21,6 +22,8 @@ public class Main {
 		 * Aqui llamamos al menu principal.
 		 */
 
+		
+		
 		ClsMenuPrincipal.MenuPrincipal();
 
 	}
