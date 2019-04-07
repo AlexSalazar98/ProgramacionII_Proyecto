@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.Collections;
 import COMUN.ItfProperty;
 import LD.ClsDatos;
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
@@ -1033,7 +1033,10 @@ public class ClsGestorLN {
 	 * 
 	 * @return nos genera un return
 	 */
+	@SuppressWarnings("unchecked")
 	public ArrayList<ItfProperty> DameEnvios() {
+		
+		Collections.sort(MiListaDeEnvios);
 
 		/**
 		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
@@ -1146,6 +1149,10 @@ public class ClsGestorLN {
 
 	public ArrayList<ItfProperty> DamePedidos() {
 
+		ClsComparadorPorFechas comp = new ClsComparadorPorFechas();
+		
+		Collections.sort(MiListaDePedidos, comp);
+		
 		/**
 		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
 		 * pasarlas a ClsMostrarDatos para verlos por pantalla

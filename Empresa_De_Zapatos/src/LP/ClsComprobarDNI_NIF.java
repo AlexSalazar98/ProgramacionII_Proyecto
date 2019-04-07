@@ -1,4 +1,4 @@
-package LN;
+package LP;
 
 import Excepciones.ClsDNI_NIFValidoExcepcion;
 

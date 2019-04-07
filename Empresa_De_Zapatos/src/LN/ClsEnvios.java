@@ -23,7 +23,8 @@ import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO;
  * 
  */
 
-public class ClsEnvios implements ItfProperty {
+@SuppressWarnings("rawtypes")
+public class ClsEnvios implements ItfProperty, Comparable {
 
 	/**
 	 * Estos son los atributos de la tablas
@@ -200,7 +201,12 @@ public class ClsEnvios implements ItfProperty {
 		return null;
 	}
 
-	@Override
+	
+	/**
+	 * Implementacion del metodo HashCode para comprobar
+	 * 
+	 * @Override
+	 */
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -208,7 +214,11 @@ public class ClsEnvios implements ItfProperty {
 		return result;
 	}
 
-	@Override
+	/**
+	 * Implementacion de metodo Equals para comprobar.
+	 * 
+	 * @Override
+	 */
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -221,5 +231,29 @@ public class ClsEnvios implements ItfProperty {
 			return false;
 		return true;
 	}
+
+	/**
+	 * Implementacion de metodo CompareTo para ordenar.
+	 * 
+	 * @Override
+	 */
+	public int compareTo(Object arg0) {
+
+		String Nombre;
+		ClsEnvios objEnv;
+		
+		Nombre = NombreCliente;
+		
+		if(arg0==null)
+			throw new NullPointerException();
+		if(arg0.getClass()!=this.getClass())
+			throw new ClassCastException();
+
+		objEnv = (ClsEnvios)arg0;
+		
+		return Nombre.compareTo(objEnv.getNombreCliente());
+	}
+	
+	
 
 }
