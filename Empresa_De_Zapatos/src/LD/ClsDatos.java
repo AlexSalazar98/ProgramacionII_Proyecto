@@ -51,6 +51,25 @@ import static LD.ClsConstantesBD.QUERY_PARA_DELETE_DESGLOSE_DE_PEDIDO_POR_NUMERO
 public class ClsDatos {
 
 	/**
+	 * Objeto para crear conexion a BD
+	 */
+	Connection objConn = null;
+
+	/**
+	 * Objeto para crear la consulta a base de datos.
+	 */
+	PreparedStatement objSt = null;
+	/**
+	 * Objeto para devolver el resultado de la consulta.
+	 */
+	ResultSet rs = null;
+
+	/**
+	 * Objeto para preparar consultas
+	 */
+	Statement st = null;
+
+	/**
 	 * Constructor vacio de ClsDatos.
 	 */
 	public ClsDatos() {
@@ -63,11 +82,6 @@ public class ClsDatos {
 	 * @throws SQLException lanzamos excepciones a la capa LP
 	 */
 	public Connection conectarBD() throws SQLException {
-
-		/**
-		 * objeto conecxio
-		 */
-		Connection objConn = null;
 
 		/**
 		 * Realizamos la conexio
@@ -86,22 +100,16 @@ public class ClsDatos {
 	 * @throws SQLException lanzamos excepciones a la capa LP
 	 */
 	public void InsertarSerie(int NDeSerie, String Descripcion) throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
-		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
-		 */
-		Connection objConn = SQL.conectarBD();
 
-		if (objConn != null) {
+		/**
+		 * Insertamos Series
+		 */
+		if (conectarBD() != null) {
 
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_SERIES);
+			objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_SERIES);
 			/**
 			 * Datos a insertar
 			 */
@@ -135,24 +143,15 @@ public class ClsDatos {
 	 */
 
 	public ResultSet consultarSeries() throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
 
 		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
+		 * Consultamos Series
 		 */
-		Connection objConn = SQL.conectarBD();
-
-		ResultSet rs = null;
-
-		if (objConn != null) {
+		if (conectarBD() != null) {
 			/**
 			 * Preparamos la consulta
 			 */
-			Statement st = objConn.createStatement();
+			st = objConn.createStatement();
 			/**
 			 * Proceso de recuperacion de datos
 			 */
@@ -196,21 +195,14 @@ public class ClsDatos {
 	public void eliminarSeries(int NDeSerie) throws SQLException {
 
 		/**
-		 * Instancias la clase que hemos creado anteriormente
+		 * Eliminamos Series
 		 */
-		ClsDatos SQL = new ClsDatos();
-
-		/**
-		 * Llamas al método que tiene la clase y te devuelve una conexión
-		 */
-		Connection objConn = SQL.conectarBD();
-
 		if (objConn != null) {
 
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_SERIES_POR_NºDESERIE);
+			objSt = objConn.prepareStatement(QUERY_PARA_DELETE_SERIES_POR_NºDESERIE);
 			/**
 			 * Dato por el cual borramos
 			 */
@@ -244,22 +236,16 @@ public class ClsDatos {
 	 * @throws SQLException lanzamos excepciones
 	 */
 	public void InsertarSuelas(int Referencia, String Descripcion, Double Precio) throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
-		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
-		 */
-		Connection objConn = SQL.conectarBD();
 
+		/**
+		 * Insertamos Suelas
+		 */
 		if (objConn != null) {
 
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_SUELAS);
+			objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_SUELAS);
 			/**
 			 * Datos a guardar
 			 */
@@ -293,24 +279,15 @@ public class ClsDatos {
 	 * @throws SQLException mandamos excepxiones a tratar.
 	 */
 	public ResultSet consultarSuelas() throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
 
 		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
+		 * Consultamos Suelas
 		 */
-		Connection objConn = SQL.conectarBD();
-
-		ResultSet rs = null;
-
 		if (objConn != null) {
 			/**
 			 * Preparamos la consulta
 			 */
-			Statement st = objConn.createStatement();
+			st = objConn.createStatement();
 			/**
 			 * Proceso de recuperacion de datos
 			 */
@@ -355,21 +332,14 @@ public class ClsDatos {
 	public void eliminarSuelas(int NDeSerie) throws SQLException {
 
 		/**
-		 * Instancias la clase que hemos creado anteriormente
+		 * Eliminamos Suelas
 		 */
-		ClsDatos SQL = new ClsDatos();
-
-		/**
-		 * Llamas al método que tiene la clase y te devuelve una conexión
-		 */
-		Connection objConn = SQL.conectarBD();
-
 		if (objConn != null) {
 
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_SUELAS_POR_REFERENCIA);
+			objSt = objConn.prepareStatement(QUERY_PARA_DELETE_SUELAS_POR_REFERENCIA);
 			/**
 			 * Dato por el cual borramos
 			 */
@@ -403,20 +373,14 @@ public class ClsDatos {
 	 * @throws SQLException lanzamos excepciones
 	 */
 	public void InsertarMateriales(int Referencia, String Descripcion, Double Precio) throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
-		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
-		 */
-		Connection objConn = SQL.conectarBD();
 
+		/**
+		 * Insertamos Materiales
+		 */
 		if (objConn != null) {
 
 			// Creamos las preparedstaments
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_MATERIALES);
+			objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_MATERIALES);
 			/**
 			 * Datos a insertar
 			 */
@@ -450,24 +414,15 @@ public class ClsDatos {
 	 * @throws SQLException lanzamos excepciones
 	 */
 	public ResultSet consultarMateriales() throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
 
 		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
+		 * Consultamos materiales
 		 */
-		Connection objConn = SQL.conectarBD();
-
-		ResultSet rs = null;
-
 		if (objConn != null) {
 			/**
 			 * Preparamos la consulta
 			 */
-			Statement st = objConn.createStatement();
+			st = objConn.createStatement();
 			/**
 			 * Proceso de recuperar datos
 			 */
@@ -513,21 +468,14 @@ public class ClsDatos {
 	public void eliminarMateriales(int Referencia) throws SQLException {
 
 		/**
-		 * Instancias la clase que hemos creado anteriormente
+		 * Eliminamos Materiales
 		 */
-		ClsDatos SQL = new ClsDatos();
-
-		/**
-		 * Llamas al método que tiene la clase y te devuelve una conexión
-		 */
-		Connection objConn = SQL.conectarBD();
-
 		if (objConn != null) {
 
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_MATERIALES_POR_REFERENCIA);
+			objSt = objConn.prepareStatement(QUERY_PARA_DELETE_MATERIALES_POR_REFERENCIA);
 			/**
 			 * Dato por el cual borramos
 			 */
@@ -561,20 +509,16 @@ public class ClsDatos {
 	 * @throws SQLException lanzamos excepciones
 	 */
 	public void InsertarHerrajes(int Referencia, String Descripcion, Double Precio) throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
-		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
-		 */
-		Connection objConn = SQL.conectarBD();
 
+		/**
+		 * Insertamos Herrajes
+		 */
 		if (objConn != null) {
 
-			// Creamos las preparedstaments
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_HERRAJES);
+			/**
+			 * Creamos las preparedstaments
+			 */
+			objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_HERRAJES);
 			/**
 			 * Datos a insertar
 			 */
@@ -608,24 +552,15 @@ public class ClsDatos {
 	 * @throws SQLException mandamos excepxiones a tratar.
 	 */
 	public ResultSet consultarHerrajes() throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
 
 		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
+		 * Consultamos Herrajes
 		 */
-		Connection objConn = SQL.conectarBD();
-
-		ResultSet rs = null;
-
 		if (objConn != null) {
 			/**
 			 * Preparamos la consulta
 			 */
-			Statement st = objConn.createStatement();
+			st = objConn.createStatement();
 			/**
 			 * Proceso de recuperar datos
 			 */
@@ -670,21 +605,14 @@ public class ClsDatos {
 	public void eliminarHerrajes(int NDeSerie) throws SQLException {
 
 		/**
-		 * Instancias la clase que hemos creado anteriormente
+		 * Eliminamos Herrajes
 		 */
-		ClsDatos SQL = new ClsDatos();
-
-		/**
-		 * Llamas al método que tiene la clase y te devuelve una conexión
-		 */
-		Connection objConn = SQL.conectarBD();
-
 		if (objConn != null) {
 
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_HERRAJES_POR_REFERENCIA);
+			objSt = objConn.prepareStatement(QUERY_PARA_DELETE_HERRAJES_POR_REFERENCIA);
 			/**
 			 * Parametro por el cual borramos
 			 */
@@ -723,20 +651,14 @@ public class ClsDatos {
 	 */
 	public void InsertarClientes(int NCliente, String NombreYApellidos, String DNI_NIF, String DireccionDeCliente,
 			String Provincia, int Telefono, String Email) throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
-		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
-		 */
-		Connection objConn = SQL.conectarBD();
 
+		/**
+		 * Insertamos Clientes
+		 */
 		if (objConn != null) {
 
 			// Creamos las preparedstaments
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_CLIENTES);
+			objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_CLIENTES);
 			/**
 			 * Datos a insertar
 			 */
@@ -775,24 +697,15 @@ public class ClsDatos {
 	 * @throws SQLException lanzamos excepcion
 	 */
 	public ResultSet consultarClientes() throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
 
 		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
+		 * Consultamos Clientes
 		 */
-		Connection objConn = SQL.conectarBD();
-
-		ResultSet rs = null;
-
 		if (objConn != null) {
 			/**
 			 * Preparamos la consulta
 			 */
-			Statement st = objConn.createStatement();
+			st = objConn.createStatement();
 			/**
 			 * Proceso de recuperar datos
 			 */
@@ -835,21 +748,14 @@ public class ClsDatos {
 	public void eliminarClientes(int NCliente) throws SQLException {
 
 		/**
-		 * Instancias la clase que hemos creado anteriormente
+		 * Eliminamos Clientes.
 		 */
-		ClsDatos SQL = new ClsDatos();
-
-		/**
-		 * Llamas al método que tiene la clase y te devuelve una conexión
-		 */
-		Connection objConn = SQL.conectarBD();
-
 		if (objConn != null) {
 
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_CLIENTES_POR_NUMERO_DE_CLIENTE);
+			objSt = objConn.prepareStatement(QUERY_PARA_DELETE_CLIENTES_POR_NUMERO_DE_CLIENTE);
 			/**
 			 * Dato por el cual borramos
 			 */
@@ -889,20 +795,14 @@ public class ClsDatos {
 	 */
 	public void InsertarEnvios(int NEnvio, String NombreCliente, String DireccionDeEnvio, String PoblacionDeEnvio,
 			int CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int Clientes_NCliente) throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
-		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
-		 */
-		Connection objConn = SQL.conectarBD();
 
+		/**
+		 * Insertamos Envios
+		 */
 		if (objConn != null) {
 
 			// Creamos las preparedstaments
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_ENVIOS);
+			objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_ENVIOS);
 			/**
 			 * Datos a insertar
 			 */
@@ -941,24 +841,15 @@ public class ClsDatos {
 	 * @throws SQLException lanza la excepcion
 	 */
 	public ResultSet consultarEnvios() throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
 
 		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
+		 * Consultamos Envios
 		 */
-		Connection objConn = SQL.conectarBD();
-
-		ResultSet rs = null;
-
 		if (objConn != null) {
 			/**
 			 * Preparamos la consulta
 			 */
-			Statement st = objConn.createStatement();
+			st = objConn.createStatement();
 			/**
 			 * Proceso de recuperar datos
 			 */
@@ -1001,21 +892,14 @@ public class ClsDatos {
 	public void eliminarEnvios(int NEnvio) throws SQLException {
 
 		/**
-		 * Instancias la clase que hemos creado anteriormente
+		 * Eliminamos envio
 		 */
-		ClsDatos SQL = new ClsDatos();
-
-		/**
-		 * Llamas al método que tiene la clase y te devuelve una conexión
-		 */
-		Connection objConn = SQL.conectarBD();
-
 		if (objConn != null) {
 
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_ENVIOS_POR_NUMERO_DE_ENVIO);
+			objSt = objConn.prepareStatement(QUERY_PARA_DELETE_ENVIOS_POR_NUMERO_DE_ENVIO);
 			/**
 			 * Parametro por el cual borramos
 			 */
@@ -1059,20 +943,14 @@ public class ClsDatos {
 		 */
 		java.sql.Date Fecha_de_pedido = new java.sql.Date(FechaDePedido.getTime());
 		java.sql.Date Fecha_de_entrega = new java.sql.Date(FechaDeEntrega.getTime());
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
-		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
-		 */
-		Connection objConn = SQL.conectarBD();
 
+		/**
+		 * Insertamos Pedidos.
+		 */
 		if (objConn != null) {
 
 			// Creamos las preparedstaments
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_PEDIDOS);
+			objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_PEDIDOS);
 			/**
 			 * Datos a insertar
 			 */
@@ -1109,24 +987,15 @@ public class ClsDatos {
 	 * @throws SQLException lanzamos excepcion
 	 */
 	public ResultSet consultarPedidos() throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
 
 		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
+		 * Consultamos Pedidos
 		 */
-		Connection objConn = SQL.conectarBD();
-
-		ResultSet rs = null;
-
 		if (objConn != null) {
 			/**
 			 * Preparamos la consulta
 			 */
-			Statement st = objConn.createStatement();
+			st = objConn.createStatement();
 			/**
 			 * Proceso de recuperar datos
 			 */
@@ -1169,21 +1038,14 @@ public class ClsDatos {
 	public void eliminarPedidos(int NPedido) throws SQLException {
 
 		/**
-		 * Instancias la clase que hemos creado anteriormente
+		 * Eliminamos Pedidos
 		 */
-		ClsDatos SQL = new ClsDatos();
-
-		/**
-		 * Llamas al método que tiene la clase y te devuelve una conexión
-		 */
-		Connection objConn = SQL.conectarBD();
-
 		if (objConn != null) {
 
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO);
+			objSt = objConn.prepareStatement(QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO);
 			/**
 			 * Parametro por el cual borramos
 			 */
@@ -1222,20 +1084,14 @@ public class ClsDatos {
 	 */
 	public void InsertarArticulos(int Referencia, int Serie, String Descripcion, int CantidadMaterial,
 			int CantidadHerrajes, double Precio, int ReferenciaSuelas_Articulos) throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
-		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
-		 */
-		Connection objConn = SQL.conectarBD();
 
+		/**
+		 * Insertamos Articulos
+		 */
 		if (objConn != null) {
 
 			// Creamos las preparedstaments
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_ARTICULOS);
+			objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_ARTICULOS);
 			/**
 			 * Datos a insertar
 			 */
@@ -1273,24 +1129,15 @@ public class ClsDatos {
 	 * @throws SQLException lanzamos excepcion
 	 */
 	public ResultSet consultarArticulos() throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
 
 		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
+		 * Consultamos Articulos.
 		 */
-		Connection objConn = SQL.conectarBD();
-
-		ResultSet rs = null;
-
 		if (objConn != null) {
 			/**
 			 * Preparamos la consulta
 			 */
-			Statement st = objConn.createStatement();
+			st = objConn.createStatement();
 			/**
 			 * Proceso de recuperar datos
 			 */
@@ -1333,21 +1180,14 @@ public class ClsDatos {
 	public void eliminarArticulos(int Referencia) throws SQLException {
 
 		/**
-		 * Instancias la clase que hemos creado anteriormente
+		 * Eliminamos Articulo
 		 */
-		ClsDatos SQL = new ClsDatos();
-
-		/**
-		 * Llamas al método que tiene la clase y te devuelve una conexión
-		 */
-		Connection objConn = SQL.conectarBD();
-
 		if (objConn != null) {
 
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_DELETE_ARTICULOS_POR_REFERENCIA);
+			objSt = objConn.prepareStatement(QUERY_PARA_DELETE_ARTICULOS_POR_REFERENCIA);
 			/**
 			 * Parametro por el cual borramos
 			 */
@@ -1397,20 +1237,16 @@ public class ClsDatos {
 	public void InsertarDesglose(int NPedidoD, int Articulos_Referencia, int Serie, int Color, int P5, int P6, int P7,
 			int P8, int P9, int P0, int P1, int P2, int P3, int P4, int CantidadTotalPies,
 			int Pedidos_Clientes_NCliente) throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
-		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
-		 */
-		Connection objConn = SQL.conectarBD();
 
+		/**
+		 * Insertamos Desglose
+		 */
 		if (objConn != null) {
 
-			// Creamos las preparedstaments
-			PreparedStatement objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_DE_DESGLOSE_DE_PEDIDO);
+			/**
+			 * Creamos las preparedstaments
+			 */
+			objSt = objConn.prepareStatement(QUERY_PARA_INSERTAR_DE_DESGLOSE_DE_PEDIDO);
 			/**
 			 * Datos a insertar
 			 */
@@ -1457,24 +1293,15 @@ public class ClsDatos {
 	 * @throws SQLException lanza excepcion
 	 */
 	public ResultSet consultarDesglose() throws SQLException {
-		/**
-		 * Instancias el metodo que hemos creado anteriormente
-		 */
-		ClsDatos SQL = new ClsDatos();
 
 		/**
-		 * Llamas al método y te devuelve una conexión
-		 * 
+		 * Consultamos Desgloses
 		 */
-		Connection objConn = SQL.conectarBD();
-
-		ResultSet rs = null;
-
 		if (objConn != null) {
 			/**
 			 * Preparamos la consulta
 			 */
-			Statement st = objConn.createStatement();
+			st = objConn.createStatement();
 			/**
 			 * Proceso de recuperar datos
 			 */
@@ -1517,22 +1344,14 @@ public class ClsDatos {
 	public void eliminarDesglose(int NPedidosD) throws SQLException {
 
 		/**
-		 * Instancias la clase que hemos creado anteriormente
+		 * Eliminamos Desglose
 		 */
-		ClsDatos SQL = new ClsDatos();
-
-		/**
-		 * Llamas al método que tiene la clase y te devuelve una conexión
-		 */
-		Connection objConn = SQL.conectarBD();
-
 		if (objConn != null) {
 
 			/**
 			 * Creamos las preparedstaments
 			 */
-			PreparedStatement objSt = objConn
-					.prepareStatement(QUERY_PARA_DELETE_DESGLOSE_DE_PEDIDO_POR_NUMERO_DE_PEDIDO_DESGLOSE);
+			objSt = objConn.prepareStatement(QUERY_PARA_DELETE_DESGLOSE_DE_PEDIDO_POR_NUMERO_DE_PEDIDO_DESGLOSE);
 			/**
 			 * Parametro por el cual borramos
 			 */

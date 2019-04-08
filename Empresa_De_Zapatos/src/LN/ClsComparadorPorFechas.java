@@ -37,7 +37,7 @@ public class ClsComparadorPorFechas implements Comparator<ClsPedidos> {
 		/**
 		 * sin coinciden las fechas de pedido.
 		 */
-		if (a == b) {
+		if (a.equals(b)) {
 			/**
 			 * Compara las fechas de entrega
 			 */
@@ -45,7 +45,7 @@ public class ClsComparadorPorFechas implements Comparator<ClsPedidos> {
 			/**
 			 * Si las fechas de entrega coinciden.
 			 */
-			if (a == b & c == d) {
+			if (a.equals(b) & c.equals(d)) {
 				/**
 				 * devuelve la comparacion por nombre.
 				 */

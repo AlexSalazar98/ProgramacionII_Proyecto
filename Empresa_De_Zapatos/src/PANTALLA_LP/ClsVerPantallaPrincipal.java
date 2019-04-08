@@ -1,18 +1,22 @@
 package PANTALLA_LP;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-
 import LN.ClsGestorLN;
-import LP.ClsMenuIntroducirDatos;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
-public class ClsVerPantallaPrincipal {
+public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 
+	/**
+	 * No se para que sirve esto
+	 */
+	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 
 	/**
@@ -44,37 +48,68 @@ public class ClsVerPantallaPrincipal {
 	private void initialize(ClsGestorLN ObjGestor) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frame.setTitle("Menu Principal");
 
 		JButton MenuIntroduccirDatos = new JButton("Menu Introducir Datos\r\n");
-		MenuIntroduccirDatos.setBounds(127, 57, 175, 38);
-		frame.getContentPane().add(MenuIntroduccirDatos);
 
 		JButton MenuConsultarDatos = new JButton("Menu Consultar Datos");
 		MenuConsultarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		MenuConsultarDatos.setBounds(127, 106, 175, 38);
-		frame.getContentPane().add(MenuConsultarDatos);
 
 		JButton MenuBorrarDatos = new JButton("Menu Borrar Datos");
-		MenuBorrarDatos.setBounds(127, 155, 175, 38);
-		frame.getContentPane().add(MenuBorrarDatos);
 
 		JButton Salir = new JButton("Salir");
-		Salir.setBounds(127, 204, 175, 38);
-		frame.getContentPane().add(Salir);
 
-		class Listener implements ActionListener {
+		JLabel Bienvenido = new JLabel("\u00A1Bienvenido!");
+		Bienvenido.setEnabled(false);
+		Bienvenido.setFont(new Font("Arial Black", Font.BOLD, 15));
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setAutoCreateContainerGaps(true);
+		groupLayout.setAutoCreateGaps(true);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(149)
+					.addComponent(Bienvenido, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(127)
+					.addComponent(MenuIntroduccirDatos, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(127)
+					.addComponent(MenuConsultarDatos, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(127)
+					.addComponent(MenuBorrarDatos, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(127)
+					.addComponent(Salir, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(24)
+					.addComponent(Bienvenido)
+					.addGap(11)
+					.addComponent(MenuIntroduccirDatos, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(MenuConsultarDatos, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(MenuBorrarDatos, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(Salir, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+		);
+		frame.getContentPane().setLayout(groupLayout);
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				ClsMenuIntroducirDatos.MenuIntroducirDatos(ObjGestor);
+		Salir.addActionListener(this);
+	}
 
-			}
-		}
-		MenuIntroduccirDatos.addActionListener(new Listener());
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		//System.out.println(e.);
+		
 	}
 }
