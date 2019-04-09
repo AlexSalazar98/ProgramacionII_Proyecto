@@ -1,5 +1,6 @@
 
 import LP.ClsMenuPrincipal;
+import PANTALLA_LP.ClsVerPantallaPrincipal;
 
 
 /**
@@ -23,8 +24,8 @@ public class Main {
 		 */
 
 		
-		
-		ClsMenuPrincipal.MenuPrincipal();
+		ClsVerPantallaPrincipal.main();
+		//ClsMenuPrincipal.MenuPrincipal();
 
 	}
 
