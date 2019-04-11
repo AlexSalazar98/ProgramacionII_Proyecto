@@ -79,18 +79,19 @@ public class ClsDatos {
 	/**
 	 * Para generar la conexion con BD
 	 * 
-	 * @return tiene return
 	 * @throws SQLException lanzamos excepciones a la capa LP
 	 */
-	public Connection conectarBD() throws SQLException {
+	public void conectarBD() throws SQLException {
 
 		/**
 		 * Realizamos la conexio
 		 */
 		objConn = DriverManager.getConnection(RUTA_DE_LA_BD, NOMBRE_DEL_USUARIO, CONTRASEÑA_DE_LA_BD);
+	}
 
-		return objConn;
-
+	public void desconectarBD() throws SQLException {
+		objConn.close();
+		objSt.close();
 	}
 
 	/**
@@ -105,7 +106,7 @@ public class ClsDatos {
 		/**
 		 * Insertamos Series
 		 */
-		if (conectarBD() != null) {
+		if (objConn != null) {
 
 			/**
 			 * Creamos las preparedstaments
@@ -121,17 +122,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -148,7 +138,7 @@ public class ClsDatos {
 		/**
 		 * Consultamos Series
 		 */
-		if (conectarBD() != null) {
+		if (objConn != null) {
 			/**
 			 * Preparamos la consulta
 			 */
@@ -171,17 +161,6 @@ public class ClsDatos {
 			 * 
 			 */
 			rs.close();
-			/**
-			 * Cerramos el statement
-			 * 
-			 */
-			st.close();
-			/**
-			 * Cerramos la conexión
-			 * 
-			 */
-			objConn.close();
-
 		}
 
 		return null;
@@ -213,17 +192,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -258,17 +226,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -308,17 +265,6 @@ public class ClsDatos {
 			 * 
 			 */
 			rs.close();
-			/**
-			 * Cerramos el statement
-			 * 
-			 */
-			st.close();
-			/**
-			 * Cerramos la conexión
-			 * 
-			 */
-			objConn.close();
-
 		}
 
 		return null;
@@ -350,17 +296,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -393,17 +328,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -443,17 +367,6 @@ public class ClsDatos {
 			 * 
 			 */
 			rs.close();
-			/**
-			 * Cerramos el statement
-			 * 
-			 */
-			st.close();
-			/**
-			 * Cerramos la conexión
-			 * 
-			 */
-			objConn.close();
-
 		}
 
 		return null;
@@ -486,17 +399,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -531,17 +433,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -581,17 +472,6 @@ public class ClsDatos {
 			 * 
 			 */
 			rs.close();
-			/**
-			 * Cerramos el statement
-			 * 
-			 */
-			st.close();
-			/**
-			 * Cerramos la conexión
-			 * 
-			 */
-			objConn.close();
-
 		}
 
 		return null;
@@ -623,17 +503,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -675,18 +544,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/*
-			 * Cerramos el preparedStatement
-			 * 
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -725,17 +582,6 @@ public class ClsDatos {
 			 * 
 			 */
 			rs.close();
-			/**
-			 * Cerramos el statement
-			 * 
-			 */
-			st.close();
-			/**
-			 * Cerramos la conexión
-			 * 
-			 */
-			objConn.close();
-
 		}
 		return null;
 	}
@@ -766,17 +612,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -820,17 +655,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -869,17 +693,6 @@ public class ClsDatos {
 			 * 
 			 */
 			rs.close();
-			/**
-			 * Cerramos el statement
-			 * 
-			 */
-			st.close();
-			/**
-			 * Cerramos la conexión
-			 * 
-			 */
-			objConn.close();
-
 		}
 		return null;
 	}
@@ -910,17 +723,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -966,17 +768,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -1015,17 +806,6 @@ public class ClsDatos {
 			 * 
 			 */
 			rs.close();
-			/**
-			 * Cerramos el statement
-			 * 
-			 */
-			st.close();
-			/**
-			 * Cerramos la conexión
-			 * 
-			 */
-			objConn.close();
-
 		}
 		return null;
 	}
@@ -1048,7 +828,7 @@ public class ClsDatos {
 			 * 
 			 */
 			objSt = objConn.prepareStatement(QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO_1);
-			
+
 			/**
 			 * Parametro por el cual borramos
 			 */
@@ -1058,17 +838,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -1110,17 +879,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -1159,17 +917,6 @@ public class ClsDatos {
 			 * 
 			 */
 			rs.close();
-			/**
-			 * Cerramos el statement
-			 * 
-			 */
-			st.close();
-			/**
-			 * Cerramos la conexión
-			 * 
-			 */
-			objConn.close();
-
 		}
 		return null;
 	}
@@ -1200,17 +947,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -1274,17 +1010,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}
@@ -1323,17 +1048,6 @@ public class ClsDatos {
 			 * 
 			 */
 			rs.close();
-			/**
-			 * Cerramos el statement
-			 * 
-			 */
-			st.close();
-			/**
-			 * Cerramos la conexión
-			 * 
-			 */
-			objConn.close();
-
 		}
 		return null;
 	}
@@ -1364,17 +1078,6 @@ public class ClsDatos {
 			 * Ejecutamos la query que hemos preparado
 			 */
 			objSt.execute();
-
-			/**
-			 * Cerramos el preparedStatement
-			 */
-			objSt.close();
-
-			/**
-			 * Cerramos la conexión
-			 */
-			objConn.close();
-
 		}
 
 	}

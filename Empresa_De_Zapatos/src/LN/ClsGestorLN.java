@@ -90,7 +90,9 @@ public class ClsGestorLN {
 			/**
 			 * Llamada a Insert suelas con paso de parametros.
 			 */
+			objDatos.conectarBD();
 			objDatos.InsertarSuelas(Referencia_Suelas, Descripcion_Suelas, Precio_Suelas);
+			objDatos.desconectarBD();
 		}
 	}
 
@@ -120,7 +122,9 @@ public class ClsGestorLN {
 			/**
 			 * Llamada a introducir datos con paso de parametros.
 			 */
+			objDatos.conectarBD();
 			objDatos.InsertarSerie(NumeroDeSerie, Descripcion_Serie);
+			objDatos.desconectarBD();
 		}
 
 	}
@@ -158,8 +162,10 @@ public class ClsGestorLN {
 			/**
 			 * Llamada a introducir datos con paso de parametros
 			 */
+			objDatos.conectarBD();
 			objDatos.InsertarPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado, NumeroDeCliente_Pedidos,
 					NombreYApelliosDelCliente);
+			objDatos.desconectarBD();
 		}
 	}
 
@@ -190,7 +196,9 @@ public class ClsGestorLN {
 			/**
 			 * Mandamos los datos a LD para introducirlos en BD
 			 */
+			objDatos.conectarBD();
 			objDatos.InsertarMateriales(Referencia, Descripcion, Precio);
+			objDatos.desconectarBD();
 		}
 	}
 
@@ -221,7 +229,9 @@ public class ClsGestorLN {
 			/**
 			 * Mandamos los datos a LD para introducir en BD.
 			 */
+			objDatos.conectarBD();
 			objDatos.InsertarHerrajes(Referencia, Descripcion, Precio);
+			objDatos.desconectarBD();
 		}
 	}
 
@@ -260,8 +270,10 @@ public class ClsGestorLN {
 			/**
 			 * Mandamos los datos a LD para introducir a BD
 			 */
+			objDatos.conectarBD();
 			objDatos.InsertarEnvios(NumeroDeEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio, CPDeEnvio,
 					ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
+			objDatos.desconectarBD();
 		}
 	}
 
@@ -298,8 +310,10 @@ public class ClsGestorLN {
 			/**
 			 * Mandamos los datos a LD para introducir a BD
 			 */
+			objDatos.conectarBD();
 			objDatos.InsertarClientes(NumeroDeCliente, NombreYApellidos, DNI_NIF, DireccionDeCliente, Provincia,
 					Telefono, Email);
+			objDatos.desconectarBD();
 		}
 	}
 
@@ -336,8 +350,10 @@ public class ClsGestorLN {
 			/**
 			 * Mandamos los datos a LD para introducir a BD
 			 */
+			objDatos.conectarBD();
 			objDatos.InsertarArticulos(Referencia, Serie, Descripcion, CantidadMaterial, CantidadHerrajes, Precio,
 					ReferenciaSuelas_Articulos);
+			objDatos.desconectarBD();
 		}
 	}
 
@@ -386,9 +402,11 @@ public class ClsGestorLN {
 			/**
 			 * Añadimos los datos a la BD
 			 */
+			objDatos.conectarBD();
 			objDatos.InsertarDesglose(NumeroDePedido, ReferenciaDelArticulo, Serie, Color, NumeroDePie5, NumeroDePie6,
 					NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1, NumeroDePie2, NumeroDePie3,
 					NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
+			objDatos.desconectarBD();
 		}
 
 	}
@@ -428,6 +446,7 @@ public class ClsGestorLN {
 	 */
 	public void ObjetosRecuperadosSerie() throws SQLException {
 
+		objDatos.conectarBD();
 		/**
 		 * Recogemos datos desde LD y consturimos objetos.
 		 */
@@ -453,7 +472,7 @@ public class ClsGestorLN {
 			MiListaDeSeries.add(objSeries);
 
 		}
-
+		objDatos.desconectarBD();
 	}
 
 	/**
@@ -556,7 +575,9 @@ public class ClsGestorLN {
 			/**
 			 * mandamos borrar de la BD.
 			 */
+			objDatos.conectarBD();
 			objDatos.eliminarSeries(NDeSerie);
+			objDatos.desconectarBD();
 		}
 
 		return hecho;
@@ -568,7 +589,7 @@ public class ClsGestorLN {
 	 * @throws SQLException lanzamos la excepcion a LP.
 	 */
 	public void ObjetosRecuperadosSuelas() throws SQLException {
-
+		objDatos.conectarBD();
 		/**
 		 * Recogemos datos desde LD y consturimos objetos.
 		 */
@@ -595,7 +616,7 @@ public class ClsGestorLN {
 			MiListaDeSuelas.add(ObjSuelas);
 
 		}
-
+		objDatos.desconectarBD();
 	}
 
 	/**
@@ -698,7 +719,9 @@ public class ClsGestorLN {
 			/**
 			 * mandamos borrar de la BD.
 			 */
+			objDatos.conectarBD();
 			objDatos.eliminarSuelas(Referencia);
+			objDatos.desconectarBD();
 		}
 
 		return hecho;
@@ -710,6 +733,7 @@ public class ClsGestorLN {
 	 * @throws SQLException lanzamos la excepcion a LP
 	 */
 	public void ObjetosRecuperadosMateriales() throws SQLException {
+		objDatos.conectarBD();
 		/**
 		 * Recogemos datos desde LD y consturimos objetos.
 		 */
@@ -727,6 +751,7 @@ public class ClsGestorLN {
 			MiListaDeMateriales.add(ObjMateriales);
 
 		}
+		objDatos.desconectarBD();
 
 	}
 
@@ -831,7 +856,9 @@ public class ClsGestorLN {
 			/**
 			 * mandamos borrar de la BD.
 			 */
+			objDatos.conectarBD();
 			objDatos.eliminarMateriales(Referencia);
+			objDatos.desconectarBD();
 		}
 
 		return hecho;
@@ -844,6 +871,7 @@ public class ClsGestorLN {
 	 * @throws SQLException lanzamos excepcion a LP
 	 */
 	public void ObjetosRecuperadosHerrajes() throws SQLException {
+		objDatos.conectarBD();
 		/**
 		 * Recogemos datos desde LD y consturimos objetos.
 		 */
@@ -870,7 +898,7 @@ public class ClsGestorLN {
 			MiListaDeHerrajes.add(ObjHerrajes);
 
 		}
-
+		objDatos.desconectarBD();
 	}
 
 	/**
@@ -973,7 +1001,9 @@ public class ClsGestorLN {
 			/**
 			 * mandamos borrar de la BD.
 			 */
+			objDatos.conectarBD();
 			objDatos.eliminarHerrajes(Referencia);
+			objDatos.desconectarBD();
 		}
 
 		return hecho;
@@ -981,6 +1011,7 @@ public class ClsGestorLN {
 	}
 
 	public void ObjetosRecuperadosClientes() throws SQLException {
+		objDatos.conectarBD();
 		/**
 		 * Recogemos datos desde LD y consturimos objetos.
 		 */
@@ -1012,7 +1043,7 @@ public class ClsGestorLN {
 			MiListaDeClientes.add(objClientes);
 
 		}
-
+		objDatos.desconectarBD();
 	}
 
 	/**
@@ -1113,7 +1144,9 @@ public class ClsGestorLN {
 			/**
 			 * mandamos borrar de la BD.
 			 */
+			objDatos.conectarBD();
 			objDatos.eliminarClientes(NCliente);
+			objDatos.desconectarBD();
 		}
 
 		return hecho;
@@ -1121,6 +1154,7 @@ public class ClsGestorLN {
 	}
 
 	public void ObjetosRecuperadosEnvios() throws SQLException {
+		objDatos.conectarBD();
 		/**
 		 * Recogemos datos desde LD y consturimos objetos.
 		 */
@@ -1153,7 +1187,7 @@ public class ClsGestorLN {
 			MiListaDeEnvios.add(objEnvios);
 
 		}
-
+		objDatos.desconectarBD();
 	}
 
 	/**
@@ -1260,7 +1294,9 @@ public class ClsGestorLN {
 			/**
 			 * mandamos borrar de la BD.
 			 */
+			objDatos.conectarBD();
 			objDatos.eliminarEnvios(NEnvio);
+			objDatos.desconectarBD();
 		}
 
 		return hecho;
@@ -1268,6 +1304,7 @@ public class ClsGestorLN {
 	}
 
 	public void ObjetosRecuperadosPedidos() throws SQLException {
+		objDatos.conectarBD();
 		/**
 		 * Recogemos datos desde LD y consturimos objetos.
 		 */
@@ -1298,7 +1335,7 @@ public class ClsGestorLN {
 			MiListaDePedidos.add(objPedido);
 
 		}
-
+		objDatos.desconectarBD();
 	}
 
 	public ArrayList<ItfProperty> DamePedidos() {
@@ -1390,7 +1427,9 @@ public class ClsGestorLN {
 			/**
 			 * mandamos borrar de la BD.
 			 */
+			objDatos.conectarBD();
 			objDatos.eliminarPedidos(NPedido);
+			objDatos.desconectarBD();
 		}
 
 		return hecho;
@@ -1398,7 +1437,7 @@ public class ClsGestorLN {
 	}
 
 	public void ObjetosRecuperadosArticulos() throws SQLException {
-
+		objDatos.conectarBD();
 		/**
 		 * Recogemos datos desde LD y consturimos objetos.
 		 */
@@ -1430,7 +1469,7 @@ public class ClsGestorLN {
 			MiListaDeArticulos.add(objArticulos);
 
 		}
-
+		objDatos.desconectarBD();
 	}
 
 	public ArrayList<ItfProperty> DameArticulos() {
@@ -1521,7 +1560,9 @@ public class ClsGestorLN {
 			/**
 			 * mandamos borrar de la BD.
 			 */
+			objDatos.conectarBD();
 			objDatos.eliminarArticulos(Referencia);
+			objDatos.desconectarBD();
 		}
 
 		return hecho;
@@ -1533,7 +1574,7 @@ public class ClsGestorLN {
 	 * @throws SQLException lanza excepcion de BD
 	 */
 	public void ObjetosRecuperadosDesglose() throws SQLException {
-
+		objDatos.conectarBD();
 		/**
 		 * Recogemos datos desde LD y consturimos objetos.
 		 */
@@ -1576,7 +1617,7 @@ public class ClsGestorLN {
 			MiListaDeDesgloses.add(objDesgloseDePedido);
 
 		}
-
+		objDatos.desconectarBD();
 	}
 
 	/**
@@ -1652,7 +1693,9 @@ public class ClsGestorLN {
 			/**
 			 * mandamos borrar de la BD.
 			 */
+			objDatos.conectarBD();
 			objDatos.eliminarDesglose(NPedidoD);
+			objDatos.desconectarBD();
 		}
 
 		return hecho;
