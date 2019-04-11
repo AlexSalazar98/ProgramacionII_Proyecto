@@ -31,7 +31,8 @@ import static LD.ClsConstantesBD.QUERY_PARA_SELECT_ENVIOS;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_ENVIOS_POR_NUMERO_DE_ENVIO;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_PEDIDOS;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_PEDIDOS;
-import static LD.ClsConstantesBD.QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO;
+import static LD.ClsConstantesBD.QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO_1;
+import static LD.ClsConstantesBD.QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO_2;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_ARTICULOS;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_ARTICULOS;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_ARTICULOS_POR_REFERENCIA;
@@ -1044,13 +1045,15 @@ public class ClsDatos {
 
 			/**
 			 * Creamos las preparedstaments
+			 * 
 			 */
-			objSt = objConn.prepareStatement(QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO);
+			objSt = objConn.prepareStatement(QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO_1);
+			
 			/**
 			 * Parametro por el cual borramos
 			 */
 			objSt.setInt(1, NPedido);
-
+			objSt = objConn.prepareStatement(QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO_2);
 			/**
 			 * Ejecutamos la query que hemos preparado
 			 */

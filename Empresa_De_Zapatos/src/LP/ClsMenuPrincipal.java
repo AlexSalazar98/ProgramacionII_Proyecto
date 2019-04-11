@@ -22,7 +22,7 @@ public class ClsMenuPrincipal {
 		 */
 		ClsGestorLN objGestor = new ClsGestorLN();
 		ClsMostrarDatos objMostrarDatos = new ClsMostrarDatos();
-		// ClsVerPantallaPrincipal.main(objGestor);
+		
 		/**
 		 * Llamadas a metodos para cargar los datos en Arrays nada mas iniciar la
 		 * aplicacion.

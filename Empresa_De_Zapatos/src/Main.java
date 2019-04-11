@@ -24,8 +24,8 @@ public class Main {
 		 */
 
 		
-		ClsVerPantallaPrincipal.main();
-		//ClsMenuPrincipal.MenuPrincipal();
+		//ClsVerPantallaPrincipal.main();
+		ClsMenuPrincipal.MenuPrincipal();
 
 	}
 
