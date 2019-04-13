@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"COMUN"},{"l":"LD"},{"l":"LN"},{"l":"LP"}]
+packageSearchIndex = [{"l":"COMUN"},{"l":"Excepciones"},{"l":"LD"},{"l":"LN"},{"l":"LP"},{"l":"PANTALLA_LP"}]
