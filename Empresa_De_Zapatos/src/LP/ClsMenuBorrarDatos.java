@@ -1,7 +1,6 @@
 package LP;
 
 import java.sql.SQLException;
-
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
 
