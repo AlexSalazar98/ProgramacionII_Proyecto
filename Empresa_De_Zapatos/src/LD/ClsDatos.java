@@ -91,7 +91,6 @@ public class ClsDatos {
 
 	public void desconectarBD() throws SQLException {
 		objConn.close();
-		objSt.close();
 	}
 
 	/**
@@ -161,6 +160,7 @@ public class ClsDatos {
 			 * 
 			 */
 			rs.close();
+			
 		}
 
 		return null;
