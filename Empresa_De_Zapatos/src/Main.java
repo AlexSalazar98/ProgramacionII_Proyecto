@@ -2,7 +2,6 @@
 import LP.ClsMenuPrincipal;
 import PANTALLA_LP.ClsVerPantallaPrincipal;
 
-
 /**
  * 
  * @author Alex Salazar
@@ -23,9 +22,8 @@ public class Main {
 		 * Aqui llamamos al menu principal.
 		 */
 
-		
-		//ClsVerPantallaPrincipal.main();
-		ClsMenuPrincipal.MenuPrincipal();
+		ClsVerPantallaPrincipal.main();
+		// ClsMenuPrincipal.MenuPrincipal();
 
 	}
 

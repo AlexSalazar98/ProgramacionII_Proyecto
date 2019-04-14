@@ -2,14 +2,22 @@ package PANTALLA_LP;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
 
-public class ClsVerMenuIntroducirDatos extends JFrame {
+public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener {
 
+	/**
+	 * Ni idea de para que sirve.
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -31,12 +39,23 @@ public class ClsVerMenuIntroducirDatos extends JFrame {
 	 * Create the frame.
 	 */
 	public ClsVerMenuIntroducirDatos() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Menu Introducir Datos");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		textField = new JTextField();
+		textField.setBounds(147, 30, 144, 28);
+		contentPane.add(textField);
+		textField.setColumns(10);
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+
+	}
 }

@@ -7,10 +7,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.sql.SQLException;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 
@@ -25,6 +28,7 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 	private final String INTRODUCIR_DATOS_BUTTON = "Menu introducir datos";
 	private final String CONSULTAR_DATOS_BUTTON = "Menu consultar datos";
 	private final String BORRAR_DATOS_BUTTON = "Menu borrar datos";
+	private final String ACTUALIZAR_DATOS = "Actualizar datos de entregas";
 	/**
 	 * Instanciamos el JFrame
 	 */
@@ -36,6 +40,8 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 	JButton MenuBorrarDatos = null;
 	JButton MenuIntroduccirDatos = null;
 	JButton MenuConsultarDatos = null;
+	JButton ActualizarDatos = null;
+	JLabel Bienvenido = null;
 
 	/**
 	 * Launch the application.
@@ -66,8 +72,13 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 			/**
 			 * Lanza mensaje de excepcion en caso de que no pueda cargar la informacion
 			 */
-			System.out.println("Ejecute la aplicacion MySQLWorkBench");
-			System.out.println(e);
+
+			String MENSAJE;
+			MENSAJE = "Ejecute la aplicacion MySQLWorkBench";
+
+			JOptionPane.showMessageDialog(null, MENSAJE);
+			JOptionPane.showMessageDialog(null, e);
+
 		}
 
 		EventQueue.invokeLater(new Runnable() {
@@ -77,6 +88,8 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, e);
+
 				}
 			}
 		});
@@ -97,15 +110,17 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 		 * Inicializamos el frame
 		 */
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 519, 414);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setTitle("Menu Principal");
+		frame.getContentPane().setLayout(null);
 
 		/**
 		 * Inicializamos el Boton MenuIntroduccirDatos y lo relazcionamos con el
 		 * LISTENER
 		 */
 		MenuIntroduccirDatos = new JButton("Menu Introducir Datos");
+		MenuIntroduccirDatos.setBounds(158, 81, 175, 38);
 		MenuIntroduccirDatos.addActionListener(this);
 		MenuIntroduccirDatos.setActionCommand(INTRODUCIR_DATOS_BUTTON);
 
@@ -113,6 +128,7 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 		 * Inicializamos el Boton MenuConsultarDatos y lo relazcionamos con el LISTENER
 		 */
 		MenuConsultarDatos = new JButton("Menu Consultar Datos");
+		MenuConsultarDatos.setBounds(158, 193, 175, 38);
 		MenuConsultarDatos.addActionListener(this);
 		MenuConsultarDatos.setActionCommand(CONSULTAR_DATOS_BUTTON);
 
@@ -120,6 +136,7 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 		 * Inicializamos el Boton MenuBorrarDatos y lo relazcionamos con el LISTENER
 		 */
 		MenuBorrarDatos = new JButton("Menu Borrar Datos");
+		MenuBorrarDatos.setBounds(158, 249, 175, 38);
 		MenuBorrarDatos.addActionListener(this);
 		MenuBorrarDatos.setActionCommand(BORRAR_DATOS_BUTTON);
 
@@ -127,36 +144,35 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 		 * Inicializamos el Boton Salir y lo relazcionamos con el LISTENER
 		 */
 		Salir = new JButton("Salir");
+		Salir.setBounds(158, 305, 175, 38);
 		Salir.addActionListener(this);
 		Salir.setActionCommand(SALIR_BUTTON);
 
 		/**
 		 * Instanciamos el JLabel Y definimos el mensaje
 		 */
-		JLabel Bienvenido = new JLabel("\u00A1Bienvenido!");
+		Bienvenido = new JLabel("\u00A1Bienvenido!");
+		Bienvenido.setBounds(181, 41, 175, 22);
 		Bienvenido.setEnabled(false);
 		Bienvenido.setFont(new Font("Arial Black", Font.BOLD, 15));
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setAutoCreateContainerGaps(true);
-		groupLayout.setAutoCreateGaps(true);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(149).addComponent(Bienvenido,
-						GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup().addGap(127).addComponent(MenuIntroduccirDatos,
-						GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup().addGap(127).addComponent(MenuConsultarDatos,
-						GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup().addGap(127).addComponent(MenuBorrarDatos,
-						GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup().addGap(127).addComponent(Salir,
-						GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addGap(24).addComponent(Bienvenido).addGap(11)
-				.addComponent(MenuIntroduccirDatos, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-				.addGap(11).addComponent(MenuConsultarDatos, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-				.addGap(11).addComponent(MenuBorrarDatos, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-				.addGap(11).addComponent(Salir, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)));
-		frame.getContentPane().setLayout(groupLayout);
+
+		/**
+		 * Inicializamos el boton de Actualizar datos y lo relacionamos con el LISTENER
+		 */
+		ActualizarDatos = new JButton("Actualizar Datos ");
+		ActualizarDatos.setBounds(158, 137, 175, 38);
+		ActualizarDatos.addActionListener(this);
+		ActualizarDatos.setActionCommand(ACTUALIZAR_DATOS);
+
+		/**
+		 * Los añadimos al FRAME
+		 */
+		frame.getContentPane().add(MenuIntroduccirDatos);
+		frame.getContentPane().add(ActualizarDatos);
+		frame.getContentPane().add(MenuConsultarDatos);
+		frame.getContentPane().add(MenuBorrarDatos);
+		frame.getContentPane().add(Salir);
+		frame.getContentPane().add(Bienvenido);
 
 	}
 
@@ -181,9 +197,17 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 		 * Si pulsan el boton Introducir Datos vamos al menu correspondiente
 		 */
 		case INTRODUCIR_DATOS_BUTTON:
-			System.out.println("Hola esto es para introducir datos");
+			// System.out.println("Hola esto es para introducir datos");
+			ClsVerMenuIntroducirDatos.main(null);
 			break;
 
+		/**
+		 * Si pulsan el boton de actualizar datos vamos a mostrar los pedido a
+		 * actualizar.
+		 */
+		case ACTUALIZAR_DATOS:
+			System.out.println("Esto es para actualizar datos");
+			break;
 		/**
 		 * Si pulsan el boton Consultar Datos vamos al menu correspondiente
 		 */
