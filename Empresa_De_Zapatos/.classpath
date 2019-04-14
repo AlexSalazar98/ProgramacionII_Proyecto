@@ -6,30 +6,10 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Documents/Programación 2/Programas/ProgramacionII_Proyecto/Conector BD/mysql-connector-java-8.0.15.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Documents/Programación 2/Programas/ProgramacionII_Proyecto/Jcalendar/jcalendar-1.4.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Documents/Programación 2/Programas/ProgramacionII_Proyecto/Jcalendar/jgoodies-common-1.2.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Documents/Programación 2/Programas/ProgramacionII_Proyecto/Jcalendar/jgoodies-looks-2.4.1.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Documents/Programación 2/Programas/ProgramacionII_Proyecto/Jcalendar/junit-4.6.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Desktop/ExposicionJDatePicker/jcalendar-1.4/lib/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Desktop/ExposicionJDatePicker/jcalendar-1.4/lib/jgoodies-common-1.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Desktop/ExposicionJDatePicker/jcalendar-1.4/lib/jgoodies-looks-2.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Desktop/ExposicionJDatePicker/jcalendar-1.4/lib/junit-4.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Desktop/Clase/uni1819/Segundo Semestre/Programacion II/Programas2/Conector BD/mysql-connector-java-8.0.15.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
