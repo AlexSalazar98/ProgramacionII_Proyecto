@@ -38,11 +38,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Pedidos` (
   `Fecha_de_pedido` DATE NOT NULL,
   `Fecha_de_entrega` DATE NOT NULL,
   `Entregado` TINYINT(1) NULL,
-  `Clientes_NCliente` INT NOT NULL,
   `NombreYApellidos` VARCHAR(200) NOT NULL,
-  PRIMARY KEY (`NPedido`),
-  INDEX `fk_Pedidos_Clientes1_idx` (`Clientes_NCliente` ASC) VISIBLE,
+  `Clientes_NCliente` INT NOT NULL,
+  PRIMARY KEY (`NPedido`, `Clientes_NCliente`),
   UNIQUE INDEX `NºPedido_UNIQUE` (`NPedido` ASC) VISIBLE,
+  INDEX `fk_Pedidos_Clientes1_idx` (`Clientes_NCliente` ASC) VISIBLE,
   CONSTRAINT `fk_Pedidos_Clientes1`
     FOREIGN KEY (`Clientes_NCliente`)
     REFERENCES `mydb`.`Clientes` (`NCliente`)
@@ -112,32 +112,33 @@ ENGINE = InnoDB;
 -- Table `mydb`.`DesgloseDePedidos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`DesgloseDePedidos` (
-  `NPedido` INT NOT NULL,
+  `NPedidoD` INT NOT NULL,
   `Serie` INT NOT NULL,
   `Color` INT NULL,
   `Articulos_Referencia` INT NOT NULL,
-  `Pedidos_Clientes_NCliente` INT NOT NULL,
-  `5` INT NULL,
-  `6` INT NULL,
-  `7` INT NULL,
-  `8` INT NULL,
-  `9` INT NULL,
-  `0` INT NULL,
-  `1` INT NULL,
-  `2` INT NULL,
-  `3` INT NULL,
-  `4` INT NULL,
-  PRIMARY KEY (`NPedido`),
+  `P5` INT NULL,
+  `P6` INT NULL,
+  `P7` INT NULL,
+  `P8` INT NULL,
+  `P9` INT NULL,
+  `P0` INT NULL,
+  `P1` INT NULL,
+  `P2` INT NULL,
+  `P3` INT NULL,
+  `P4` INT NULL,
+  `Pedidos_NPedido` INT NOT NULL,
+  `CantidadTotalPies` INT NOT NULL,
+  PRIMARY KEY (`NPedidoD`),
   INDEX `fk_DesgloseDepedidos_Articulos1_idx` (`Articulos_Referencia` ASC) VISIBLE,
-  INDEX `fk_DesgloseDepedidos_Pedidos1_idx` (`Pedidos_Clientes_NCliente` ASC) VISIBLE,
+  INDEX `fk_DesgloseDePedidos_Pedidos1_idx` (`Pedidos_NPedido` ASC) VISIBLE,
   CONSTRAINT `fk_DesgloseDepedidos_Articulos1`
     FOREIGN KEY (`Articulos_Referencia`)
     REFERENCES `mydb`.`Articulos` (`Referencia`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_DesgloseDepedidos_Pedidos1`
-    FOREIGN KEY (`Pedidos_Clientes_NCliente`)
-    REFERENCES `mydb`.`Pedidos` (`Clientes_NCliente`)
+  CONSTRAINT `fk_DesgloseDePedidos_Pedidos1`
+    FOREIGN KEY (`Pedidos_NPedido`)
+    REFERENCES `mydb`.`Pedidos` (`NPedido`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -188,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`DesgloseDepedidos_has_Series` (
   INDEX `fk_DesgloseDepedidos_has_Series_DesgloseDepedidos1_idx` (`DesgloseDepedidos_NPedido` ASC) VISIBLE,
   CONSTRAINT `fk_DesgloseDepedidos_has_Series_DesgloseDepedidos1`
     FOREIGN KEY (`DesgloseDepedidos_NPedido`)
-    REFERENCES `mydb`.`DesgloseDePedidos` (`NPedido`)
+    REFERENCES `mydb`.`DesgloseDePedidos` (`NPedidoD`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_DesgloseDepedidos_has_Series_Series1`
