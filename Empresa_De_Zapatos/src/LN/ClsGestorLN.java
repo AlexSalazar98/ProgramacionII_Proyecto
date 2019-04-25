@@ -1701,7 +1701,7 @@ public class ClsGestorLN {
 		return hecho;
 	}
 
-	public boolean ActualizarEntregasDePedidos(int NPedido) {
+	public boolean ActualizarEntregasDePedidos(int NPedido) throws SQLException {
 
 		/**
 		 * Variable para confirmar el proceso.
@@ -1776,6 +1776,10 @@ public class ClsGestorLN {
 			 */
 			ClsPedidos PedidoActualizado = new ClsPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado,
 					NombreYApelliosDelCliente, NumeroDeCliente_Pedidos);
+			objDatos.conectarBD();
+			objDatos.ActualizarPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado,
+					NombreYApelliosDelCliente, NumeroDeCliente_Pedidos);
+			objDatos.desconectarBD();
 			MiListaDePedidos.add(PedidoActualizado);
 		}
 

@@ -147,8 +147,12 @@ public class ClsMenuPrincipal {
 		/**
 		 * Lo mandamos al gestor
 		 */
-		if (objGestor.ActualizarEntregasDePedidos(Pedido) == true) {
-			System.out.println("Pedido actualizado correctamente!");
+		try {
+			if (objGestor.ActualizarEntregasDePedidos(Pedido) == true) {
+				System.out.println("Pedido actualizado correctamente!");
+			}
+		} catch (SQLException e) {
+			System.out.println("La actualizacion no se a podido hacer: " + e);
 		}
 	}
 

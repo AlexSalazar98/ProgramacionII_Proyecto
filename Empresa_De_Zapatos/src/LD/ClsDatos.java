@@ -38,6 +38,7 @@ import static LD.ClsConstantesBD.QUERY_PARA_DELETE_ARTICULOS_POR_REFERENCIA;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_DE_DESGLOSE_DE_PEDIDO;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_DESGLOSE_DE_PEDIDOS;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_DESGLOSE_DE_PEDIDO_POR_NUMERO_DE_PEDIDO_DESGLOSE;
+import static LD.ClsConstantesBD.QUERY_PARA_UPDATE_ENTREGA_DE_PEDIDO;
 
 /**
  * Clase para hacer todos los tramites con la Base de Datos.
@@ -1080,4 +1081,51 @@ public class ClsDatos {
 		}
 
 	}
+
+	/**
+	 * Metodo para actualizar pedidos
+	 * @param numeroDePedido parametro recibido
+	 * @param fechaDePedido parametro recibido
+	 * @param fechaDeEntrega parametro recibido
+	 * @param entregado parametro recibido
+	 * @param nombreYApelliosDelCliente parametro recibido
+	 * @param numeroDeCliente_Pedidos parametro recibido
+	 * @throws SQLException lanza excepcion
+	 */
+	public void ActualizarPedidos(int numeroDePedido, Date fechaDePedido, Date fechaDeEntrega, boolean entregado,
+			String nombreYApelliosDelCliente, int numeroDeCliente_Pedidos) throws SQLException {
+
+		/**
+		 * Traspaso de fechas de util.Date a long y despues a sql.Date
+		 */
+		java.sql.Date Fecha_de_pedido = new java.sql.Date(fechaDePedido.getTime());
+		java.sql.Date Fecha_de_entrega = new java.sql.Date(fechaDeEntrega.getTime());
+
+		/**
+		 * Actualizamos entregas
+		 */
+		if (objConn != null) {
+
+			/**
+			 * Creamos la preparedStaments
+			 */
+			objSt = objConn.prepareStatement(QUERY_PARA_UPDATE_ENTREGA_DE_PEDIDO);
+			/**
+			 * Parametros para la query
+			 */
+			objSt.setInt(1, numeroDePedido);
+			objSt.setDate(2, Fecha_de_pedido);
+			objSt.setDate(3, Fecha_de_entrega);
+			objSt.setBoolean(4, entregado);
+			objSt.setString(5, nombreYApelliosDelCliente);
+			objSt.setInt(6, numeroDeCliente_Pedidos);
+			objSt.setInt(7, numeroDePedido);
+			objSt.setInt(8, numeroDeCliente_Pedidos);
+			/**
+			 * Ejecutamos la query que hemos preparado
+			 */
+			objSt.execute();
+		}
+	}
+
 }

@@ -52,7 +52,11 @@ import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_2;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_3;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_4;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_CANTIDAD_TOTAL;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import COMUN.ItfProperty;
 import LN.ClsGestorLN;
 
@@ -267,6 +271,11 @@ public class ClsMostrarDatos {
 	public void VerPedidos(ClsGestorLN objGestorVP) {
 
 		/**
+		 * Variables para el cambio
+		 */
+		String Entregado;
+		SimpleDateFormat MiFormato = new SimpleDateFormat("yyyy-MM-dd");
+		/**
 		 * Insatnciamos un Array de tipo ITF
 		 */
 		ArrayList<ItfProperty> Pedidos;
@@ -288,10 +297,15 @@ public class ClsMostrarDatos {
 		 */
 		for (ItfProperty a : Pedidos) {
 
+			if (a.getBooleanProperty(PROPIEDAD_PEDIDOS_ENTREGADO)) {
+				Entregado = "Entregado";
+			} else {
+				Entregado = "No entregado";
+			}
+
 			System.out.println(a.getIntegerProperty(PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO) + " "
-					+ a.getDateProperty(PROPIEDAD_PEDIDOS_FECHA_DE_PEDIDO) + " "
-					+ a.getDateProperty(PROPIEDAD_PEDIDOS_FECHA_DE_ENTREGA) + " "
-					+ a.getBooleanProperty(PROPIEDAD_PEDIDOS_ENTREGADO) + " "
+					+ MiFormato.format(a.getDateProperty(PROPIEDAD_PEDIDOS_FECHA_DE_PEDIDO)) + " "
+					+ MiFormato.format(a.getDateProperty(PROPIEDAD_PEDIDOS_FECHA_DE_ENTREGA)) + " " + Entregado + " "
 					+ a.getStringProperty(PROPIEDAD_PEDIDOS_NOMBRE_Y_APELLIDOS_DEL_CLIENTE) + " "
 					+ a.getIntegerProperty(PROPIEDAD_PEDIDOS_NUMERO_DE_CLIENTE_PEDIDO));
 

@@ -208,4 +208,12 @@ public class ClsConstantesBD {
 	public static final String QUERY_PARA_DELETE_DESGLOSE_DE_PEDIDO_POR_NUMERO_DE_PEDIDO_DESGLOSE = "DELETE FROM `mydb`.`desglosedepedidos`\r\n"
 			+ "WHERE NPedidoD = ?;";
 
+	/**
+	 * Constante para UPDATE entrega de pedidos
+	 */
+	public static final String QUERY_PARA_UPDATE_ENTREGA_DE_PEDIDO = "UPDATE `mydb`.`pedidos`\r\n" + "SET\r\n"
+			+ "`NPedido` = ?,\r\n" + "`Fecha_de_pedido` = ?,\r\n" + "`Fecha_de_entrega` = ?,\r\n"
+			+ "`Entregado` = ?,\r\n" + "`NombreYApellidos` = ?,\r\n" + "`Clientes_NCliente` = ?\r\n"
+			+ "WHERE `NPedido` = ? AND `Clientes_NCliente` = ?;\r\n" + "";
+
 }
