@@ -3,7 +3,7 @@ package LN;
 import COMUN.ItfProperty;
 import Excepciones.ClsExcepcionRuntime;
 
-import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_DESGLOSE;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_SERIE;
 
@@ -21,7 +21,7 @@ import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_2;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_3;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_4;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_CANTIDAD_TOTAL;
-import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_CLIENTE;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO;
 
 /**
  * Esta clase recoge y crea los objetos para la entidad Desglose De Pedido.
@@ -51,7 +51,7 @@ public class ClsDesgloseDePedido implements ItfProperty {
 	private int NumeroDePie3;
 	private int NumeroDePie4;
 	private int CantidadTotal;
-	private int NumeroDeCliente_Desglose;
+	private int Pedidos_NPedido_Desglose;
 
 	/**
 	 * Este es el constructor de la clase Desglose De Pedidos.
@@ -71,11 +71,11 @@ public class ClsDesgloseDePedido implements ItfProperty {
 	 * @param numeroDePie3             parametro cantidad del numero 3
 	 * @param numeroDePie4             parametro cantidad del numero 4
 	 * @param cantidadTotal            parametro cantidad total
-	 * @param numeroDeCliente_Desglose parametro del numero del cliente.
+	 * @param Pedidos_NPedido_Desglose parametro del numero del cliente.
 	 */
 	public ClsDesgloseDePedido(int numeroDePedido, int referenciaDelArticulo, int serie, int color, int numeroDePie5,
 			int numeroDePie6, int numeroDePie7, int numeroDePie8, int numeroDePie9, int numeroDePie0, int numeroDePie1,
-			int numeroDePie2, int numeroDePie3, int numeroDePie4, int cantidadTotal, int numeroDeCliente_Desglose) {
+			int numeroDePie2, int numeroDePie3, int numeroDePie4, int cantidadTotal, int pedidos_NPedido_Desglose) {
 		NumeroDePedido = numeroDePedido;
 		ReferenciaDelArticulo = referenciaDelArticulo;
 		Serie = serie;
@@ -91,7 +91,7 @@ public class ClsDesgloseDePedido implements ItfProperty {
 		NumeroDePie3 = numeroDePie3;
 		NumeroDePie4 = numeroDePie4;
 		CantidadTotal = cantidadTotal;
-		NumeroDeCliente_Desglose = numeroDeCliente_Desglose;
+		Pedidos_NPedido_Desglose = pedidos_NPedido_Desglose;
 	}
 
 	/**
@@ -219,12 +219,12 @@ public class ClsDesgloseDePedido implements ItfProperty {
 		CantidadTotal = cantidadTotal;
 	}
 
-	public int getNumeroDeCliente_Desglose() {
-		return NumeroDeCliente_Desglose;
+	public int getPedidos_NPedido_Desglose() {
+		return Pedidos_NPedido_Desglose;
 	}
 
-	public void setNumeroDeCliente_Desglose(int numeroDeCliente_Desglose) {
-		NumeroDeCliente_Desglose = numeroDeCliente_Desglose;
+	public void setPedidos_NPedido_Desglose(int numeroDeCliente_Desglose) {
+		Pedidos_NPedido_Desglose = numeroDeCliente_Desglose;
 	}
 
 	/**
@@ -240,7 +240,7 @@ public class ClsDesgloseDePedido implements ItfProperty {
 	@Override
 	public Integer getIntegerProperty(String propiedad) {
 		switch (propiedad) {
-		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO:
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_DESGLOSE:
 			return this.getNumeroDePedido();
 		case PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO:
 			return this.getReferenciaDelArticulo();
@@ -270,8 +270,8 @@ public class ClsDesgloseDePedido implements ItfProperty {
 			return this.getNumeroDePie4();
 		case PROPIEDAD_DESGLOSE_DE_PEDIDO_CANTIDAD_TOTAL:
 			return this.getCantidadTotal();
-		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_CLIENTE:
-			return this.getNumeroDeCliente_Desglose();
+		case PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO:
+			return this.getPedidos_NPedido_Desglose();
 
 		default:
 			throw new ClsExcepcionRuntime(propiedad);

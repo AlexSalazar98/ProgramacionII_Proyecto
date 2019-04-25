@@ -16,7 +16,7 @@ import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NUMERO;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_ENVIO;
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_REFERENCIA;
-import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_DESGLOSE;
 
 /**
  * Clase de gestion entre LN y LP
@@ -360,28 +360,28 @@ public class ClsGestorLN {
 	/**
 	 * Metodo para crear Desgloses de Pedidos
 	 * 
-	 * @param NumeroDePedido           parametro numero de pedido
-	 * @param ReferenciaDelArticulo    parametro numero de referencia del articulo
-	 * @param Serie                    parametro numero de serie
-	 * @param Color                    parametro numero de color
-	 * @param NumeroDePie5             parametro cantidad del numero 5
-	 * @param NumeroDePie6             parametro cantidad del numero 6
-	 * @param NumeroDePie7             parametro cantidad del numero 7
-	 * @param NumeroDePie8             parametro cantidad del numero 8
-	 * @param NumeroDePie9             parametro cantidad del numero 9
-	 * @param NumeroDePie0             parametro cantidad del numero 0
-	 * @param NumeroDePie1             parametro cantidad del numero 1
-	 * @param NumeroDePie2             parametro cantidad del numero 2
-	 * @param NumeroDePie3             parametro cantidad del numero 3
-	 * @param NumeroDePie4             parametro cantidad del numero 4
-	 * @param CantidadTotal            parametro de cantidad total de numeros.
-	 * @param NumeroDeCliente_Desglose parametro del numero del cliente.
+	 * @param NumeroDePedido        parametro numero de pedido
+	 * @param ReferenciaDelArticulo parametro numero de referencia del articulo
+	 * @param Serie                 parametro numero de serie
+	 * @param Color                 parametro numero de color
+	 * @param NumeroDePie5          parametro cantidad del numero 5
+	 * @param NumeroDePie6          parametro cantidad del numero 6
+	 * @param NumeroDePie7          parametro cantidad del numero 7
+	 * @param NumeroDePie8          parametro cantidad del numero 8
+	 * @param NumeroDePie9          parametro cantidad del numero 9
+	 * @param NumeroDePie0          parametro cantidad del numero 0
+	 * @param NumeroDePie1          parametro cantidad del numero 1
+	 * @param NumeroDePie2          parametro cantidad del numero 2
+	 * @param NumeroDePie3          parametro cantidad del numero 3
+	 * @param NumeroDePie4          parametro cantidad del numero 4
+	 * @param CantidadTotal         parametro de cantidad total de numeros.
+	 * @param Pedidos_NPedido       parametro del numero de Pedido.
 	 * @throws SQLException lanza excepcion.
 	 */
 	public void CrearDesgloseDePedido(int NumeroDePedido, int ReferenciaDelArticulo, int Serie, int Color,
 			int NumeroDePie5, int NumeroDePie6, int NumeroDePie7, int NumeroDePie8, int NumeroDePie9, int NumeroDePie0,
 			int NumeroDePie1, int NumeroDePie2, int NumeroDePie3, int NumeroDePie4, int CantidadTotal,
-			int NumeroDeCliente_Desglose) throws SQLException {
+			int Pedidos_NPedido) throws SQLException {
 
 		/**
 		 * Instanciamos y crearmos el objeto
@@ -389,7 +389,7 @@ public class ClsGestorLN {
 		ClsDesgloseDePedido objDesgloseDePedido;
 		objDesgloseDePedido = new ClsDesgloseDePedido(NumeroDePedido, ReferenciaDelArticulo, Serie, Color, NumeroDePie5,
 				NumeroDePie6, NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1, NumeroDePie2,
-				NumeroDePie3, NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
+				NumeroDePie3, NumeroDePie4, CantidadTotal, Pedidos_NPedido);
 
 		/**
 		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
@@ -405,7 +405,7 @@ public class ClsGestorLN {
 			objDatos.conectarBD();
 			objDatos.InsertarDesglose(NumeroDePedido, ReferenciaDelArticulo, Serie, Color, NumeroDePie5, NumeroDePie6,
 					NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1, NumeroDePie2, NumeroDePie3,
-					NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
+					NumeroDePie4, CantidadTotal, Pedidos_NPedido);
 			objDatos.desconectarBD();
 		}
 
@@ -1588,9 +1588,9 @@ public class ClsGestorLN {
 			 * Guardamos los datos en variables
 			 */
 			int NumeroDePedido = Resultado.getInt("NPedidoD");
-			int ReferenciaDelArticulo = Resultado.getInt("Articulos_Referencia");
 			int Serie = Resultado.getInt("Serie");
 			int Color = Resultado.getInt("Color");
+			int ReferenciaDelArticulo = Resultado.getInt("Articulos_Referencia");
 			int NumeroDePie5 = Resultado.getInt("P5");
 			int NumeroDePie6 = Resultado.getInt("P6");
 			int NumeroDePie7 = Resultado.getInt("P7");
@@ -1601,8 +1601,8 @@ public class ClsGestorLN {
 			int NumeroDePie2 = Resultado.getInt("P2");
 			int NumeroDePie3 = Resultado.getInt("P3");
 			int NumeroDePie4 = Resultado.getInt("P4");
+			int NumeroDeCliente_Desglose = Resultado.getInt("Pedidos_NPedido");
 			int CantidadTotal = Resultado.getInt("CantidadTotalPies");
-			int NumeroDeCliente_Desglose = Resultado.getInt("Pedidos_Clientes_NCliente");
 
 			/**
 			 * Generamos un objeto del tipo de la clase
@@ -1670,7 +1670,7 @@ public class ClsGestorLN {
 		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
 		 */
 		for (int userInd = 0; userInd < bound; userInd++) {
-			if (MiListaDeDesgloses.get(userInd).getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO)
+			if (MiListaDeDesgloses.get(userInd).getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_DESGLOSE)
 					.equals(NPedidoD)) {
 				index = userInd;
 				break;
@@ -1699,5 +1699,86 @@ public class ClsGestorLN {
 		}
 
 		return hecho;
+	}
+
+	public boolean ActualizarEntregasDePedidos(int NPedido) {
+
+		/**
+		 * Variable para confirmar el proceso.
+		 */
+		boolean Hecho = false;
+		/**
+		 * variable a actualizar
+		 */
+		boolean Entregado = false;
+		int NumeroDePedido = 0;
+		Date FechaDePedido = null;
+		Date FechaDeEntrega = null;
+		int NumeroDeCliente_Pedidos = 0;
+		String NombreYApelliosDelCliente = null;
+
+		/**
+		 * Variables para buscar la posicion de objeto en el array
+		 */
+		int index = -1;
+		int bound = MiListaDePedidos.size();
+		/**
+		 * miramos en que posicion de Array se encuentra nuestro objeto buscado
+		 */
+		for (int userInd = 0; userInd < bound; userInd++) {
+			if (MiListaDePedidos.get(userInd).getIntegerProperty(PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO).equals(NPedido)) {
+				index = userInd;
+				break;
+			}
+
+		}
+
+		/**
+		 * si encontramos posicion del objeto en el array borramos si no devolvemos
+		 * false
+		 */
+		if (index == -1) {
+			Hecho = false;
+
+		} else {
+			Hecho = true;
+			/**
+			 * Obtenemos el objeto
+			 */
+			ClsPedidos PedidoActualizar = MiListaDePedidos.get(index);
+
+			/**
+			 * obtenemos los datos del objeto
+			 */
+
+			NumeroDePedido = PedidoActualizar.getNumeroDePedido();
+			FechaDePedido = PedidoActualizar.getFechaDePedido();
+			FechaDeEntrega = PedidoActualizar.getFechaDeEntrega();
+			Entregado = PedidoActualizar.getEntregado();
+			NumeroDeCliente_Pedidos = PedidoActualizar.getNumeroDeCliente_Pedidos();
+			NombreYApelliosDelCliente = PedidoActualizar.getNombreYApelliosDelCliente();
+
+			/**
+			 * actualizamos el estado
+			 */
+			if (Entregado == false) {
+				Entregado = true;
+			} else {
+				Entregado = false;
+			}
+
+			/**
+			 * quitamos el objeto anterior del array
+			 */
+			MiListaDePedidos.remove(index);
+			/**
+			 * creamos objeto actualizado y lo añadimos al array
+			 */
+			ClsPedidos PedidoActualizado = new ClsPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado,
+					NombreYApelliosDelCliente, NumeroDeCliente_Pedidos);
+			MiListaDePedidos.add(PedidoActualizado);
+		}
+
+		return Hecho;
 	}
 }

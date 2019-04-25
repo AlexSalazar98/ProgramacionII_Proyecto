@@ -36,11 +36,11 @@ import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_CANTIDAD_DE_MATERIAL;
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_CANTIDAD_DE_HERRAJES;
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_PRECIO;
 import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_REFERENCIA_SUELAS;
-import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_DESGLOSE;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_SERIE;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_COLOR;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO;
-import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_CLIENTE;
+import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_5;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_6;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_7;
@@ -405,11 +405,10 @@ public class ClsMostrarDatos {
 		 */
 		for (ItfProperty a : Desgloses) {
 
-			System.out.println(a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO) + " "
+			System.out.println(a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_DESGLOSE) + " "
 					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_SERIE) + " "
 					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_COLOR) + " "
 					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO) + " "
-					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_CLIENTE) + " "
 					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_5) + " "
 					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_6) + " "
 					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_7) + " "
@@ -420,7 +419,8 @@ public class ClsMostrarDatos {
 					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_2) + " "
 					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_3) + " "
 					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_4) + " "
-					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_CANTIDAD_TOTAL));
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_CANTIDAD_TOTAL) + " "
+					+ a.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO));
 		}
 		System.out.println("-------------------");
 	}

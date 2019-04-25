@@ -32,7 +32,6 @@ import static LD.ClsConstantesBD.QUERY_PARA_DELETE_ENVIOS_POR_NUMERO_DE_ENVIO;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_PEDIDOS;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_PEDIDOS;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO_1;
-import static LD.ClsConstantesBD.QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO_2;
 import static LD.ClsConstantesBD.QUERY_PARA_INSERTAR_ARTICULOS;
 import static LD.ClsConstantesBD.QUERY_PARA_SELECT_ARTICULOS;
 import static LD.ClsConstantesBD.QUERY_PARA_DELETE_ARTICULOS_POR_REFERENCIA;
@@ -160,7 +159,7 @@ public class ClsDatos {
 			 * 
 			 */
 			rs.close();
-			
+
 		}
 
 		return null;
@@ -833,7 +832,7 @@ public class ClsDatos {
 			 * Parametro por el cual borramos
 			 */
 			objSt.setInt(1, NPedido);
-			objSt = objConn.prepareStatement(QUERY_PARA_DELETE_PEDIDOS_POR_NUMERO_DE_PEDIDO_2);
+
 			/**
 			 * Ejecutamos la query que hemos preparado
 			 */
@@ -974,8 +973,8 @@ public class ClsDatos {
 	 * @throws SQLException lanza excepcion
 	 */
 	public void InsertarDesglose(int NPedidoD, int Articulos_Referencia, int Serie, int Color, int P5, int P6, int P7,
-			int P8, int P9, int P0, int P1, int P2, int P3, int P4, int CantidadTotalPies,
-			int Pedidos_Clientes_NCliente) throws SQLException {
+			int P8, int P9, int P0, int P1, int P2, int P3, int P4, int CantidadTotalPies, int Pedidos_NPedido)
+			throws SQLException {
 
 		/**
 		 * Insertamos Desglose
@@ -993,17 +992,17 @@ public class ClsDatos {
 			objSt.setInt(2, Serie);
 			objSt.setInt(3, Color);
 			objSt.setInt(4, Articulos_Referencia);
-			objSt.setInt(5, Pedidos_Clientes_NCliente);
-			objSt.setInt(6, P5);
-			objSt.setInt(7, P6);
-			objSt.setInt(8, P7);
-			objSt.setInt(9, P8);
-			objSt.setInt(10, P9);
-			objSt.setInt(11, P0);
-			objSt.setInt(12, P1);
-			objSt.setInt(13, P2);
-			objSt.setInt(14, P3);
-			objSt.setInt(15, P4);
+			objSt.setInt(5, P5);
+			objSt.setInt(6, P6);
+			objSt.setInt(7, P7);
+			objSt.setInt(8, P8);
+			objSt.setInt(9, P9);
+			objSt.setInt(10, P0);
+			objSt.setInt(11, P1);
+			objSt.setInt(12, P2);
+			objSt.setInt(13, P3);
+			objSt.setInt(14, P4);
+			objSt.setInt(15, Pedidos_NPedido);
 			objSt.setInt(16, CantidadTotalPies);
 
 			/**

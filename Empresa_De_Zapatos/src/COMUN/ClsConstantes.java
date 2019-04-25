@@ -61,7 +61,7 @@ public class ClsConstantes {
 	/**
 	 * Propiedades de la clase Desglose de Pedido.
 	 */
-	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO = "Numero de pedido";
+	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_DESGLOSE = "Numero de desglose";
 	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO = "Referencia del articulo";
 	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_SERIE = "Numero de serie";
 	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_COLOR = "Numero de color";
@@ -76,7 +76,7 @@ public class ClsConstantes {
 	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_3 = "Numero de pie 3";
 	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_4 = "Numero de pie 4";
 	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_CANTIDAD_TOTAL = "Cantidad total";
-	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_CLIENTE = "Numero de cliente";
+	public static final String PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO = "Numero de pedido";
 	
 	/**
 	 * Propiedades de la clase Clientes.

@@ -595,7 +595,7 @@ public class ClsMenuIntroducirDatos {
 		int NumeroDePie3;
 		int NumeroDePie4;
 		int CantidadTotal;
-		int NumeroDeCliente_Desglose;
+		int Pedidos_NPedido;
 
 		/**
 		 * pedimos los datos.
@@ -630,8 +630,8 @@ public class ClsMenuIntroducirDatos {
 		NumeroDePie4 = UtilidadesLP.leerEntero();
 		CantidadTotal = NumeroDePie0 + NumeroDePie1 + NumeroDePie2 + NumeroDePie3 + NumeroDePie4 + NumeroDePie5
 				+ NumeroDePie6 + NumeroDePie7 + NumeroDePie8 + NumeroDePie9;
-		System.out.print("Introduzca el Número del Cliente:");
-		NumeroDeCliente_Desglose = UtilidadesLP.leerEntero();
+		System.out.print("Introduzca el Número de Pedido:");
+		Pedidos_NPedido = UtilidadesLP.leerEntero();
 
 		/**
 		 * Rodeamos con TRY CATCH para tratar excepcion.
@@ -642,7 +642,7 @@ public class ClsMenuIntroducirDatos {
 			 */
 			objGDesgloseDePedido.CrearDesgloseDePedido(NumeroDePedido, ReferenciaDelArticulo, Serie, Color,
 					NumeroDePie5, NumeroDePie6, NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1,
-					NumeroDePie2, NumeroDePie3, NumeroDePie4, CantidadTotal, NumeroDeCliente_Desglose);
+					NumeroDePie2, NumeroDePie3, NumeroDePie4, CantidadTotal, Pedidos_NPedido);
 			/**
 			 * Mensaje para confirmar la introduccion de datos
 			 */

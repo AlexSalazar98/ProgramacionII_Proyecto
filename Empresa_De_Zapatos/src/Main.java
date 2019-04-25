@@ -22,8 +22,8 @@ public class Main {
 		 * Aqui llamamos al menu principal.
 		 */
 
-		ClsVerPantallaPrincipal.main();
-		// ClsMenuPrincipal.MenuPrincipal();
+		//ClsVerPantallaPrincipal.main();
+		 ClsMenuPrincipal.MenuPrincipal();
 
 	}
 
