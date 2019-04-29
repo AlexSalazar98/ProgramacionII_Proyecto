@@ -15,15 +15,15 @@ public class Main {
 		/**
 		 * Recordatorios temporales.
 		 */
-		System.out.println("Abre el MySQLWorkBench e inicia coñexion con la DB en el programa MySQLWorkBench ");
-		System.out.println("Acuerdate de comprobar la contraseña en la aplicacion");
+		//System.out.println("Abre el MySQLWorkBench e inicia coñexion con la DB en el programa MySQLWorkBench ");
+		//System.out.println("Acuerdate de comprobar la contraseña en la aplicacion");
 
 		/**
 		 * Aqui llamamos al menu principal.
 		 */
 
-		//ClsVerPantallaPrincipal.main();
-		 ClsMenuPrincipal.MenuPrincipal();
+		ClsVerPantallaPrincipal.main();
+		//ClsMenuPrincipal.MenuPrincipal();
 
 	}
 

@@ -8,14 +8,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.sql.SQLException;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Color;
 
+/**
+ * 
+ * @author Alex Salazar
+ * @author David Requeta Pantalla pincipal de la aplicacion
+ *
+ */
 public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
+
+	/**
+	 * Creamos un objeto Gestor y un objeto Datos.
+	 */
+	ClsGestorLN objGestor = new ClsGestorLN();
 
 	/**
 	 * No se para que sirve esto
@@ -48,10 +56,31 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 	 */
 	public static void main() {
 
-		/**
-		 * Creamos un objeto Gestor y un objeto Datos.
-		 */
-		ClsGestorLN objGestor = new ClsGestorLN();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ClsVerPantallaPrincipal window = new ClsVerPantallaPrincipal();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, e);
+
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public ClsVerPantallaPrincipal() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
 
 		/**
 		 * Llamadas a metodos para cargar los datos en Arrays nada mas iniciar la
@@ -80,36 +109,12 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, e);
 
 		}
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ClsVerPantallaPrincipal window = new ClsVerPantallaPrincipal();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-					JOptionPane.showMessageDialog(null, e);
-
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public ClsVerPantallaPrincipal() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
 		/**
 		 * Inicializamos el frame
 		 */
 		frame = new JFrame();
+		frame.setResizable(false);
+		frame.getContentPane().setBackground(Color.CYAN);
 		frame.setBounds(100, 100, 519, 414);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setTitle("Menu Principal");
@@ -198,7 +203,7 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 		 */
 		case INTRODUCIR_DATOS_BUTTON:
 			// System.out.println("Hola esto es para introducir datos");
-			ClsVerMenuIntroducirDatos.main(null);
+			ClsVerMenuIntroducirDatos.main(null, objGestor);
 			break;
 
 		/**
