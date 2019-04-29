@@ -27,6 +27,7 @@ import java.awt.Color;
  */
 public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener {
 
+	private ClsGestorLN objGestorMID;
 	/**
 	 * Ni idea de para que sirve.
 	 */
@@ -66,13 +67,14 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 				}
 			}
 		});
+
 	}
 
 	/**
 	 * Constructor
 	 */
 	public ClsVerMenuIntroducirDatos(ClsGestorLN ObjGestor) {
-
+		objGestorMID = ObjGestor;
 		IniciarComponentes(ObjGestor);
 
 	}
@@ -329,7 +331,7 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	}
 
 	private void IntroducirSeries() {
-		ClsIFIntroducirSeries IntFrameSeries = new ClsIFIntroducirSeries();
+		ClsIFIntroducirSeries IntFrameSeries = new ClsIFIntroducirSeries(objGestorMID);
 		IntFrameSeries.setVisible(true);
 		PanelMenuIntrducirDatos.add(IntFrameSeries);
 		try {
