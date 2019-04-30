@@ -3,20 +3,21 @@ package PANTALLA_LP;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import javax.swing.SwingConstants;
-
+import COMUN.ItfProperty;
 import LN.ClsGestorLN;
-
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.Color;
+import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
+
+
 
 /**
  * 
@@ -38,18 +39,30 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 	 * constantes para el ActionLisener
 	 */
 	private final String CONFIRMAR_BUTTON = "Boton de confirmar Series";
+	private final String AUTOMATICO_BUTTON = "Boton para poner automatico el ID";
+	
 
 	/**
 	 * Instanciamos objetos
 	 */
-	public JPanel Panel;
-	private JTextField NumeroDeSerie;
-	private JTextField Descripción;
+	JPanel Panel;
+	JLabel NSerie, Descripcion;
+	JButton NSAutomatico, Confirmar;
+	private JTextField INSerie;
+	private JTextField Desc;
 
 	/**
 	 * Constuctor
 	 */
 	public ClsIFIntroducirSeries(ClsGestorLN ObjGestor) {
+		setTitle("Introducir Series");
+		this.setBounds(200, 300, 269, 169);
+		getContentPane().setLayout(new GridLayout(3, 3));
+		Panel = new JPanel();
+		this.setClosable(true);
+		this.setResizable(true);
+		this.setIconifiable(true);
+		this.setMaximizable(true);
 		Inicializar(ObjGestor);
 	}
 
@@ -57,44 +70,47 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 	 * Para inicializar los objetos
 	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
+		NSerie = new JLabel("Numero De Serie:");
+		NSerie.setEnabled(false);
+		NSerie.setFont(new Font("Tahoma", Font.BOLD, 15));
+		NSerie.setHorizontalAlignment(SwingConstants.CENTER);
+		getContentPane().add(NSerie);
+
+		INSerie = new JTextField();
+		INSerie.setHorizontalAlignment(SwingConstants.CENTER);
+		getContentPane().add(INSerie);
+		INSerie.setColumns(10);
+
+		NSAutomatico = new JButton("N\u00BA Serie Automatico");
+		getContentPane().add(NSAutomatico);
+		NSAutomatico.addActionListener(this);
+		NSAutomatico.setActionCommand(AUTOMATICO_BUTTON);
+
+		Descripcion = new JLabel("Descripci\u00F3n:");
+		Descripcion.setEnabled(false);
+		Descripcion.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Descripcion.setHorizontalAlignment(SwingConstants.CENTER);
+		getContentPane().add(Descripcion);
+
+		Desc = new JTextField();
+		Desc.setHorizontalAlignment(SwingConstants.CENTER);
+		getContentPane().add(Desc);
+		Desc.setColumns(10);
+
+		JLabel Vacio1 = new JLabel("");
+		getContentPane().add(Vacio1);
+
+		JLabel Vacio2 = new JLabel("");
+		getContentPane().add(Vacio2);
+
+		JLabel Vacio3 = new JLabel("");
+		getContentPane().add(Vacio3);
+
+		Confirmar = new JButton("Confirmar Serie");
+		getContentPane().add(Confirmar);
+		Confirmar.addActionListener(this);
+		Confirmar.setActionCommand(CONFIRMAR_BUTTON);
 		objGestorIFIS = ObjGestor;
-		setBounds(158, 81, 491, 303);
-		setClosable(true);
-		setTitle("Introducir Series");
-		getContentPane().setLayout(new GridLayout(3, 2));
-
-		JLabel Texto1 = new JLabel("Numero De Serie:");
-		Texto1.setEnabled(false);
-		Texto1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		Texto1.setHorizontalAlignment(SwingConstants.CENTER);
-		getContentPane().add(Texto1);
-
-		NumeroDeSerie = new JTextField();
-		NumeroDeSerie.setHorizontalAlignment(SwingConstants.CENTER);
-		getContentPane().add(NumeroDeSerie);
-		NumeroDeSerie.setColumns(5);
-
-		JLabel Texto2 = new JLabel("Descripci\u00F3n:");
-		Texto2.setBackground(Color.WHITE);
-		Texto2.setEnabled(false);
-		Texto2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		Texto2.setHorizontalAlignment(SwingConstants.CENTER);
-		getContentPane().add(Texto2);
-
-		Descripción = new JTextField();
-		Descripción.setHorizontalAlignment(SwingConstants.CENTER);
-		getContentPane().add(Descripción);
-		Descripción.setColumns(5);
-
-		JLabel TextoVacio = new JLabel("");
-		TextoVacio.setBackground(Color.WHITE);
-		getContentPane().add(TextoVacio);
-
-		JButton Boton = new JButton("Confirmar Serie");
-		Boton.setFont(new Font("Tahoma", Font.BOLD, 15));
-		getContentPane().add(Boton);
-		Boton.addActionListener(this);
-		Boton.setActionCommand(CONFIRMAR_BUTTON);
 
 	}
 
@@ -102,8 +118,12 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 	public void actionPerformed(ActionEvent e) {
 
 		switch (e.getActionCommand()) {
+		case AUTOMATICO_BUTTON:
+			ObtenerUltimoID();
+			break;
 		case CONFIRMAR_BUTTON:
 			MandarAlGestor();
+			PonerVacio();
 			break;
 
 		default:
@@ -111,15 +131,48 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 		}
 	}
 
+	/**
+	 * Metodo para poner automatico el siguiente ID
+	 */
+	private void ObtenerUltimoID() {
+
+		ArrayList<ItfProperty> Series = objGestorIFIS.OrdenaSeries();
+
+		ItfProperty UltimoObjeto = Series.get(Series.size() - 1);
+
+		int mostrar = UltimoObjeto.getIntegerProperty(PROPIEDAD_SERIES_NUMERO_DE_SERIE);
+
+		int IDActualizadoINT = mostrar + 1;
+
+		String IDActualizado = Integer.toString(IDActualizadoINT);
+
+		INSerie.setText(IDActualizado);
+	}
+
+	/**
+	 * Metodo para mandar al Gestor los datos recogidos por pantalla
+	 */
 	private void MandarAlGestor() {
 
-		int NDS = Integer.parseInt(NumeroDeSerie.getText());
-		String Des = Descripción.getText();
+		int NDS = Integer.parseInt(INSerie.getText());
+		String Des = Desc.getText();
 		try {
-			objGestorIFIS.CrearSerie(NDS, Des);
+			if (objGestorIFIS.CrearSerie(NDS, Des)) {
+				JOptionPane.showMessageDialog(null, "Serie introducida Correctamente");
+			} else {
+				JOptionPane.showMessageDialog(null, "ID de la Serie repetido!");
+			}
+
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, e);
+			JOptionPane.showMessageDialog(null, "No se ha podido realizar el insert: " + e);
 		}
-		
+
+	}
+
+	private void PonerVacio() {
+
+		INSerie.setText("");
+		Desc.setText("");
+
 	}
 }

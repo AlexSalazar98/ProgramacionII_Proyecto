@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Collections;
 import COMUN.ItfProperty;
+import Comparadores.ClsComparadorHerrajesID;
+import Comparadores.ClsComparadorMaterialesID;
+import Comparadores.ClsComparadorPorFechas;
+import Comparadores.ClsComparadorSeriesID;
 import Excepciones.ClsBorrarExcepcion;
 import LD.ClsDatos;
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
@@ -103,7 +107,12 @@ public class ClsGestorLN {
 	 * @param Descripcion_Serie parametro descripcion de serie.
 	 * @throws SQLException lanzamos excepcion
 	 */
-	public void CrearSerie(int NumeroDeSerie, String Descripcion_Serie) throws SQLException {
+	public boolean CrearSerie(int NumeroDeSerie, String Descripcion_Serie) throws SQLException {
+
+		/**
+		 * comprobar que no se repite
+		 */
+		boolean hecho = false;
 		/**
 		 * Instanciamos y crearmos el objeto
 		 */
@@ -114,6 +123,8 @@ public class ClsGestorLN {
 		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
 		 */
 		if (!ExisteSeries(objSeries)) {
+
+			hecho = true;
 			/**
 			 * Añadimos el objeto a el array.
 			 */
@@ -127,6 +138,7 @@ public class ClsGestorLN {
 			objDatos.desconectarBD();
 		}
 
+		return hecho;
 	}
 
 	/**
@@ -177,7 +189,11 @@ public class ClsGestorLN {
 	 * @param Precio      parametro precio
 	 * @throws SQLException lanzamos la excepcion
 	 */
-	public void CrearMateriales(int Referencia, String Descripcion, double Precio) throws SQLException {
+	public boolean CrearMateriales(int Referencia, String Descripcion, double Precio) throws SQLException {
+		/**
+		 * Variable para confirmar
+		 */
+		boolean Hecho = false;
 		/**
 		 * Instanciamos y crearmos el objeto
 		 */
@@ -188,6 +204,7 @@ public class ClsGestorLN {
 		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
 		 */
 		if (!ExisteMateriales(objMateriales)) {
+			Hecho = true;
 			/**
 			 * Añadimos el objeto a el array.
 			 */
@@ -200,6 +217,7 @@ public class ClsGestorLN {
 			objDatos.InsertarMateriales(Referencia, Descripcion, Precio);
 			objDatos.desconectarBD();
 		}
+		return Hecho;
 	}
 
 	/**
@@ -210,7 +228,11 @@ public class ClsGestorLN {
 	 * @param Precio      parametro precio
 	 * @throws SQLException lanzamos excepcion
 	 */
-	public void CrearHerrajes(int Referencia, String Descripcion, double Precio) throws SQLException {
+	public boolean CrearHerrajes(int Referencia, String Descripcion, double Precio) throws SQLException {
+		/**
+		 * Variable de confirmacion
+		 */
+		Boolean Hecho = false;
 		/**
 		 * Instanciamos y crearmos el objeto
 		 */
@@ -221,6 +243,7 @@ public class ClsGestorLN {
 		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
 		 */
 		if (!ExisteHerrajes(objHerrajes)) {
+			Hecho = true;
 			/**
 			 * Añadimos el objeto a el array.
 			 */
@@ -233,6 +256,8 @@ public class ClsGestorLN {
 			objDatos.InsertarHerrajes(Referencia, Descripcion, Precio);
 			objDatos.desconectarBD();
 		}
+
+		return Hecho;
 	}
 
 	/**
@@ -1784,5 +1809,102 @@ public class ClsGestorLN {
 		}
 
 		return Hecho;
+	}
+
+	/**
+	 * Oredena el Array de Series por IDs
+	 * 
+	 * @return devuelve el array ordenados
+	 */
+	public ArrayList<ItfProperty> OrdenaSeries() {
+
+		/**
+		 * Objeto comparador
+		 */
+		ClsComparadorSeriesID comp = new ClsComparadorSeriesID();
+
+		/**
+		 * funcion de ordenamiento (ArrayList, Patron)
+		 */
+		Collections.sort(MiListaDeSeries, comp);
+
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		/**
+		 * compiamos un array en el otro ya ordenado
+		 */
+		for (ClsSeries a : MiListaDeSeries) {
+			retorno.add(a);
+		}
+
+		return retorno;
+
+	}
+
+	/**
+	 * Oredena el Array de Herrajes por IDs
+	 * 
+	 * @return devuelve el array ordenado
+	 */
+	public ArrayList<ItfProperty> OrdenarHerrajes() {
+		/**
+		 * Objeto comparador
+		 */
+		ClsComparadorHerrajesID comp = new ClsComparadorHerrajesID();
+
+		/**
+		 * funcion de ordenamiento (ArrayList, Patron)
+		 */
+		Collections.sort(MiListaDeHerrajes, comp);
+
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		/**
+		 * compiamos un array en el otro ya ordenado
+		 */
+		for (ClsHerrajes a : MiListaDeHerrajes) {
+			retorno.add(a);
+		}
+
+		return retorno;
+	}
+
+	public ArrayList<ItfProperty> OrdenarMateriales() {
+
+		/**
+		 * Objeto comparador
+		 */
+		ClsComparadorMaterialesID comp = new ClsComparadorMaterialesID();
+
+		/**
+		 * funcion de ordenamiento (ArrayList, Patron)
+		 */
+		Collections.sort(MiListaDeMateriales, comp);
+
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		/**
+		 * compiamos un array en el otro ya ordenado
+		 */
+		for (ClsMateriales a : MiListaDeMateriales) {
+			retorno.add(a);
+		}
+
+		return retorno;
 	}
 }

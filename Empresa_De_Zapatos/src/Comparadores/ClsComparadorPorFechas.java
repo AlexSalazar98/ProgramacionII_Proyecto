@@ -1,6 +1,8 @@
-package LN;
+package Comparadores;
 
 import java.util.Comparator;
+
+import LN.ClsPedidos;
 
 /**
  * Clase para comparar por fechas de pedido, si no por fechas de entrega y si no

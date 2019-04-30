@@ -7,10 +7,7 @@ import java.beans.PropertyVetoException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import LN.ClsGestorLN;
-
-import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -92,7 +89,7 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		PanelMenuIntrducirDatos = new JPanel();
 		PanelMenuIntrducirDatos.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(PanelMenuIntrducirDatos);
-		PanelMenuIntrducirDatos.setLayout(new BorderLayout(0, 0));
+		PanelMenuIntrducirDatos.setLayout(null);
 
 		/**
 		 * Inicializamos la barra de menu
@@ -324,12 +321,22 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 			IntroducirSeries();
 			break;
 
+		case HERRAJES_BUTTON:
+			IntroducirHerrajes();
+			break;
+
+		case MATERIALES_BUTTON:
+			IntroducirMateriales();
+			break;
 		default:
 			break;
 		}
 
 	}
 
+	/**
+	 * Llamada al InternalFrame Para introducir Series
+	 */
 	private void IntroducirSeries() {
 		ClsIFIntroducirSeries IntFrameSeries = new ClsIFIntroducirSeries(objGestorMID);
 		IntFrameSeries.setVisible(true);
@@ -339,6 +346,36 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		} catch (PropertyVetoException e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
+	}
+
+	/**
+	 * Llamada al InternalFrame para introducir Herrajes
+	 */
+	private void IntroducirHerrajes() {
+		ClsIFIntroducirHerrajes IntFrameHerrajes = new ClsIFIntroducirHerrajes(objGestorMID);
+		IntFrameHerrajes.setVisible(true);
+		PanelMenuIntrducirDatos.add(IntFrameHerrajes);
+		try {
+			IntFrameHerrajes.setSelected(true);
+		} catch (PropertyVetoException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+
+	}
+	
+	/**
+	 * Llamada al InternalFrame para introducir Materiales
+	 */
+	private void IntroducirMateriales() {
+		ClsIFIntroducirMateriales IntFrameMateriales = new ClsIFIntroducirMateriales(objGestorMID);
+		IntFrameMateriales.setVisible(true);
+		PanelMenuIntrducirDatos.add(IntFrameMateriales);
+		try {
+			IntFrameMateriales.setSelected(true);
+		} catch (PropertyVetoException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+
 	}
 
 }
