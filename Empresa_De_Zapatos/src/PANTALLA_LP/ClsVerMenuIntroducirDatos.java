@@ -396,5 +396,5 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		}
 
 	}
-
+	
 }
