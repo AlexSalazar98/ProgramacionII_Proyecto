@@ -10,6 +10,7 @@ import Comparadores.ClsComparadorHerrajesID;
 import Comparadores.ClsComparadorMaterialesID;
 import Comparadores.ClsComparadorPorFechas;
 import Comparadores.ClsComparadorSeriesID;
+import Comparadores.ClsComparadorSuelasID;
 import Excepciones.ClsBorrarExcepcion;
 import LD.ClsDatos;
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
@@ -76,8 +77,12 @@ public class ClsGestorLN {
 	 * @param Precio_Suelas      parametro precio suelas
 	 * @throws SQLException lanzamos excepcion.
 	 */
-	public void CrearSuelas(int Referencia_Suelas, String Descripcion_Suelas, Double Precio_Suelas)
+	public boolean CrearSuelas(int Referencia_Suelas, String Descripcion_Suelas, Double Precio_Suelas)
 			throws SQLException {
+		/**
+		 * Variable para confirmar
+		 */
+		boolean hecho = false;
 		/**
 		 * Instanciamos y crearmos el objeto
 		 */
@@ -87,6 +92,7 @@ public class ClsGestorLN {
 		 * Comprobamos que no exite el objeto y lo añadimos al Array y a la BD.
 		 */
 		if (!ExisteSuelas(objSuelas)) {
+			hecho = true;
 			/**
 			 * Añadimos el objeto a el array.
 			 */
@@ -98,6 +104,8 @@ public class ClsGestorLN {
 			objDatos.InsertarSuelas(Referencia_Suelas, Descripcion_Suelas, Precio_Suelas);
 			objDatos.desconectarBD();
 		}
+
+		return hecho;
 	}
 
 	/**
@@ -1879,6 +1887,11 @@ public class ClsGestorLN {
 		return retorno;
 	}
 
+	/**
+	 * Ordenar el array de Materiales por ID
+	 * 
+	 * @return nos lo devuelve ordenado
+	 */
 	public ArrayList<ItfProperty> OrdenarMateriales() {
 
 		/**
@@ -1902,6 +1915,35 @@ public class ClsGestorLN {
 		 * compiamos un array en el otro ya ordenado
 		 */
 		for (ClsMateriales a : MiListaDeMateriales) {
+			retorno.add(a);
+		}
+
+		return retorno;
+	}
+	
+	public ArrayList<ItfProperty> OrdenarSuelas() {
+
+		/**
+		 * Objeto comparador
+		 */
+		ClsComparadorSuelasID comp = new ClsComparadorSuelasID();
+
+		/**
+		 * funcion de ordenamiento (ArrayList, Patron)
+		 */
+		Collections.sort(MiListaDeSuelas, comp);
+
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		/**
+		 * compiamos un array en el otro ya ordenado
+		 */
+		for (ClsSuelas a : MiListaDeSuelas) {
 			retorno.add(a);
 		}
 

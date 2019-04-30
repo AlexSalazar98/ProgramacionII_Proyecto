@@ -328,6 +328,10 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		case MATERIALES_BUTTON:
 			IntroducirMateriales();
 			break;
+			
+		case SUELAS_BUTTON:
+			IntroducirSuelas();
+			break;
 		default:
 			break;
 		}
@@ -372,6 +376,21 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		PanelMenuIntrducirDatos.add(IntFrameMateriales);
 		try {
 			IntFrameMateriales.setSelected(true);
+		} catch (PropertyVetoException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+
+	}
+	
+	/**
+	 * Llamada al InternalFrame para introducir Suelas
+	 */
+	private void IntroducirSuelas() {
+		ClsIFIntroducirSuelas IntFrameSuelas = new ClsIFIntroducirSuelas(objGestorMID);
+		IntFrameSuelas.setVisible(true);
+		PanelMenuIntrducirDatos.add(IntFrameSuelas);
+		try {
+			IntFrameSuelas.setSelected(true);
 		} catch (PropertyVetoException e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
