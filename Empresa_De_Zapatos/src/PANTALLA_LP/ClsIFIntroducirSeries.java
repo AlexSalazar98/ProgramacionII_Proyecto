@@ -15,9 +15,9 @@ import LN.ClsGestorLN;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JDesktopPane;
+
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
-
-
 
 /**
  * 
@@ -40,7 +40,6 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 	 */
 	private final String CONFIRMAR_BUTTON = "Boton de confirmar Series";
 	private final String AUTOMATICO_BUTTON = "Boton para poner automatico el ID";
-	
 
 	/**
 	 * Instanciamos objetos
@@ -58,6 +57,7 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 		setTitle("Introducir Series");
 		this.setBounds(200, 300, 269, 169);
 		getContentPane().setLayout(new GridLayout(3, 3));
+
 		Panel = new JPanel();
 		this.setClosable(true);
 		this.setResizable(true);

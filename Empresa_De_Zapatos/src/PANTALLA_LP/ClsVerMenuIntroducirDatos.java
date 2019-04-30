@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
+
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -44,7 +46,7 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	/**
 	 * Objetos instanciados
 	 */
-	private JPanel PanelMenuIntrducirDatos;
+	private JDesktopPane PanelMenuIntrducirDatos;
 	private JMenuBar menuBar;
 	private JMenu Introducir;
 	private JMenuItem Articulos, Clientes, Desglose, Envios, Herrajes, Materiales, Pedidos, Series, Suelas;
@@ -86,7 +88,7 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Inicializamos panel
 		 */
-		PanelMenuIntrducirDatos = new JPanel();
+		PanelMenuIntrducirDatos = new JDesktopPane();
 		PanelMenuIntrducirDatos.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(PanelMenuIntrducirDatos);
 		PanelMenuIntrducirDatos.setLayout(null);
