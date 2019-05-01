@@ -52,6 +52,11 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	private JMenuBar menuBar;
 	private JMenu Introducir;
 	private JMenuItem Articulos, Clientes, Desglose, Envios, Herrajes, Materiales, Pedidos, Series, Suelas;
+	private ClsIFIntroducirClientes IntFrameClientes;
+	private ClsIFIntroducirSeries IntFrameSeries;
+	private ClsIFIntroducirHerrajes IntFrameHerrajes;
+	private ClsIFIntroducirSuelas IntFrameSuelas;
+	private ClsIFIntroducirMateriales IntFrameMateriales;
 
 	/**
 	 * Launch the application.
@@ -362,11 +367,11 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Creamos objeto IFrameSeries
 		 */
-		ClsIFIntroducirSeries IntFrameSeries = new ClsIFIntroducirSeries(objGestorMID);
+		IntFrameSeries = new ClsIFIntroducirSeries(objGestorMID);
 		/**
 		 * Comprobamos que no este ya abierto
 		 */
-		ComprobarVentanaSeriesAbierta(IntFrameSeries);
+		ComprobarVentanaSeriesAbierta();
 		/**
 		 * Lo hacemos visible
 		 */
@@ -385,11 +390,11 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Creamos Objeto IFrameHerrajes
 		 */
-		ClsIFIntroducirHerrajes IntFrameHerrajes = new ClsIFIntroducirHerrajes(objGestorMID);
+		IntFrameHerrajes = new ClsIFIntroducirHerrajes(objGestorMID);
 		/**
 		 * Comprobamos que no este ya abierto
 		 */
-		ComprobarVentanaHerrajesAbierta(IntFrameHerrajes);
+		ComprobarVentanaHerrajesAbierta();
 		/**
 		 * Lo hacemos visible
 		 */
@@ -409,11 +414,11 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Creamos el objeto
 		 */
-		ClsIFIntroducirMateriales IntFrameMateriales = new ClsIFIntroducirMateriales(objGestorMID);
+		IntFrameMateriales = new ClsIFIntroducirMateriales(objGestorMID);
 		/**
 		 * Comprobamos si esta abierta la ventana
 		 */
-		ComprobarVentanaMaterialesAbierta(IntFrameMateriales);
+		ComprobarVentanaMaterialesAbierta();
 		/**
 		 * Lo hacemos visible
 		 */
@@ -433,11 +438,11 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Creamos el objeto
 		 */
-		ClsIFIntroducirSuelas IntFrameSuelas = new ClsIFIntroducirSuelas(objGestorMID);
+		IntFrameSuelas = new ClsIFIntroducirSuelas(objGestorMID);
 		/**
 		 * Comprobamos que no este ya abierto
 		 */
-		ComprobarVentanaSuelasAbierta(IntFrameSuelas);
+		ComprobarVentanaSuelasAbierta();
 		/**
 		 * Lo hacemos visible
 		 */
@@ -457,11 +462,11 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * creamos el objeto
 		 */
-		ClsIFIntroducirClientes IntFrameClientes = new ClsIFIntroducirClientes(objGestorMID);
+		IntFrameClientes = new ClsIFIntroducirClientes(objGestorMID);
 		/**
 		 * Comprobamos que la ventana no este abierta.
 		 */
-		ComprobarVentanaClientesAbierta(IntFrameClientes);
+		ComprobarVentanaClientesAbierta();
 		/**
 		 * Lo hacemos visible
 		 */
@@ -474,39 +479,24 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 
 	}
 
-	/**
-	 * Metodo para detectar si InternalFrame Series esta abierto
-	 * 
-	 * @param inter recive el objeto
-	 */
-	private void ComprobarVentanaSeriesAbierta(ClsIFIntroducirSeries inter) {
+	public void ComprobarVentanaHerrajesAbierta() {
 
-		/**
-		 * Variable para saber si el IFrame esta abierto o no
-		 */
 		boolean mostrar = true;
-		/**
-		 * Variable para obtener el titulo del IFrame
-		 */
-		String Nombre = inter.getTitle();
-		/**
-		 * Contador para mirar cuantos componentes hay en el panel
-		 */
-		int a;
 
-		/**
-		 * verificar si es instancia de algun componente que ya este en el jdesktoppane
-		 */
-		for (a = 0; a < PanelMenuIntrducirDatos.getComponentCount(); a++) {
+		String Nombre = IntFrameHerrajes.getTitle();
 
-			a = PanelMenuIntrducirDatos.getComponentCount();
+		int a; 
+		
+		for (a = 0; a < PanelMenuIntrducirDatos.getComponentCount(); a++) { 
 
-			if (!inter.isClosed()) {
+			if (IntFrameHerrajes.getClass().isInstance(PanelMenuIntrducirDatos.getComponent(a))) {
+				 a = PanelMenuIntrducirDatos.getComponentCount();
+				JOptionPane.showMessageDialog(rootPane, "La ventana '" + Nombre
+						+ "' que intenta abrir ya está abierta");
 
-				JOptionPane.showMessageDialog(rootPane,
-						"La ventana '" + Nombre + "' que intenta abrir ya está abierta");
+				IntFrameHerrajes.toFront();
 
-				PanelMenuIntrducirDatos.moveToFront(inter);
+				PanelMenuIntrducirDatos.moveToFront(IntFrameHerrajes);
 
 				mostrar = false;
 
@@ -516,10 +506,12 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 
 		if (mostrar) {
 
-			PanelMenuIntrducirDatos.add(inter);
+			// inter.setSize(GetMedidaEcritorio());
+
+			PanelMenuIntrducirDatos.add(IntFrameHerrajes);
 		}
 
-		inter.show();
+		IntFrameHerrajes.show();
 
 	}
 
@@ -528,34 +520,25 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 * 
 	 * @param inter recive el objeto
 	 */
-	private void ComprobarVentanaHerrajesAbierta(ClsIFIntroducirHerrajes inter) {
+	public void ComprobarVentanaSeriesAbierta() {
 
-		/**
-		 * Variable para saber si el IFrame esta abierto o no
-		 */
 		boolean mostrar = true;
-		/**
-		 * Variable para obtener el titulo del IFrame
-		 */
-		String Nombre = inter.getTitle();
-		/**
-		 * Contador para mirar cuantos componentes hay en el panel
-		 */
+
+		String Nombre = IntFrameSeries.getTitle();
+
 		int a;
-
-		/**
-		 * verificar si es instancia de algun componente que ya este en el jdesktoppane
-		 */
+		
 		for (a = 0; a < PanelMenuIntrducirDatos.getComponentCount(); a++) {
+			
+			if (IntFrameSeries.getClass().isInstance(PanelMenuIntrducirDatos.getComponent(a))) {
+				a = PanelMenuIntrducirDatos.getComponentCount();
+				JOptionPane.showMessageDialog(rootPane, "La ventana '" + Nombre
+						+ "' que interta abrir ya está abierta");
 
-			a = PanelMenuIntrducirDatos.getComponentCount();
+				
+				IntFrameSeries.toFront();
 
-			if (!inter.isClosed()) {
-
-				JOptionPane.showMessageDialog(rootPane,
-						"La ventana '" + Nombre + "' que intenta abrir ya está abierta");
-
-				PanelMenuIntrducirDatos.moveToFront(inter);
+				PanelMenuIntrducirDatos.moveToFront(IntFrameSeries);
 
 				mostrar = false;
 
@@ -565,10 +548,12 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 
 		if (mostrar) {
 
-			PanelMenuIntrducirDatos.add(inter);
+			// inter.setSize(GetMedidaEcritorio());
+
+			PanelMenuIntrducirDatos.add(IntFrameSeries);
 		}
 
-		inter.show();
+		IntFrameSeries.show();
 
 	}
 
@@ -577,34 +562,24 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 * 
 	 * @param inter recive el objeto
 	 */
-	private void ComprobarVentanaSuelasAbierta(ClsIFIntroducirSuelas inter) {
+	public void ComprobarVentanaSuelasAbierta() {
 
-		/**
-		 * Variable para saber si el IFrame esta abierto o no
-		 */
 		boolean mostrar = true;
-		/**
-		 * Variable para obtener el titulo del IFrame
-		 */
-		String Nombre = inter.getTitle();
-		/**
-		 * Contador para mirar cuantos componentes hay en el panel
-		 */
+
+		String Nombre = IntFrameSuelas.getTitle();
+
 		int a;
 
-		/**
-		 * verificar si es instancia de algun componente que ya este en el jdesktoppane
-		 */
 		for (a = 0; a < PanelMenuIntrducirDatos.getComponentCount(); a++) {
 
-			a = PanelMenuIntrducirDatos.getComponentCount();
-
-			if (!inter.isClosed()) {
-
+			if (IntFrameSuelas.getClass().isInstance(PanelMenuIntrducirDatos.getComponent(a))) {
+				a = PanelMenuIntrducirDatos.getComponentCount();
 				JOptionPane.showMessageDialog(rootPane,
-						"La ventana '" + Nombre + "' que intenta abrir ya está abierta");
+						"La ventana '" + Nombre + "' que interta abrir ya está abierta");
 
-				PanelMenuIntrducirDatos.moveToFront(inter);
+				IntFrameSuelas.toFront();
+
+				PanelMenuIntrducirDatos.moveToFront(IntFrameSuelas);
 
 				mostrar = false;
 
@@ -614,10 +589,12 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 
 		if (mostrar) {
 
-			PanelMenuIntrducirDatos.add(inter);
+			// inter.setSize(GetMedidaEcritorio());
+
+			PanelMenuIntrducirDatos.add(IntFrameSuelas);
 		}
 
-		inter.show();
+		IntFrameSuelas.show();
 
 	}
 
@@ -626,34 +603,24 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 * 
 	 * @param inter recive el objeto
 	 */
-	private void ComprobarVentanaMaterialesAbierta(ClsIFIntroducirMateriales inter) {
+	public void ComprobarVentanaMaterialesAbierta() {
 
-		/**
-		 * Variable para saber si el IFrame esta abierto o no
-		 */
 		boolean mostrar = true;
-		/**
-		 * Variable para obtener el titulo del IFrame
-		 */
-		String Nombre = inter.getTitle();
-		/**
-		 * Contador para mirar cuantos componentes hay en el panel
-		 */
+
+		String Nombre = IntFrameMateriales.getTitle();
+
 		int a;
 
-		/**
-		 * verificar si es instancia de algun componente que ya este en el jdesktoppane
-		 */
 		for (a = 0; a < PanelMenuIntrducirDatos.getComponentCount(); a++) {
 
-			a = PanelMenuIntrducirDatos.getComponentCount();
-
-			if (!inter.isClosed()) {
-
+			if (IntFrameMateriales.getClass().isInstance(PanelMenuIntrducirDatos.getComponent(a))) {
+				a = PanelMenuIntrducirDatos.getComponentCount();
 				JOptionPane.showMessageDialog(rootPane,
-						"La ventana '" + Nombre + "' que intenta abrir ya está abierta");
+						"La ventana '" + Nombre + "' que interta abrir ya está abierta");
 
-				PanelMenuIntrducirDatos.moveToFront(inter);
+				IntFrameMateriales.toFront();
+
+				PanelMenuIntrducirDatos.moveToFront(IntFrameMateriales);
 
 				mostrar = false;
 
@@ -663,10 +630,12 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 
 		if (mostrar) {
 
-			PanelMenuIntrducirDatos.add(inter);
+			// inter.setSize(GetMedidaEcritorio());
+
+			PanelMenuIntrducirDatos.add(IntFrameMateriales);
 		}
 
-		inter.show();
+		IntFrameMateriales.show();
 
 	}
 
@@ -675,34 +644,24 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 * 
 	 * @param inter recive el objeto
 	 */
-	private void ComprobarVentanaClientesAbierta(ClsIFIntroducirClientes inter) {
+	public void ComprobarVentanaClientesAbierta() {
 
-		/**
-		 * Variable para saber si el IFrame esta abierto o no
-		 */
 		boolean mostrar = true;
-		/**
-		 * Variable para obtener el titulo del IFrame
-		 */
-		String Nombre = inter.getTitle();
-		/**
-		 * Contador para mirar cuantos componentes hay en el panel
-		 */
+
+		String Nombre = IntFrameClientes.getTitle();
+
 		int a;
 
-		/**
-		 * verificar si es instancia de algun componente que ya este en el jdesktoppane
-		 */
 		for (a = 0; a < PanelMenuIntrducirDatos.getComponentCount(); a++) {
 
-			a = PanelMenuIntrducirDatos.getComponentCount();
-
-			if (!inter.isClosed()) {
-
+			if (IntFrameClientes.getClass().isInstance(PanelMenuIntrducirDatos.getComponent(a))) {
+				a = PanelMenuIntrducirDatos.getComponentCount();
 				JOptionPane.showMessageDialog(rootPane,
-						"La ventana '" + Nombre + "' que intenta abrir ya está abierta");
+						"La ventana '" + Nombre + "' que interta abrir ya está abierta");
 
-				PanelMenuIntrducirDatos.moveToFront(inter);
+				IntFrameClientes.toFront();
+
+				PanelMenuIntrducirDatos.moveToFront(IntFrameClientes);
 
 				mostrar = false;
 
@@ -712,10 +671,12 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 
 		if (mostrar) {
 
-			PanelMenuIntrducirDatos.add(inter);
+			// inter.setSize(GetMedidaEcritorio());
+
+			PanelMenuIntrducirDatos.add(IntFrameClientes);
 		}
 
-		inter.show();
+		IntFrameClientes.show();
 
 	}
 }

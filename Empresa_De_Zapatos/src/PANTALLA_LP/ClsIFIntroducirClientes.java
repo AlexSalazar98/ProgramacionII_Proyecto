@@ -17,6 +17,7 @@ import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.Color;
 
+
 /**
  * Clase InternalFrame para introducir Clientes
  * 
@@ -301,6 +302,7 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 		RecogerEmail.setColumns(10);
 
 		Vacio11 = new JLabel("");
+		Vacio11.setBackground(Color.LIGHT_GRAY);
 		Vacio11.setEnabled(false);
 		getContentPane().add(Vacio11);
 
