@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Collections;
 import COMUN.ItfProperty;
-import Comparadores.ClsComparadorHerrajesID;
-import Comparadores.ClsComparadorMaterialesID;
-import Comparadores.ClsComparadorPorFechas;
-import Comparadores.ClsComparadorSeriesID;
-import Comparadores.ClsComparadorSuelasID;
+import Comparadores_y_Comprobadores.ClsComparadorHerrajesID;
+import Comparadores_y_Comprobadores.ClsComparadorMaterialesID;
+import Comparadores_y_Comprobadores.ClsComparadorPorFechas;
+import Comparadores_y_Comprobadores.ClsComparadorSeriesID;
+import Comparadores_y_Comprobadores.ClsComparadorSuelasID;
 import Excepciones.ClsBorrarExcepcion;
 import LD.ClsDatos;
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
@@ -322,9 +322,12 @@ public class ClsGestorLN {
 	 * @param Email              parametro email
 	 * @throws SQLException mandamos la excepcion a LP
 	 */
-	public void CrearClientes(int NumeroDeCliente, String NombreYApellidos, String DNI_NIF, String DireccionDeCliente,
+	public boolean CrearClientes(int NumeroDeCliente, String NombreYApellidos, String DNI_NIF, String DireccionDeCliente,
 			String Provincia, int Telefono, String Email) throws SQLException {
-
+		/**
+		 * Variable de confirmacion
+		 */
+		Boolean Hecho = false;
 		/**
 		 * Instanciamos y crearmos el objeto
 		 */
@@ -336,6 +339,7 @@ public class ClsGestorLN {
 		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
 		 */
 		if (!ExisteCliente(objClientes)) {
+			Hecho = true;
 			/**
 			 * Añadimos el objeto a el array.
 			 */
@@ -348,6 +352,7 @@ public class ClsGestorLN {
 					Telefono, Email);
 			objDatos.desconectarBD();
 		}
+		return Hecho;
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package LP;
+package Comparadores_y_Comprobadores;
 
 import Excepciones.ClsDNI_NIFValidoExcepcion;
 

@@ -1,4 +1,4 @@
-package Comparadores;
+package Comparadores_y_Comprobadores;
 
 import java.util.Comparator;
 import LN.ClsMateriales;
