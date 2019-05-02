@@ -210,5 +210,7 @@ public class ClsIFIntroducirHerrajes extends JInternalFrame implements ActionLis
 		CasillaNHerraje.setText(IDActualizado);
 
 	}
+	
+	
 
 }

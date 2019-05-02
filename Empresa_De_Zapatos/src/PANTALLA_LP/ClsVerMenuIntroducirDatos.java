@@ -4,8 +4,10 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
+import java.util.ArrayList;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.border.EmptyBorder;
 import LN.ClsGestorLN;
 import javax.swing.JMenuBar;
@@ -57,6 +59,8 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	private ClsIFIntroducirHerrajes IntFrameHerrajes;
 	private ClsIFIntroducirSuelas IntFrameSuelas;
 	private ClsIFIntroducirMateriales IntFrameMateriales;
+
+	private ArrayList<JInternalFrame> VentanasAbiertas = new ArrayList<JInternalFrame>();
 
 	/**
 	 * Launch the application.
@@ -365,13 +369,16 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 */
 	private void IntroducirSeries() {
 		/**
-		 * Creamos objeto IFrameSeries
-		 */
-		IntFrameSeries = new ClsIFIntroducirSeries(objGestorMID);
-		/**
 		 * Comprobamos que no este ya abierto
 		 */
-		ComprobarVentanaSeriesAbierta();
+		if (!ComprobarVentanaSeriesAbierta()) {
+			/**
+			 * Creamos objeto IFrameSeries
+			 */
+			IntFrameSeries = new ClsIFIntroducirSeries(objGestorMID);
+			VentanasAbiertas.add(IntFrameSeries);
+			PanelMenuIntrducirDatos.add(IntFrameSeries);
+		}
 		/**
 		 * Lo hacemos visible
 		 */
@@ -388,17 +395,22 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 */
 	private void IntroducirHerrajes() {
 		/**
-		 * Creamos Objeto IFrameHerrajes
-		 */
-		IntFrameHerrajes = new ClsIFIntroducirHerrajes(objGestorMID);
-		/**
 		 * Comprobamos que no este ya abierto
 		 */
-		ComprobarVentanaHerrajesAbierta();
+		if (!ComprobarVentanaHerrajesAbierta()) {
+			/**
+			 * Creamos Objeto IFrameHerrajes
+			 */
+			IntFrameHerrajes = new ClsIFIntroducirHerrajes(objGestorMID);
+			VentanasAbiertas.add(IntFrameHerrajes);
+			PanelMenuIntrducirDatos.add(IntFrameHerrajes);
+		}
+
 		/**
 		 * Lo hacemos visible
 		 */
 		IntFrameHerrajes.setVisible(true);
+		IntFrameHerrajes.moveToFront();
 		try {
 			IntFrameHerrajes.setSelected(true);
 		} catch (PropertyVetoException e) {
@@ -412,13 +424,17 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 */
 	private void IntroducirMateriales() {
 		/**
-		 * Creamos el objeto
-		 */
-		IntFrameMateriales = new ClsIFIntroducirMateriales(objGestorMID);
-		/**
 		 * Comprobamos si esta abierta la ventana
 		 */
-		ComprobarVentanaMaterialesAbierta();
+		if (!ComprobarVentanaMaterialesAbierta()) {
+			/**
+			 * Creamos el objeto
+			 */
+			IntFrameMateriales = new ClsIFIntroducirMateriales(objGestorMID);
+			VentanasAbiertas.add(IntFrameMateriales);
+			PanelMenuIntrducirDatos.add(IntFrameMateriales);
+		}
+
 		/**
 		 * Lo hacemos visible
 		 */
@@ -436,13 +452,16 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 */
 	private void IntroducirSuelas() {
 		/**
-		 * Creamos el objeto
-		 */
-		IntFrameSuelas = new ClsIFIntroducirSuelas(objGestorMID);
-		/**
 		 * Comprobamos que no este ya abierto
 		 */
-		ComprobarVentanaSuelasAbierta();
+		if (!ComprobarVentanaSuelasAbierta()) {
+			/**
+			 * Creamos el objeto
+			 */
+			IntFrameSuelas = new ClsIFIntroducirSuelas(objGestorMID);
+			VentanasAbiertas.add(IntFrameSuelas);
+			PanelMenuIntrducirDatos.add(IntFrameSuelas);
+		}
 		/**
 		 * Lo hacemos visible
 		 */
@@ -460,13 +479,17 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 */
 	private void IntroducirClientes() {
 		/**
-		 * creamos el objeto
-		 */
-		IntFrameClientes = new ClsIFIntroducirClientes(objGestorMID);
-		/**
 		 * Comprobamos que la ventana no este abierta.
 		 */
-		ComprobarVentanaClientesAbierta();
+		if (!ComprobarVentanaClientesAbierta()) {
+			/**
+			 * creamos el objeto
+			 */
+			IntFrameClientes = new ClsIFIntroducirClientes(objGestorMID);
+			VentanasAbiertas.add(IntFrameClientes);
+			PanelMenuIntrducirDatos.add(IntFrameClientes);
+		}
+
 		/**
 		 * Lo hacemos visible
 		 */
@@ -479,40 +502,36 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 
 	}
 
-	public void ComprobarVentanaHerrajesAbierta() {
+	/**
+	 * Metodo para comprobar que la ventana esta abierta o no
+	 * 
+	 * @return nos dice si esta abierta o no
+	 */
+	public boolean ComprobarVentanaHerrajesAbierta() {
 
-		boolean mostrar = true;
+		boolean mostrar = false;
 
-		String Nombre = IntFrameHerrajes.getTitle();
+		boolean cerrado;
+		if (IntFrameHerrajes == null || IntFrameHerrajes.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
+		}
 
-		int a; 
-		
-		for (a = 0; a < PanelMenuIntrducirDatos.getComponentCount(); a++) { 
+		if (!cerrado) {
+			String Nombre = IntFrameHerrajes.getTitle();
 
-			if (IntFrameHerrajes.getClass().isInstance(PanelMenuIntrducirDatos.getComponent(a))) {
-				 a = PanelMenuIntrducirDatos.getComponentCount();
-				JOptionPane.showMessageDialog(rootPane, "La ventana '" + Nombre
-						+ "' que intenta abrir ya está abierta");
+			JOptionPane.showMessageDialog(rootPane, "La ventana '" + Nombre + "' que intenta abrir ya está abierta");
 
-				IntFrameHerrajes.toFront();
+			IntFrameHerrajes.toFront();
 
-				PanelMenuIntrducirDatos.moveToFront(IntFrameHerrajes);
+			PanelMenuIntrducirDatos.moveToFront(IntFrameHerrajes);
 
-				mostrar = false;
-
-			}
+			mostrar = true;
 
 		}
 
-		if (mostrar) {
-
-			// inter.setSize(GetMedidaEcritorio());
-
-			PanelMenuIntrducirDatos.add(IntFrameHerrajes);
-		}
-
-		IntFrameHerrajes.show();
-
+		return mostrar;
 	}
 
 	/**
@@ -520,40 +539,30 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 * 
 	 * @param inter recive el objeto
 	 */
-	public void ComprobarVentanaSeriesAbierta() {
+	public boolean ComprobarVentanaSeriesAbierta() {
 
-		boolean mostrar = true;
+		boolean mostrar = false;
 
-		String Nombre = IntFrameSeries.getTitle();
-
-		int a;
-		
-		for (a = 0; a < PanelMenuIntrducirDatos.getComponentCount(); a++) {
-			
-			if (IntFrameSeries.getClass().isInstance(PanelMenuIntrducirDatos.getComponent(a))) {
-				a = PanelMenuIntrducirDatos.getComponentCount();
-				JOptionPane.showMessageDialog(rootPane, "La ventana '" + Nombre
-						+ "' que interta abrir ya está abierta");
-
-				
-				IntFrameSeries.toFront();
-
-				PanelMenuIntrducirDatos.moveToFront(IntFrameSeries);
-
-				mostrar = false;
-
-			}
-
+		boolean cerrado;
+		if (IntFrameSeries == null || IntFrameSeries.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
 		}
 
-		if (mostrar) {
+		if (!cerrado) {
+			String Nombre = IntFrameSeries.getTitle();
 
-			// inter.setSize(GetMedidaEcritorio());
+			JOptionPane.showMessageDialog(rootPane, "La ventana '" + Nombre + "' que intenta abrir ya está abierta");
 
-			PanelMenuIntrducirDatos.add(IntFrameSeries);
+			IntFrameSeries.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFrameSeries);
+
+			mostrar = true;
+
 		}
-
-		IntFrameSeries.show();
+		return mostrar;
 
 	}
 
@@ -562,39 +571,29 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 * 
 	 * @param inter recive el objeto
 	 */
-	public void ComprobarVentanaSuelasAbierta() {
+	public boolean ComprobarVentanaSuelasAbierta() {
+		boolean mostrar = false;
 
-		boolean mostrar = true;
-
-		String Nombre = IntFrameSuelas.getTitle();
-
-		int a;
-
-		for (a = 0; a < PanelMenuIntrducirDatos.getComponentCount(); a++) {
-
-			if (IntFrameSuelas.getClass().isInstance(PanelMenuIntrducirDatos.getComponent(a))) {
-				a = PanelMenuIntrducirDatos.getComponentCount();
-				JOptionPane.showMessageDialog(rootPane,
-						"La ventana '" + Nombre + "' que interta abrir ya está abierta");
-
-				IntFrameSuelas.toFront();
-
-				PanelMenuIntrducirDatos.moveToFront(IntFrameSuelas);
-
-				mostrar = false;
-
-			}
-
+		boolean cerrado;
+		if (IntFrameSuelas == null || IntFrameSuelas.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
 		}
 
-		if (mostrar) {
+		if (!cerrado) {
+			String Nombre = IntFrameSuelas.getTitle();
 
-			// inter.setSize(GetMedidaEcritorio());
+			JOptionPane.showMessageDialog(rootPane, "La ventana '" + Nombre + "' que intenta abrir ya está abierta");
 
-			PanelMenuIntrducirDatos.add(IntFrameSuelas);
+			IntFrameSuelas.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFrameSuelas);
+
+			mostrar = true;
+
 		}
-
-		IntFrameSuelas.show();
+		return mostrar;
 
 	}
 
@@ -603,39 +602,30 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 * 
 	 * @param inter recive el objeto
 	 */
-	public void ComprobarVentanaMaterialesAbierta() {
+	public boolean ComprobarVentanaMaterialesAbierta() {
 
-		boolean mostrar = true;
+		boolean mostrar = false;
 
-		String Nombre = IntFrameMateriales.getTitle();
-
-		int a;
-
-		for (a = 0; a < PanelMenuIntrducirDatos.getComponentCount(); a++) {
-
-			if (IntFrameMateriales.getClass().isInstance(PanelMenuIntrducirDatos.getComponent(a))) {
-				a = PanelMenuIntrducirDatos.getComponentCount();
-				JOptionPane.showMessageDialog(rootPane,
-						"La ventana '" + Nombre + "' que interta abrir ya está abierta");
-
-				IntFrameMateriales.toFront();
-
-				PanelMenuIntrducirDatos.moveToFront(IntFrameMateriales);
-
-				mostrar = false;
-
-			}
-
+		boolean cerrado;
+		if (IntFrameMateriales == null || IntFrameMateriales.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
 		}
 
-		if (mostrar) {
+		if (!cerrado) {
+			String Nombre = IntFrameMateriales.getTitle();
 
-			// inter.setSize(GetMedidaEcritorio());
+			JOptionPane.showMessageDialog(rootPane, "La ventana '" + Nombre + "' que intenta abrir ya está abierta");
 
-			PanelMenuIntrducirDatos.add(IntFrameMateriales);
+			IntFrameMateriales.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFrameSuelas);
+
+			mostrar = true;
+
 		}
-
-		IntFrameMateriales.show();
+		return mostrar;
 
 	}
 
@@ -644,39 +634,30 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 * 
 	 * @param inter recive el objeto
 	 */
-	public void ComprobarVentanaClientesAbierta() {
+	public boolean ComprobarVentanaClientesAbierta() {
 
-		boolean mostrar = true;
+		boolean mostrar = false;
 
-		String Nombre = IntFrameClientes.getTitle();
-
-		int a;
-
-		for (a = 0; a < PanelMenuIntrducirDatos.getComponentCount(); a++) {
-
-			if (IntFrameClientes.getClass().isInstance(PanelMenuIntrducirDatos.getComponent(a))) {
-				a = PanelMenuIntrducirDatos.getComponentCount();
-				JOptionPane.showMessageDialog(rootPane,
-						"La ventana '" + Nombre + "' que interta abrir ya está abierta");
-
-				IntFrameClientes.toFront();
-
-				PanelMenuIntrducirDatos.moveToFront(IntFrameClientes);
-
-				mostrar = false;
-
-			}
-
+		boolean cerrado;
+		if (IntFrameClientes == null || IntFrameClientes.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
 		}
 
-		if (mostrar) {
+		if (!cerrado) {
+			String Nombre = IntFrameClientes.getTitle();
 
-			// inter.setSize(GetMedidaEcritorio());
+			JOptionPane.showMessageDialog(rootPane, "La ventana '" + Nombre + "' que intenta abrir ya está abierta");
 
-			PanelMenuIntrducirDatos.add(IntFrameClientes);
+			IntFrameClientes.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFrameSuelas);
+
+			mostrar = true;
+
 		}
-
-		IntFrameClientes.show();
+		return mostrar;
 
 	}
 }
