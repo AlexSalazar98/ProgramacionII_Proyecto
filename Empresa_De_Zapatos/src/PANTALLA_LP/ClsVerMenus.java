@@ -4,10 +4,8 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
-import java.util.ArrayList;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.border.EmptyBorder;
 import LN.ClsGestorLN;
 import javax.swing.JMenuBar;
@@ -25,7 +23,7 @@ import java.awt.Color;
  * @author David Requeta
  *
  */
-public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener {
+public class ClsVerMenus extends JFrame implements ActionListener {
 
 	/**
 	 * Variable para guardar el gestor
@@ -36,31 +34,53 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constantes para el LISENER.
+	 * Constantes para el LISENER de insertar.
 	 */
-	private final String ARTICULOS_BUTTON = "Boton de articulos";
-	private final String CLIENTES_BUTTON = "Boton de clientes";
-	private final String DESGLOSE_BUTTON = "Boton de desglose";
-	private final String ENVIOS_BUTTON = "Boton de envios";
-	private final String HERRAJES_BUTTON = "Boton de herrajes";
-	private final String MATERIALES_BUTTON = "Boton de materiales";
-	private final String PEDIDOS_BUTTON = "Boton de pedidos";
-	private final String SERIES_BUTTON = "Boton de series";
-	private final String SUELAS_BUTTON = "Boton de suelas";
+	private final String ARTICULOS_INSERTAR_BUTTON = "Boton de articulos";
+	private final String CLIENTES_INSERTAR_BUTTON = "Boton de clientes";
+	private final String DESGLOSE_INSERTAR_BUTTON = "Boton de desglose";
+	private final String ENVIOS_INSERTAR_BUTTON = "Boton de envios";
+	private final String HERRAJES_INSERTAR_BUTTON = "Boton de herrajes";
+	private final String MATERIALES_INSERTAR_BUTTON = "Boton de materiales";
+	private final String PEDIDOS_INSERTAR_BUTTON = "Boton de pedidos";
+	private final String SERIES_INSERTAR_BUTTON = "Boton de series";
+	private final String SUELAS_INSERTAR_BUTTON = "Boton de suelas";
+
+	private final String ARTICULOS_BORRAR_BUTTON = "Boton de articulos";
+	private final String CLIENTES_BORRAR_BUTTON = "Boton de clientes";
+	private final String DESGLOSE_BORRAR_BUTTON = "Boton de desglose";
+	private final String ENVIOS_BORRAR_BUTTON = "Boton de envios";
+	private final String HERRAJES_BORRAR_BUTTON = "Boton de herrajes";
+	private final String MATERIALES_BORRAR_BUTTON = "Boton de materiales";
+	private final String PEDIDOS_BORRAR_BUTTON = "Boton de pedidos";
+	private final String SERIES_BORRAR_BUTTON = "Boton de series";
+	private final String SUELAS_BORRAR_BUTTON = "Boton de suelas";
+
+	private final String ARTICULOS_CONSULTAR_BUTTON = "Boton de articulos";
+	private final String CLIENTES_CONSULTAR_BUTTON = "Boton de clientes";
+	private final String DESGLOSE_CONSULTAR_BUTTON = "Boton de desglose";
+	private final String ENVIOS_CONSULTAR_BUTTON = "Boton de envios";
+	private final String PEDIDOS_CONSULTAR_BUTTON = "Boton de pedidos";
+
+	private final String ENTREGAS_ACTUALIZAR_BUTTON = "Boton de entregas";
+
 	/**
 	 * Objetos instanciados
 	 */
 	private JDesktopPane PanelMenuIntrducirDatos;
 	private JMenuBar menuBar;
-	private JMenu Introducir;
-	private JMenuItem Articulos, Clientes, Desglose, Envios, Herrajes, Materiales, Pedidos, Series, Suelas;
+	private JMenu Actualizar, Borrar, Consultar, Introducir;
+	private JMenuItem ArticulosIntroducir, ClientesIntroducir, DesgloseIntroducir, EnviosIntroducir, HerrajesIntroducir,
+			MaterialesIntroducir, PedidosIntroducir, SeriesIntroducir, SuelasIntroducir;
+	private JMenuItem EntregasActualizar;
+	private JMenuItem ArticulosBorrar, ClientesBorrar, DesgloseBorrar, EnviosBorrar, HerrajesBorrar, MaterialesBorrar,
+			PedidosBorrar, SeriesBorrar, SuelasBorrar;
+	private JMenuItem ArticulosConsultar, ClientesConsultar, DesgloseConsultar, EnviosConsultar, PedidosConsultar;
 	private ClsIFIntroducirClientes IntFrameClientes;
 	private ClsIFIntroducirSeries IntFrameSeries;
 	private ClsIFIntroducirHerrajes IntFrameHerrajes;
 	private ClsIFIntroducirSuelas IntFrameSuelas;
 	private ClsIFIntroducirMateriales IntFrameMateriales;
-
-	private ArrayList<JInternalFrame> VentanasAbiertas = new ArrayList<JInternalFrame>();
 
 	/**
 	 * Launch the application.
@@ -69,7 +89,7 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClsVerMenuIntroducirDatos frame = new ClsVerMenuIntroducirDatos(ObjGestor);
+					ClsVerMenus frame = new ClsVerMenus(ObjGestor);
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -83,7 +103,7 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	/**
 	 * Constructor
 	 */
-	public ClsVerMenuIntroducirDatos(ClsGestorLN ObjGestor) {
+	public ClsVerMenus(ClsGestorLN ObjGestor) {
 		objGestorMID = ObjGestor;
 		IniciarComponentes(ObjGestor);
 
@@ -94,7 +114,7 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 	 */
 	private void IniciarComponentes(ClsGestorLN ObjGestor) {
 
-		setTitle("Menu Introducir Datos");
+		setTitle("Menu");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		/**
 		 * Inicializamos panel
@@ -116,6 +136,133 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Inicializamos boton de Introducir
 		 */
+
+		Actualizar = new JMenu("Actualizar");
+		Actualizar.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		Actualizar.setForeground(Color.BLUE);
+		menuBar.add(Actualizar);
+
+		EntregasActualizar = new JMenuItem("Entregas");
+		Actualizar.add(EntregasActualizar);
+		EntregasActualizar.addActionListener(this);
+		EntregasActualizar.setActionCommand(ENTREGAS_ACTUALIZAR_BUTTON);
+
+		Borrar = new JMenu("Eliminar");
+		Borrar.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		Borrar.setForeground(Color.BLUE);
+		menuBar.add(Borrar);
+
+		ArticulosBorrar = new JMenuItem("Articulos");
+		Borrar.add(ArticulosBorrar);
+		ArticulosBorrar.addActionListener(this);
+		ArticulosBorrar.setActionCommand(ARTICULOS_BORRAR_BUTTON);
+
+		JSeparator separator_8 = new JSeparator();
+		Borrar.add(separator_8);
+
+		ClientesBorrar = new JMenuItem("Clientes");
+		Borrar.add(ClientesBorrar);
+		ClientesBorrar.addActionListener(this);
+		ClientesBorrar.setActionCommand(CLIENTES_BORRAR_BUTTON);
+
+		JSeparator separator_9 = new JSeparator();
+		Borrar.add(separator_9);
+
+		DesgloseBorrar = new JMenuItem("Desglose de Pedido");
+		Borrar.add(DesgloseBorrar);
+		DesgloseBorrar.addActionListener(this);
+		DesgloseBorrar.setActionCommand(DESGLOSE_BORRAR_BUTTON);
+
+		JSeparator separator_10 = new JSeparator();
+		Borrar.add(separator_10);
+
+		EnviosBorrar = new JMenuItem("Envios");
+		Borrar.add(EnviosBorrar);
+		EnviosBorrar.addActionListener(this);
+		EnviosBorrar.setActionCommand(ENVIOS_BORRAR_BUTTON);
+
+		JSeparator separator_11 = new JSeparator();
+		Borrar.add(separator_11);
+
+		HerrajesBorrar = new JMenuItem("Herrajes");
+		Borrar.add(HerrajesBorrar);
+		HerrajesBorrar.addActionListener(this);
+		HerrajesBorrar.setActionCommand(HERRAJES_BORRAR_BUTTON);
+
+		JSeparator separator_12 = new JSeparator();
+		Borrar.add(separator_12);
+
+		MaterialesBorrar = new JMenuItem("Materiales");
+		Borrar.add(MaterialesBorrar);
+		MaterialesBorrar.addActionListener(this);
+		MaterialesBorrar.setActionCommand(MATERIALES_BORRAR_BUTTON);
+
+		JSeparator separator_13 = new JSeparator();
+		Borrar.add(separator_13);
+
+		PedidosBorrar = new JMenuItem("Pedidos");
+		Borrar.add(PedidosBorrar);
+		PedidosBorrar.addActionListener(this);
+		PedidosBorrar.setActionCommand(PEDIDOS_BORRAR_BUTTON);
+
+		JSeparator separator_14 = new JSeparator();
+		Borrar.add(separator_14);
+
+		SeriesBorrar = new JMenuItem("Series");
+		Borrar.add(SeriesBorrar);
+		SeriesBorrar.addActionListener(this);
+		SeriesBorrar.setActionCommand(SERIES_BORRAR_BUTTON);
+
+		JSeparator separator_15 = new JSeparator();
+		Borrar.add(separator_15);
+
+		SuelasBorrar = new JMenuItem("Suelas");
+		Borrar.add(SuelasBorrar);
+		SuelasBorrar.addActionListener(this);
+		SuelasBorrar.setActionCommand(SUELAS_BORRAR_BUTTON);
+
+		Consultar = new JMenu("Consultar");
+		Consultar.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		Consultar.setForeground(Color.BLUE);
+		menuBar.add(Consultar);
+
+		ArticulosConsultar = new JMenuItem("Articulos");
+		Consultar.add(ArticulosConsultar);
+		ArticulosConsultar.addActionListener(this);
+		ArticulosConsultar.setActionCommand(ARTICULOS_CONSULTAR_BUTTON);
+
+		JSeparator separator_16 = new JSeparator();
+		Consultar.add(separator_16);
+
+		ClientesConsultar = new JMenuItem("Clientes");
+		Consultar.add(ClientesConsultar);
+		ClientesConsultar.addActionListener(this);
+		ClientesConsultar.setActionCommand(CLIENTES_CONSULTAR_BUTTON);
+
+		JSeparator separator_17 = new JSeparator();
+		Consultar.add(separator_17);
+
+		DesgloseConsultar = new JMenuItem("Desgloses de Pedidos");
+		Consultar.add(DesgloseConsultar);
+		DesgloseConsultar.addActionListener(this);
+		DesgloseConsultar.setActionCommand(DESGLOSE_CONSULTAR_BUTTON);
+
+		JSeparator separator_18 = new JSeparator();
+		Consultar.add(separator_18);
+
+		EnviosConsultar = new JMenuItem("Envios");
+		Consultar.add(EnviosConsultar);
+		EnviosConsultar.addActionListener(this);
+		EnviosConsultar.setActionCommand(ENVIOS_CONSULTAR_BUTTON);
+
+		JSeparator separator_19 = new JSeparator();
+		Consultar.add(separator_19);
+
+		PedidosConsultar = new JMenuItem("Pedidos");
+		Consultar.add(PedidosConsultar);
+		PedidosConsultar.addActionListener(this);
+		PedidosConsultar.setActionCommand(PEDIDOS_CONSULTAR_BUTTON);
+
 		Introducir = new JMenu("Introducir ");
 		Introducir.setForeground(Color.BLUE);
 		Introducir.setFont(new Font("Segoe UI", Font.BOLD, 25));
@@ -124,19 +271,19 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Inicializamos boton de Articulos
 		 */
-		Articulos = new JMenuItem("Articulos");
+		ArticulosIntroducir = new JMenuItem("Articulos");
 		/**
 		 * Añadimos al boton generico
 		 */
-		Introducir.add(Articulos);
+		Introducir.add(ArticulosIntroducir);
 		/**
 		 * Implementamos el escuchador al boton
 		 */
-		Articulos.addActionListener(this);
+		ArticulosIntroducir.addActionListener(this);
 		/**
 		 * Añadimos comando al boton para la escucha
 		 */
-		Articulos.setActionCommand(ARTICULOS_BUTTON);
+		ArticulosIntroducir.setActionCommand(ARTICULOS_INSERTAR_BUTTON);
 
 		/**
 		 * Separador de botones
@@ -147,19 +294,19 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Inicializamos boton de Clientes
 		 */
-		Clientes = new JMenuItem("Clientes");
+		ClientesIntroducir = new JMenuItem("Clientes");
 		/**
 		 * Añadimos al boton generico
 		 */
-		Introducir.add(Clientes);
+		Introducir.add(ClientesIntroducir);
 		/**
 		 * Implementamos el escuchador al boton
 		 */
-		Clientes.addActionListener(this);
+		ClientesIntroducir.addActionListener(this);
 		/**
 		 * Añadimos comando al boton para la escucha
 		 */
-		Clientes.setActionCommand(CLIENTES_BUTTON);
+		ClientesIntroducir.setActionCommand(CLIENTES_INSERTAR_BUTTON);
 
 		/**
 		 * Separador de botones
@@ -170,19 +317,19 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Inicializamos boton de Desglose
 		 */
-		Desglose = new JMenuItem("Desglose de Pedido");
+		DesgloseIntroducir = new JMenuItem("Desglose de Pedido");
 		/**
 		 * Añadimos al boton generico
 		 */
-		Introducir.add(Desglose);
+		Introducir.add(DesgloseIntroducir);
 		/**
 		 * Implementamos el escuchador al boton
 		 */
-		Desglose.addActionListener(this);
+		DesgloseIntroducir.addActionListener(this);
 		/**
 		 * Añadimos comando al boton para la escucha
 		 */
-		Desglose.setActionCommand(DESGLOSE_BUTTON);
+		DesgloseIntroducir.setActionCommand(DESGLOSE_INSERTAR_BUTTON);
 
 		/**
 		 * Separador de botones
@@ -193,19 +340,19 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Inicializamos boton de Envios
 		 */
-		Envios = new JMenuItem("Envios");
+		EnviosIntroducir = new JMenuItem("Envios");
 		/**
 		 * Añadimos al boton generico
 		 */
-		Introducir.add(Envios);
+		Introducir.add(EnviosIntroducir);
 		/**
 		 * Implementamos el escuchador al boton
 		 */
-		Envios.addActionListener(this);
+		EnviosIntroducir.addActionListener(this);
 		/**
 		 * Añadimos comando al boton para la escucha
 		 */
-		Envios.setActionCommand(ENVIOS_BUTTON);
+		EnviosIntroducir.setActionCommand(ENVIOS_INSERTAR_BUTTON);
 
 		/**
 		 * Separador de botones
@@ -216,19 +363,19 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Inicializamos boton de Herrajes
 		 */
-		Herrajes = new JMenuItem("Herrajes");
+		HerrajesIntroducir = new JMenuItem("Herrajes");
 		/**
 		 * Añadimos al boton generico
 		 */
-		Introducir.add(Herrajes);
+		Introducir.add(HerrajesIntroducir);
 		/**
 		 * Implementamos el escuchador al boton
 		 */
-		Herrajes.addActionListener(this);
+		HerrajesIntroducir.addActionListener(this);
 		/**
 		 * Añadimos comando al boton para la escucha
 		 */
-		Herrajes.setActionCommand(HERRAJES_BUTTON);
+		HerrajesIntroducir.setActionCommand(HERRAJES_INSERTAR_BUTTON);
 
 		/**
 		 * Separador de botones
@@ -239,19 +386,19 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Inicializamos boton de Materiales
 		 */
-		Materiales = new JMenuItem("Materiales");
+		MaterialesIntroducir = new JMenuItem("Materiales");
 		/**
 		 * Añadimos al boton generico
 		 */
-		Introducir.add(Materiales);
+		Introducir.add(MaterialesIntroducir);
 		/**
 		 * Implementamos el escuchador al boton
 		 */
-		Materiales.addActionListener(this);
+		MaterialesIntroducir.addActionListener(this);
 		/**
 		 * Añadimos comando al boton para la escucha
 		 */
-		Materiales.setActionCommand(MATERIALES_BUTTON);
+		MaterialesIntroducir.setActionCommand(MATERIALES_INSERTAR_BUTTON);
 
 		/**
 		 * Separador de botones
@@ -262,19 +409,19 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Inicializamos boton de Pedidos
 		 */
-		Pedidos = new JMenuItem("Pedidos");
+		PedidosIntroducir = new JMenuItem("Pedidos");
 		/**
 		 * Añadimos al boton generico
 		 */
-		Introducir.add(Pedidos);
+		Introducir.add(PedidosIntroducir);
 		/**
 		 * Implementamos el escuchador al boton
 		 */
-		Pedidos.addActionListener(this);
+		PedidosIntroducir.addActionListener(this);
 		/**
 		 * Añadimos comando al boton para la escucha
 		 */
-		Pedidos.setActionCommand(PEDIDOS_BUTTON);
+		PedidosIntroducir.setActionCommand(PEDIDOS_INSERTAR_BUTTON);
 
 		/**
 		 * Separador de botones
@@ -285,19 +432,19 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Inicializamos boton de Series
 		 */
-		Series = new JMenuItem("Series");
+		SeriesIntroducir = new JMenuItem("Series");
 		/**
 		 * Añadimos al boton generico
 		 */
-		Introducir.add(Series);
+		Introducir.add(SeriesIntroducir);
 		/**
 		 * Implementamos el escuchador al boton
 		 */
-		Series.addActionListener(this);
+		SeriesIntroducir.addActionListener(this);
 		/**
 		 * Añadimos comando al boton para la escucha
 		 */
-		Series.setActionCommand(SERIES_BUTTON);
+		SeriesIntroducir.setActionCommand(SERIES_INSERTAR_BUTTON);
 
 		/**
 		 * Separador de botones
@@ -308,19 +455,19 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		/**
 		 * Inicializamos boton de Suelas
 		 */
-		Suelas = new JMenuItem("Suelas");
+		SuelasIntroducir = new JMenuItem("Suelas");
 		/**
 		 * Añadimos al boton generico
 		 */
-		Introducir.add(Suelas);
+		Introducir.add(SuelasIntroducir);
 		/**
 		 * Implementamos el escuchador al boton
 		 */
-		Suelas.addActionListener(this);
+		SuelasIntroducir.addActionListener(this);
 		/**
 		 * Añadimos comando al boton para la escucha
 		 */
-		Suelas.setActionCommand(SUELAS_BUTTON);
+		SuelasIntroducir.setActionCommand(SUELAS_INSERTAR_BUTTON);
 
 	}
 
@@ -329,34 +476,40 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 
 		switch (e.getActionCommand()) {
 		/**
-		 * si pulsa en series
+		 * si pulsa en introducir series
 		 */
-		case SERIES_BUTTON:
+		case SERIES_INSERTAR_BUTTON:
 			IntroducirSeries();
 			break;
 		/**
-		 * Si pulsa en Herrajes
+		 * Si pulsa en introducir Herrajes
 		 */
-		case HERRAJES_BUTTON:
+		case HERRAJES_INSERTAR_BUTTON:
 			IntroducirHerrajes();
 			break;
 		/**
-		 * Si pulsa en Materiales
+		 * Si pulsa en introducir Materiales
 		 */
-		case MATERIALES_BUTTON:
+		case MATERIALES_INSERTAR_BUTTON:
 			IntroducirMateriales();
 			break;
 		/**
-		 * Si pulsa en Suelas
+		 * Si pulsa en introducir Suelas
 		 */
-		case SUELAS_BUTTON:
+		case SUELAS_INSERTAR_BUTTON:
 			IntroducirSuelas();
 			break;
 		/**
-		 * Si pulsa en Clientes
+		 * Si pulsa en introducir Clientes
 		 */
-		case CLIENTES_BUTTON:
+		case CLIENTES_INSERTAR_BUTTON:
 			IntroducirClientes();
+			break;
+		/**
+		 * si pulsa en introducir envios
+		 */
+		case ENVIOS_INSERTAR_BUTTON:
+			//IntroducirEnvios();
 			break;
 		default:
 			break;
@@ -376,7 +529,6 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 			 * Creamos objeto IFrameSeries
 			 */
 			IntFrameSeries = new ClsIFIntroducirSeries(objGestorMID);
-			VentanasAbiertas.add(IntFrameSeries);
 			PanelMenuIntrducirDatos.add(IntFrameSeries);
 		}
 		/**
@@ -402,7 +554,6 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 			 * Creamos Objeto IFrameHerrajes
 			 */
 			IntFrameHerrajes = new ClsIFIntroducirHerrajes(objGestorMID);
-			VentanasAbiertas.add(IntFrameHerrajes);
 			PanelMenuIntrducirDatos.add(IntFrameHerrajes);
 		}
 
@@ -431,7 +582,6 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 			 * Creamos el objeto
 			 */
 			IntFrameMateriales = new ClsIFIntroducirMateriales(objGestorMID);
-			VentanasAbiertas.add(IntFrameMateriales);
 			PanelMenuIntrducirDatos.add(IntFrameMateriales);
 		}
 
@@ -459,7 +609,6 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 			 * Creamos el objeto
 			 */
 			IntFrameSuelas = new ClsIFIntroducirSuelas(objGestorMID);
-			VentanasAbiertas.add(IntFrameSuelas);
 			PanelMenuIntrducirDatos.add(IntFrameSuelas);
 		}
 		/**
@@ -486,7 +635,6 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 			 * creamos el objeto
 			 */
 			IntFrameClientes = new ClsIFIntroducirClientes(objGestorMID);
-			VentanasAbiertas.add(IntFrameClientes);
 			PanelMenuIntrducirDatos.add(IntFrameClientes);
 		}
 
@@ -521,7 +669,8 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		if (!cerrado) {
 			String Nombre = IntFrameHerrajes.getTitle();
 
-			JOptionPane.showMessageDialog(rootPane, "La ventana '" + Nombre + "' que intenta abrir ya está abierta");
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
 
 			IntFrameHerrajes.toFront();
 
@@ -553,7 +702,8 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		if (!cerrado) {
 			String Nombre = IntFrameSeries.getTitle();
 
-			JOptionPane.showMessageDialog(rootPane, "La ventana '" + Nombre + "' que intenta abrir ya está abierta");
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
 
 			IntFrameSeries.toFront();
 
@@ -584,7 +734,8 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		if (!cerrado) {
 			String Nombre = IntFrameSuelas.getTitle();
 
-			JOptionPane.showMessageDialog(rootPane, "La ventana '" + Nombre + "' que intenta abrir ya está abierta");
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
 
 			IntFrameSuelas.toFront();
 
@@ -616,7 +767,8 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		if (!cerrado) {
 			String Nombre = IntFrameMateriales.getTitle();
 
-			JOptionPane.showMessageDialog(rootPane, "La ventana '" + Nombre + "' que intenta abrir ya está abierta");
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
 
 			IntFrameMateriales.toFront();
 
@@ -648,7 +800,8 @@ public class ClsVerMenuIntroducirDatos extends JFrame implements ActionListener 
 		if (!cerrado) {
 			String Nombre = IntFrameClientes.getTitle();
 
-			JOptionPane.showMessageDialog(rootPane, "La ventana '" + Nombre + "' que intenta abrir ya está abierta");
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
 
 			IntFrameClientes.toFront();
 

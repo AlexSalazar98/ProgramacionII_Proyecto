@@ -57,12 +57,12 @@ public class ClsIFIntroducirHerrajes extends JInternalFrame implements ActionLis
 	 * @param ObjGestor recibimos el gestor
 	 */
 	public ClsIFIntroducirHerrajes(ClsGestorLN ObjGestor) {
-		setResizable(true);
+		setResizable(false);
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("Introducir Herrajes");
-		this.setBounds(200, 300, 269, 169);
+		this.setBounds(0, 0, 600, 300);
 		getContentPane().setLayout(new GridLayout(4, 3));
 
 		Inicializar(ObjGestor);

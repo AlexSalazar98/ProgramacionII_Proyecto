@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import javax.swing.JInternalFrame;
 import LN.ClsGestorLN;
-import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -44,9 +43,6 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 	private JSeparator separator_2;
 	private JSeparator separator_3;
 	private JLabel TxtDatos;
-	private JLabel Vacio2;
-	private JLabel Vacio3;
-	private JLabel Vacio4;
 	private JLabel TxtNYA;
 	private JTextField RecogerNYA;
 	private JLabel TxtDNINIF;
@@ -56,9 +52,6 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 	private JSeparator separator_6;
 	private JSeparator separator_7;
 	private JLabel TxtEstancia;
-	private JLabel Vacio5;
-	private JLabel Vacio6;
-	private JLabel Vacio7;
 	private JLabel TxtDireccion;
 	private JTextField RecogerDireccion;
 	private JLabel TxtProvincia;
@@ -68,23 +61,18 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 	private JSeparator separator_10;
 	private JSeparator separator_11;
 	private JLabel TextOtrosDatos;
-	private JLabel Vacio8;
-	private JLabel Vacio9;
-	private JLabel Vacio10;
 	private JLabel TxtTelefono;
 	private JTextField RecogerTel;
 	private JLabel TxtEmail;
 	private JTextField RecogerEmail;
-	private JLabel Vacio11;
-	private JLabel Vacio12;
-	private JLabel Vacio13;
 	private JButton BotonConfirmar;
 	/**
 	 * constante para el boton confirmar
 	 */
 	private final String CONFIRMAR_BUTTON = "Boton de confirmar Cliente";
-	private JLabel Vacio;
-	private JLabel Vacio1;
+	private JSeparator separator_12;
+	private JSeparator separator_13;
+	private JSeparator separator_14;
 
 	/**
 	 * constructor
@@ -92,13 +80,12 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 	 * @param objGestor recive el gestor
 	 */
 	public ClsIFIntroducirClientes(ClsGestorLN objGestor) {
-		setResizable(true);
-		setMaximizable(true);
+		setResizable(false);
+		setMaximizable(false);
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("Insertar Clientes");
-		this.setBounds(200, 300, 460, 348);
-		getContentPane().setLayout(new GridLayout(11, 4));
+		this.setBounds(100, 100, 530, 520);
 		Inicializar(objGestor);
 	}
 
@@ -108,217 +95,207 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 	 * @param ObjGestor recive el gestor
 	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
-		JLabel TxtNCliente = new JLabel("N\u00FAmero de Cliente:");
+		getContentPane().setLayout(null);
+		JLabel TxtNCliente = new JLabel("  N\u00FAmero de Cliente:");
+		TxtNCliente.setBounds(0, 5, 191, 28);
 		TxtNCliente.setEnabled(false);
 		TxtNCliente.setFont(new Font("Tahoma", Font.BOLD, 15));
-		TxtNCliente.setHorizontalAlignment(SwingConstants.CENTER);
+		TxtNCliente.setHorizontalAlignment(SwingConstants.LEFT);
 		getContentPane().add(TxtNCliente);
 
 		RecogerNCliente = new JTextField();
+		RecogerNCliente.setBounds(172, 6, 111, 28);
 		RecogerNCliente.setFont(new Font("Tahoma", Font.BOLD, 15));
 		RecogerNCliente.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(RecogerNCliente);
 		RecogerNCliente.setColumns(10);
 
-		Vacio = new JLabel("");
-		Vacio.setEnabled(false);
-		getContentPane().add(Vacio);
-
-		Vacio1 = new JLabel("");
-		getContentPane().add(Vacio1);
-
 		separator = new JSeparator();
+		separator.setBounds(0, 46, 111, 28);
 		separator.setForeground(Color.BLACK);
 		getContentPane().add(separator);
 
 		separator_1 = new JSeparator();
+		separator_1.setBounds(111, 46, 111, 28);
 		separator_1.setForeground(Color.BLACK);
 		getContentPane().add(separator_1);
 
 		separator_2 = new JSeparator();
+		separator_2.setBounds(222, 46, 111, 28);
 		separator_2.setForeground(Color.BLACK);
 		getContentPane().add(separator_2);
 
 		separator_3 = new JSeparator();
+		separator_3.setBounds(333, 46, 111, 28);
 		separator_3.setForeground(Color.BLACK);
 		getContentPane().add(separator_3);
 
-		TxtDatos = new JLabel("Datos Personales:");
+		TxtDatos = new JLabel(" Datos Personales:");
+		TxtDatos.setBounds(0, 72, 333, 28);
 		TxtDatos.setEnabled(false);
 		TxtDatos.setFont(new Font("Tahoma", Font.BOLD, 25));
-		TxtDatos.setHorizontalAlignment(SwingConstants.CENTER);
+		TxtDatos.setHorizontalAlignment(SwingConstants.LEFT);
 		getContentPane().add(TxtDatos);
 
-		Vacio2 = new JLabel("");
-		Vacio2.setEnabled(false);
-		getContentPane().add(Vacio2);
-
-		Vacio3 = new JLabel("");
-		Vacio3.setEnabled(false);
-		getContentPane().add(Vacio3);
-
-		Vacio4 = new JLabel("");
-		Vacio4.setEnabled(false);
-		getContentPane().add(Vacio4);
-
 		TxtNYA = new JLabel("Nombre y Apellidos: ");
+		TxtNYA.setBounds(0, 111, 171, 28);
 		TxtNYA.setEnabled(false);
 		TxtNYA.setFont(new Font("Tahoma", Font.BOLD, 15));
 		TxtNYA.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(TxtNYA);
 
 		RecogerNYA = new JTextField();
+		RecogerNYA.setBounds(172, 112, 111, 28);
 		RecogerNYA.setHorizontalAlignment(SwingConstants.CENTER);
 		RecogerNYA.setFont(new Font("Tahoma", Font.BOLD, 15));
 		getContentPane().add(RecogerNYA);
 		RecogerNYA.setColumns(10);
 
 		TxtDNINIF = new JLabel("DNI o NIF:");
+		TxtDNINIF.setBounds(278, 111, 111, 28);
 		TxtDNINIF.setEnabled(false);
 		TxtDNINIF.setFont(new Font("Tahoma", Font.BOLD, 15));
 		TxtDNINIF.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(TxtDNINIF);
 
 		RecogerDNINIF = new JTextField();
+		RecogerDNINIF.setBounds(388, 112, 111, 28);
 		RecogerDNINIF.setFont(new Font("Tahoma", Font.BOLD, 15));
 		RecogerDNINIF.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(RecogerDNINIF);
 		RecogerDNINIF.setColumns(10);
 
 		separator_4 = new JSeparator();
+		separator_4.setBounds(0, 168, 111, 28);
 		separator_4.setForeground(Color.BLACK);
 		getContentPane().add(separator_4);
 
 		separator_5 = new JSeparator();
+		separator_5.setBounds(111, 168, 111, 28);
 		separator_5.setForeground(Color.BLACK);
 		getContentPane().add(separator_5);
 
 		separator_6 = new JSeparator();
+		separator_6.setBounds(222, 168, 111, 28);
 		separator_6.setForeground(Color.BLACK);
 		getContentPane().add(separator_6);
 
 		separator_7 = new JSeparator();
+		separator_7.setBounds(333, 168, 111, 28);
 		separator_7.setForeground(Color.BLACK);
 		getContentPane().add(separator_7);
 
-		TxtEstancia = new JLabel("Estancia del Cliente:");
-		TxtEstancia.setHorizontalAlignment(SwingConstants.CENTER);
+		TxtEstancia = new JLabel(" Estancia del Cliente:");
+		TxtEstancia.setBounds(0, 207, 333, 28);
+		TxtEstancia.setHorizontalAlignment(SwingConstants.LEFT);
 		TxtEstancia.setEnabled(false);
 		TxtEstancia.setFont(new Font("Tahoma", Font.BOLD, 25));
 		getContentPane().add(TxtEstancia);
 
-		Vacio5 = new JLabel("");
-		Vacio5.setEnabled(false);
-		getContentPane().add(Vacio5);
-
-		Vacio6 = new JLabel("");
-		Vacio6.setEnabled(false);
-		getContentPane().add(Vacio6);
-
-		Vacio7 = new JLabel("");
-		Vacio7.setEnabled(false);
-		getContentPane().add(Vacio7);
-
 		TxtDireccion = new JLabel("Direcci\u00F3n: ");
+		TxtDireccion.setBounds(0, 246, 111, 28);
 		TxtDireccion.setFont(new Font("Tahoma", Font.BOLD, 15));
 		TxtDireccion.setHorizontalAlignment(SwingConstants.CENTER);
 		TxtDireccion.setEnabled(false);
 		getContentPane().add(TxtDireccion);
 
 		RecogerDireccion = new JTextField();
+		RecogerDireccion.setBounds(111, 247, 111, 28);
 		RecogerDireccion.setFont(new Font("Tahoma", Font.BOLD, 15));
 		RecogerDireccion.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(RecogerDireccion);
 		RecogerDireccion.setColumns(10);
 
 		TxtProvincia = new JLabel("Provincia:");
+		TxtProvincia.setBounds(222, 246, 111, 28);
 		TxtProvincia.setFont(new Font("Tahoma", Font.BOLD, 15));
 		TxtProvincia.setHorizontalAlignment(SwingConstants.CENTER);
 		TxtProvincia.setEnabled(false);
 		getContentPane().add(TxtProvincia);
 
 		RecogerProvincia = new JTextField();
+		RecogerProvincia.setBounds(333, 247, 111, 28);
 		RecogerProvincia.setHorizontalAlignment(SwingConstants.CENTER);
 		RecogerProvincia.setFont(new Font("Tahoma", Font.BOLD, 15));
 		getContentPane().add(RecogerProvincia);
 		RecogerProvincia.setColumns(10);
 
 		separator_8 = new JSeparator();
+		separator_8.setBounds(0, 305, 111, 28);
 		separator_8.setForeground(Color.BLACK);
 		getContentPane().add(separator_8);
 
 		separator_9 = new JSeparator();
+		separator_9.setBounds(111, 305, 111, 28);
 		separator_9.setForeground(Color.BLACK);
 		getContentPane().add(separator_9);
 
 		separator_10 = new JSeparator();
+		separator_10.setBounds(222, 305, 111, 28);
 		separator_10.setForeground(Color.BLACK);
 		getContentPane().add(separator_10);
 
 		separator_11 = new JSeparator();
+		separator_11.setBounds(333, 305, 111, 28);
 		separator_11.setForeground(Color.BLACK);
 		getContentPane().add(separator_11);
 
-		TextOtrosDatos = new JLabel("Otros Datos:");
-		TextOtrosDatos.setHorizontalAlignment(SwingConstants.CENTER);
+		TextOtrosDatos = new JLabel(" Otros Datos:");
+		TextOtrosDatos.setBounds(0, 344, 333, 28);
+		TextOtrosDatos.setHorizontalAlignment(SwingConstants.LEFT);
 		TextOtrosDatos.setEnabled(false);
 		TextOtrosDatos.setFont(new Font("Tahoma", Font.BOLD, 25));
 		getContentPane().add(TextOtrosDatos);
 
-		Vacio8 = new JLabel("");
-		Vacio8.setEnabled(false);
-		getContentPane().add(Vacio8);
-
-		Vacio9 = new JLabel("");
-		Vacio9.setEnabled(false);
-		getContentPane().add(Vacio9);
-
-		Vacio10 = new JLabel("");
-		Vacio10.setEnabled(false);
-		getContentPane().add(Vacio10);
-
 		TxtTelefono = new JLabel("Tel\u00E9fono:");
+		TxtTelefono.setBounds(0, 383, 111, 28);
 		TxtTelefono.setHorizontalAlignment(SwingConstants.CENTER);
 		TxtTelefono.setFont(new Font("Tahoma", Font.BOLD, 15));
 		TxtTelefono.setEnabled(false);
 		getContentPane().add(TxtTelefono);
 
 		RecogerTel = new JTextField();
+		RecogerTel.setBounds(111, 384, 111, 28);
 		RecogerTel.setHorizontalAlignment(SwingConstants.CENTER);
 		RecogerTel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		getContentPane().add(RecogerTel);
 		RecogerTel.setColumns(10);
 
 		TxtEmail = new JLabel("Email:");
+		TxtEmail.setBounds(222, 383, 111, 28);
 		TxtEmail.setHorizontalAlignment(SwingConstants.CENTER);
 		TxtEmail.setFont(new Font("Tahoma", Font.BOLD, 15));
 		TxtEmail.setEnabled(false);
 		getContentPane().add(TxtEmail);
 
 		RecogerEmail = new JTextField();
+		RecogerEmail.setBounds(333, 384, 111, 28);
 		RecogerEmail.setHorizontalAlignment(SwingConstants.CENTER);
 		RecogerEmail.setFont(new Font("Tahoma", Font.BOLD, 15));
 		getContentPane().add(RecogerEmail);
 		RecogerEmail.setColumns(10);
 
-		Vacio11 = new JLabel("");
-		Vacio11.setBackground(Color.LIGHT_GRAY);
-		Vacio11.setEnabled(false);
-		getContentPane().add(Vacio11);
-
-		Vacio12 = new JLabel("");
-		Vacio12.setEnabled(false);
-		getContentPane().add(Vacio12);
-
-		Vacio13 = new JLabel("");
-		Vacio13.setEnabled(false);
-		getContentPane().add(Vacio13);
-
 		BotonConfirmar = new JButton("Confirmar Cliente");
+		BotonConfirmar.setBounds(314, 451, 185, 28);
 		BotonConfirmar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		getContentPane().add(BotonConfirmar);
 		BotonConfirmar.addActionListener(this);
 		BotonConfirmar.setActionCommand(CONFIRMAR_BUTTON);
+		
+		separator_12 = new JSeparator();
+		separator_12.setForeground(Color.BLACK);
+		separator_12.setBounds(441, 168, 111, 28);
+		getContentPane().add(separator_12);
+		
+		separator_13 = new JSeparator();
+		separator_13.setForeground(Color.BLACK);
+		separator_13.setBounds(441, 46, 111, 28);
+		getContentPane().add(separator_13);
+		
+		separator_14 = new JSeparator();
+		separator_14.setForeground(Color.BLACK);
+		separator_14.setBounds(441, 305, 111, 28);
+		getContentPane().add(separator_14);
 
 		/**
 		 * copiamos el objeto gestor

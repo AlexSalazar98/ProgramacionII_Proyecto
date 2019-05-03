@@ -53,12 +53,12 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 	 */
 	public ClsIFIntroducirSeries(ClsGestorLN ObjGestor) {
 		setTitle("Introducir Series");
-		this.setBounds(200, 300, 269, 169);
+		this.setBounds(50, 50, 600, 300);
 		getContentPane().setLayout(new GridLayout(3, 3));
 
 		Panel = new JPanel();
 		this.setClosable(true);
-		this.setResizable(true);
+		this.setResizable(false);
 		this.setIconifiable(true);
 		this.setMaximizable(true);
 		Inicializar(ObjGestor);

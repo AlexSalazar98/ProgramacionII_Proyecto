@@ -58,12 +58,12 @@ public class ClsIFIntroducirMateriales extends JInternalFrame implements ActionL
 	 * @param ObjGestor recibimos el gestor
 	 */
 	public ClsIFIntroducirMateriales(ClsGestorLN ObjGestor) {
-		setResizable(true);
+		setResizable(false);
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("Introducir Materiales");
-		this.setBounds(200, 300, 269, 169);
+		this.setBounds(25, 25, 600, 300);
 		getContentPane().setLayout(new GridLayout(4, 3));
 
 		Inicializar(ObjGestor);
