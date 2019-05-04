@@ -16,7 +16,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
-import javax.swing.ImageIcon;
+
 
 /**
  * 
