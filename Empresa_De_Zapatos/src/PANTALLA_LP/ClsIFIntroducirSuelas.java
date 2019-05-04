@@ -21,6 +21,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import COMUN.ItfProperty;
+import javax.swing.ImageIcon;
 
 /**
  * Internar Frame para introducir Suelas

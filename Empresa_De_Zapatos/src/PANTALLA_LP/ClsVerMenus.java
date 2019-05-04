@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 /**
  * Pantalla de introducir los datos
@@ -104,6 +105,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	 * Constructor
 	 */
 	public ClsVerMenus(ClsGestorLN ObjGestor) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ClsVerMenus.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		objGestorMID = ObjGestor;
 		IniciarComponentes(ObjGestor);
 
