@@ -21,6 +21,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import COMUN.ItfProperty;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -59,6 +60,7 @@ public class ClsIFIntroducirMateriales extends JInternalFrame implements ActionL
 	 * @param ObjGestor recibimos el gestor
 	 */
 	public ClsIFIntroducirMateriales(ClsGestorLN ObjGestor) {
+		setFrameIcon(new ImageIcon(ClsIFIntroducirMateriales.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setResizable(false);
 		setMaximizable(true);
 		setIconifiable(true);

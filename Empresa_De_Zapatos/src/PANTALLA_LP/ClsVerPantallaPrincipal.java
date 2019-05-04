@@ -4,12 +4,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import LN.ClsGestorLN;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+
 import java.awt.Font;
 import java.sql.SQLException;
 import java.awt.Color;
@@ -61,6 +62,7 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					ClsVerPantallaPrincipal window = new ClsVerPantallaPrincipal();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
@@ -114,7 +116,8 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 		 * Inicializamos el frame
 		 */
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ClsVerPantallaPrincipal.class.getResource("/PANTALLA_LP/DEUSTO.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(ClsVerPantallaPrincipal.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(Color.CYAN);
 		frame.setBounds(400, 200, 500, 300);

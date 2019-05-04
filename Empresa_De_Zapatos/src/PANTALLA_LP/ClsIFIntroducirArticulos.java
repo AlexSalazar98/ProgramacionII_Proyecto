@@ -4,9 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JInternalFrame;
+import javax.swing.ImageIcon;
 
 public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionListener {
 	public ClsIFIntroducirArticulos() {
+		setTitle("Insertar Articulos");
+		setFrameIcon(new ImageIcon(ClsIFIntroducirArticulos.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 	}
 
 	/**

@@ -13,6 +13,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
+
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -511,7 +512,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		 * si pulsa en introducir envios
 		 */
 		case ENVIOS_INSERTAR_BUTTON:
-			//IntroducirEnvios();
+			// IntroducirEnvios();
 			break;
 		default:
 			break;

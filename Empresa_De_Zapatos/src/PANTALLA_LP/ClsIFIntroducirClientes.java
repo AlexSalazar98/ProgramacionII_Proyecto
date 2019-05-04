@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 
 
@@ -81,6 +82,7 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 	 * @param objGestor recive el gestor
 	 */
 	public ClsIFIntroducirClientes(ClsGestorLN objGestor) {
+		setFrameIcon(new ImageIcon(ClsIFIntroducirClientes.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setResizable(false);
 		setMaximizable(false);
 		setIconifiable(true);
