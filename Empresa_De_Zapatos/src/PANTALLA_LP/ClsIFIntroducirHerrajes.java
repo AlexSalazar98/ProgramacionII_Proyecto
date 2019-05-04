@@ -27,7 +27,7 @@ import COMUN.ItfProperty;
  * Internal Frame para introducir Herrajes
  * 
  * @author Alex Salazar
- * @author DaviD Requeta
+ * @author David Requeta
  */
 public class ClsIFIntroducirHerrajes extends JInternalFrame implements ActionListener {
 
