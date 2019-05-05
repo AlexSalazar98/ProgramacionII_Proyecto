@@ -36,33 +36,39 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	/**
 	 * Constantes para el LISENER de insertar.
 	 */
-	private final String ARTICULOS_INSERTAR_BUTTON = "Boton de articulos";
-	private final String CLIENTES_INSERTAR_BUTTON = "Boton de clientes";
-	private final String DESGLOSE_INSERTAR_BUTTON = "Boton de desglose";
-	private final String ENVIOS_INSERTAR_BUTTON = "Boton de envios";
-	private final String HERRAJES_INSERTAR_BUTTON = "Boton de herrajes";
-	private final String MATERIALES_INSERTAR_BUTTON = "Boton de materiales";
-	private final String PEDIDOS_INSERTAR_BUTTON = "Boton de pedidos";
-	private final String SERIES_INSERTAR_BUTTON = "Boton de series";
-	private final String SUELAS_INSERTAR_BUTTON = "Boton de suelas";
-
-	private final String ARTICULOS_BORRAR_BUTTON = "Boton de articulos";
-	private final String CLIENTES_BORRAR_BUTTON = "Boton de clientes";
-	private final String DESGLOSE_BORRAR_BUTTON = "Boton de desglose";
-	private final String ENVIOS_BORRAR_BUTTON = "Boton de envios";
-	private final String HERRAJES_BORRAR_BUTTON = "Boton de herrajes";
-	private final String MATERIALES_BORRAR_BUTTON = "Boton de materiales";
-	private final String PEDIDOS_BORRAR_BUTTON = "Boton de pedidos";
-	private final String SERIES_BORRAR_BUTTON = "Boton de series";
-	private final String SUELAS_BORRAR_BUTTON = "Boton de suelas";
-
-	private final String ARTICULOS_CONSULTAR_BUTTON = "Boton de articulos";
-	private final String CLIENTES_CONSULTAR_BUTTON = "Boton de clientes";
-	private final String DESGLOSE_CONSULTAR_BUTTON = "Boton de desglose";
-	private final String ENVIOS_CONSULTAR_BUTTON = "Boton de envios";
-	private final String PEDIDOS_CONSULTAR_BUTTON = "Boton de pedidos";
-
-	private final String ENTREGAS_ACTUALIZAR_BUTTON = "Boton de entregas";
+	private final String ARTICULOS_INSERTAR_BUTTON = "Boton de insertar articulos";
+	private final String CLIENTES_INSERTAR_BUTTON = "Boton de insertar clientes";
+	private final String DESGLOSE_INSERTAR_BUTTON = "Boton de insertar desglose";
+	private final String ENVIOS_INSERTAR_BUTTON = "Boton de insertar envios";
+	private final String HERRAJES_INSERTAR_BUTTON = "Boton de insertar herrajes";
+	private final String MATERIALES_INSERTAR_BUTTON = "Boton de insertar materiales";
+	private final String PEDIDOS_INSERTAR_BUTTON = "Boton de insertar pedidos";
+	private final String SERIES_INSERTAR_BUTTON = "Boton de insertar series";
+	private final String SUELAS_INSERTAR_BUTTON = "Boton de insertar suelas";
+	/**
+	 * Constantes para el LISENER de borrar.
+	 */
+	private final String ARTICULOS_BORRAR_BUTTON = "Boton de borrar articulos";
+	private final String CLIENTES_BORRAR_BUTTON = "Boton de borrar clientes";
+	private final String DESGLOSE_BORRAR_BUTTON = "Boton de borrar desglose";
+	private final String ENVIOS_BORRAR_BUTTON = "Boton de borrar envios";
+	private final String HERRAJES_BORRAR_BUTTON = "Boton de borrar herrajes";
+	private final String MATERIALES_BORRAR_BUTTON = "Boton de borrar materiales";
+	private final String PEDIDOS_BORRAR_BUTTON = "Boton de borrar pedidos";
+	private final String SERIES_BORRAR_BUTTON = "Boton de borrar series";
+	private final String SUELAS_BORRAR_BUTTON = "Boton de borrar suelas";
+	/**
+	 * Constantes para el LISENER de consultar.
+	 */
+	private final String ARTICULOS_CONSULTAR_BUTTON = "Boton de consultar articulos";
+	private final String CLIENTES_CONSULTAR_BUTTON = "Boton de consultar clientes";
+	private final String DESGLOSE_CONSULTAR_BUTTON = "Boton de consultar desglose";
+	private final String ENVIOS_CONSULTAR_BUTTON = "Boton de consultar envios";
+	private final String PEDIDOS_CONSULTAR_BUTTON = "Boton de consultar pedidos";
+	/**
+	 * Constante para el LISENER de actualizar.
+	 */
+	private final String ENTREGAS_ACTUALIZAR_BUTTON = "Boton de actualizar entregas";
 
 	/**
 	 * Objetos instanciados
@@ -133,10 +139,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		menuBar.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		setJMenuBar(menuBar);
 
-		/**
-		 * Inicializamos boton de Introducir
-		 */
-
+		
 		Actualizar = new JMenu("Actualizar");
 		Actualizar.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		Actualizar.setForeground(Color.BLUE);
@@ -146,80 +149,6 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		Actualizar.add(EntregasActualizar);
 		EntregasActualizar.addActionListener(this);
 		EntregasActualizar.setActionCommand(ENTREGAS_ACTUALIZAR_BUTTON);
-
-		Borrar = new JMenu("Eliminar");
-		Borrar.setFont(new Font("Segoe UI", Font.BOLD, 25));
-		Borrar.setForeground(Color.BLUE);
-		menuBar.add(Borrar);
-
-		ArticulosBorrar = new JMenuItem("Articulos");
-		Borrar.add(ArticulosBorrar);
-		ArticulosBorrar.addActionListener(this);
-		ArticulosBorrar.setActionCommand(ARTICULOS_BORRAR_BUTTON);
-
-		JSeparator separator_8 = new JSeparator();
-		Borrar.add(separator_8);
-
-		ClientesBorrar = new JMenuItem("Clientes");
-		Borrar.add(ClientesBorrar);
-		ClientesBorrar.addActionListener(this);
-		ClientesBorrar.setActionCommand(CLIENTES_BORRAR_BUTTON);
-
-		JSeparator separator_9 = new JSeparator();
-		Borrar.add(separator_9);
-
-		DesgloseBorrar = new JMenuItem("Desglose de Pedido");
-		Borrar.add(DesgloseBorrar);
-		DesgloseBorrar.addActionListener(this);
-		DesgloseBorrar.setActionCommand(DESGLOSE_BORRAR_BUTTON);
-
-		JSeparator separator_10 = new JSeparator();
-		Borrar.add(separator_10);
-
-		EnviosBorrar = new JMenuItem("Envios");
-		Borrar.add(EnviosBorrar);
-		EnviosBorrar.addActionListener(this);
-		EnviosBorrar.setActionCommand(ENVIOS_BORRAR_BUTTON);
-
-		JSeparator separator_11 = new JSeparator();
-		Borrar.add(separator_11);
-
-		HerrajesBorrar = new JMenuItem("Herrajes");
-		Borrar.add(HerrajesBorrar);
-		HerrajesBorrar.addActionListener(this);
-		HerrajesBorrar.setActionCommand(HERRAJES_BORRAR_BUTTON);
-
-		JSeparator separator_12 = new JSeparator();
-		Borrar.add(separator_12);
-
-		MaterialesBorrar = new JMenuItem("Materiales");
-		Borrar.add(MaterialesBorrar);
-		MaterialesBorrar.addActionListener(this);
-		MaterialesBorrar.setActionCommand(MATERIALES_BORRAR_BUTTON);
-
-		JSeparator separator_13 = new JSeparator();
-		Borrar.add(separator_13);
-
-		PedidosBorrar = new JMenuItem("Pedidos");
-		Borrar.add(PedidosBorrar);
-		PedidosBorrar.addActionListener(this);
-		PedidosBorrar.setActionCommand(PEDIDOS_BORRAR_BUTTON);
-
-		JSeparator separator_14 = new JSeparator();
-		Borrar.add(separator_14);
-
-		SeriesBorrar = new JMenuItem("Series");
-		Borrar.add(SeriesBorrar);
-		SeriesBorrar.addActionListener(this);
-		SeriesBorrar.setActionCommand(SERIES_BORRAR_BUTTON);
-
-		JSeparator separator_15 = new JSeparator();
-		Borrar.add(separator_15);
-
-		SuelasBorrar = new JMenuItem("Suelas");
-		Borrar.add(SuelasBorrar);
-		SuelasBorrar.addActionListener(this);
-		SuelasBorrar.setActionCommand(SUELAS_BORRAR_BUTTON);
 
 		Consultar = new JMenu("Consultar");
 		Consultar.setFont(new Font("Segoe UI", Font.BOLD, 25));
@@ -263,6 +192,83 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		PedidosConsultar.addActionListener(this);
 		PedidosConsultar.setActionCommand(PEDIDOS_CONSULTAR_BUTTON);
 
+		/**
+		 * Inicializamos boton de Introducir
+		 */
+		
+				Borrar = new JMenu("Eliminar");
+				Borrar.setFont(new Font("Segoe UI", Font.BOLD, 25));
+				Borrar.setForeground(Color.BLUE);
+				menuBar.add(Borrar);
+				
+						ArticulosBorrar = new JMenuItem("Articulos");
+						Borrar.add(ArticulosBorrar);
+						ArticulosBorrar.addActionListener(this);
+						ArticulosBorrar.setActionCommand(ARTICULOS_BORRAR_BUTTON);
+						
+								JSeparator separator_8 = new JSeparator();
+								Borrar.add(separator_8);
+								
+										ClientesBorrar = new JMenuItem("Clientes");
+										Borrar.add(ClientesBorrar);
+										ClientesBorrar.addActionListener(this);
+										ClientesBorrar.setActionCommand(CLIENTES_BORRAR_BUTTON);
+										
+												JSeparator separator_9 = new JSeparator();
+												Borrar.add(separator_9);
+												
+														DesgloseBorrar = new JMenuItem("Desglose de Pedido");
+														Borrar.add(DesgloseBorrar);
+														DesgloseBorrar.addActionListener(this);
+														DesgloseBorrar.setActionCommand(DESGLOSE_BORRAR_BUTTON);
+														
+																JSeparator separator_10 = new JSeparator();
+																Borrar.add(separator_10);
+																
+																		EnviosBorrar = new JMenuItem("Envios");
+																		Borrar.add(EnviosBorrar);
+																		EnviosBorrar.addActionListener(this);
+																		EnviosBorrar.setActionCommand(ENVIOS_BORRAR_BUTTON);
+																		
+																				JSeparator separator_11 = new JSeparator();
+																				Borrar.add(separator_11);
+																				
+																						HerrajesBorrar = new JMenuItem("Herrajes");
+																						Borrar.add(HerrajesBorrar);
+																						HerrajesBorrar.addActionListener(this);
+																						HerrajesBorrar.setActionCommand(HERRAJES_BORRAR_BUTTON);
+																						
+																								JSeparator separator_12 = new JSeparator();
+																								Borrar.add(separator_12);
+																								
+																										MaterialesBorrar = new JMenuItem("Materiales");
+																										Borrar.add(MaterialesBorrar);
+																										MaterialesBorrar.addActionListener(this);
+																										MaterialesBorrar.setActionCommand(MATERIALES_BORRAR_BUTTON);
+																										
+																												JSeparator separator_13 = new JSeparator();
+																												Borrar.add(separator_13);
+																												
+																														PedidosBorrar = new JMenuItem("Pedidos");
+																														Borrar.add(PedidosBorrar);
+																														PedidosBorrar.addActionListener(this);
+																														PedidosBorrar.setActionCommand(PEDIDOS_BORRAR_BUTTON);
+																														
+																																JSeparator separator_14 = new JSeparator();
+																																Borrar.add(separator_14);
+																																
+																																		SeriesBorrar = new JMenuItem("Series");
+																																		Borrar.add(SeriesBorrar);
+																																		SeriesBorrar.addActionListener(this);
+																																		SeriesBorrar.setActionCommand(SERIES_BORRAR_BUTTON);
+																																		
+																																				JSeparator separator_15 = new JSeparator();
+																																				Borrar.add(separator_15);
+																																				
+																																						SuelasBorrar = new JMenuItem("Suelas");
+																																						Borrar.add(SuelasBorrar);
+																																						SuelasBorrar.addActionListener(this);
+																																						SuelasBorrar.setActionCommand(SUELAS_BORRAR_BUTTON);
 		Introducir = new JMenu("Introducir ");
 		Introducir.setForeground(Color.BLUE);
 		Introducir.setFont(new Font("Segoe UI", Font.BOLD, 25));
@@ -509,7 +515,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		 * si pulsa en introducir envios
 		 */
 		case ENVIOS_INSERTAR_BUTTON:
-			//IntroducirEnvios();
+			// IntroducirEnvios();
 			break;
 		default:
 			break;
