@@ -3,17 +3,16 @@ package PANTALLA_LP;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import LN.ClsGestorLN;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import java.awt.Font;
-import java.awt.Image;
 import java.sql.SQLException;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 /**
  * 
@@ -61,7 +60,8 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClsVerPantallaPrincipal window = new ClsVerPantallaPrincipal();					
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					ClsVerPantallaPrincipal window = new ClsVerPantallaPrincipal();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -114,10 +114,9 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 		 * Inicializamos el frame
 		 */
 		frame = new JFrame();
-		frame.setResizable(false);
-	    //ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/Empresa_De_Zapatos[Programas2 master]/Imagenes/LogoDeusto.png"));
-        //Image Image = ImageIcon.getImage();
-        //this.setIconImage(Image);
+		frame.setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(ClsVerPantallaPrincipal.class.getResource("/PANTALLA_LP/DEUSTO.png")));
+		frame.setResizable(false);	   
 		frame.getContentPane().setBackground(Color.CYAN);
 		frame.setBounds(400, 200, 500, 300);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -125,8 +124,7 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 		frame.getContentPane().setLayout(null);
 
 		/**
-		 * Inicializamos el Boton MenuIntroduccirDatos y lo relazcionamos con el
-		 * LISTENER
+		 * Inicializamos el Boton Entrar y lo relazcionamos con el LISTENER
 		 */
 		EntrarAplicacion = new JButton("Entrar");
 		EntrarAplicacion.setBounds(158, 81, 175, 38);
@@ -183,7 +181,6 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 			ClsVerMenus.main(null, objGestor);
 			break;
 
-		
 		default:
 			break;
 		}

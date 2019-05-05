@@ -21,6 +21,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import COMUN.ItfProperty;
+import javax.swing.ImageIcon;
+
 
 /**
  * Internar Frame para introducir Suelas
@@ -58,6 +60,7 @@ public class ClsIFIntroducirSuelas extends JInternalFrame implements ActionListe
 	 * @param ObjGestor recibimos el gestor
 	 */
 	public ClsIFIntroducirSuelas(ClsGestorLN ObjGestor) {
+		setFrameIcon(new ImageIcon(ClsIFIntroducirSuelas.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setResizable(false);
 		setMaximizable(true);
 		setIconifiable(true);

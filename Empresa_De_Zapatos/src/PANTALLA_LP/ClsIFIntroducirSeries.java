@@ -16,6 +16,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
+import javax.swing.ImageIcon;
+
 
 /**
  * 
@@ -52,6 +54,7 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 	 * Constuctor
 	 */
 	public ClsIFIntroducirSeries(ClsGestorLN ObjGestor) {
+		setFrameIcon(new ImageIcon(ClsIFIntroducirSeries.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setTitle("Introducir Series");
 		this.setBounds(50, 50, 600, 300);
 		getContentPane().setLayout(new GridLayout(3, 3));

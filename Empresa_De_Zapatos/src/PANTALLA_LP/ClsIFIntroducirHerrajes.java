@@ -21,12 +21,14 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import COMUN.ItfProperty;
+import javax.swing.ImageIcon;
+
 
 /**
  * Internal Frame para introducir Herrajes
  * 
  * @author Alex Salazar
- * @author DaviD Requeta
+ * @author David Requeta
  */
 public class ClsIFIntroducirHerrajes extends JInternalFrame implements ActionListener {
 
@@ -57,6 +59,7 @@ public class ClsIFIntroducirHerrajes extends JInternalFrame implements ActionLis
 	 * @param ObjGestor recibimos el gestor
 	 */
 	public ClsIFIntroducirHerrajes(ClsGestorLN ObjGestor) {
+		setFrameIcon(new ImageIcon(ClsIFIntroducirHerrajes.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setResizable(false);
 		setMaximizable(true);
 		setIconifiable(true);
