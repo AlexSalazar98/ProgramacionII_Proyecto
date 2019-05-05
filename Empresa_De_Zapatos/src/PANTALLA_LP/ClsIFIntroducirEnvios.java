@@ -8,6 +8,9 @@ import javax.swing.ImageIcon;
 import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_ENVIO;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NOMBRE_Y_APELLIDOS;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NUMERO;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DIRECCION;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_PROVINCIA;
+import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_TELEFONO;
 import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.Box;
@@ -15,6 +18,8 @@ import javax.swing.JPanel;
 import LN.ClsGestorLN;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import COMUN.ItfProperty;
@@ -72,14 +77,12 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 	private JLabel TxtCPEnvios;
 	private JTextField RecogerCP;
 	private JLabel TxtEnvio;
-	private JTextField textField;
+	private JTextField RecogerProvinciaEnvio;
 	private JLabel lblNewLabel;
 	private JTextField RecogerTelefono;
 	private JButton MostrarClientes;
 	private JTable table;
 	JScrollPane JSCClientes;
-
-	Object[][] data;
 
 	/**
 	 * Constructor.
@@ -228,12 +231,12 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 		TxtEnvio.setBounds(10, 241, 93, 22);
 		getContentPane().add(TxtEnvio);
 
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField.setBounds(108, 244, 127, 20);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		RecogerProvinciaEnvio = new JTextField();
+		RecogerProvinciaEnvio.setHorizontalAlignment(SwingConstants.CENTER);
+		RecogerProvinciaEnvio.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		RecogerProvinciaEnvio.setBounds(108, 244, 127, 20);
+		getContentPane().add(RecogerProvinciaEnvio);
+		RecogerProvinciaEnvio.setColumns(10);
 
 		lblNewLabel = new JLabel(" Tel\u00E9fono:");
 		lblNewLabel.setEnabled(false);
@@ -270,17 +273,7 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 
 		switch (e.getActionCommand()) {
 		case COMBOBOX_SELECCIONAR:
-
-			ItfProperty ObjetoSeleccionado;
-
-			for (ItfProperty a : Clientes) {
-				if (a.getIntegerProperty(PROPIEDAD_CLIENTE_NUMERO).equals(comboBox.getSelectedItem())) {
-					ObjetoSeleccionado = a;
-					String Nombre = ObjetoSeleccionado.getStringProperty(PROPIEDAD_CLIENTE_NOMBRE_Y_APELLIDOS);
-					RecogerNYACliente.setText(Nombre);
-				}
-			}
-
+			CargarNombreCliente();
 			break;
 		case AUTOMATICO_BUTTON:
 			ObtenerUltimoID();
@@ -288,6 +281,12 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 
 		case MOSTRAR_CLINETES_BOTON:
 			CrearTabla();
+			break;
+
+		case RECUPERAR_BOTON:
+			CargarRestoDeValores();
+			String MENSAJE = "Rellene los campos Población y Código Postal";
+			JOptionPane.showMessageDialog(null, MENSAJE, "ATENCION!", JOptionPane.INFORMATION_MESSAGE);
 			break;
 
 		case CONFIRMAR_BUTTON:
@@ -323,10 +322,12 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 	private void CrearTabla() {
 		table = null;
 
+		CargarDatos();
+
 		ClsTablaClientes TClientes = new ClsTablaClientes(Clientes);
 
 		table = new JTable(TClientes);
-		table.setPreferredScrollableViewportSize(new Dimension(649, 130));
+		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
 		table.setFillsViewportHeight(true);
 		table.setEnabled(true);
 		table.setRowSelectionAllowed(true);
@@ -334,8 +335,47 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 
 		JSCClientes = new JScrollPane(table);
 		JSCClientes.setBounds(43, 339, 649, 130);
-		getContentPane().add(JSCClientes);
+		this.getContentPane().add(JSCClientes);
 		TClientes.setData(Clientes);
+
+	}
+
+	private void CargarDatos() {
+
+		Clientes = objGestorIFIE.DameClientes();
+	}
+
+	/**
+	 * Metodo para obtener el nombre del Cliente seleccionado
+	 */
+	private void CargarNombreCliente() {
+
+		ItfProperty ObjetoSeleccionado;
+
+		for (ItfProperty a : Clientes) {
+			if (a.getIntegerProperty(PROPIEDAD_CLIENTE_NUMERO).equals(comboBox.getSelectedItem())) {
+				ObjetoSeleccionado = a;
+				String Nombre = ObjetoSeleccionado.getStringProperty(PROPIEDAD_CLIENTE_NOMBRE_Y_APELLIDOS);
+				RecogerNYACliente.setText(Nombre);
+			}
+		}
+	}
+
+	private void CargarRestoDeValores() {
+
+		ItfProperty ObjetoSeleccionado;
+
+		for (ItfProperty a : Clientes) {
+			if (a.getIntegerProperty(PROPIEDAD_CLIENTE_NUMERO).equals(comboBox.getSelectedItem())) {
+				ObjetoSeleccionado = a;
+				String Direccion = ObjetoSeleccionado.getStringProperty(PROPIEDAD_CLIENTE_DIRECCION);
+				String Provincia = ObjetoSeleccionado.getStringProperty(PROPIEDAD_CLIENTE_PROVINCIA);
+				String telefono = Integer.toString(ObjetoSeleccionado.getIntegerProperty(PROPIEDAD_CLIENTE_TELEFONO));
+				RecogerDirEnvio.setText(Direccion);
+				RecogerProvinciaEnvio.setText(Provincia);
+				RecogerTelefono.setText(telefono);
+			}
+		}
 
 	}
 }
