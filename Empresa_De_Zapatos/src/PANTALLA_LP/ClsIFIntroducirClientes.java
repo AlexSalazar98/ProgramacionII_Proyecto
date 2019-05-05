@@ -88,6 +88,7 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("Insertar Clientes");
+		getContentPane().setLayout(null);
 		this.setBounds(100, 100, 530, 520);
 		Inicializar(objGestor);
 	}
@@ -98,7 +99,7 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 	 * @param ObjGestor recive el gestor
 	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
-		getContentPane().setLayout(null);
+		
 		JLabel TxtNCliente = new JLabel("  N\u00FAmero de Cliente:");
 		TxtNCliente.setBounds(0, 5, 191, 28);
 		TxtNCliente.setEnabled(false);

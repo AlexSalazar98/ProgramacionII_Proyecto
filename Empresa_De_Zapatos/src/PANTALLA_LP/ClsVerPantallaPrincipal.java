@@ -116,7 +116,7 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(ClsVerPantallaPrincipal.class.getResource("/PANTALLA_LP/DEUSTO.png")));
-		frame.setResizable(false);	   
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(Color.CYAN);
 		frame.setBounds(400, 200, 500, 300);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

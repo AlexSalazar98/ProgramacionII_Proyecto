@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Collections;
 import COMUN.ItfProperty;
+import Comparadores_y_Comprobadores.ClsComparadorEnviosID;
 import Comparadores_y_Comprobadores.ClsComparadorHerrajesID;
 import Comparadores_y_Comprobadores.ClsComparadorMaterialesID;
 import Comparadores_y_Comprobadores.ClsComparadorPorFechas;
@@ -322,8 +323,8 @@ public class ClsGestorLN {
 	 * @param Email              parametro email
 	 * @throws SQLException mandamos la excepcion a LP
 	 */
-	public boolean CrearClientes(int NumeroDeCliente, String NombreYApellidos, String DNI_NIF, String DireccionDeCliente,
-			String Provincia, int Telefono, String Email) throws SQLException {
+	public boolean CrearClientes(int NumeroDeCliente, String NombreYApellidos, String DNI_NIF,
+			String DireccionDeCliente, String Provincia, int Telefono, String Email) throws SQLException {
 		/**
 		 * Variable de confirmacion
 		 */
@@ -1925,7 +1926,12 @@ public class ClsGestorLN {
 
 		return retorno;
 	}
-	
+
+	/**
+	 * Metodo para ordenar suelas por ID
+	 * 
+	 * @return devuelve array ordenado
+	 */
 	public ArrayList<ItfProperty> OrdenarSuelas() {
 
 		/**
@@ -1949,6 +1955,35 @@ public class ClsGestorLN {
 		 * compiamos un array en el otro ya ordenado
 		 */
 		for (ClsSuelas a : MiListaDeSuelas) {
+			retorno.add(a);
+		}
+
+		return retorno;
+	}
+
+	public ArrayList<ItfProperty> OrdenarEnvios() {
+
+		/**
+		 * Objeto comparador
+		 */
+		ClsComparadorEnviosID comp = new ClsComparadorEnviosID();
+
+		/**
+		 * Funcion de ordenamiento (ArrayList, Patron)
+		 */
+		Collections.sort(MiListaDeEnvios, comp);
+
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		/**
+		 * compiamos un array en el otro ya ordenado
+		 */
+		for (ClsEnvios a : MiListaDeEnvios) {
 			retorno.add(a);
 		}
 

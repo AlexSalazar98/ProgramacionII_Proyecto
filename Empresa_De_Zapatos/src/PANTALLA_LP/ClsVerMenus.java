@@ -89,6 +89,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	private ClsIFIntroducirHerrajes IntFrameHerrajes;
 	private ClsIFIntroducirSuelas IntFrameSuelas;
 	private ClsIFIntroducirMateriales IntFrameMateriales;
+	private ClsIFIntroducirEnvios IntFrameEnvios;
 
 	/**
 	 * Launch the application.
@@ -142,7 +143,6 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		menuBar.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		setJMenuBar(menuBar);
 
-		
 		Actualizar = new JMenu("Actualizar");
 		Actualizar.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		Actualizar.setForeground(Color.BLUE);
@@ -198,80 +198,80 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		/**
 		 * Inicializamos boton de Introducir
 		 */
-		
-				Borrar = new JMenu("Eliminar");
-				Borrar.setFont(new Font("Segoe UI", Font.BOLD, 25));
-				Borrar.setForeground(Color.BLUE);
-				menuBar.add(Borrar);
-				
-						ArticulosBorrar = new JMenuItem("Articulos");
-						Borrar.add(ArticulosBorrar);
-						ArticulosBorrar.addActionListener(this);
-						ArticulosBorrar.setActionCommand(ARTICULOS_BORRAR_BUTTON);
-						
-								JSeparator separator_8 = new JSeparator();
-								Borrar.add(separator_8);
-								
-										ClientesBorrar = new JMenuItem("Clientes");
-										Borrar.add(ClientesBorrar);
-										ClientesBorrar.addActionListener(this);
-										ClientesBorrar.setActionCommand(CLIENTES_BORRAR_BUTTON);
-										
-												JSeparator separator_9 = new JSeparator();
-												Borrar.add(separator_9);
-												
-														DesgloseBorrar = new JMenuItem("Desglose de Pedido");
-														Borrar.add(DesgloseBorrar);
-														DesgloseBorrar.addActionListener(this);
-														DesgloseBorrar.setActionCommand(DESGLOSE_BORRAR_BUTTON);
-														
-																JSeparator separator_10 = new JSeparator();
-																Borrar.add(separator_10);
-																
-																		EnviosBorrar = new JMenuItem("Envios");
-																		Borrar.add(EnviosBorrar);
-																		EnviosBorrar.addActionListener(this);
-																		EnviosBorrar.setActionCommand(ENVIOS_BORRAR_BUTTON);
-																		
-																				JSeparator separator_11 = new JSeparator();
-																				Borrar.add(separator_11);
-																				
-																						HerrajesBorrar = new JMenuItem("Herrajes");
-																						Borrar.add(HerrajesBorrar);
-																						HerrajesBorrar.addActionListener(this);
-																						HerrajesBorrar.setActionCommand(HERRAJES_BORRAR_BUTTON);
-																						
-																								JSeparator separator_12 = new JSeparator();
-																								Borrar.add(separator_12);
-																								
-																										MaterialesBorrar = new JMenuItem("Materiales");
-																										Borrar.add(MaterialesBorrar);
-																										MaterialesBorrar.addActionListener(this);
-																										MaterialesBorrar.setActionCommand(MATERIALES_BORRAR_BUTTON);
-																										
-																												JSeparator separator_13 = new JSeparator();
-																												Borrar.add(separator_13);
-																												
-																														PedidosBorrar = new JMenuItem("Pedidos");
-																														Borrar.add(PedidosBorrar);
-																														PedidosBorrar.addActionListener(this);
-																														PedidosBorrar.setActionCommand(PEDIDOS_BORRAR_BUTTON);
-																														
-																																JSeparator separator_14 = new JSeparator();
-																																Borrar.add(separator_14);
-																																
-																																		SeriesBorrar = new JMenuItem("Series");
-																																		Borrar.add(SeriesBorrar);
-																																		SeriesBorrar.addActionListener(this);
-																																		SeriesBorrar.setActionCommand(SERIES_BORRAR_BUTTON);
-																																		
-																																				JSeparator separator_15 = new JSeparator();
-																																				Borrar.add(separator_15);
-																																				
-																																						SuelasBorrar = new JMenuItem("Suelas");
-																																						Borrar.add(SuelasBorrar);
-																																						SuelasBorrar.addActionListener(this);
-																																						SuelasBorrar.setActionCommand(SUELAS_BORRAR_BUTTON);
+
+		Borrar = new JMenu("Eliminar");
+		Borrar.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		Borrar.setForeground(Color.BLUE);
+		menuBar.add(Borrar);
+
+		ArticulosBorrar = new JMenuItem("Articulos");
+		Borrar.add(ArticulosBorrar);
+		ArticulosBorrar.addActionListener(this);
+		ArticulosBorrar.setActionCommand(ARTICULOS_BORRAR_BUTTON);
+
+		JSeparator separator_8 = new JSeparator();
+		Borrar.add(separator_8);
+
+		ClientesBorrar = new JMenuItem("Clientes");
+		Borrar.add(ClientesBorrar);
+		ClientesBorrar.addActionListener(this);
+		ClientesBorrar.setActionCommand(CLIENTES_BORRAR_BUTTON);
+
+		JSeparator separator_9 = new JSeparator();
+		Borrar.add(separator_9);
+
+		DesgloseBorrar = new JMenuItem("Desglose de Pedido");
+		Borrar.add(DesgloseBorrar);
+		DesgloseBorrar.addActionListener(this);
+		DesgloseBorrar.setActionCommand(DESGLOSE_BORRAR_BUTTON);
+
+		JSeparator separator_10 = new JSeparator();
+		Borrar.add(separator_10);
+
+		EnviosBorrar = new JMenuItem("Envios");
+		Borrar.add(EnviosBorrar);
+		EnviosBorrar.addActionListener(this);
+		EnviosBorrar.setActionCommand(ENVIOS_BORRAR_BUTTON);
+
+		JSeparator separator_11 = new JSeparator();
+		Borrar.add(separator_11);
+
+		HerrajesBorrar = new JMenuItem("Herrajes");
+		Borrar.add(HerrajesBorrar);
+		HerrajesBorrar.addActionListener(this);
+		HerrajesBorrar.setActionCommand(HERRAJES_BORRAR_BUTTON);
+
+		JSeparator separator_12 = new JSeparator();
+		Borrar.add(separator_12);
+
+		MaterialesBorrar = new JMenuItem("Materiales");
+		Borrar.add(MaterialesBorrar);
+		MaterialesBorrar.addActionListener(this);
+		MaterialesBorrar.setActionCommand(MATERIALES_BORRAR_BUTTON);
+
+		JSeparator separator_13 = new JSeparator();
+		Borrar.add(separator_13);
+
+		PedidosBorrar = new JMenuItem("Pedidos");
+		Borrar.add(PedidosBorrar);
+		PedidosBorrar.addActionListener(this);
+		PedidosBorrar.setActionCommand(PEDIDOS_BORRAR_BUTTON);
+
+		JSeparator separator_14 = new JSeparator();
+		Borrar.add(separator_14);
+
+		SeriesBorrar = new JMenuItem("Series");
+		Borrar.add(SeriesBorrar);
+		SeriesBorrar.addActionListener(this);
+		SeriesBorrar.setActionCommand(SERIES_BORRAR_BUTTON);
+
+		JSeparator separator_15 = new JSeparator();
+		Borrar.add(separator_15);
+
+		SuelasBorrar = new JMenuItem("Suelas");
+		Borrar.add(SuelasBorrar);
+		SuelasBorrar.addActionListener(this);
+		SuelasBorrar.setActionCommand(SUELAS_BORRAR_BUTTON);
 		Introducir = new JMenu("Introducir ");
 		Introducir.setForeground(Color.BLUE);
 		Introducir.setFont(new Font("Segoe UI", Font.BOLD, 25));
@@ -518,8 +518,9 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		 * si pulsa en introducir envios
 		 */
 		case ENVIOS_INSERTAR_BUTTON:
-			// IntroducirEnvios();
+			IntroducirEnvios();
 			break;
+
 		default:
 			break;
 		}
@@ -653,6 +654,33 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		IntFrameClientes.setVisible(true);
 		try {
 			IntFrameClientes.setSelected(true);
+		} catch (PropertyVetoException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+
+	}
+
+	/**
+	 * Metodo para acceder al InternalFrame de introducir Envios
+	 */
+	private void IntroducirEnvios() {
+		/**
+		 * Comprobamos que la ventana no este abierta.
+		 */
+		if (!ComprobarVentanaEnviosAbierta()) {
+			/**
+			 * creamos el objeto
+			 */
+			IntFrameEnvios = new ClsIFIntroducirEnvios(objGestorMID);
+			PanelMenuIntrducirDatos.add(IntFrameEnvios);
+		}
+
+		/**
+		 * Lo hacemos visible
+		 */
+		IntFrameEnvios.setVisible(true);
+		try {
+			IntFrameEnvios.setSelected(true);
 		} catch (PropertyVetoException e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
@@ -821,5 +849,33 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		}
 		return mostrar;
 
+	}
+	
+	public boolean ComprobarVentanaEnviosAbierta() {
+
+		boolean mostrar = false;
+
+		boolean cerrado;
+		if (IntFrameEnvios == null || IntFrameEnvios.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
+		}
+
+		if (!cerrado) {
+			String Nombre = IntFrameEnvios.getTitle();
+
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
+
+			IntFrameEnvios.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFrameEnvios);
+
+			mostrar = true;
+
+		}
+
+		return mostrar;
 	}
 }
