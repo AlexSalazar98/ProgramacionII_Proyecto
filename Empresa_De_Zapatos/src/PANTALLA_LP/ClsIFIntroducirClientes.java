@@ -321,7 +321,7 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 
 				try {
 					correcto = objComprobarDNI_NIF.ComprobarDNI_NIF(DNI_NIF);
-
+					//correcto = objGestorIFIC.ExisteCliente(objClientes);
 				} catch (ClsDNI_NIFValidoExcepcion a) {
 					RecogerDNINIF.setText("");
 					correcto = false;

@@ -192,7 +192,8 @@ public class ClsClientes implements ItfProperty {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((DNI_NIF == null) ? 0 : DNI_NIF.hashCode());
+
+		result = prime * result + NumeroDeCliente;
 		return result;
 	}
 
@@ -208,11 +209,10 @@ public class ClsClientes implements ItfProperty {
 		if (getClass() != obj.getClass())
 			return false;
 		ClsClientes other = (ClsClientes) obj;
-		if (DNI_NIF == null) {
-			if (other.DNI_NIF != null)
-				return false;
-		} else if (!DNI_NIF.equals(other.DNI_NIF))
+		if (NumeroDeCliente != other.NumeroDeCliente)
 			return false;
+
 		return true;
 	}
+
 }

@@ -46,7 +46,7 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 
 	private ArrayList<ItfProperty> Clientes;
 
-	private JButton BotonConfirmarEnvio, BotonNEnvioAuto;
+	private JButton BotonConfirmarEnvio;
 	private JLabel TxtNEnvio;
 	private JTextField RecogerNEnvio;
 	@SuppressWarnings("rawtypes")
@@ -56,7 +56,6 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 	 * constantes para el ActionLisener
 	 */
 	private final String CONFIRMAR_BUTTON = "Boton de confirmar Envios";
-	private final String AUTOMATICO_BUTTON = "Boton para poner automatico el ID";
 	private final String COMBOBOX_SELECCIONAR = "Seleccionar del combobox";
 	private final String RECUPERAR_BOTON = "Recuperar datos del cliente";
 	private final String MOSTRAR_CLINETES_BOTON = "Mostrar tabla con clientes";
@@ -100,6 +99,7 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 		this.setIconifiable(true);
 		this.setMaximizable(false);
 		Inicializar(ObjGestor);
+		ObtenerUltimoID();
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -127,18 +127,13 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 		getContentPane().add(TxtNEnvio);
 
 		RecogerNEnvio = new JTextField();
+		RecogerNEnvio.setEnabled(false);
+		RecogerNEnvio.setEditable(false);
 		RecogerNEnvio.setHorizontalAlignment(SwingConstants.CENTER);
 		RecogerNEnvio.setFont(new Font("Tahoma", Font.BOLD, 15));
 		RecogerNEnvio.setBounds(172, 26, 86, 20);
 		getContentPane().add(RecogerNEnvio);
 		RecogerNEnvio.setColumns(10);
-
-		BotonNEnvioAuto = new JButton("N\u00BA Envio Automatico");
-		BotonNEnvioAuto.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		BotonNEnvioAuto.setBounds(268, 23, 167, 27);
-		getContentPane().add(BotonNEnvioAuto);
-		BotonNEnvioAuto.addActionListener(this);
-		BotonNEnvioAuto.setActionCommand(AUTOMATICO_BUTTON);
 
 		TxtNCliente = new JLabel("  N\u00BA Del Cliente: ");
 		TxtNCliente.setEnabled(false);
@@ -276,9 +271,6 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 		case COMBOBOX_SELECCIONAR:
 			CargarNombreCliente();
 			break;
-		case AUTOMATICO_BUTTON:
-			ObtenerUltimoID();
-			break;
 
 		case MOSTRAR_CLINETES_BOTON:
 			CrearTabla();
@@ -290,12 +282,17 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 
 		case CONFIRMAR_BUTTON:
 			while (!ComprobarCamposVacios()) {
-				RecogerCP.setText(JOptionPane.showInputDialog("Codigo Postal:"));
-				RecogerPoblacionEnvio.setText(JOptionPane.showInputDialog("Población"));
+				if (RecogerCP.getText().equals("")) {
+					RecogerCP.setText(JOptionPane.showInputDialog("Codigo Postal:"));
+				}
+				if (RecogerPoblacionEnvio.getText().equals("")) {
+					RecogerPoblacionEnvio.setText(JOptionPane.showInputDialog("Población"));
+				}
 			}
 			if (ComprobarCamposVacios()) {
 				MandarAGestor();
 				PonerVacio();
+				ObtenerUltimoID();
 			}
 			break;
 
@@ -331,8 +328,6 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 
 		table = null;
 
-		CargarDatos();
-
 		ClsTablaClientes TClientes = new ClsTablaClientes(Clientes);
 		DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer();
 
@@ -361,10 +356,10 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 	/**
 	 * Metodo para cargar los valores en los campos
 	 */
-	private void CargarDatos() {
+	//private void CargarDatos() {
 
-		Clientes = objGestorIFIE.DameClientes();
-	}
+		//Clientes = objGestorIFIE.DameClientes();
+	//}
 
 	/**
 	 * Metodo para obtener el nombre del Cliente seleccionado

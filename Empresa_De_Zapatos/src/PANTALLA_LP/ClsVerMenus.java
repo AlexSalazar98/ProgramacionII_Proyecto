@@ -90,6 +90,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	private ClsIFIntroducirSuelas IntFrameSuelas;
 	private ClsIFIntroducirMateriales IntFrameMateriales;
 	private ClsIFIntroducirEnvios IntFrameEnvios;
+	private ClsIFIntroducirArticulos IntFrameArticulos;
 
 	/**
 	 * Launch the application.
@@ -521,6 +522,13 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 			IntroducirEnvios();
 			break;
 
+		/**
+		 * Si pulsa introducir Articulos
+		 */
+		case ARTICULOS_INSERTAR_BUTTON:
+			IntroducirArticulos();
+			break;
+
 		default:
 			break;
 		}
@@ -681,6 +689,33 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		IntFrameEnvios.setVisible(true);
 		try {
 			IntFrameEnvios.setSelected(true);
+		} catch (PropertyVetoException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+
+	}
+
+	/**
+	 * Metodo para ir al InternalFrame introducir Articulos
+	 */
+	private void IntroducirArticulos() {
+		/**
+		 * Comprobamos que la ventana no este abierta.
+		 */
+		if (!ComprobarVentanaArticulosAbierta()) {
+			/**
+			 * creamos el objeto
+			 */
+			IntFrameArticulos = new ClsIFIntroducirArticulos(objGestorMID);
+			PanelMenuIntrducirDatos.add(IntFrameArticulos);
+		}
+
+		/**
+		 * Lo hacemos visible
+		 */
+		IntFrameArticulos.setVisible(true);
+		try {
+			IntFrameArticulos.setSelected(true);
 		} catch (PropertyVetoException e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
@@ -850,7 +885,12 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		return mostrar;
 
 	}
-	
+
+	/**
+	 * Metodo para comprobar si la ventana envios esta abierta
+	 * 
+	 * @return nos devuelve el resultado
+	 */
 	public boolean ComprobarVentanaEnviosAbierta() {
 
 		boolean mostrar = false;
@@ -871,6 +911,39 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 			IntFrameEnvios.toFront();
 
 			PanelMenuIntrducirDatos.moveToFront(IntFrameEnvios);
+
+			mostrar = true;
+
+		}
+
+		return mostrar;
+	}
+
+	/**
+	 * Metodo para comprobar si la ventana articulos esta abierta
+	 * 
+	 * @return nos devuelve el resultado
+	 */
+	public boolean ComprobarVentanaArticulosAbierta() {
+
+		boolean mostrar = false;
+
+		boolean cerrado;
+		if (IntFrameArticulos == null || IntFrameArticulos.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
+		}
+
+		if (!cerrado) {
+			String Nombre = IntFrameArticulos.getTitle();
+
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
+
+			IntFrameArticulos.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFrameArticulos);
 
 			mostrar = true;
 

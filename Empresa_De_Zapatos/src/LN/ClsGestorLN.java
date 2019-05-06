@@ -373,10 +373,13 @@ public class ClsGestorLN {
 	 * @param CantidadHerrajes           parametro cantidad de herrajes
 	 * @param Precio                     parametro precio
 	 * @param ReferenciaSuelas_Articulos parametro referencia de la suela
+	 * @return
 	 * @throws SQLException lanza excepcion
 	 */
-	public void CrearArticulos(int Referencia, int Serie, String Descripcion, int CantidadMaterial,
+	public boolean CrearArticulos(int Referencia, int Serie, String Descripcion, int CantidadMaterial,
 			int CantidadHerrajes, double Precio, int ReferenciaSuelas_Articulos) throws SQLException {
+
+		boolean Hecho = false;
 
 		/**
 		 * Instanciamos y crearmos el objeto
@@ -389,6 +392,7 @@ public class ClsGestorLN {
 		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
 		 */
 		if (!ExisteArticulos(objArticulos)) {
+			Hecho = true;
 			/**
 			 * Añadimos el objeto a el array.
 			 */
@@ -401,6 +405,7 @@ public class ClsGestorLN {
 					ReferenciaSuelas_Articulos);
 			objDatos.desconectarBD();
 		}
+		return Hecho;
 	}
 
 	/**
