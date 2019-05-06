@@ -2,6 +2,7 @@ package PANTALLA_LP;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JInternalFrame;
 import javax.swing.ImageIcon;
@@ -22,6 +23,8 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+
 import COMUN.ItfProperty;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -41,9 +44,7 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 	 */
 	private static final long serialVersionUID = 1L;
 
-//	private JList<String> ListaDeClientes;
 	private ArrayList<ItfProperty> Clientes;
-	// private DefaultListModel<String> modelo = new DefaultListModel<String>();
 
 	private JButton BotonConfirmarEnvio, BotonNEnvioAuto;
 	private JLabel TxtNEnvio;
@@ -285,13 +286,17 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 
 		case RECUPERAR_BOTON:
 			CargarRestoDeValores();
-			String MENSAJE = "Rellene los campos Población y Código Postal";
-			JOptionPane.showMessageDialog(null, MENSAJE, "ATENCION!", JOptionPane.INFORMATION_MESSAGE);
 			break;
 
 		case CONFIRMAR_BUTTON:
-			// MandarAGestor();
-			// PonerVacio();
+			while (!ComprobarCamposVacios()) {
+				RecogerCP.setText(JOptionPane.showInputDialog("Codigo Postal:"));
+				RecogerPoblacionEnvio.setText(JOptionPane.showInputDialog("Población"));
+			}
+			if (ComprobarCamposVacios()) {
+				MandarAGestor();
+				PonerVacio();
+			}
 			break;
 
 		default:
@@ -319,14 +324,27 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Metodo para crear la tabla de clientes
+	 */
 	private void CrearTabla() {
+
 		table = null;
 
 		CargarDatos();
 
 		ClsTablaClientes TClientes = new ClsTablaClientes(Clientes);
+		DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer();
 
 		table = new JTable(TClientes);
+		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+		table.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+		table.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+		table.getColumnModel().getColumn(2).setCellRenderer(Alinear);
+		table.getColumnModel().getColumn(3).setCellRenderer(Alinear);
+		table.getColumnModel().getColumn(4).setCellRenderer(Alinear);
+		table.getColumnModel().getColumn(5).setCellRenderer(Alinear);
+		table.getColumnModel().getColumn(6).setCellRenderer(Alinear);
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
 		table.setFillsViewportHeight(true);
 		table.setEnabled(true);
@@ -334,12 +352,15 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 		TClientes.fireTableDataChanged();
 
 		JSCClientes = new JScrollPane(table);
-		JSCClientes.setBounds(43, 339, 649, 130);
+		JSCClientes.setBounds(15, 339, 700, 130);
 		this.getContentPane().add(JSCClientes);
 		TClientes.setData(Clientes);
 
 	}
 
+	/**
+	 * Metodo para cargar los valores en los campos
+	 */
 	private void CargarDatos() {
 
 		Clientes = objGestorIFIE.DameClientes();
@@ -361,6 +382,9 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 		}
 	}
 
+	/**
+	 * metodo para cargar el resto de los valores del objeto en los campos
+	 */
 	private void CargarRestoDeValores() {
 
 		ItfProperty ObjetoSeleccionado;
@@ -377,5 +401,59 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 			}
 		}
 
+	}
+
+	/**
+	 * Mandar lo datos al gestor
+	 */
+	private void MandarAGestor() {
+
+		int NumeroDeEnvio = Integer.parseInt(RecogerNEnvio.getText());
+		String NombreCliente = RecogerNYACliente.getText();
+		String DireccionDeEnvio = RecogerDirEnvio.getText();
+		String PoblacionDeEnvio = RecogerPoblacionEnvio.getText();
+		int CPDeEnvio = Integer.parseInt(RecogerCP.getText());
+		String ProvinciaDeEnvio = RecogerProvinciaEnvio.getText();
+		int TelefonoDeEnvio = Integer.parseInt(RecogerTelefono.getText());
+		int NumeroDeCliente_Envio = Integer.parseInt(comboBox.getSelectedItem().toString());
+
+		try {
+			if (objGestorIFIE.CrearEnvios(NumeroDeEnvio, NombreCliente, DireccionDeEnvio, PoblacionDeEnvio, CPDeEnvio,
+					ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio)) {
+				JOptionPane.showMessageDialog(null, "Envio introducido correctamente");
+			} else {
+				JOptionPane.showMessageDialog(null, "ID del Envio repetido!");
+			}
+
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "No se ha podido realizar el insert: " + e);
+		}
+
+	}
+
+	/**
+	 * Metodo para dejar vacios los campos
+	 */
+	private void PonerVacio() {
+
+		RecogerCP.setText("");
+		RecogerDirEnvio.setText("");
+		RecogerNEnvio.setText("");
+		RecogerPoblacionEnvio.setText("");
+		RecogerProvinciaEnvio.setText("");
+		RecogerTelefono.setText("");
+
+	}
+
+	private boolean ComprobarCamposVacios() {
+
+		boolean comprobar = true;
+
+		if (RecogerCP.getText().equals("") || RecogerPoblacionEnvio.getText().equals("")) {
+			comprobar = false;
+
+		}
+
+		return comprobar;
 	}
 }

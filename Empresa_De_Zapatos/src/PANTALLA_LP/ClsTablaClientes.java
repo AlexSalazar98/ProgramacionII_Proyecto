@@ -18,7 +18,7 @@ public class ClsTablaClientes extends AbstractTableModel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String[] NombreColumnas = { "Numero de Cliente", "Nombre y Apellido", "DNI o NIF", "Direccion", "Provincia",
+	private String[] NombreColumnas = { "Nº de Cliente", "Nombre y Apellido", "DNI o NIF", "Direccion", "Provincia",
 			"Telefono", "Email" };
 	Object[][] data;
 

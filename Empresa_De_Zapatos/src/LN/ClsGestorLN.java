@@ -280,11 +280,16 @@ public class ClsGestorLN {
 	 * @param ProvinciaDeEnvio      parametro provincia de envio
 	 * @param TelefonoDeEnvio       parametro telefonon de envio
 	 * @param NumeroDeCliente_Envio parametro numero de cliente
+	 * @return
 	 * @throws SQLException lanza excepcion
 	 */
-	public void CrearEnvios(int NumeroDeEnvio, String NombreCliente, String DireccionDeEnvio, String PoblacionDeEnvio,
-			int CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio, int NumeroDeCliente_Envio)
-			throws SQLException {
+	public boolean CrearEnvios(int NumeroDeEnvio, String NombreCliente, String DireccionDeEnvio,
+			String PoblacionDeEnvio, int CPDeEnvio, String ProvinciaDeEnvio, int TelefonoDeEnvio,
+			int NumeroDeCliente_Envio) throws SQLException {
+		/**
+		 * Variable de confirmacion
+		 */
+		Boolean Hecho = false;
 
 		/**
 		 * Instanciamos y crearmos el objeto
@@ -297,6 +302,7 @@ public class ClsGestorLN {
 		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
 		 */
 		if (!ExisteEnvios(objEnvios)) {
+			Hecho = true;
 			/**
 			 * Añadimos el objeto a el array.
 			 */
@@ -309,6 +315,7 @@ public class ClsGestorLN {
 					ProvinciaDeEnvio, TelefonoDeEnvio, NumeroDeCliente_Envio);
 			objDatos.desconectarBD();
 		}
+		return Hecho;
 	}
 
 	/**
