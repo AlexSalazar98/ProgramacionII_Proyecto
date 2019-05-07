@@ -91,6 +91,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	private ClsIFIntroducirMateriales IntFrameMateriales;
 	private ClsIFIntroducirEnvios IntFrameEnvios;
 	private ClsIFIntroducirArticulos IntFrameArticulos;
+	private ClsIFIntroducirPedidos IntFramePedidos;
 
 	/**
 	 * Launch the application.
@@ -529,6 +530,13 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 			IntroducirArticulos();
 			break;
 
+		/**
+		 * Si pulsa introducir Pedidos
+		 */
+		case PEDIDOS_INSERTAR_BUTTON:
+			IntroducirPedidos();
+			break;
+
 		default:
 			break;
 		}
@@ -716,6 +724,33 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		IntFrameArticulos.setVisible(true);
 		try {
 			IntFrameArticulos.setSelected(true);
+		} catch (PropertyVetoException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+
+	}
+	
+	/**
+	 * Metodo para ir al InternalFrame introducir Pedidos
+	 */
+	private void IntroducirPedidos() {
+		/**
+		 * Comprobamos que la ventana no este abierta.
+		 */
+		if (!ComprobarVentanaPedidosAbierta()) {
+			/**
+			 * creamos el objeto
+			 */
+			IntFramePedidos = new ClsIFIntroducirPedidos(objGestorMID);
+			PanelMenuIntrducirDatos.add(IntFramePedidos);
+		}
+
+		/**
+		 * Lo hacemos visible
+		 */
+		IntFramePedidos.setVisible(true);
+		try {
+			IntFramePedidos.setSelected(true);
 		} catch (PropertyVetoException e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
@@ -944,6 +979,39 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 			IntFrameArticulos.toFront();
 
 			PanelMenuIntrducirDatos.moveToFront(IntFrameArticulos);
+
+			mostrar = true;
+
+		}
+
+		return mostrar;
+	}
+	
+	/**
+	 * Metodo para comprobar si la ventana pedidos esta abierta
+	 * 
+	 * @return nos devuelve el resultado
+	 */
+	public boolean ComprobarVentanaPedidosAbierta() {
+
+		boolean mostrar = false;
+
+		boolean cerrado;
+		if (IntFramePedidos == null || IntFramePedidos.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
+		}
+
+		if (!cerrado) {
+			String Nombre = IntFramePedidos.getTitle();
+
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
+
+			IntFramePedidos.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFramePedidos);
 
 			mostrar = true;
 

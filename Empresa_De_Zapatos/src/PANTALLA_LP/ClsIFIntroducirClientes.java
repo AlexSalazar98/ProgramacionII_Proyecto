@@ -17,8 +17,6 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 
-
-
 /**
  * Clase InternalFrame para introducir Clientes
  * 
@@ -99,7 +97,7 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 	 * @param ObjGestor recive el gestor
 	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
-		
+
 		JLabel TxtNCliente = new JLabel("  N\u00FAmero de Cliente:");
 		TxtNCliente.setBounds(0, 5, 191, 28);
 		TxtNCliente.setEnabled(false);
@@ -285,17 +283,17 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 		getContentPane().add(BotonConfirmar);
 		BotonConfirmar.addActionListener(this);
 		BotonConfirmar.setActionCommand(CONFIRMAR_BUTTON);
-		
+
 		separator_12 = new JSeparator();
 		separator_12.setForeground(Color.BLACK);
 		separator_12.setBounds(441, 168, 111, 28);
 		getContentPane().add(separator_12);
-		
+
 		separator_13 = new JSeparator();
 		separator_13.setForeground(Color.BLACK);
 		separator_13.setBounds(441, 46, 111, 28);
 		getContentPane().add(separator_13);
-		
+
 		separator_14 = new JSeparator();
 		separator_14.setForeground(Color.BLACK);
 		separator_14.setBounds(441, 305, 111, 28);
@@ -321,7 +319,6 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 
 				try {
 					correcto = objComprobarDNI_NIF.ComprobarDNI_NIF(DNI_NIF);
-					//correcto = objGestorIFIC.ExisteCliente(objClientes);
 				} catch (ClsDNI_NIFValidoExcepcion a) {
 					RecogerDNINIF.setText("");
 					correcto = false;

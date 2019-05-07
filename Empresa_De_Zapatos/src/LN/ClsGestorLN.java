@@ -9,6 +9,7 @@ import COMUN.ItfProperty;
 import Comparadores_y_Comprobadores.ClsComparadorEnviosID;
 import Comparadores_y_Comprobadores.ClsComparadorHerrajesID;
 import Comparadores_y_Comprobadores.ClsComparadorMaterialesID;
+import Comparadores_y_Comprobadores.ClsComparadorPedidosID;
 import Comparadores_y_Comprobadores.ClsComparadorPorFechas;
 import Comparadores_y_Comprobadores.ClsComparadorSeriesID;
 import Comparadores_y_Comprobadores.ClsComparadorSuelasID;
@@ -159,10 +160,13 @@ public class ClsGestorLN {
 	 * @param Entregado                 parametro entregado
 	 * @param NumeroDeCliente_Pedidos   parametro numero de cliente
 	 * @param NombreYApelliosDelCliente parametro nombre y apellidos del cliente
+	 * @return
 	 * @throws SQLException lanzamos excepcion.
 	 */
-	public void CrearPedidos(int NumeroDePedido, Date FechaDePedido, Date FechaDeEntrega, Boolean Entregado,
+	public boolean CrearPedidos(int NumeroDePedido, Date FechaDePedido, Date FechaDeEntrega, Boolean Entregado,
 			int NumeroDeCliente_Pedidos, String NombreYApelliosDelCliente) throws SQLException {
+
+		boolean Hecho = false;
 
 		/**
 		 * Instanciamos y crearmos el objeto
@@ -175,6 +179,7 @@ public class ClsGestorLN {
 		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
 		 */
 		if (!ExistePedidos(objPedido)) {
+			Hecho = true;
 			/**
 			 * Añadimos el objeto a el array.
 			 */
@@ -188,6 +193,7 @@ public class ClsGestorLN {
 					NombreYApelliosDelCliente);
 			objDatos.desconectarBD();
 		}
+		return Hecho;
 	}
 
 	/**
@@ -1973,6 +1979,11 @@ public class ClsGestorLN {
 		return retorno;
 	}
 
+	/**
+	 * Metodo para ordenar array de envios por ID
+	 * 
+	 * @return nos lo devuelve ordenado
+	 */
 	public ArrayList<ItfProperty> OrdenarEnvios() {
 
 		/**
@@ -1996,6 +2007,40 @@ public class ClsGestorLN {
 		 * compiamos un array en el otro ya ordenado
 		 */
 		for (ClsEnvios a : MiListaDeEnvios) {
+			retorno.add(a);
+		}
+
+		return retorno;
+	}
+
+	/**
+	 * Metodo para ordenar array de envios por ID
+	 * 
+	 * @return nos lo devuelve ordenado
+	 */
+	public ArrayList<ItfProperty> OrdenarPedidos() {
+
+		/**
+		 * Objeto comparador
+		 */
+		ClsComparadorPedidosID comp = new ClsComparadorPedidosID();
+
+		/**
+		 * Funcion de ordenamiento (ArrayList, Patron)
+		 */
+		Collections.sort(MiListaDePedidos, comp);
+
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		/**
+		 * compiamos un array en el otro ya ordenado
+		 */
+		for (ClsPedidos a : MiListaDePedidos) {
 			retorno.add(a);
 		}
 
