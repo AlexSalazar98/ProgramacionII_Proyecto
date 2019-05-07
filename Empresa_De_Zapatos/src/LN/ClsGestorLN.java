@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Collections;
 import COMUN.ItfProperty;
+import Comparadores_y_Comprobadores.ClsComparadorDesglosesID;
 import Comparadores_y_Comprobadores.ClsComparadorEnviosID;
 import Comparadores_y_Comprobadores.ClsComparadorHerrajesID;
 import Comparadores_y_Comprobadores.ClsComparadorMaterialesID;
@@ -435,10 +436,12 @@ public class ClsGestorLN {
 	 * @param Pedidos_NPedido       parametro del numero de Pedido.
 	 * @throws SQLException lanza excepcion.
 	 */
-	public void CrearDesgloseDePedido(int NumeroDePedido, int ReferenciaDelArticulo, int Serie, int Color,
+	public boolean CrearDesgloseDePedido(int NumeroDePedido, int ReferenciaDelArticulo, int Serie, int Color,
 			int NumeroDePie5, int NumeroDePie6, int NumeroDePie7, int NumeroDePie8, int NumeroDePie9, int NumeroDePie0,
 			int NumeroDePie1, int NumeroDePie2, int NumeroDePie3, int NumeroDePie4, int CantidadTotal,
 			int Pedidos_NPedido) throws SQLException {
+
+		boolean Hecho = false;
 
 		/**
 		 * Instanciamos y crearmos el objeto
@@ -452,6 +455,7 @@ public class ClsGestorLN {
 		 * Miramos que no se repitan los objetos y los añadimos al Array y al la BD.
 		 */
 		if (!ExisteDesglose(objDesgloseDePedido)) {
+			Hecho = true;
 			/**
 			 * Añadimos el objeto a el array.
 			 */
@@ -466,6 +470,7 @@ public class ClsGestorLN {
 			objDatos.desconectarBD();
 		}
 
+		return Hecho;
 	}
 
 	/**
@@ -2041,6 +2046,40 @@ public class ClsGestorLN {
 		 * compiamos un array en el otro ya ordenado
 		 */
 		for (ClsPedidos a : MiListaDePedidos) {
+			retorno.add(a);
+		}
+
+		return retorno;
+	}
+
+	/**
+	 * Metodo para ordenar array de desgloses por ID
+	 * 
+	 * @return nos lo devuelve ordenado
+	 */
+	public ArrayList<ItfProperty> OrdenarDesgloses() {
+
+		/**
+		 * Objeto comparador
+		 */
+		ClsComparadorDesglosesID comp = new ClsComparadorDesglosesID();
+
+		/**
+		 * Funcion de ordenamiento (ArrayList, Patron)
+		 */
+		Collections.sort(MiListaDeDesgloses, comp);
+
+		/**
+		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
+		 * pasarlas a ClsMostrarDatos para verlos por pantalla
+		 */
+		ArrayList<ItfProperty> retorno;
+		retorno = new ArrayList<ItfProperty>();
+
+		/**
+		 * compiamos un array en el otro ya ordenado
+		 */
+		for (ClsDesgloseDePedido a : MiListaDeDesgloses) {
 			retorno.add(a);
 		}
 

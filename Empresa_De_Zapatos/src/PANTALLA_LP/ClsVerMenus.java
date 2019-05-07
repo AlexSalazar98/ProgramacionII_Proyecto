@@ -19,7 +19,7 @@ import java.awt.Color;
 import java.awt.Toolkit;
 
 /**
- * Pantalla de introducir los datos
+ * Pantalla de menus
  * 
  * @author Alex Salazar
  * @author David Requeta
@@ -92,6 +92,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	private ClsIFIntroducirEnvios IntFrameEnvios;
 	private ClsIFIntroducirArticulos IntFrameArticulos;
 	private ClsIFIntroducirPedidos IntFramePedidos;
+	private ClsIFIntroducirDesgloses IntFrameDesgloses;
 
 	/**
 	 * Launch the application.
@@ -537,10 +538,42 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 			IntroducirPedidos();
 			break;
 
+		/**
+		 * Si pulsa introducir Desgloses.
+		 */
+		case DESGLOSE_INSERTAR_BUTTON:
+			IntroducirDesgloses();
+			break;
+
 		default:
 			break;
 		}
 
+	}
+
+	/**
+	 * Llamada a InternalFrame para introducir Desgloses
+	 */
+	private void IntroducirDesgloses() {
+		/**
+		 * Comprobamos que no este ya abierto
+		 */
+		if (!ComprobarVentanaDesglosesAbierta()) {
+			/**
+			 * Creamos objeto IFrameSeries
+			 */
+			IntFrameDesgloses = new ClsIFIntroducirDesgloses(objGestorMID);
+			PanelMenuIntrducirDatos.add(IntFrameDesgloses);
+		}
+		/**
+		 * Lo hacemos visible
+		 */
+		IntFrameDesgloses.setVisible(true);
+		try {
+			IntFrameDesgloses.setSelected(true);
+		} catch (PropertyVetoException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
 	}
 
 	/**
@@ -729,7 +762,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		}
 
 	}
-	
+
 	/**
 	 * Metodo para ir al InternalFrame introducir Pedidos
 	 */
@@ -986,7 +1019,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 
 		return mostrar;
 	}
-	
+
 	/**
 	 * Metodo para comprobar si la ventana pedidos esta abierta
 	 * 
@@ -1012,6 +1045,39 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 			IntFramePedidos.toFront();
 
 			PanelMenuIntrducirDatos.moveToFront(IntFramePedidos);
+
+			mostrar = true;
+
+		}
+
+		return mostrar;
+	}
+
+	/**
+	 * Metodo para comprobar si la ventana desgloses esta abierta
+	 * 
+	 * @return nos devuelve el resultado
+	 */
+	public boolean ComprobarVentanaDesglosesAbierta() {
+
+		boolean mostrar = false;
+
+		boolean cerrado;
+		if (IntFrameDesgloses == null || IntFrameDesgloses.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
+		}
+
+		if (!cerrado) {
+			String Nombre = IntFrameDesgloses.getTitle();
+
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
+
+			IntFrameDesgloses.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFrameDesgloses);
 
 			mostrar = true;
 
