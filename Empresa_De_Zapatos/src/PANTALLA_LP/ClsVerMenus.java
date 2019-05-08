@@ -18,7 +18,6 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.Toolkit;
 
-
 /**
  * Pantalla de menus
  * 
@@ -60,11 +59,16 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	private final String PEDIDOS_BORRAR_BUTTON = "Boton de borrar pedidos";
 	private final String SERIES_BORRAR_BUTTON = "Boton de borrar series";
 	private final String SUELAS_BORRAR_BUTTON = "Boton de borrar suelas";
-	
+
 	/**
 	 * Constante para el LISENER de actualizar.
 	 */
 	private final String ENTREGAS_ACTUALIZAR_BUTTON = "Boton de actualizar entregas";
+
+	/**
+	 * Constante para el LISENER informes
+	 */
+	private final String INFORMES_PEDIDOS_MAS_DESGLOSES_BUTTON = "Informes pedidos mas desgloses";
 
 	/**
 	 * Objetos instanciados
@@ -86,7 +90,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	private ClsIFIntroducirArticulos IntFrameArticulos;
 	private ClsIFIntroducirPedidos IntFramePedidos;
 	private ClsIFIntroducirDesgloses IntFrameDesgloses;
-	private JSeparator separator_16;
+	private ClsPedidosMasDesglose IntFramePedidosMasDesgloses;
 	private JMenuItem PedidosDesglose;
 
 	/**
@@ -229,12 +233,6 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		ConsultarBorrar.add(SuelasBorrar);
 		SuelasBorrar.addActionListener(this);
 		SuelasBorrar.setActionCommand(SUELAS_BORRAR_BUTTON);
-		
-		separator_16 = new JSeparator();
-		ConsultarBorrar.add(separator_16);
-		
-		PedidosDesglose = new JMenuItem("Pedidos + Desgloses");
-		ConsultarBorrar.add(PedidosDesglose);
 		Introducir = new JMenu("Introducir ");
 		Introducir.setForeground(Color.BLUE);
 		Introducir.setFont(new Font("Segoe UI", Font.BOLD, 25));
@@ -441,6 +439,16 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		 */
 		SuelasIntroducir.setActionCommand(SUELAS_INSERTAR_BUTTON);
 
+		JMenu Informes = new JMenu("Informes");
+		Informes.setForeground(Color.BLUE);
+		Informes.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		menuBar.add(Informes);
+
+		PedidosDesglose = new JMenuItem("Pedidos + Desgloses");
+		Informes.add(PedidosDesglose);
+		PedidosDesglose.addActionListener(this);
+		PedidosDesglose.setActionCommand(INFORMES_PEDIDOS_MAS_DESGLOSES_BUTTON);
+
 	}
 
 	@Override
@@ -504,6 +512,12 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		case DESGLOSE_INSERTAR_BUTTON:
 			IntroducirDesgloses();
 			break;
+		/**
+		 * Si pulsa informes pedidos + desgloses.
+		 */
+		case INFORMES_PEDIDOS_MAS_DESGLOSES_BUTTON:
+			InformesPedidosDesgloses();
+			break;
 
 		default:
 			break;
@@ -511,6 +525,32 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Llamada a InternalFrame para informes pedidos mas desgloses
+	 */
+	private void InformesPedidosDesgloses() {
+		/**
+		 * Comprobamos que no este ya abierto
+		 */
+		if (!ComprobarVentanaPedidosDesglosesAbierta()) {
+			/**
+			 * Creamos objeto IFrameSeries
+			 */
+			IntFramePedidosMasDesgloses = new ClsPedidosMasDesglose(objGestorMID);
+			PanelMenuIntrducirDatos.add(IntFramePedidosMasDesgloses);
+		}
+		/**
+		 * Lo hacemos visible
+		 */
+		IntFramePedidosMasDesgloses.setVisible(true);
+		try {
+			IntFramePedidosMasDesgloses.setSelected(true);
+		} catch (PropertyVetoException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+	}
+	
+	
 	/**
 	 * Llamada a InternalFrame para introducir Desgloses
 	 */
@@ -755,26 +795,26 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	 * 
 	 * @return nos dice si esta abierta o no
 	 */
-	public boolean ComprobarVentanaHerrajesAbierta() {
+	public boolean ComprobarVentanaPedidosDesglosesAbierta() {
 
 		boolean mostrar = false;
 
 		boolean cerrado;
-		if (IntFrameHerrajes == null || IntFrameHerrajes.isClosed()) {
+		if (IntFramePedidosMasDesgloses == null || IntFramePedidosMasDesgloses.isClosed()) {
 			cerrado = true;
 		} else {
 			cerrado = false;
 		}
 
 		if (!cerrado) {
-			String Nombre = IntFrameHerrajes.getTitle();
+			String Nombre = IntFramePedidosMasDesgloses.getTitle();
 
 			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
 					JOptionPane.WARNING_MESSAGE);
 
-			IntFrameHerrajes.toFront();
+			IntFramePedidosMasDesgloses.toFront();
 
-			PanelMenuIntrducirDatos.moveToFront(IntFrameHerrajes);
+			PanelMenuIntrducirDatos.moveToFront(IntFramePedidosMasDesgloses);
 
 			mostrar = true;
 
@@ -1038,6 +1078,39 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 			IntFrameDesgloses.toFront();
 
 			PanelMenuIntrducirDatos.moveToFront(IntFrameDesgloses);
+
+			mostrar = true;
+
+		}
+
+		return mostrar;
+	}
+	
+	/**
+	 * Metodo para comprobar que la ventana esta abierta o no
+	 * 
+	 * @return nos dice si esta abierta o no
+	 */
+	public boolean ComprobarVentanaHerrajesAbierta() {
+
+		boolean mostrar = false;
+
+		boolean cerrado;
+		if (IntFrameHerrajes == null || IntFrameHerrajes.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
+		}
+
+		if (!cerrado) {
+			String Nombre = IntFrameHerrajes.getTitle();
+
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
+
+			IntFrameHerrajes.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFrameHerrajes);
 
 			mostrar = true;
 

@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Desktop/Clase/uni1819/Segundo Semestre/Programacion II/Programas2/Empresa_De_Zapatos/Lib/jgoodies-looks-2.4.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Desktop/Clase/uni1819/Segundo Semestre/Programacion II/Programas2/Empresa_De_Zapatos/Lib/junit-4.6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Desktop/Clase/uni1819/Segundo Semestre/Programacion II/Programas2/Empresa_De_Zapatos/Lib/mysql-connector-java-8.0.15.jar"/>
+	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
