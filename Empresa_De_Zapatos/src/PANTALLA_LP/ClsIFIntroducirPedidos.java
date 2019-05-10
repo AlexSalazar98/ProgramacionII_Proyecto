@@ -196,8 +196,7 @@ public class ClsIFIntroducirPedidos extends JInternalFrame implements ActionList
 					Entregado = false;
 				}
 			} while (resultado == -1);
-			if (MandarAGestor()) {
-				PonerVacio();
+			if (MandarAGestor()) {				
 				ObtenerUltimoID();
 			}
 			break;
@@ -208,12 +207,7 @@ public class ClsIFIntroducirPedidos extends JInternalFrame implements ActionList
 
 	}
 
-	/**
-	 * Para poner vacios lo huecos
-	 */
-	private void PonerVacio() {
-		RecogerNombreApellidos.setText("");
-	}
+	
 
 	/**
 	 * Confirmar la entrega del pedido

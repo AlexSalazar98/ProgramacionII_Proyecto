@@ -59,7 +59,7 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 	private final String BORRAR_BUTTON = "Boton de confirmar Suelas";
 
 	public ClsConsultarBorrarSuelas(ClsGestorLN ObjGestor) {
-		setFrameIcon(new ImageIcon(ClsIFConsultarBorrarSeries.class.getResource("/PANTALLA_LP/DEUSTO.png")));
+		setFrameIcon(new ImageIcon(ClsConsultarBorrarSeries.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setTitle("Consultar Suelas");
 		setIconifiable(true);
 		setClosable(true);
@@ -161,7 +161,7 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 
-		int Seleccionado = TablaSuelas.getSelectedRow();
+		int Seleccionado = TablaSuelas.getSelectedRowCount();
 
 		if (Seleccionado > 0) {
 			BotonBorrar.setEnabled(true);

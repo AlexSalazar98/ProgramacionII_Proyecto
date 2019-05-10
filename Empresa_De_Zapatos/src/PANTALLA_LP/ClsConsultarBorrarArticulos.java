@@ -164,7 +164,7 @@ public class ClsConsultarBorrarArticulos extends JInternalFrame implements Actio
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 
-		int Seleccionado = TablaArticulos.getSelectedRow();
+		int Seleccionado = TablaArticulos.getSelectedRowCount();
 
 		if (Seleccionado > 0) {
 			BotonBorrar.setEnabled(true);

@@ -92,9 +92,11 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	private ClsIFIntroducirDesgloses IntFrameDesgloses;
 	private ClsPedidosMasDesglose IntFramePedidosMasDesgloses;
 	private JMenuItem PedidosDesglose;
-	private ClsIFConsultarBorrarSeries IntFrameConsultarBorrarSeries;
+	private ClsConsultarBorrarSeries IntFrameConsultarBorrarSeries;
 	private ClsConsultarBorrarSuelas IntFrameConsultarBorrarSuelas;
 	private ClsConsultarBorrarArticulos IntFrameConsultarBorrarArticulos;
+	private ClsConsultarBorrarPedidos IntFrameConsultarBorrarPedidos;
+	private ClsConsultarBorrarClientes IntFrameConsultarBorrarClientes;
 
 	/**
 	 * Launch the application.
@@ -543,10 +545,74 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 			ConsultarBorrarArticulos();
 			break;
 
+		/**
+		 * Si pulsa consultar pedidos.
+		 */
+		case PEDIDOS_BORRAR_BUTTON:
+			ConsultarBorrarPedidos();
+			break;
+
+		/**
+		 * Si pulsa consultar clientes.
+		 */
+		case CLIENTES_BORRAR_BUTTON:
+			ConsultarBorrarClientes();
+			break;
+
 		default:
 			break;
 		}
 
+	}
+
+	/**
+	 * Llamada a InternalFrame para consultar y borrar clientes
+	 */
+	private void ConsultarBorrarClientes() {
+		/**
+		 * Comprobamos que no este ya abierto
+		 */
+		if (!ComprobarVentanaConsultarBorrarClientesAbierta()) {
+			/**
+			 * Creamos objeto IFrameSeries
+			 */
+			IntFrameConsultarBorrarClientes = new ClsConsultarBorrarClientes(objGestorMID);
+			PanelMenuIntrducirDatos.add(IntFrameConsultarBorrarClientes);
+		}
+		/**
+		 * Lo hacemos visible
+		 */
+		IntFrameConsultarBorrarClientes.setVisible(true);
+		try {
+			IntFrameConsultarBorrarPedidos.setSelected(true);
+		} catch (PropertyVetoException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+	}
+
+	/**
+	 * Llamada a InternalFrame para consultar y borrar pedios
+	 */
+	private void ConsultarBorrarPedidos() {
+		/**
+		 * Comprobamos que no este ya abierto
+		 */
+		if (!ComprobarVentanaConsultarBorrarPedidosAbierta()) {
+			/**
+			 * Creamos objeto IFrameSeries
+			 */
+			IntFrameConsultarBorrarPedidos = new ClsConsultarBorrarPedidos(objGestorMID);
+			PanelMenuIntrducirDatos.add(IntFrameConsultarBorrarPedidos);
+		}
+		/**
+		 * Lo hacemos visible
+		 */
+		IntFrameConsultarBorrarPedidos.setVisible(true);
+		try {
+			IntFrameConsultarBorrarPedidos.setSelected(true);
+		} catch (PropertyVetoException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
 	}
 
 	/**
@@ -610,7 +676,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 			/**
 			 * Creamos objeto IFrameSeries
 			 */
-			IntFrameConsultarBorrarSeries = new ClsIFConsultarBorrarSeries(objGestorMID);
+			IntFrameConsultarBorrarSeries = new ClsConsultarBorrarSeries(objGestorMID);
 			PanelMenuIntrducirDatos.add(IntFrameConsultarBorrarSeries);
 		}
 		/**
@@ -1314,5 +1380,71 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 
 		return mostrar;
 
+	}
+
+	/**
+	 * Metodo para comprobar que la ventana esta abierta o no
+	 * 
+	 * @return nos dice si esta abierta o no
+	 */
+	private boolean ComprobarVentanaConsultarBorrarPedidosAbierta() {
+
+		boolean mostrar = false;
+
+		boolean cerrado;
+		if (IntFrameConsultarBorrarPedidos == null || IntFrameConsultarBorrarPedidos.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
+		}
+
+		if (!cerrado) {
+			String Nombre = IntFrameConsultarBorrarPedidos.getTitle();
+
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
+
+			IntFrameConsultarBorrarPedidos.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFrameConsultarBorrarPedidos);
+
+			mostrar = true;
+
+		}
+
+		return mostrar;
+	}
+
+	/**
+	 * Metodo para comprobar que la ventana esta abierta o no
+	 * 
+	 * @return nos dice si esta abierta o no
+	 */
+	private boolean ComprobarVentanaConsultarBorrarClientesAbierta() {
+
+		boolean mostrar = false;
+
+		boolean cerrado;
+		if (IntFrameConsultarBorrarClientes == null || IntFrameConsultarBorrarClientes.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
+		}
+
+		if (!cerrado) {
+			String Nombre = IntFrameConsultarBorrarClientes.getTitle();
+
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
+
+			IntFrameConsultarBorrarClientes.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFrameConsultarBorrarClientes);
+
+			mostrar = true;
+
+		}
+
+		return mostrar;
 	}
 }

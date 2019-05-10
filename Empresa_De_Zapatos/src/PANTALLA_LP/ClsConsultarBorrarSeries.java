@@ -30,7 +30,7 @@ import javax.swing.JTable;
  * @author David Requeta
  *
  */
-public class ClsIFConsultarBorrarSeries extends JInternalFrame implements ActionListener, ListSelectionListener {
+public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionListener, ListSelectionListener {
 
 	/**
 	 * No se para que sirve esto
@@ -60,8 +60,8 @@ public class ClsIFConsultarBorrarSeries extends JInternalFrame implements Action
 	 */
 	private final String BORRAR_BUTTON = "Boton de confirmar Series";
 
-	public ClsIFConsultarBorrarSeries(ClsGestorLN ObjGestor) {
-		setFrameIcon(new ImageIcon(ClsIFConsultarBorrarSeries.class.getResource("/PANTALLA_LP/DEUSTO.png")));
+	public ClsConsultarBorrarSeries(ClsGestorLN ObjGestor) {
+		setFrameIcon(new ImageIcon(ClsConsultarBorrarSeries.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setTitle("Consultar Series");
 		setIconifiable(true);
 		setClosable(true);
@@ -161,7 +161,7 @@ public class ClsIFConsultarBorrarSeries extends JInternalFrame implements Action
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 
-		int Seleccionado = TablaSeries.getSelectedRow();
+		int Seleccionado = TablaSeries.getSelectedRowCount();
 
 		if (Seleccionado > 0) {
 			BotonBorrar.setEnabled(true);
