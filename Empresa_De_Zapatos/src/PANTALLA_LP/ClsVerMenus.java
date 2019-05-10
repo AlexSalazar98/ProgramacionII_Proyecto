@@ -94,6 +94,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	private JMenuItem PedidosDesglose;
 	private ClsIFConsultarBorrarSeries IntFrameConsultarBorrarSeries;
 	private ClsConsultarBorrarSuelas IntFrameConsultarBorrarSuelas;
+	private ClsConsultarBorrarArticulos IntFrameConsultarBorrarArticulos;
 
 	/**
 	 * Launch the application.
@@ -535,10 +536,42 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 			ConsultarBorrarSuelas();
 			break;
 
+		/**
+		 * Si pulsa consultar articulos.
+		 */
+		case ARTICULOS_BORRAR_BUTTON:
+			ConsultarBorrarArticulos();
+			break;
+
 		default:
 			break;
 		}
 
+	}
+
+	/**
+	 * Llamada a InternalFrame para consultar y borrar suelas
+	 */
+	private void ConsultarBorrarArticulos() {
+		/**
+		 * Comprobamos que no este ya abierto
+		 */
+		if (!ComprobarVentanaConsultarBorrarArticulosAbierta()) {
+			/**
+			 * Creamos objeto IFrameSeries
+			 */
+			IntFrameConsultarBorrarArticulos = new ClsConsultarBorrarArticulos(objGestorMID);
+			PanelMenuIntrducirDatos.add(IntFrameConsultarBorrarArticulos);
+		}
+		/**
+		 * Lo hacemos visible
+		 */
+		IntFrameConsultarBorrarArticulos.setVisible(true);
+		try {
+			IntFrameConsultarBorrarArticulos.setSelected(true);
+		} catch (PropertyVetoException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
 	}
 
 	/**
@@ -860,7 +893,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	 * 
 	 * @return nos dice si esta abierta o no
 	 */
-	public boolean ComprobarVentanaPedidosDesglosesAbierta() {
+	private boolean ComprobarVentanaPedidosDesglosesAbierta() {
 
 		boolean mostrar = false;
 
@@ -893,7 +926,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	 * 
 	 * @param inter recive el objeto
 	 */
-	public boolean ComprobarVentanaSeriesAbierta() {
+	private boolean ComprobarVentanaSeriesAbierta() {
 
 		boolean mostrar = false;
 
@@ -926,7 +959,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	 * 
 	 * @param inter recive el objeto
 	 */
-	public boolean ComprobarVentanaSuelasAbierta() {
+	private boolean ComprobarVentanaSuelasAbierta() {
 		boolean mostrar = false;
 
 		boolean cerrado;
@@ -958,7 +991,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	 * 
 	 * @param inter recive el objeto
 	 */
-	public boolean ComprobarVentanaMaterialesAbierta() {
+	private boolean ComprobarVentanaMaterialesAbierta() {
 
 		boolean mostrar = false;
 
@@ -991,7 +1024,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	 * 
 	 * @param inter recive el objeto
 	 */
-	public boolean ComprobarVentanaClientesAbierta() {
+	private boolean ComprobarVentanaClientesAbierta() {
 
 		boolean mostrar = false;
 
@@ -1024,7 +1057,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	 * 
 	 * @return nos devuelve el resultado
 	 */
-	public boolean ComprobarVentanaEnviosAbierta() {
+	private boolean ComprobarVentanaEnviosAbierta() {
 
 		boolean mostrar = false;
 
@@ -1057,7 +1090,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	 * 
 	 * @return nos devuelve el resultado
 	 */
-	public boolean ComprobarVentanaArticulosAbierta() {
+	private boolean ComprobarVentanaArticulosAbierta() {
 
 		boolean mostrar = false;
 
@@ -1090,7 +1123,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	 * 
 	 * @return nos devuelve el resultado
 	 */
-	public boolean ComprobarVentanaPedidosAbierta() {
+	private boolean ComprobarVentanaPedidosAbierta() {
 
 		boolean mostrar = false;
 
@@ -1123,7 +1156,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	 * 
 	 * @return nos devuelve el resultado
 	 */
-	public boolean ComprobarVentanaDesglosesAbierta() {
+	private boolean ComprobarVentanaDesglosesAbierta() {
 
 		boolean mostrar = false;
 
@@ -1156,7 +1189,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	 * 
 	 * @return nos dice si esta abierta o no
 	 */
-	public boolean ComprobarVentanaConsultarBorrarSeriesAbierta() {
+	private boolean ComprobarVentanaConsultarBorrarSeriesAbierta() {
 
 		boolean mostrar = false;
 
@@ -1189,7 +1222,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	 * 
 	 * @return nos dice si esta abierta o no
 	 */
-	public boolean ComprobarVentanaConsultarBorrarSuelasAbierta() {
+	private boolean ComprobarVentanaConsultarBorrarSuelasAbierta() {
 
 		boolean mostrar = false;
 
@@ -1222,7 +1255,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	 * 
 	 * @return nos dice si esta abierta o no
 	 */
-	public boolean ComprobarVentanaHerrajesAbierta() {
+	private boolean ComprobarVentanaHerrajesAbierta() {
 
 		boolean mostrar = false;
 
@@ -1248,5 +1281,38 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		}
 
 		return mostrar;
+	}
+
+	/**
+	 * Metodo para comprobar que la ventana esta abierta o no
+	 * 
+	 * @return nos dice si esta abierta o no
+	 */
+	private boolean ComprobarVentanaConsultarBorrarArticulosAbierta() {
+		boolean mostrar = false;
+
+		boolean cerrado;
+		if (IntFrameConsultarBorrarArticulos == null || IntFrameConsultarBorrarArticulos.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
+		}
+
+		if (!cerrado) {
+			String Nombre = IntFrameConsultarBorrarArticulos.getTitle();
+
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
+
+			IntFrameConsultarBorrarArticulos.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFrameConsultarBorrarArticulos);
+
+			mostrar = true;
+
+		}
+
+		return mostrar;
+
 	}
 }

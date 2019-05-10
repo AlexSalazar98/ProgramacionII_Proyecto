@@ -43,7 +43,6 @@ public class ClsTablaSeries extends AbstractTableModel {
 		}
 	}
 
-	@SuppressWarnings("unused")
 	public Object[][] setData(ClsGestorLN ObjGestor) {
 		SeriesRecuperadas = ObjGestor.DameSeries();
 		int filas = SeriesRecuperadas.size();

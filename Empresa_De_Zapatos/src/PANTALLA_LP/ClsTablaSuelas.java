@@ -52,7 +52,6 @@ public class ClsTablaSuelas extends AbstractTableModel {
 		}
 	}
 
-	@SuppressWarnings("unused")
 	public Object[][] setData(ClsGestorLN ObjGestor) {
 		SuelasRecuperadas = ObjGestor.DameSuelas();
 		int filas = SuelasRecuperadas.size();
