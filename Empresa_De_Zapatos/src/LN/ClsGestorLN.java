@@ -556,6 +556,7 @@ public class ClsGestorLN {
 		 */
 		for (ClsSeries a : MiListaDeSeries) {
 			retorno.add(a);
+
 		}
 
 		return retorno;

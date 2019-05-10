@@ -92,6 +92,8 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	private ClsIFIntroducirDesgloses IntFrameDesgloses;
 	private ClsPedidosMasDesglose IntFramePedidosMasDesgloses;
 	private JMenuItem PedidosDesglose;
+	private ClsIFConsultarBorrarSeries IntFrameConsultarBorrarSeries;
+	private ClsConsultarBorrarSuelas IntFrameConsultarBorrarSuelas;
 
 	/**
 	 * Launch the application.
@@ -519,10 +521,74 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 			InformesPedidosDesgloses();
 			break;
 
+		/**
+		 * Si pulsa consultar series.
+		 */
+		case SERIES_BORRAR_BUTTON:
+			ConsultarBorrarSeries();
+			break;
+
+		/**
+		 * Si pulsa consultar suelas.
+		 */
+		case SUELAS_BORRAR_BUTTON:
+			ConsultarBorrarSuelas();
+			break;
+
 		default:
 			break;
 		}
 
+	}
+
+	/**
+	 * Llamada a InternalFrame para consultar y borrar suelas
+	 */
+	private void ConsultarBorrarSuelas() {
+		/**
+		 * Comprobamos que no este ya abierto
+		 */
+		if (!ComprobarVentanaConsultarBorrarSuelasAbierta()) {
+			/**
+			 * Creamos objeto IFrameSeries
+			 */
+			IntFrameConsultarBorrarSuelas = new ClsConsultarBorrarSuelas(objGestorMID);
+			PanelMenuIntrducirDatos.add(IntFrameConsultarBorrarSuelas);
+		}
+		/**
+		 * Lo hacemos visible
+		 */
+		IntFrameConsultarBorrarSuelas.setVisible(true);
+		try {
+			IntFrameConsultarBorrarSuelas.setSelected(true);
+		} catch (PropertyVetoException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+	}
+
+	/**
+	 * Llamada a InternalFrame para consultar y borrar series
+	 */
+	private void ConsultarBorrarSeries() {
+		/**
+		 * Comprobamos que no este ya abierto
+		 */
+		if (!ComprobarVentanaConsultarBorrarSeriesAbierta()) {
+			/**
+			 * Creamos objeto IFrameSeries
+			 */
+			IntFrameConsultarBorrarSeries = new ClsIFConsultarBorrarSeries(objGestorMID);
+			PanelMenuIntrducirDatos.add(IntFrameConsultarBorrarSeries);
+		}
+		/**
+		 * Lo hacemos visible
+		 */
+		IntFrameConsultarBorrarSeries.setVisible(true);
+		try {
+			IntFrameConsultarBorrarSeries.setSelected(true);
+		} catch (PropertyVetoException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
 	}
 
 	/**
@@ -549,8 +615,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, e);
 		}
 	}
-	
-	
+
 	/**
 	 * Llamada a InternalFrame para introducir Desgloses
 	 */
@@ -1085,7 +1150,73 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 
 		return mostrar;
 	}
-	
+
+	/**
+	 * Metodo para comprobar que la ventana esta abierta o no
+	 * 
+	 * @return nos dice si esta abierta o no
+	 */
+	public boolean ComprobarVentanaConsultarBorrarSeriesAbierta() {
+
+		boolean mostrar = false;
+
+		boolean cerrado;
+		if (IntFrameConsultarBorrarSeries == null || IntFrameConsultarBorrarSeries.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
+		}
+
+		if (!cerrado) {
+			String Nombre = IntFrameConsultarBorrarSeries.getTitle();
+
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
+
+			IntFrameConsultarBorrarSeries.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFrameConsultarBorrarSeries);
+
+			mostrar = true;
+
+		}
+
+		return mostrar;
+	}
+
+	/**
+	 * Metodo para comprobar que la ventana esta abierta o no
+	 * 
+	 * @return nos dice si esta abierta o no
+	 */
+	public boolean ComprobarVentanaConsultarBorrarSuelasAbierta() {
+
+		boolean mostrar = false;
+
+		boolean cerrado;
+		if (IntFrameConsultarBorrarSuelas == null || IntFrameConsultarBorrarSuelas.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
+		}
+
+		if (!cerrado) {
+			String Nombre = IntFrameConsultarBorrarSuelas.getTitle();
+
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
+
+			IntFrameConsultarBorrarSuelas.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFrameConsultarBorrarSuelas);
+
+			mostrar = true;
+
+		}
+
+		return mostrar;
+	}
+
 	/**
 	 * Metodo para comprobar que la ventana esta abierta o no
 	 * 

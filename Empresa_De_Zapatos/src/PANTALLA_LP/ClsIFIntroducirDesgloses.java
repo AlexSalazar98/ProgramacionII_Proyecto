@@ -408,9 +408,15 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 		TArticulos.fireTableDataChanged();
 
 		PanelArticulos = new JScrollPane();
-		PanelArticulos.setBounds(10, 11, 450, 221);
+		PanelArticulos.setBounds(0, 25, 470, 207);
 		PanelArticulos.setViewportView(TablaArticulos);
 		Articulos.add(PanelArticulos);
+		
+		JLabel TxtArticulos = new JLabel("Tabla de Art\u00EDculos");
+		TxtArticulos.setFont(new Font("Tahoma", Font.BOLD, 15));
+		TxtArticulos.setHorizontalAlignment(SwingConstants.CENTER);
+		TxtArticulos.setBounds(10, 0, 450, 29);
+		Articulos.add(TxtArticulos);
 	}
 
 	private void CrearTablaSeries() {
@@ -431,7 +437,7 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 		PanelSeries = new JScrollPane();
 		SeriesPedidos.setRightComponent(PanelSeries);
 		PanelSeries.setViewportView(TablaSeries);
-		TSeries.setData(Series);
+		TSeries.setData(objGestorIFIDes);
 	}
 
 	@Override
