@@ -97,13 +97,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Articulos` (
   `CantidadMaterial` INT NOT NULL,
   `CantidadHerraje` INT NOT NULL,
   `Precio` DOUBLE NULL,
-  `Suelas_Referencia` INT NOT NULL,
+  `Suelas_Referencia` INT NULL,
   PRIMARY KEY (`Referencia`),
   INDEX `fk_Articulos_Suelas1_idx` (`Suelas_Referencia` ASC) VISIBLE,
   CONSTRAINT `fk_Articulos_Suelas1`
     FOREIGN KEY (`Suelas_Referencia`)
     REFERENCES `mydb`.`Suelas` (`Referencia`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`DesgloseDePedidos` (
   `NPedidoD` INT NOT NULL,
   `Serie` INT NOT NULL,
   `Color` INT NULL,
-  `Articulos_Referencia` INT NOT NULL,
+  `Articulos_Referencia` INT NULL,
   `P5` INT NULL,
   `P6` INT NULL,
   `P7` INT NULL,
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`DesgloseDePedidos` (
   CONSTRAINT `fk_DesgloseDepedidos_Articulos1`
     FOREIGN KEY (`Articulos_Referencia`)
     REFERENCES `mydb`.`Articulos` (`Referencia`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_DesgloseDePedidos_Pedidos1`
     FOREIGN KEY (`Pedidos_NPedido`)
