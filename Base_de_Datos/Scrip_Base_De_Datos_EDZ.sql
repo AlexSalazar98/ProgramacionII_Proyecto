@@ -39,14 +39,14 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Pedidos` (
   `Fecha_de_entrega` DATE NOT NULL,
   `Entregado` TINYINT(1) NULL,
   `NombreYApellidos` VARCHAR(200) NOT NULL,
-  `Clientes_NCliente` INT NOT NULL,
-  PRIMARY KEY (`NPedido`, `Clientes_NCliente`),
+  `Clientes_NCliente` INT NULL,
+  PRIMARY KEY (`NPedido`),
   UNIQUE INDEX `NºPedido_UNIQUE` (`NPedido` ASC) VISIBLE,
   INDEX `fk_Pedidos_Clientes1_idx` (`Clientes_NCliente` ASC) VISIBLE,
   CONSTRAINT `fk_Pedidos_Clientes1`
     FOREIGN KEY (`Clientes_NCliente`)
     REFERENCES `mydb`.`Clientes` (`NCliente`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -155,14 +155,14 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Envios` (
   `CPDeEnvio` INT NOT NULL,
   `ProvinciaDeEnvio` VARCHAR(45) NOT NULL,
   `TelefonoDeEnvio` INT NULL,
-  `Clientes_NCliente` INT NOT NULL,
+  `Clientes_NCliente` INT NULL,
   PRIMARY KEY (`NEnvio`),
   INDEX `fk_Envios_Clientes1_idx` (`Clientes_NCliente` ASC) VISIBLE,
   UNIQUE INDEX `NºEnvio_UNIQUE` (`NEnvio` ASC) VISIBLE,
   CONSTRAINT `fk_Envios_Clientes1`
     FOREIGN KEY (`Clientes_NCliente`)
     REFERENCES `mydb`.`Clientes` (`NCliente`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
