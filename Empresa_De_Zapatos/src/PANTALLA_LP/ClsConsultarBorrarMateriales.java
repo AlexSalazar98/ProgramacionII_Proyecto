@@ -31,7 +31,7 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 	private static final long serialVersionUID = 1L;
 	private JTable TablaMateriales;
 	private JLabel TxtTablaMateriales;
-	private JButton BotonBorrar;
+	private JButton BotonBorrar, BotonActualizar;
 	private JScrollPane PanelMateriales;
 	@SuppressWarnings("unused")
 	private ClsTablaMateriales TMateriales;
@@ -52,6 +52,7 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 	 * Para el Lisener
 	 */
 	private final String BORRAR_BUTTON = "Boton de confirmar Materiales";
+	private final String ACTUALIZAR_BUTTON = "Boton de actualizar Materiales";
 
 	public ClsConsultarBorrarMateriales(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarMateriales.class.getResource("/PANTALLA_LP/DEUSTO.png")));
@@ -83,6 +84,12 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 		BotonBorrar.addActionListener(this);
 		BotonBorrar.setActionCommand(BORRAR_BUTTON);
 
+		BotonActualizar = new JButton("\u21bb");
+		BotonActualizar.setBounds(348, 11, 43, 31);
+		getContentPane().add(BotonActualizar);
+		BotonActualizar.addActionListener(this);
+		BotonActualizar.setActionCommand(ACTUALIZAR_BUTTON);
+
 	}
 
 	private void CrearTablaMateriales() {
@@ -97,7 +104,7 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		TablaMateriales.getColumnModel().getColumn(0).setCellRenderer(Alinear);
 		TablaMateriales.getColumnModel().getColumn(1).setCellRenderer(Alinear);
-		TablaMateriales.getColumnModel().getColumn(2).setCellRenderer(Alinear);		
+		TablaMateriales.getColumnModel().getColumn(2).setCellRenderer(Alinear);
 		TablaMateriales.setPreferredScrollableViewportSize(new Dimension(500, 70));
 		TablaMateriales.setFillsViewportHeight(true);
 		TablaMateriales.setRowSelectionAllowed(true);
@@ -108,7 +115,6 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 		PanelMateriales.setBounds(10, 45, 381, 190);
 		PanelMateriales.setViewportView(TablaMateriales);
 		getContentPane().add(PanelMateriales);
-		
 
 	}
 
@@ -120,15 +126,11 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 			String dato = String.valueOf(TablaMateriales.getValueAt(TablaMateriales.getSelectedRow(), 0));
 			int NMaterial = Integer.parseInt(dato);
 			MandarABorrar(NMaterial);
-			TablaMateriales.setVisible(false);
-			Materiales = objGestorIFCBM.DameMateriales();
-			ClsTablaMateriales TablaActualizada = new ClsTablaMateriales(Materiales);
-			TablaMateriales.setModel(TablaActualizada);
-			Alinear.setHorizontalAlignment(SwingConstants.CENTER);
-			TablaMateriales.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-			TablaMateriales.getColumnModel().getColumn(1).setCellRenderer(Alinear);
-			TablaMateriales.getColumnModel().getColumn(2).setCellRenderer(Alinear);			
-			TablaMateriales.setVisible(true);
+			ActualizarTabla();
+			break;
+
+		case ACTUALIZAR_BUTTON:
+			ActualizarTabla();
 			break;
 
 		default:
@@ -164,4 +166,15 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 
 	}
 
+	private void ActualizarTabla() {
+		TablaMateriales.setVisible(false);
+		Materiales = objGestorIFCBM.DameMateriales();
+		ClsTablaMateriales TablaActualizada = new ClsTablaMateriales(Materiales);
+		TablaMateriales.setModel(TablaActualizada);
+		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+		TablaMateriales.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+		TablaMateriales.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+		TablaMateriales.getColumnModel().getColumn(2).setCellRenderer(Alinear);
+		TablaMateriales.setVisible(true);
+	}
 }

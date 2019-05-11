@@ -38,7 +38,7 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 	private static final long serialVersionUID = 1L;
 	private JTable TablaSeries;
 	private JLabel TxtTablaSeries;
-	private JButton BotonBorrar;
+	private JButton BotonBorrar, BotonActualizar;
 	private JScrollPane PanelSeries;
 	@SuppressWarnings("unused")
 	private ClsTablaSeries TSeries;
@@ -59,6 +59,7 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 	 * Para el Lisener
 	 */
 	private final String BORRAR_BUTTON = "Boton de confirmar Series";
+	private final String ACTUALIZAR_BUTTON = "Boton de actualizar Series";
 
 	public ClsConsultarBorrarSeries(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarSeries.class.getResource("/PANTALLA_LP/DEUSTO.png")));
@@ -89,6 +90,12 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 		getContentPane().add(BotonBorrar);
 		BotonBorrar.addActionListener(this);
 		BotonBorrar.setActionCommand(BORRAR_BUTTON);
+
+		BotonActualizar = new JButton("\u21bb");
+		BotonActualizar.setBounds(381, 11, 43, 31);
+		getContentPane().add(BotonActualizar);
+		BotonActualizar.addActionListener(this);
+		BotonActualizar.setActionCommand(ACTUALIZAR_BUTTON);
 
 	}
 
@@ -126,14 +133,11 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 			String dato = String.valueOf(TablaSeries.getValueAt(TablaSeries.getSelectedRow(), 0));
 			int NSerie = Integer.parseInt(dato);
 			MandarABorrar(NSerie);
-			TablaSeries.setVisible(false);
-			Series = objGestorIFCBS.DameSeries();
-			ClsTablaSeries TablaActualizada = new ClsTablaSeries(Series);
-			TablaSeries.setModel(TablaActualizada);
-			Alinear.setHorizontalAlignment(SwingConstants.CENTER);
-			TablaSeries.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-			TablaSeries.getColumnModel().getColumn(1).setCellRenderer(Alinear);
-			TablaSeries.setVisible(true);
+			ActualizarTabla();
+			break;
+
+		case ACTUALIZAR_BUTTON:
+			ActualizarTabla();
 			break;
 
 		default:
@@ -169,4 +173,14 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 
 	}
 
+	private void ActualizarTabla() {
+		TablaSeries.setVisible(false);
+		Series = objGestorIFCBS.DameSeries();
+		ClsTablaSeries TablaActualizada = new ClsTablaSeries(Series);
+		TablaSeries.setModel(TablaActualizada);
+		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+		TablaSeries.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+		TablaSeries.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+		TablaSeries.setVisible(true);
+	}
 }

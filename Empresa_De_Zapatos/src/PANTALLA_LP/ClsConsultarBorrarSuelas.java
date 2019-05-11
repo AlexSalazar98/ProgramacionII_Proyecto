@@ -36,11 +36,11 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 	private static final long serialVersionUID = 1L;
 	private JTable TablaSuelas;
 	private JLabel TxtTablaSuelas;
-	private JButton BotonBorrar;
+	private JButton BotonBorrar, BotonActualizar;
 	private JScrollPane PanelSuelas;
 	@SuppressWarnings("unused")
 	private ClsTablaSeries TSuelas;
-	private DefaultTableCellRenderer Alinear ; 
+	private DefaultTableCellRenderer Alinear;
 
 	/**
 	 * Para tener el Gestor
@@ -57,6 +57,7 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 	 * Para el Lisener
 	 */
 	private final String BORRAR_BUTTON = "Boton de confirmar Suelas";
+	private final String ACTUALIZAR_BUTTON = "Boton de actualizar Suelas";
 
 	public ClsConsultarBorrarSuelas(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarSeries.class.getResource("/PANTALLA_LP/DEUSTO.png")));
@@ -88,6 +89,11 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 		BotonBorrar.addActionListener(this);
 		BotonBorrar.setActionCommand(BORRAR_BUTTON);
 
+		BotonActualizar = new JButton("\u21bb");
+		BotonActualizar.setBounds(381, 11, 43, 31);
+		getContentPane().add(BotonActualizar);
+		BotonActualizar.addActionListener(this);
+		BotonActualizar.setActionCommand(ACTUALIZAR_BUTTON);
 	}
 
 	private void CrearTablaSuelas() {
@@ -125,15 +131,11 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 			String dato = String.valueOf(TablaSuelas.getValueAt(TablaSuelas.getSelectedRow(), 0));
 			int NSuela = Integer.parseInt(dato);
 			MandarABorrar(NSuela);
-			TablaSuelas.setVisible(false);
-			Suelas = objGestorIFCBSu.DameSuelas();
-			ClsTablaSuelas TablaActualizada = new ClsTablaSuelas(Suelas);
-			TablaSuelas.setModel(TablaActualizada);
-			Alinear.setHorizontalAlignment(SwingConstants.CENTER);
-			TablaSuelas.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-			TablaSuelas.getColumnModel().getColumn(1).setCellRenderer(Alinear);
-			TablaSuelas.getColumnModel().getColumn(2).setCellRenderer(Alinear);			
-			TablaSuelas.setVisible(true);
+			ActualizarTabla();
+			break;
+
+		case ACTUALIZAR_BUTTON:
+			ActualizarTabla();
 			break;
 
 		default:
@@ -169,4 +171,15 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 
 	}
 
+	private void ActualizarTabla() {
+		TablaSuelas.setVisible(false);
+		Suelas = objGestorIFCBSu.DameSuelas();
+		ClsTablaSuelas TablaActualizada = new ClsTablaSuelas(Suelas);
+		TablaSuelas.setModel(TablaActualizada);
+		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+		TablaSuelas.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+		TablaSuelas.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+		TablaSuelas.getColumnModel().getColumn(2).setCellRenderer(Alinear);
+		TablaSuelas.setVisible(true);
+	}
 }

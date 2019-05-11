@@ -31,7 +31,7 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 	private static final long serialVersionUID = 1L;
 	private JTable TablaHerrajes;
 	private JLabel TxtTablaHerrajes;
-	private JButton BotonBorrar;
+	private JButton BotonBorrar, BotonActualizar;
 	private JScrollPane PanelHerrajes;
 	@SuppressWarnings("unused")
 	private ClsTablaHerrajes THerrajes;
@@ -52,6 +52,7 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 	 * Para el Lisener
 	 */
 	private final String BORRAR_BUTTON = "Boton de confirmar Herrajes";
+	private final String ACTUALIZAR_BUTTON = "Boton de actualizar Herrajes";
 
 	public ClsConsultarBorrarHerrajes(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarHerrajes.class.getResource("/PANTALLA_LP/DEUSTO.png")));
@@ -83,6 +84,12 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 		BotonBorrar.addActionListener(this);
 		BotonBorrar.setActionCommand(BORRAR_BUTTON);
 
+		BotonActualizar = new JButton("\u21bb");
+		BotonActualizar.setBounds(349, 11, 43, 31);
+		getContentPane().add(BotonActualizar);
+		BotonActualizar.addActionListener(this);
+		BotonActualizar.setActionCommand(ACTUALIZAR_BUTTON);
+
 	}
 
 	private void CrearTablaHerrajes() {
@@ -97,7 +104,7 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		TablaHerrajes.getColumnModel().getColumn(0).setCellRenderer(Alinear);
 		TablaHerrajes.getColumnModel().getColumn(1).setCellRenderer(Alinear);
-		TablaHerrajes.getColumnModel().getColumn(2).setCellRenderer(Alinear);		
+		TablaHerrajes.getColumnModel().getColumn(2).setCellRenderer(Alinear);
 		TablaHerrajes.setPreferredScrollableViewportSize(new Dimension(500, 70));
 		TablaHerrajes.setFillsViewportHeight(true);
 		TablaHerrajes.setRowSelectionAllowed(true);
@@ -108,7 +115,6 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 		PanelHerrajes.setBounds(10, 45, 381, 190);
 		PanelHerrajes.setViewportView(TablaHerrajes);
 		getContentPane().add(PanelHerrajes);
-		
 
 	}
 
@@ -120,15 +126,11 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 			String dato = String.valueOf(TablaHerrajes.getValueAt(TablaHerrajes.getSelectedRow(), 0));
 			int NHerrajes = Integer.parseInt(dato);
 			MandarABorrar(NHerrajes);
-			TablaHerrajes.setVisible(false);
-			Herrajes = objGestorIFCBH.DameHerrajes();
-			ClsTablaHerrajes TablaActualizada = new ClsTablaHerrajes(Herrajes);
-			TablaHerrajes.setModel(TablaActualizada);
-			Alinear.setHorizontalAlignment(SwingConstants.CENTER);
-			TablaHerrajes.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-			TablaHerrajes.getColumnModel().getColumn(1).setCellRenderer(Alinear);
-			TablaHerrajes.getColumnModel().getColumn(2).setCellRenderer(Alinear);			
-			TablaHerrajes.setVisible(true);
+			ActualizarTabla();
+			break;
+
+		case ACTUALIZAR_BUTTON:
+			ActualizarTabla();
 			break;
 
 		default:
@@ -164,4 +166,15 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 
 	}
 
+	private void ActualizarTabla() {
+		TablaHerrajes.setVisible(false);
+		Herrajes = objGestorIFCBH.DameHerrajes();
+		ClsTablaHerrajes TablaActualizada = new ClsTablaHerrajes(Herrajes);
+		TablaHerrajes.setModel(TablaActualizada);
+		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+		TablaHerrajes.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+		TablaHerrajes.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+		TablaHerrajes.getColumnModel().getColumn(2).setCellRenderer(Alinear);
+		TablaHerrajes.setVisible(true);
+	}
 }

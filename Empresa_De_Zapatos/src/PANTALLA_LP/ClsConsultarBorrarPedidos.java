@@ -36,7 +36,7 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 	private static final long serialVersionUID = 1L;
 	private JTable TablaPedidos;
 	private JLabel TxtTablaPedidos;
-	private JButton BotonBorrar;
+	private JButton BotonBorrar, BotonActualizar;
 	private JScrollPane PanelPedidos;
 	private ClsTablaPedidos TPedidos;
 	private DefaultTableCellRenderer Alinear;
@@ -56,6 +56,7 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 	 * Para el Lisener
 	 */
 	private final String BORRAR_BUTTON = "Boton de confirmar Pedidos";
+	private final String ACTUALIZAR_BUTTON = "Boton de actualizar Pedidos";
 
 	public ClsConsultarBorrarPedidos(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarPedidos.class.getResource("/PANTALLA_LP/DEUSTO.png")));
@@ -87,6 +88,11 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 		BotonBorrar.addActionListener(this);
 		BotonBorrar.setActionCommand(BORRAR_BUTTON);
 
+		BotonActualizar = new JButton("\u21bb");
+		BotonActualizar.setBounds(525, 11, 43, 31);
+		getContentPane().add(BotonActualizar);
+		BotonActualizar.addActionListener(this);
+		BotonActualizar.setActionCommand(ACTUALIZAR_BUTTON);
 	}
 
 	private void CrearTablaPedidos() {
@@ -125,18 +131,11 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 			String dato = String.valueOf(TablaPedidos.getValueAt(TablaPedidos.getSelectedRow(), 0));
 			int NPedido = Integer.parseInt(dato);
 			MandarABorrar(NPedido);
-			TablaPedidos.setVisible(false);
-			Pedidos = objGestorIFCBP.DamePedidos();
-			ClsTablaPedidos TablaActualizada = new ClsTablaPedidos(Pedidos);
-			TablaPedidos.setModel(TablaActualizada);
-			Alinear.setHorizontalAlignment(SwingConstants.CENTER);
-			TablaPedidos.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-			TablaPedidos.getColumnModel().getColumn(1).setCellRenderer(Alinear);
-			TablaPedidos.getColumnModel().getColumn(2).setCellRenderer(Alinear);
-			TablaPedidos.getColumnModel().getColumn(3).setCellRenderer(Alinear);
-			TablaPedidos.getColumnModel().getColumn(4).setCellRenderer(Alinear);
-			TablaPedidos.getColumnModel().getColumn(5).setCellRenderer(Alinear);
-			TablaPedidos.setVisible(true);
+			ActualizarTabla();
+			break;
+
+		case ACTUALIZAR_BUTTON:
+			ActualizarTabla();
 			break;
 
 		default:
@@ -172,4 +171,18 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 
 	}
 
+	private void ActualizarTabla() {
+		TablaPedidos.setVisible(false);
+		Pedidos = objGestorIFCBP.DamePedidos();
+		ClsTablaPedidos TablaActualizada = new ClsTablaPedidos(Pedidos);
+		TablaPedidos.setModel(TablaActualizada);
+		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+		TablaPedidos.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+		TablaPedidos.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+		TablaPedidos.getColumnModel().getColumn(2).setCellRenderer(Alinear);
+		TablaPedidos.getColumnModel().getColumn(3).setCellRenderer(Alinear);
+		TablaPedidos.getColumnModel().getColumn(4).setCellRenderer(Alinear);
+		TablaPedidos.getColumnModel().getColumn(5).setCellRenderer(Alinear);
+		TablaPedidos.setVisible(true);
+	}
 }

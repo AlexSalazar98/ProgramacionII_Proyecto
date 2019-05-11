@@ -23,15 +23,15 @@ import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
 
-public class ClsConsultarBorrarClientes extends JInternalFrame implements ActionListener, ListSelectionListener{
-	
+public class ClsConsultarBorrarClientes extends JInternalFrame implements ActionListener, ListSelectionListener {
+
 	/**
 	 * No se para que sirve esto
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTable TablaClientes;
 	private JLabel TxtTablaClientes;
-	private JButton BotonBorrar;
+	private JButton BotonBorrar, BotonActualizar;
 	private JScrollPane PanelClientes;
 	@SuppressWarnings("unused")
 	private ClsTablaClientes TClientes;
@@ -52,6 +52,7 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 	 * Para el Lisener
 	 */
 	private final String BORRAR_BUTTON = "Boton de confirmar Clientes";
+	private final String ACTUALIZAR_BUTTON = "Boton de actualizar Clientes";
 
 	public ClsConsultarBorrarClientes(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarClientes.class.getResource("/PANTALLA_LP/DEUSTO.png")));
@@ -83,6 +84,12 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 		BotonBorrar.addActionListener(this);
 		BotonBorrar.setActionCommand(BORRAR_BUTTON);
 
+		BotonActualizar = new JButton("\u21bb");
+		BotonActualizar.setBounds(672, 11, 43, 31);
+		getContentPane().add(BotonActualizar);
+		BotonActualizar.addActionListener(this);
+		BotonActualizar.setActionCommand(ACTUALIZAR_BUTTON);
+
 	}
 
 	private void CrearTablaClientes() {
@@ -112,7 +119,6 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 		PanelClientes.setBounds(10, 45, 705, 190);
 		PanelClientes.setViewportView(TablaClientes);
 		getContentPane().add(PanelClientes);
-		// TClientes.setData(objGestorIFCBA);
 
 	}
 
@@ -124,19 +130,11 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 			String dato = String.valueOf(TablaClientes.getValueAt(TablaClientes.getSelectedRow(), 0));
 			int NCliente = Integer.parseInt(dato);
 			MandarABorrar(NCliente);
-			TablaClientes.setVisible(false);
-			Clientes = objGestorIFCBA.DameClientes();
-			ClsTablaClientes TablaActualizada = new ClsTablaClientes(Clientes);
-			TablaClientes.setModel(TablaActualizada);
-			Alinear.setHorizontalAlignment(SwingConstants.CENTER);
-			TablaClientes.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(1).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(2).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(3).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(4).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(5).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(6).setCellRenderer(Alinear);
-			TablaClientes.setVisible(true);
+			ActualizarTabla();
+			break;
+
+		case ACTUALIZAR_BUTTON:
+			ActualizarTabla();
 			break;
 
 		default:
@@ -172,4 +170,21 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 
 	}
 
+	private void ActualizarTabla() {
+
+		TablaClientes.setVisible(false);
+		Clientes = objGestorIFCBA.DameClientes();
+		ClsTablaClientes TablaActualizada = new ClsTablaClientes(Clientes);
+		TablaClientes.setModel(TablaActualizada);
+		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+		TablaClientes.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+		TablaClientes.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+		TablaClientes.getColumnModel().getColumn(2).setCellRenderer(Alinear);
+		TablaClientes.getColumnModel().getColumn(3).setCellRenderer(Alinear);
+		TablaClientes.getColumnModel().getColumn(4).setCellRenderer(Alinear);
+		TablaClientes.getColumnModel().getColumn(5).setCellRenderer(Alinear);
+		TablaClientes.getColumnModel().getColumn(6).setCellRenderer(Alinear);
+		TablaClientes.setVisible(true);
+
+	}
 }
