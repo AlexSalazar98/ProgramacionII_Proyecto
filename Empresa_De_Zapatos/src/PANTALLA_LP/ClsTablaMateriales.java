@@ -115,5 +115,4 @@ public class ClsTablaMateriales extends AbstractTableModel {
 
 	}
 
-
 }

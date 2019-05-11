@@ -14,7 +14,7 @@ import LN.ClsGestorLN;
  * Clase para formar la tabla suelas
  * 
  * @author Alex Salazar
- * @author David RequetaF
+ * @author David Requeta
  *
  */
 public class ClsTablaSuelas extends AbstractTableModel {
