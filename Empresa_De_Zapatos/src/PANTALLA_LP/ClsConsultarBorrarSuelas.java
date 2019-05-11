@@ -123,8 +123,8 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 		case BORRAR_BUTTON:
 
 			String dato = String.valueOf(TablaSuelas.getValueAt(TablaSuelas.getSelectedRow(), 0));
-			int NSerie = Integer.parseInt(dato);
-			MandarABorrar(NSerie);
+			int NSuela = Integer.parseInt(dato);
+			MandarABorrar(NSuela);
 			TablaSuelas.setVisible(false);
 			Suelas = objGestorIFCBSu.DameSuelas();
 			ClsTablaSuelas TablaActualizada = new ClsTablaSuelas(Suelas);
@@ -142,10 +142,10 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 
 	}
 
-	private void MandarABorrar(int NSerie) {
+	private void MandarABorrar(int NSuela) {
 
 		try {
-			if (objGestorIFCBSu.EliminarSuelasDeArray(NSerie)) {
+			if (objGestorIFCBSu.EliminarSuelasDeArray(NSuela)) {
 				JOptionPane.showMessageDialog(null, "Registro eliminado correctamente");
 
 			}

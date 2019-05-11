@@ -23,8 +23,8 @@ import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
 
-public class ClsConsultarBorrarClientes extends JInternalFrame implements ActionListener, ListSelectionListener{
-	
+public class ClsConsultarBorrarDesgloses extends JInternalFrame implements ActionListener, ListSelectionListener {
+
 	/**
 	 * No se para que sirve esto
 	 */
@@ -53,7 +53,7 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 	 */
 	private final String BORRAR_BUTTON = "Boton de confirmar Clientes";
 
-	public ClsConsultarBorrarClientes(ClsGestorLN ObjGestor) {
+	public  ClsConsultarBorrarDesgloses(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarClientes.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setTitle("Consultar Clientes");
 		setIconifiable(true);
@@ -122,8 +122,8 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 		case BORRAR_BUTTON:
 
 			String dato = String.valueOf(TablaClientes.getValueAt(TablaClientes.getSelectedRow(), 0));
-			int NCliente = Integer.parseInt(dato);
-			MandarABorrar(NCliente);
+			int NSerie = Integer.parseInt(dato);
+			MandarABorrar(NSerie);
 			TablaClientes.setVisible(false);
 			Clientes = objGestorIFCBA.DameClientes();
 			ClsTablaClientes TablaActualizada = new ClsTablaClientes(Clientes);
@@ -145,10 +145,10 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 
 	}
 
-	private void MandarABorrar(int NCliente) {
+	private void MandarABorrar(int NSerie) {
 
 		try {
-			if (objGestorIFCBA.EliminarClientesDeArray(NCliente)) {
+			if (objGestorIFCBA.EliminarClientesDeArray(NSerie)) {
 				JOptionPane.showMessageDialog(null, "Registro eliminado correctamente");
 
 			}

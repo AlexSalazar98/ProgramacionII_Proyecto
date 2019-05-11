@@ -123,8 +123,8 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 		case BORRAR_BUTTON:
 
 			String dato = String.valueOf(TablaPedidos.getValueAt(TablaPedidos.getSelectedRow(), 0));
-			int NSerie = Integer.parseInt(dato);
-			MandarABorrar(NSerie);
+			int NPedido = Integer.parseInt(dato);
+			MandarABorrar(NPedido);
 			TablaPedidos.setVisible(false);
 			Pedidos = objGestorIFCBP.DamePedidos();
 			ClsTablaPedidos TablaActualizada = new ClsTablaPedidos(Pedidos);
@@ -145,10 +145,10 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 
 	}
 
-	private void MandarABorrar(int NSerie) {
+	private void MandarABorrar(int NPedido) {
 
 		try {
-			if (objGestorIFCBP.EliminarPedidosDeArray(NSerie)) {
+			if (objGestorIFCBP.EliminarPedidosDeArray(NPedido)) {
 				JOptionPane.showMessageDialog(null, "Registro eliminado correctamente");
 
 			}

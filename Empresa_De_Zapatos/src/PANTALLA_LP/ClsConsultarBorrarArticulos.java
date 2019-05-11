@@ -122,8 +122,8 @@ public class ClsConsultarBorrarArticulos extends JInternalFrame implements Actio
 		case BORRAR_BUTTON:
 
 			String dato = String.valueOf(TablaArticulos.getValueAt(TablaArticulos.getSelectedRow(), 0));
-			int NSerie = Integer.parseInt(dato);
-			MandarABorrar(NSerie);
+			int NArticulo = Integer.parseInt(dato);
+			MandarABorrar(NArticulo);
 			TablaArticulos.setVisible(false);
 			Articulos = objGestorIFCBA.DameArticulos();
 			ClsTablaArticulos TablaActualizada = new ClsTablaArticulos(Articulos);
@@ -145,10 +145,10 @@ public class ClsConsultarBorrarArticulos extends JInternalFrame implements Actio
 
 	}
 
-	private void MandarABorrar(int NSerie) {
+	private void MandarABorrar(int NArticulo) {
 
 		try {
-			if (objGestorIFCBA.EliminarArticulosDeArray(NSerie)) {
+			if (objGestorIFCBA.EliminarArticulosDeArray(NArticulo)) {
 				JOptionPane.showMessageDialog(null, "Registro eliminado correctamente");
 
 			}
