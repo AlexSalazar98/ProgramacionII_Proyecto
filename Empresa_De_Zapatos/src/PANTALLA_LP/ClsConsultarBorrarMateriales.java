@@ -59,7 +59,7 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 		setIconifiable(true);
 		setClosable(true);
 		getContentPane().setLayout(null);
-		this.setBounds(25, 25, 741, 302);
+		this.setBounds(25, 25, 418, 302);
 		Inicializar(ObjGestor);
 	}
 
@@ -71,14 +71,14 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 		TxtTablaMateriales.setEnabled(false);
 		TxtTablaMateriales.setHorizontalAlignment(SwingConstants.CENTER);
 		TxtTablaMateriales.setFont(new Font("Tahoma", Font.BOLD, 25));
-		TxtTablaMateriales.setBounds(10, 11, 705, 23);
+		TxtTablaMateriales.setBounds(10, 11, 381, 23);
 		getContentPane().add(TxtTablaMateriales);
 		CrearTablaMateriales();
 
 		BotonBorrar = new JButton("Borrar");
 		BotonBorrar.setEnabled(false);
 		BotonBorrar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		BotonBorrar.setBounds(626, 238, 89, 23);
+		BotonBorrar.setBounds(303, 238, 89, 23);
 		getContentPane().add(BotonBorrar);
 		BotonBorrar.addActionListener(this);
 		BotonBorrar.setActionCommand(BORRAR_BUTTON);
@@ -105,7 +105,7 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 		TClientes.fireTableDataChanged();
 
 		PanelMateriales = new JScrollPane();
-		PanelMateriales.setBounds(10, 45, 705, 190);
+		PanelMateriales.setBounds(10, 45, 381, 190);
 		PanelMateriales.setViewportView(TablaMateriales);
 		getContentPane().add(PanelMateriales);
 		
@@ -118,8 +118,8 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 		case BORRAR_BUTTON:
 
 			String dato = String.valueOf(TablaMateriales.getValueAt(TablaMateriales.getSelectedRow(), 0));
-			int NSerie = Integer.parseInt(dato);
-			MandarABorrar(NSerie);
+			int NMaterial = Integer.parseInt(dato);
+			MandarABorrar(NMaterial);
 			TablaMateriales.setVisible(false);
 			Materiales = objGestorIFCBM.DameMateriales();
 			ClsTablaMateriales TablaActualizada = new ClsTablaMateriales(Materiales);
@@ -137,7 +137,7 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 
 	}
 
-	private void MandarABorrar(int NSerie) {
+	private void MandarABorrar(int NMaterial) {
 
 		try {
 			if (objGestorIFCBM.EliminarMaterialesDeArray(NMaterial)) {

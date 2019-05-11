@@ -29,33 +29,33 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 	 * No se para que sirve esto
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTable TablaClientes;
-	private JLabel TxtTablaClientes;
+	private JTable TablaEnvios;
+	private JLabel TxtTablaEnvios;
 	private JButton BotonBorrar;
-	private JScrollPane PanelClientes;
+	private JScrollPane PanelEnvios;
 	@SuppressWarnings("unused")
-	private ClsTablaClientes TClientes;
+	private ClsTablaEnvios TEnvios;
 	private DefaultTableCellRenderer Alinear;
 
 	/**
 	 * Para tener el Gestor
 	 */
-	private ClsGestorLN objGestorIFCBA;
+	private ClsGestorLN objGestorIFCBE;
 
 	/**
 	 * ArrayList para las tablas
 	 */
-	private ArrayList<ItfProperty> Clientes;
+	private ArrayList<ItfProperty> Envios;
 	int ObjetoRecuperado;
 
 	/**
 	 * Para el Lisener
 	 */
-	private final String BORRAR_BUTTON = "Boton de confirmar Clientes";
+	private final String BORRAR_BUTTON = "Boton de confirmar Envios";
 
 	public ClsConsultarBorrarEnvios(ClsGestorLN ObjGestor) {
-		setFrameIcon(new ImageIcon(ClsConsultarBorrarClientes.class.getResource("/PANTALLA_LP/DEUSTO.png")));
-		setTitle("Consultar Clientes");
+		setFrameIcon(new ImageIcon(ClsConsultarBorrarEnvios.class.getResource("/PANTALLA_LP/DEUSTO.png")));
+		setTitle("Consultar Envios");
 		setIconifiable(true);
 		setClosable(true);
 		getContentPane().setLayout(null);
@@ -65,15 +65,15 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
-		objGestorIFCBA = ObjGestor;
+		objGestorIFCBE = ObjGestor;
 
-		TxtTablaClientes = new JLabel("Clientes");
-		TxtTablaClientes.setEnabled(false);
-		TxtTablaClientes.setHorizontalAlignment(SwingConstants.CENTER);
-		TxtTablaClientes.setFont(new Font("Tahoma", Font.BOLD, 25));
-		TxtTablaClientes.setBounds(10, 11, 705, 23);
-		getContentPane().add(TxtTablaClientes);
-		CrearTablaClientes();
+		TxtTablaEnvios = new JLabel("Envios");
+		TxtTablaEnvios.setEnabled(false);
+		TxtTablaEnvios.setHorizontalAlignment(SwingConstants.CENTER);
+		TxtTablaEnvios.setFont(new Font("Tahoma", Font.BOLD, 25));
+		TxtTablaEnvios.setBounds(10, 11, 705, 23);
+		getContentPane().add(TxtTablaEnvios);
+		CrearTablaEnvios();
 
 		BotonBorrar = new JButton("Borrar");
 		BotonBorrar.setEnabled(false);
@@ -85,34 +85,35 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 
 	}
 
-	private void CrearTablaClientes() {
+	private void CrearTablaEnvios() {
 
-		Clientes = objGestorIFCBA.DameClientes();
+		Envios = objGestorIFCBE.DameEnvios();
 
-		ClsTablaClientes TClientes = new ClsTablaClientes(Clientes);
+		ClsTablaEnvios TEnvios = new ClsTablaEnvios(Envios);
 		Alinear = new DefaultTableCellRenderer();
 
-		TablaClientes = new JTable(TClientes);
+		TablaEnvios = new JTable(TEnvios);
 
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
-		TablaClientes.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-		TablaClientes.getColumnModel().getColumn(1).setCellRenderer(Alinear);
-		TablaClientes.getColumnModel().getColumn(2).setCellRenderer(Alinear);
-		TablaClientes.getColumnModel().getColumn(3).setCellRenderer(Alinear);
-		TablaClientes.getColumnModel().getColumn(4).setCellRenderer(Alinear);
-		TablaClientes.getColumnModel().getColumn(5).setCellRenderer(Alinear);
-		TablaClientes.getColumnModel().getColumn(6).setCellRenderer(Alinear);
-		TablaClientes.setPreferredScrollableViewportSize(new Dimension(500, 70));
-		TablaClientes.setFillsViewportHeight(true);
-		TablaClientes.setRowSelectionAllowed(true);
-		TablaClientes.getSelectionModel().addListSelectionListener(this);
-		TClientes.fireTableDataChanged();
+		TablaEnvios.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+		TablaEnvios.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+		TablaEnvios.getColumnModel().getColumn(2).setCellRenderer(Alinear);
+		TablaEnvios.getColumnModel().getColumn(3).setCellRenderer(Alinear);
+		TablaEnvios.getColumnModel().getColumn(4).setCellRenderer(Alinear);
+		TablaEnvios.getColumnModel().getColumn(5).setCellRenderer(Alinear);
+		TablaEnvios.getColumnModel().getColumn(6).setCellRenderer(Alinear);
+		TablaEnvios.getColumnModel().getColumn(7).setCellRenderer(Alinear);
+		TablaEnvios.setPreferredScrollableViewportSize(new Dimension(500, 70));
+		TablaEnvios.setFillsViewportHeight(true);
+		TablaEnvios.setRowSelectionAllowed(true);
+		TablaEnvios.getSelectionModel().addListSelectionListener(this);
+		TEnvios.fireTableDataChanged();
 
-		PanelClientes = new JScrollPane();
-		PanelClientes.setBounds(10, 45, 705, 190);
-		PanelClientes.setViewportView(TablaClientes);
-		getContentPane().add(PanelClientes);
-		// TClientes.setData(objGestorIFCBA);
+		PanelEnvios = new JScrollPane();
+		PanelEnvios.setBounds(10, 45, 705, 190);
+		PanelEnvios.setViewportView(TablaEnvios);
+		getContentPane().add(PanelEnvios);
+		
 
 	}
 
@@ -121,22 +122,23 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 		switch (e.getActionCommand()) {
 		case BORRAR_BUTTON:
 
-			String dato = String.valueOf(TablaClientes.getValueAt(TablaClientes.getSelectedRow(), 0));
-			int NSerie = Integer.parseInt(dato);
-			MandarABorrar(NSerie);
-			TablaClientes.setVisible(false);
-			Clientes = objGestorIFCBA.DameClientes();
-			ClsTablaClientes TablaActualizada = new ClsTablaClientes(Clientes);
-			TablaClientes.setModel(TablaActualizada);
+			String dato = String.valueOf(TablaEnvios.getValueAt(TablaEnvios.gEnviosedRow(), 0));
+			int NEnvio = Integer.parseInt(dato);
+			MandarABorrar(NEnvio);
+			TablaEnvios.setVisible(false);
+			Envios = objGestorIFCBE.DameEnvios();
+			ClsTablaEnvios TablaActualizada = new ClsTablaEnvios(Envios);
+			TablaEnvios.setModel(TablaActualizada);
 			Alinear.setHorizontalAlignment(SwingConstants.CENTER);
-			TablaClientes.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(1).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(2).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(3).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(4).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(5).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(6).setCellRenderer(Alinear);
-			TablaClientes.setVisible(true);
+			TablaEnvios.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+			TablaEnvios.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+			TablaEnvios.getColumnModel().getColumn(2).setCellRenderer(Alinear);
+			TablaEnvios.getColumnModel().getColumn(3).setCellRenderer(Alinear);
+			TablaEnvios.getColumnModel().getColumn(4).setCellRenderer(Alinear);
+			TablaEnvios.getColumnModel().getColumn(5).setCellRenderer(Alinear);
+			TablaEnvios.getColumnModel().getColumn(6).setCellRenderer(Alinear);
+			TablaEnvios.getColumnModel().getColumn(7).setCellRenderer(Alinear);
+			TablaEnvios.setVisible(true);
 			break;
 
 		default:
@@ -145,10 +147,10 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 
 	}
 
-	private void MandarABorrar(int NSerie) {
+	private void MandarABorrar(int NEnvio) {
 
 		try {
-			if (objGestorIFCBA.EliminarClientesDeArray(NSerie)) {
+			if (objGestorIFCBE.EliminarEnviosDeArray(NEnvio)) {
 				JOptionPane.showMessageDialog(null, "Registro eliminado correctamente");
 
 			}
@@ -164,7 +166,7 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 
-		int Seleccionado = TablaClientes.getSelectedRowCount();
+		int Seleccionado = TablaEnvios.getSelectedRowCount();
 
 		if (Seleccionado > 0) {
 			BotonBorrar.setEnabled(true);
