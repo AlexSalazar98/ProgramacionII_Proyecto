@@ -59,7 +59,7 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 		setIconifiable(true);
 		setClosable(true);
 		getContentPane().setLayout(null);
-		this.setBounds(25, 25, 741, 302);
+		this.setBounds(25, 25, 1253, 302);
 		Inicializar(ObjGestor);
 	}
 
@@ -71,14 +71,14 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 		TxtTablaDesgloses.setEnabled(false);
 		TxtTablaDesgloses.setHorizontalAlignment(SwingConstants.CENTER);
 		TxtTablaDesgloses.setFont(new Font("Tahoma", Font.BOLD, 25));
-		TxtTablaDesgloses.setBounds(10, 11, 705, 23);
+		TxtTablaDesgloses.setBounds(10, 11, 1217, 37);
 		getContentPane().add(TxtTablaDesgloses);
 		CrearTablaDesgloses();
 
 		BotonBorrar = new JButton("Borrar");
 		BotonBorrar.setEnabled(false);
 		BotonBorrar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		BotonBorrar.setBounds(626, 238, 89, 23);
+		BotonBorrar.setBounds(1138, 238, 89, 23);
 		getContentPane().add(BotonBorrar);
 		BotonBorrar.addActionListener(this);
 		BotonBorrar.setActionCommand(BORRAR_BUTTON);
@@ -118,7 +118,7 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 		TDesgloses.fireTableDataChanged();
 
 		PanelDesgloses = new JScrollPane();
-		PanelDesgloses.setBounds(10, 45, 705, 190);
+		PanelDesgloses.setBounds(10, 50, 1217, 185);
 		PanelDesgloses.setViewportView(TablaDesgloses);
 		getContentPane().add(PanelDesgloses);
 		// TDesgloses.setData(objGestorIFCBA);

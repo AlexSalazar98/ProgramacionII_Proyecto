@@ -122,7 +122,7 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 		switch (e.getActionCommand()) {
 		case BORRAR_BUTTON:
 
-			String dato = String.valueOf(TablaEnvios.getValueAt(TablaEnvios.gEnviosedRow(), 0));
+			String dato = String.valueOf(TablaEnvios.getValueAt(TablaEnvios.getSelectedRow(), 0));
 			int NEnvio = Integer.parseInt(dato);
 			MandarABorrar(NEnvio);
 			TablaEnvios.setVisible(false);

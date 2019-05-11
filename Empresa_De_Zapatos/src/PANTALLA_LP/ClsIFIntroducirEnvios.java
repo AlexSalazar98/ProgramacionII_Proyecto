@@ -20,11 +20,9 @@ import LN.ClsGestorLN;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
-
 import COMUN.ItfProperty;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -283,7 +281,7 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 		case CONFIRMAR_BUTTON:
 			while (!ComprobarCamposVacios()) {
 				if (RecogerCP.getText().equals("")) {
-					RecogerCP.setText(JOptionPane.showInputDialog("Codigo Postal:"));
+					RecogerCP.setText(JOptionPane.showInputDialog("Codigo Postal:", new ImageIcon("\\u27Oe")));
 				}
 				if (RecogerPoblacionEnvio.getText().equals("")) {
 					RecogerPoblacionEnvio.setText(JOptionPane.showInputDialog("Población"));
