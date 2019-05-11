@@ -29,33 +29,33 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 	 * No se para que sirve esto
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTable TablaClientes;
-	private JLabel TxtTablaClientes;
+	private JTable TablaDesgloses;
+	private JLabel TxtTablaDesgloses;
 	private JButton BotonBorrar;
-	private JScrollPane PanelClientes;
+	private JScrollPane PanelDesgloses;
 	@SuppressWarnings("unused")
-	private ClsTablaClientes TClientes;
+	private ClsTablaDesgloses TDesgloses;
 	private DefaultTableCellRenderer Alinear;
 
 	/**
 	 * Para tener el Gestor
 	 */
-	private ClsGestorLN objGestorIFCBA;
+	private ClsGestorLN objGestorIFCBD;
 
 	/**
 	 * ArrayList para las tablas
 	 */
-	private ArrayList<ItfProperty> Clientes;
+	private ArrayList<ItfProperty> Desgloses;
 	int ObjetoRecuperado;
 
 	/**
 	 * Para el Lisener
 	 */
-	private final String BORRAR_BUTTON = "Boton de confirmar Clientes";
+	private final String BORRAR_BUTTON = "Boton de confirmar Desgloses";
 
 	public  ClsConsultarBorrarDesgloses(ClsGestorLN ObjGestor) {
-		setFrameIcon(new ImageIcon(ClsConsultarBorrarClientes.class.getResource("/PANTALLA_LP/DEUSTO.png")));
-		setTitle("Consultar Clientes");
+		setFrameIcon(new ImageIcon(ClsConsultarBorrarDesgloses.class.getResource("/PANTALLA_LP/DEUSTO.png")));
+		setTitle("Consultar Desgloses");
 		setIconifiable(true);
 		setClosable(true);
 		getContentPane().setLayout(null);
@@ -65,15 +65,15 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
-		objGestorIFCBA = ObjGestor;
+		objGestorIFCBD = ObjGestor;
 
-		TxtTablaClientes = new JLabel("Clientes");
-		TxtTablaClientes.setEnabled(false);
-		TxtTablaClientes.setHorizontalAlignment(SwingConstants.CENTER);
-		TxtTablaClientes.setFont(new Font("Tahoma", Font.BOLD, 25));
-		TxtTablaClientes.setBounds(10, 11, 705, 23);
-		getContentPane().add(TxtTablaClientes);
-		CrearTablaClientes();
+		TxtTablaDesgloses = new JLabel("Desgloses");
+		TxtTablaDesgloses.setEnabled(false);
+		TxtTablaDesgloses.setHorizontalAlignment(SwingConstants.CENTER);
+		TxtTablaDesgloses.setFont(new Font("Tahoma", Font.BOLD, 25));
+		TxtTablaDesgloses.setBounds(10, 11, 705, 23);
+		getContentPane().add(TxtTablaDesgloses);
+		CrearTablaDesgloses();
 
 		BotonBorrar = new JButton("Borrar");
 		BotonBorrar.setEnabled(false);
@@ -85,34 +85,43 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 
 	}
 
-	private void CrearTablaClientes() {
+	private void CrearTablaDesgloses() {
 
-		Clientes = objGestorIFCBA.DameClientes();
+		Desgloses = objGestorIFCBD.DameDesgloses();
 
-		ClsTablaClientes TClientes = new ClsTablaClientes(Clientes);
+		ClsTablaDesgloses TDesgloses = new ClsTablaDesgloses(Desgloses);
 		Alinear = new DefaultTableCellRenderer();
 
-		TablaClientes = new JTable(TClientes);
+		TablaDesgloses = new JTable(TDesgloses);
 
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
-		TablaClientes.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-		TablaClientes.getColumnModel().getColumn(1).setCellRenderer(Alinear);
-		TablaClientes.getColumnModel().getColumn(2).setCellRenderer(Alinear);
-		TablaClientes.getColumnModel().getColumn(3).setCellRenderer(Alinear);
-		TablaClientes.getColumnModel().getColumn(4).setCellRenderer(Alinear);
-		TablaClientes.getColumnModel().getColumn(5).setCellRenderer(Alinear);
-		TablaClientes.getColumnModel().getColumn(6).setCellRenderer(Alinear);
-		TablaClientes.setPreferredScrollableViewportSize(new Dimension(500, 70));
-		TablaClientes.setFillsViewportHeight(true);
-		TablaClientes.setRowSelectionAllowed(true);
-		TablaClientes.getSelectionModel().addListSelectionListener(this);
-		TClientes.fireTableDataChanged();
+		TablaDesgloses.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(2).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(3).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(4).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(5).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(6).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(7).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(8).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(9).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(10).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(11).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(12).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(13).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(14).setCellRenderer(Alinear);
+		TablaDesgloses.getColumnModel().getColumn(15).setCellRenderer(Alinear);
+		TablaDesgloses.setPreferredScrollableViewportSize(new Dimension(500, 70));
+		TablaDesgloses.setFillsViewportHeight(true);
+		TablaDesgloses.setRowSelectionAllowed(true);
+		TablaDesgloses.getSelectionModel().addListSelectionListener(this);
+		TDesgloses.fireTableDataChanged();
 
-		PanelClientes = new JScrollPane();
-		PanelClientes.setBounds(10, 45, 705, 190);
-		PanelClientes.setViewportView(TablaClientes);
-		getContentPane().add(PanelClientes);
-		// TClientes.setData(objGestorIFCBA);
+		PanelDesgloses = new JScrollPane();
+		PanelDesgloses.setBounds(10, 45, 705, 190);
+		PanelDesgloses.setViewportView(TablaDesgloses);
+		getContentPane().add(PanelDesgloses);
+		// TDesgloses.setData(objGestorIFCBA);
 
 	}
 
@@ -121,22 +130,31 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 		switch (e.getActionCommand()) {
 		case BORRAR_BUTTON:
 
-			String dato = String.valueOf(TablaClientes.getValueAt(TablaClientes.getSelectedRow(), 0));
-			int NSerie = Integer.parseInt(dato);
-			MandarABorrar(NSerie);
-			TablaClientes.setVisible(false);
-			Clientes = objGestorIFCBA.DameClientes();
-			ClsTablaClientes TablaActualizada = new ClsTablaClientes(Clientes);
-			TablaClientes.setModel(TablaActualizada);
+			String dato = String.valueOf(TablaDesgloses.getValueAt(TablaDesgloses.getSelectedRow(), 0));
+			int NDesglose = Integer.parseInt(dato);
+			MandarABorrar(NDesglose);
+			TablaDesgloses.setVisible(false);
+			Desgloses = objGestorIFCBD.DameDesgloses();
+			ClsTablaDesgloses TablaActualizada = new ClsTablaDesgloses(Desgloses);
+			TablaDesgloses.setModel(TablaActualizada);
 			Alinear.setHorizontalAlignment(SwingConstants.CENTER);
-			TablaClientes.getColumnModel().getColumn(0).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(1).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(2).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(3).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(4).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(5).setCellRenderer(Alinear);
-			TablaClientes.getColumnModel().getColumn(6).setCellRenderer(Alinear);
-			TablaClientes.setVisible(true);
+			TablaDesgloses.getColumnModel().getColumn(0).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(1).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(2).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(3).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(4).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(5).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(6).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(7).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(8).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(9).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(10).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(11).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(12).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(13).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(14).setCellRenderer(Alinear);
+			TablaDesgloses.getColumnModel().getColumn(15).setCellRenderer(Alinear);
+			TablaDesgloses.setVisible(true);
 			break;
 
 		default:
@@ -145,10 +163,10 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 
 	}
 
-	private void MandarABorrar(int NSerie) {
+	private void MandarABorrar(int NDesglose) {
 
 		try {
-			if (objGestorIFCBA.EliminarClientesDeArray(NSerie)) {
+			if (objGestorIFCBD.EliminarDesglosesDeArray(NDesglose)) {
 				JOptionPane.showMessageDialog(null, "Registro eliminado correctamente");
 
 			}
@@ -164,7 +182,7 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 
-		int Seleccionado = TablaClientes.getSelectedRowCount();
+		int Seleccionado = TablaDesgloses.getSelectedRowCount();
 
 		if (Seleccionado > 0) {
 			BotonBorrar.setEnabled(true);
