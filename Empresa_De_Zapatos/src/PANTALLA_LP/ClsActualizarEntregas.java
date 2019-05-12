@@ -128,7 +128,7 @@ public class ClsActualizarEntregas extends JInternalFrame implements ActionListe
 		table.setFillsViewportHeight(true);
 		table.setRowSelectionAllowed(true);
 		table.getSelectionModel().addListSelectionListener(this);
-		// TPedidos.fireTableDataChanged();
+		
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 45, 640, 177);

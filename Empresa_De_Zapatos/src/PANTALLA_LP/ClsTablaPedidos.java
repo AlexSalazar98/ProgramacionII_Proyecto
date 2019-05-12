@@ -25,7 +25,7 @@ public class ClsTablaPedidos extends AbstractTableModel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String[] NombreColumnas = { "Nº de Pedido", "Fecha de Pedido", "Fecha de Pedido", "Estado", "Nombre y Apellidos Cliente",
+	private String[] NombreColumnas = { "Nº de Pedido", "Fecha de Pedido", "Fecha de Entrega", "Estado", "Nombre y Apellidos Cliente",
 			"Nº Cliente"};
 	Object[][] data;
 

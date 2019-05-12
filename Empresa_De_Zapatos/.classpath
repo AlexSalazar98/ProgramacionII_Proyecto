@@ -11,5 +11,7 @@
 	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Desktop/Clase/uni1819/Segundo Semestre/Programacion II/Programas2/Empresa_De_Zapatos/Lib/jgoodies-looks-2.4.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Desktop/Clase/uni1819/Segundo Semestre/Programacion II/Programas2/Empresa_De_Zapatos/Lib/junit-4.6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Desktop/Clase/uni1819/Segundo Semestre/Programacion II/Programas2/Empresa_De_Zapatos/Lib/mysql-connector-java-8.0.15.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Desktop/Clase/uni1819/Segundo Semestre/Programacion II/Programas2/Empresa_De_Zapatos/Lib/poi-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Industria 4.0/Desktop/Clase/uni1819/Segundo Semestre/Programacion II/Programas2/Empresa_De_Zapatos/Lib/itextpdf-5.5.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
