@@ -84,7 +84,7 @@ public class ClsConsultarBorrarArticulos extends JInternalFrame implements Actio
 		BotonBorrar.addActionListener(this);
 		BotonBorrar.setActionCommand(BORRAR_BUTTON);
 		
-		BotonActualizar = new JButton("\u21bb");
+		BotonActualizar = new JButton("\u27F3");
 		BotonActualizar.setBounds(672, 11, 43, 31);
 		getContentPane().add(BotonActualizar);
 		BotonActualizar.addActionListener(this);

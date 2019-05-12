@@ -101,6 +101,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	private ClsConsultarBorrarMateriales IntFrameConsultarBorrarMateriales;
 	private ClsConsultarBorrarDesgloses IntFrameConsultarBorrarDesgloses;
 	private ClsConsultarBorrarHerrajes IntFrameConsultarBorrarHerrajes;
+	private ClsActualizarEntregas IntFrameActualizarEntregas;
 
 	/**
 	 * Launch the application.
@@ -591,10 +592,42 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 			ConsultarBorrarEnvios();
 			break;
 
+		/**
+		 * Si pulsa consultar envios.
+		 */
+		case ENTREGAS_ACTUALIZAR_BUTTON:
+			ActualizarEntregas();
+			break;
+
 		default:
 			break;
 		}
 
+	}
+	
+	/**
+	 * Llamada a InternalFrame para actualizar entregas
+	 */
+	private void ActualizarEntregas() {
+		/**
+		 * Comprobamos que no este ya abierto
+		 */
+		if (!ComprobarVentanaActualizarEntregasAbierta()) {
+			/**
+			 * Creamos objeto IFrameSeries
+			 */
+			IntFrameActualizarEntregas = new ClsActualizarEntregas(objGestorMID);
+			PanelMenuIntrducirDatos.add(IntFrameActualizarEntregas);
+		}
+		/**
+		 * Lo hacemos visible
+		 */
+		IntFrameActualizarEntregas.setVisible(true);
+		try {
+			IntFrameActualizarEntregas.setSelected(true);
+		} catch (PropertyVetoException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
 	}
 
 	/**
@@ -716,7 +749,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		 */
 		IntFrameConsultarBorrarClientes.setVisible(true);
 		try {
-			IntFrameConsultarBorrarPedidos.setSelected(true);
+			IntFrameConsultarBorrarClientes.setSelected(true);
 		} catch (PropertyVetoException e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
@@ -1611,7 +1644,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 
 		return mostrar;
 	}
-	
+
 	/**
 	 * Metodo para comprobar que la ventana esta abierta o no
 	 * 
@@ -1642,9 +1675,9 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		}
 
 		return mostrar;
-		
+
 	}
-	
+
 	/**
 	 * Metodo para comprobar que la ventana esta abierta o no
 	 * 
@@ -1676,7 +1709,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 
 		return mostrar;
 	}
-	
+
 	/**
 	 * Metodo para comprobar que la ventana esta abierta o no
 	 * 
@@ -1707,5 +1740,39 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		}
 
 		return mostrar;
+	}
+	
+	/**
+	 * Metodo para comprobar que la ventana esta abierta o no
+	 * 
+	 * @return nos dice si esta abierta o no
+	 */
+	private boolean ComprobarVentanaActualizarEntregasAbierta() {
+		
+		boolean mostrar = false;
+
+		boolean cerrado;
+		if (IntFrameActualizarEntregas == null || IntFrameActualizarEntregas.isClosed()) {
+			cerrado = true;
+		} else {
+			cerrado = false;
+		}
+
+		if (!cerrado) {
+			String Nombre = IntFrameActualizarEntregas.getTitle();
+
+			JOptionPane.showMessageDialog(rootPane, "La ventana que intenta abrir ya está abierta", Nombre,
+					JOptionPane.WARNING_MESSAGE);
+
+			IntFrameActualizarEntregas.toFront();
+
+			PanelMenuIntrducirDatos.moveToFront(IntFrameActualizarEntregas);
+
+			mostrar = true;
+
+		}
+
+		return mostrar;
+		
 	}
 }

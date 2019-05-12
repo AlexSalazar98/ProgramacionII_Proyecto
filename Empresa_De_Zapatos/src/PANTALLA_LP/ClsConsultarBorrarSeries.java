@@ -91,7 +91,7 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 		BotonBorrar.addActionListener(this);
 		BotonBorrar.setActionCommand(BORRAR_BUTTON);
 
-		BotonActualizar = new JButton("\u21bb");
+		BotonActualizar = new JButton("\u27F3");
 		BotonActualizar.setBounds(381, 11, 43, 31);
 		getContentPane().add(BotonActualizar);
 		BotonActualizar.addActionListener(this);

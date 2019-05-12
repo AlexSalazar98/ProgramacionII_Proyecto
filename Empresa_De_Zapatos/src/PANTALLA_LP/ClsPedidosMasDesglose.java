@@ -29,7 +29,7 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 	private JTable table;
 
 	private JLabel TxtBuscador, TxtFechaI, TxtFechaF;
-	private JButton BotonExportar, BotonBuscar;
+	private JButton BotonExportar;
 	private JDateChooser dateChooser, dateChooser_1;
 	private JScrollPane scrollPane;
 
@@ -85,11 +85,10 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-
-		BotonBuscar = new JButton("Buscar");
-		BotonBuscar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		BotonBuscar.setBounds(10, 242, 89, 23);
-		getContentPane().add(BotonBuscar);
+		
+		JButton btnNewButton = new JButton("\ud83d\udd0e");
+		btnNewButton.setBounds(675, 42, 43, 25);
+		getContentPane().add(btnNewButton);
 	}
 
 	@Override

@@ -87,7 +87,7 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 	 */
 	public ClsIFIntroducirEnvios(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsIFIntroducirEnvios.class.getResource("/PANTALLA_LP/DEUSTO.png")));
-		setTitle("Introducir Clientes");
+		setTitle("Introducir Envios");
 		getContentPane().setLayout(null);
 		this.setBounds(125, 125, 742, 559);
 

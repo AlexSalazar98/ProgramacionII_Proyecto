@@ -411,7 +411,7 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 		PanelArticulos.setBounds(0, 25, 470, 207);
 		PanelArticulos.setViewportView(TablaArticulos);
 		Articulos.add(PanelArticulos);
-		
+
 		JLabel TxtArticulos = new JLabel("Tabla de Art\u00EDculos");
 		TxtArticulos.setFont(new Font("Tahoma", Font.BOLD, 15));
 		TxtArticulos.setHorizontalAlignment(SwingConstants.CENTER);
@@ -446,6 +446,7 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 		switch (e.getActionCommand()) {
 		case CONFIRMAR_BUTTON:
 			MandarAGestor();
+			PonerVacio();
 			ObtenerUltimoID();
 			break;
 
@@ -455,22 +456,99 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 
 	}
 
+	private void PonerVacio() {
+
+		RecogerNColor.setText("");
+		RecogerP0.setText("");
+		RecogerP1.setText("");
+		RecogerP2.setText("");
+		RecogerP3.setText("");
+		RecogerP4.setText("");
+		RecogerP5.setText("");
+		RecogerP6.setText("");
+		RecogerP7.setText("");
+		RecogerP8.setText("");
+		RecogerP9.setText("");
+
+	}
+
 	private void MandarAGestor() {
 
 		int NumeroDePedido = Integer.parseInt(RecogerNDesglose.getText());
 		int ReferenciaDelArticulo = Integer.parseInt(RecogerRefArt.getSelectedItem().toString());
 		int Serie = Integer.parseInt(RecogerNSerie.getSelectedItem().toString());
 		int Color = Integer.parseInt(RecogerNColor.getText());
-		int NumeroDePie5 = Integer.parseInt(RecogerP5.getText());
-		int NumeroDePie6 = Integer.parseInt(RecogerP6.getText());
-		int NumeroDePie7 = Integer.parseInt(RecogerP7.getText());
-		int NumeroDePie8 = Integer.parseInt(RecogerP8.getText());
-		int NumeroDePie9 = Integer.parseInt(RecogerP9.getText());
-		int NumeroDePie0 = Integer.parseInt(RecogerP0.getText());
-		int NumeroDePie1 = Integer.parseInt(RecogerP1.getText());
-		int NumeroDePie2 = Integer.parseInt(RecogerP2.getText());
-		int NumeroDePie3 = Integer.parseInt(RecogerP3.getText());
-		int NumeroDePie4 = Integer.parseInt(RecogerP4.getText());
+
+		int NumeroDePie5;
+		if (RecogerP5.getText().equals("")) {
+			NumeroDePie5 = 0;
+		} else {
+			NumeroDePie5 = Integer.parseInt(RecogerP5.getText());
+		}
+
+		int NumeroDePie6;
+		if (RecogerP6.getText().equals("")) {
+			NumeroDePie6 = 0;
+		} else {
+			NumeroDePie6 = Integer.parseInt(RecogerP6.getText());
+		}
+
+		int NumeroDePie7;
+		if (RecogerP7.getText().equals("")) {
+			NumeroDePie7 = 0;
+		} else {
+			NumeroDePie7 = Integer.parseInt(RecogerP7.getText());
+		}
+
+		int NumeroDePie8;
+		if (RecogerP8.getText().equals("")) {
+			NumeroDePie8 = 0;
+		} else {
+			NumeroDePie8 = Integer.parseInt(RecogerP8.getText());
+		}
+
+		int NumeroDePie9;
+		if (RecogerP9.getText().equals("")) {
+			NumeroDePie9 = 0;
+		} else {
+			NumeroDePie9 = Integer.parseInt(RecogerP9.getText());
+		}
+
+		int NumeroDePie0;
+		if (RecogerP0.getText().equals("")) {
+			NumeroDePie0 = 0;
+		} else {
+			NumeroDePie0 = Integer.parseInt(RecogerP0.getText());
+		}
+
+		int NumeroDePie1;
+		if (RecogerP1.getText().equals("")) {
+			NumeroDePie1 = 0;
+		} else {
+			NumeroDePie1 = Integer.parseInt(RecogerP1.getText());
+		}
+
+		int NumeroDePie2;
+		if (RecogerP2.getText().equals("")) {
+			NumeroDePie2 = 0;
+		} else {
+			NumeroDePie2 = Integer.parseInt(RecogerP2.getText());
+		}
+
+		int NumeroDePie3;
+		if (RecogerP3.getText().equals("")) {
+			NumeroDePie3 = 0;
+		} else {
+			NumeroDePie3 = Integer.parseInt(RecogerP3.getText());
+		}
+
+		int NumeroDePie4;
+		if (RecogerP4.getText().equals("")) {
+			NumeroDePie4 = 0;
+		} else {
+			NumeroDePie4 = Integer.parseInt(RecogerP4.getText());
+		}
+
 		int CantidadTotal = NumeroDePie5 + NumeroDePie6 + NumeroDePie7 + NumeroDePie8 + NumeroDePie9 + NumeroDePie0
 				+ NumeroDePie1 + NumeroDePie2 + NumeroDePie3 + NumeroDePie4;
 		int Pedidos_NPedido = Integer.parseInt(RecogerNPedido.getSelectedItem().toString());

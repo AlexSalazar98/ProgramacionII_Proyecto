@@ -84,7 +84,7 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 		BotonBorrar.addActionListener(this);
 		BotonBorrar.setActionCommand(BORRAR_BUTTON);
 
-		BotonActualizar = new JButton("\u21bb");
+		BotonActualizar = new JButton("\u27F3");
 		BotonActualizar.setBounds(348, 11, 43, 31);
 		getContentPane().add(BotonActualizar);
 		BotonActualizar.addActionListener(this);

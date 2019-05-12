@@ -72,7 +72,7 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 		TxtTablaHerrajes.setEnabled(false);
 		TxtTablaHerrajes.setHorizontalAlignment(SwingConstants.CENTER);
 		TxtTablaHerrajes.setFont(new Font("Tahoma", Font.BOLD, 25));
-		TxtTablaHerrajes.setBounds(10, 11, 381, 23);
+		TxtTablaHerrajes.setBounds(10, 11, 381, 31);
 		getContentPane().add(TxtTablaHerrajes);
 		CrearTablaHerrajes();
 
@@ -84,7 +84,7 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 		BotonBorrar.addActionListener(this);
 		BotonBorrar.setActionCommand(BORRAR_BUTTON);
 
-		BotonActualizar = new JButton("\u21bb");
+		BotonActualizar = new JButton("\u27F3");
 		BotonActualizar.setBounds(349, 11, 43, 31);
 		getContentPane().add(BotonActualizar);
 		BotonActualizar.addActionListener(this);

@@ -1839,11 +1839,15 @@ public class ClsGestorLN {
 			 */
 			ClsPedidos PedidoActualizado = new ClsPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado,
 					NombreYApelliosDelCliente, NumeroDeCliente_Pedidos);
+			MiListaDePedidos.add(PedidoActualizado);
+			/**
+			 * Mantamos a actualizar en BD
+			 */
 			objDatos.conectarBD();
 			objDatos.ActualizarPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado,
 					NombreYApelliosDelCliente, NumeroDeCliente_Pedidos);
 			objDatos.desconectarBD();
-			MiListaDePedidos.add(PedidoActualizado);
+			
 		}
 
 		return Hecho;
