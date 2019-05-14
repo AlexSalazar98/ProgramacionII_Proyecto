@@ -60,6 +60,8 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 	private JButton BotonVDSerie;
 	private JButton BotonVDSuela;
 	private JLabel foto;
+	private int NArticulo = 0, CMaterial = 0, CHerrajes = 0;
+	private Double PrecioArt;
 
 	/**
 	 * Constantes para el ActionLisener
@@ -97,7 +99,7 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 		objGestorIFIA = ObjGestor;
 		CargarArrays(objGestorIFIA);
 
-		TxtNArticulo = new JLabel("N\u00BA de Art\u00EDculo:");
+		TxtNArticulo = new JLabel("N\u00BA de Art\u00EDculo*:");
 		TxtNArticulo.setEnabled(false);
 		TxtNArticulo.setFont(new Font("Tahoma", Font.BOLD, 15));
 		TxtNArticulo.setHorizontalAlignment(SwingConstants.LEFT);
@@ -123,7 +125,7 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 		SeleccionarSerie.setBounds(121, 59, 86, 22);
 		getContentPane().add(SeleccionarSerie);
 
-		TxtDescripcion = new JLabel("Descripci\u00F3n del Art\u00EDculo: ");
+		TxtDescripcion = new JLabel("Descripci\u00F3n del Art\u00EDculo*: ");
 		TxtDescripcion.setEnabled(false);
 		TxtDescripcion.setFont(new Font("Tahoma", Font.BOLD, 15));
 		TxtDescripcion.setHorizontalAlignment(SwingConstants.LEFT);
@@ -148,11 +150,11 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 		SeleccionarNSuelas.setBounds(348, 61, 74, 22);
 		getContentPane().add(SeleccionarNSuelas);
 
-		TxtCMaterial = new JLabel("Cantidad de Material:");
+		TxtCMaterial = new JLabel("Cantidad de Material*:");
 		TxtCMaterial.setHorizontalAlignment(SwingConstants.CENTER);
 		TxtCMaterial.setFont(new Font("Tahoma", Font.BOLD, 15));
 		TxtCMaterial.setEnabled(false);
-		TxtCMaterial.setBounds(10, 152, 162, 20);
+		TxtCMaterial.setBounds(10, 152, 170, 20);
 		getContentPane().add(TxtCMaterial);
 
 		RecogerCMaterial = new JTextField();
@@ -162,7 +164,7 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 		getContentPane().add(RecogerCMaterial);
 		RecogerCMaterial.setColumns(10);
 
-		TxtCHerrajes = new JLabel("Cantidad de Herrajes:");
+		TxtCHerrajes = new JLabel("Cantidad de Herrajes*:");
 		TxtCHerrajes.setHorizontalAlignment(SwingConstants.CENTER);
 		TxtCHerrajes.setEnabled(false);
 		TxtCHerrajes.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -232,6 +234,12 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 		foto.setBounds(497, 11, 160, 185);
 		getContentPane().add(foto);
 
+		JLabel TxtInfor = new JLabel("Los campos con * son obligatorios");
+		TxtInfor.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		TxtInfor.setEnabled(false);
+		TxtInfor.setBounds(10, 306, 197, 20);
+		getContentPane().add(TxtInfor);
+
 		for (ItfProperty a : Series) {
 
 			SeleccionarSerie.addItem(a.getIntegerProperty(PROPIEDAD_SERIES_NUMERO_DE_SERIE));
@@ -266,12 +274,29 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 			break;
 
 		case CONFIRMAR_BUTTON:
-			MandarAGestor();
+			if (!RecogerNArticulo.getText().equals("") && !RecogerDesc.getText().equals("")
+					&& !RecogerCHerrajes.getText().equals("") && !RecogerCMaterial.getText().equals("")) {
+				Comporobar();
+				PonerVacio();
+			} else {
+				String MENSAJE = "Rellene los campos obligatorios";
+				JOptionPane.showMessageDialog(null, MENSAJE, "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
 			break;
 
 		default:
 			break;
 		}
+
+	}
+
+	private void PonerVacio() {
+
+		RecogerNArticulo.setText("");
+		RecogerDesc.setText("");
+		RecogerCMaterial.setText("");
+		RecogerCHerrajes.setText("");
+		RecogerPArt.setText("");
 
 	}
 
@@ -299,14 +324,48 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 		}
 	}
 
+	private void Comporobar() {
+
+		boolean comprobado = false;
+
+		try {
+			NArticulo = Integer.parseInt(RecogerNArticulo.getText());
+			comprobado = true;
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Introduce un numero entero en Articulos");
+		}
+
+		try {
+			CMaterial = Integer.parseInt(RecogerCMaterial.getText());
+			comprobado = true;
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Introduce un numero entero en Cantidad de Material");
+		}
+		try {
+			CHerrajes = Integer.parseInt(RecogerCHerrajes.getText());
+			comprobado = true;
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Introduce un numero entero en Cantidad de Herrajes");
+		}
+
+		if (!RecogerPArt.getText().equals("")) {
+			try {
+				PrecioArt = Double.parseDouble(RecogerPArt.getText());
+				comprobado = true;
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Introduce un numero con decimales en Precio");
+			}
+		}
+		if (comprobado) {
+			MandarAGestor();
+		}
+
+	}
+
 	private void MandarAGestor() {
 
-		int NArticulo = Integer.parseInt(RecogerNArticulo.getText());
 		int NSerie = Integer.parseInt(SeleccionarSerie.getSelectedItem().toString());
 		int NSuela = Integer.parseInt(SeleccionarNSuelas.getSelectedItem().toString());
-		int CMaterial = Integer.parseInt(RecogerCMaterial.getText());
-		int CHerrajes = Integer.parseInt(RecogerCHerrajes.getText());
-		Double PrecioArt = Double.parseDouble(RecogerPArt.getText());
 		String Descripcion = RecogerDesc.getText();
 
 		try {
@@ -320,5 +379,4 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 		}
 
 	}
-
 }

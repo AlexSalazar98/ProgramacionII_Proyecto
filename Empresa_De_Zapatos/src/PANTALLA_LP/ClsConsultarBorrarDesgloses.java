@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
+import javax.swing.ListSelectionModel;
 
 public class ClsConsultarBorrarDesgloses extends JInternalFrame implements ActionListener, ListSelectionListener {
 
@@ -100,6 +101,7 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 		Alinear = new DefaultTableCellRenderer();
 
 		TablaDesgloses = new JTable(TDesgloses);
+		TablaDesgloses.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		TablaDesgloses.getColumnModel().getColumn(0).setCellRenderer(Alinear);
@@ -139,17 +141,27 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 
 			String dato = String.valueOf(TablaDesgloses.getValueAt(TablaDesgloses.getSelectedRow(), 0));
 			int NDesglose = Integer.parseInt(dato);
-			MandarABorrar(NDesglose);
-			ActualizarTabla();
+			if (PreguntarEntregado() == 0) {
+				MandarABorrar(NDesglose);
+				ActualizarTabla();
+			}
 			break;
 
 		case ACTUALIZAR_BUTTON:
+			BotonBorrar.setEnabled(false);
 			ActualizarTabla();
 			break;
 
 		default:
 			break;
 		}
+
+	}
+
+	private int PreguntarEntregado() {
+
+		return JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el registro?", "BORRAR",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 	}
 

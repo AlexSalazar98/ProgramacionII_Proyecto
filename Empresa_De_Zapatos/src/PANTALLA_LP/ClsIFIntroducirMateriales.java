@@ -23,7 +23,6 @@ import javax.swing.SwingConstants;
 import COMUN.ItfProperty;
 import javax.swing.ImageIcon;
 
-
 /**
  * Internar Frame para introducir Materiales
  * 
@@ -44,6 +43,8 @@ public class ClsIFIntroducirMateriales extends JInternalFrame implements ActionL
 	private JTextField CasillaDesMaterial;
 	private JTextField CasillaPrecioMaterial;
 	private JButton NMaterialAuto, ConfirmarMaterial;
+	private int Ref;
+	private Double Prec;
 	/**
 	 * Para tener el Gestor
 	 */
@@ -153,14 +154,43 @@ public class ClsIFIntroducirMateriales extends JInternalFrame implements ActionL
 			break;
 
 		case CONFIRMAR_BUTTON:
-			MandarAGestor();
-			PonerVacio();
+			Comprobar();
 			break;
 
 		default:
 			break;
 		}
 
+	}
+
+	private void Comprobar() {
+
+		boolean comprobado = true;
+
+		try {
+			Ref = Integer.parseInt(CasillaNMaterial.getText());
+		} catch (Exception e) {
+			comprobado = false;
+			JOptionPane.showMessageDialog(null, "Numero de Material incorrecto o vacio");
+		}
+
+		if (CasillaDesMaterial.getText().equals("")) {
+			comprobado = false;
+			JOptionPane.showMessageDialog(null, "La descripción no puede estar vacia");
+		}
+
+		if (!CasillaPrecioMaterial.getText().equals("")) {
+			try {
+				Prec = Double.parseDouble(CasillaPrecioMaterial.getText());
+			} catch (Exception e) {
+				comprobado = false;
+				JOptionPane.showMessageDialog(null, "El precio no puede ser texto");
+			}
+		}
+		if (comprobado) {
+			MandarAGestor();
+			PonerVacio();
+		}
 	}
 
 	/**
@@ -179,9 +209,7 @@ public class ClsIFIntroducirMateriales extends JInternalFrame implements ActionL
 	 */
 	private void MandarAGestor() {
 
-		int Ref = Integer.parseInt(CasillaNMaterial.getText());
 		String Desc = CasillaDesMaterial.getText();
-		Double Prec = Double.parseDouble(CasillaPrecioMaterial.getText());
 
 		try {
 			if (objGestorIFIM.CrearMateriales(Ref, Desc, Prec)) {

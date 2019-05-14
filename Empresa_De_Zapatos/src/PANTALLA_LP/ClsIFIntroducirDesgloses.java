@@ -52,6 +52,8 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 	private JSplitPane SeriesPedidos;
 	private JScrollPane PanelPedidos, PanelArticulos, PanelSeries;
 	private JTable TablaSeries, TablaArticulos, TablaPedidos;
+	private int Color, NumeroDePie5, NumeroDePie6, NumeroDePie7, NumeroDePie8, NumeroDePie9, NumeroDePie0, NumeroDePie1,
+			NumeroDePie2, NumeroDePie3, NumeroDePie4;
 
 	/**
 	 * ArrayList para las tablas
@@ -445,13 +447,139 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 
 		switch (e.getActionCommand()) {
 		case CONFIRMAR_BUTTON:
-			MandarAGestor();
-			PonerVacio();
+			Comporobar();
 			ObtenerUltimoID();
 			break;
 
 		default:
 			break;
+		}
+
+	}
+
+	private void Comporobar() {
+
+		boolean comprobado = true;
+
+		try {
+			Color = Integer.parseInt(RecogerNColor.getText());
+		} catch (Exception e) {
+			comprobado = false;
+			JOptionPane.showMessageDialog(null, "Numero de Color erroneo");
+		}
+
+		if (RecogerP5.getText().equals("")) {
+			NumeroDePie5 = 0;
+		} else {
+			try {
+				NumeroDePie5 = Integer.parseInt(RecogerP5.getText());
+			} catch (Exception e) {
+				comprobado = false;
+				JOptionPane.showMessageDialog(null, "Cantidad de pie erronea");
+			}
+		}
+
+		if (RecogerP6.getText().equals("")) {
+			NumeroDePie6 = 0;
+		} else {
+			try {
+				NumeroDePie6 = Integer.parseInt(RecogerP6.getText());
+			} catch (Exception e) {
+				comprobado = false;
+				JOptionPane.showMessageDialog(null, "Cantidad de pie erronea");
+			}
+		}
+
+		if (RecogerP7.getText().equals("")) {
+			NumeroDePie7 = 0;
+		} else {
+			try {
+				NumeroDePie7 = Integer.parseInt(RecogerP7.getText());
+			} catch (Exception e) {
+				comprobado = false;
+				JOptionPane.showMessageDialog(null, "Cantidad de pie erronea");
+			}
+		}
+
+		if (RecogerP8.getText().equals("")) {
+			NumeroDePie8 = 0;
+		} else {
+			try {
+				NumeroDePie8 = Integer.parseInt(RecogerP8.getText());
+			} catch (Exception e) {
+				comprobado = false;
+				JOptionPane.showMessageDialog(null, "Cantidad de pie erronea");
+			}
+		}
+
+		if (RecogerP9.getText().equals("")) {
+			NumeroDePie9 = 0;
+		} else {
+			try {
+				NumeroDePie9 = Integer.parseInt(RecogerP9.getText());
+			} catch (Exception e) {
+				comprobado = false;
+				JOptionPane.showMessageDialog(null, "Cantidad de pie erronea");
+			}
+		}
+
+		if (RecogerP0.getText().equals("")) {
+			NumeroDePie0 = 0;
+		} else {
+			try {
+				NumeroDePie0 = Integer.parseInt(RecogerP0.getText());
+			} catch (Exception e) {
+				comprobado = false;
+				JOptionPane.showMessageDialog(null, "Cantidad de pie erronea");
+			}
+		}
+
+		if (RecogerP1.getText().equals("")) {
+			NumeroDePie1 = 0;
+		} else {
+			try {
+				NumeroDePie1 = Integer.parseInt(RecogerP1.getText());
+			} catch (Exception e) {
+				comprobado = false;
+				JOptionPane.showMessageDialog(null, "Cantidad de pie erronea");
+			}
+		}
+
+		if (RecogerP2.getText().equals("")) {
+			NumeroDePie2 = 0;
+		} else {
+			try {
+				NumeroDePie2 = Integer.parseInt(RecogerP2.getText());
+			} catch (Exception e) {
+				comprobado = false;
+				JOptionPane.showMessageDialog(null, "Cantidad de pie erronea");
+			}
+		}
+
+		if (RecogerP3.getText().equals("")) {
+			NumeroDePie3 = 0;
+		} else {
+			try {
+				NumeroDePie3 = Integer.parseInt(RecogerP3.getText());
+			} catch (Exception e) {
+				comprobado = false;
+				JOptionPane.showMessageDialog(null, "Cantidad de pie erronea");
+			}
+		}
+
+		if (RecogerP4.getText().equals("")) {
+			NumeroDePie4 = 0;
+		} else {
+			try {
+				NumeroDePie4 = Integer.parseInt(RecogerP4.getText());
+			} catch (Exception e) {
+				comprobado = false;
+				JOptionPane.showMessageDialog(null, "Cantidad de pie erronea");
+			}
+		}
+
+		if (comprobado) {
+			MandarAGestor();
 		}
 
 	}
@@ -477,77 +605,6 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 		int NumeroDePedido = Integer.parseInt(RecogerNDesglose.getText());
 		int ReferenciaDelArticulo = Integer.parseInt(RecogerRefArt.getSelectedItem().toString());
 		int Serie = Integer.parseInt(RecogerNSerie.getSelectedItem().toString());
-		int Color = Integer.parseInt(RecogerNColor.getText());
-
-		int NumeroDePie5;
-		if (RecogerP5.getText().equals("")) {
-			NumeroDePie5 = 0;
-		} else {
-			NumeroDePie5 = Integer.parseInt(RecogerP5.getText());
-		}
-
-		int NumeroDePie6;
-		if (RecogerP6.getText().equals("")) {
-			NumeroDePie6 = 0;
-		} else {
-			NumeroDePie6 = Integer.parseInt(RecogerP6.getText());
-		}
-
-		int NumeroDePie7;
-		if (RecogerP7.getText().equals("")) {
-			NumeroDePie7 = 0;
-		} else {
-			NumeroDePie7 = Integer.parseInt(RecogerP7.getText());
-		}
-
-		int NumeroDePie8;
-		if (RecogerP8.getText().equals("")) {
-			NumeroDePie8 = 0;
-		} else {
-			NumeroDePie8 = Integer.parseInt(RecogerP8.getText());
-		}
-
-		int NumeroDePie9;
-		if (RecogerP9.getText().equals("")) {
-			NumeroDePie9 = 0;
-		} else {
-			NumeroDePie9 = Integer.parseInt(RecogerP9.getText());
-		}
-
-		int NumeroDePie0;
-		if (RecogerP0.getText().equals("")) {
-			NumeroDePie0 = 0;
-		} else {
-			NumeroDePie0 = Integer.parseInt(RecogerP0.getText());
-		}
-
-		int NumeroDePie1;
-		if (RecogerP1.getText().equals("")) {
-			NumeroDePie1 = 0;
-		} else {
-			NumeroDePie1 = Integer.parseInt(RecogerP1.getText());
-		}
-
-		int NumeroDePie2;
-		if (RecogerP2.getText().equals("")) {
-			NumeroDePie2 = 0;
-		} else {
-			NumeroDePie2 = Integer.parseInt(RecogerP2.getText());
-		}
-
-		int NumeroDePie3;
-		if (RecogerP3.getText().equals("")) {
-			NumeroDePie3 = 0;
-		} else {
-			NumeroDePie3 = Integer.parseInt(RecogerP3.getText());
-		}
-
-		int NumeroDePie4;
-		if (RecogerP4.getText().equals("")) {
-			NumeroDePie4 = 0;
-		} else {
-			NumeroDePie4 = Integer.parseInt(RecogerP4.getText());
-		}
 
 		int CantidadTotal = NumeroDePie5 + NumeroDePie6 + NumeroDePie7 + NumeroDePie8 + NumeroDePie9 + NumeroDePie0
 				+ NumeroDePie1 + NumeroDePie2 + NumeroDePie3 + NumeroDePie4;
@@ -565,6 +622,8 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "No se ha podido realizar el insert: " + e);
 		}
+
+		PonerVacio();
 
 	}
 

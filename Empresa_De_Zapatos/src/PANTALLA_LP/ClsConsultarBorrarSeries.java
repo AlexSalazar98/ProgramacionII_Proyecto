@@ -22,6 +22,7 @@ import LN.ClsGestorLN;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 /**
  * Clase para consultar y borrar datos de la tabla series
@@ -107,6 +108,7 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 		Alinear = new DefaultTableCellRenderer();
 
 		TablaSeries = new JTable(TSeries);
+		TablaSeries.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		TablaSeries.getColumnModel().getColumn(0).setCellRenderer(Alinear);
@@ -132,17 +134,27 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 
 			String dato = String.valueOf(TablaSeries.getValueAt(TablaSeries.getSelectedRow(), 0));
 			int NSerie = Integer.parseInt(dato);
-			MandarABorrar(NSerie);
-			ActualizarTabla();
+			if (PreguntarEntregado() == 0) {
+				MandarABorrar(NSerie);
+				ActualizarTabla();
+			}
 			break;
 
 		case ACTUALIZAR_BUTTON:
+			BotonBorrar.setEnabled(false);
 			ActualizarTabla();
 			break;
 
 		default:
 			break;
 		}
+
+	}
+
+	private int PreguntarEntregado() {
+
+		return JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el registro?", "BORRAR",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 	}
 

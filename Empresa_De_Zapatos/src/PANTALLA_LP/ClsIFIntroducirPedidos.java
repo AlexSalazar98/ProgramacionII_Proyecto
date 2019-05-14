@@ -183,21 +183,28 @@ public class ClsIFIntroducirPedidos extends JInternalFrame implements ActionList
 			break;
 
 		case CONFIRMAR_BUTTON:
-			FromatearFechaPedio();
-			FormatearFechaEntrega();
-			int resultado;
-			do {
 
-				resultado = PreguntarEntregado();
+			if (RecogerFechaEntrega.getDate() != null && RecogerFechaPedido.getDate() != null) {
 
-				if (resultado == 0) {
-					Entregado = true;
-				} else if (resultado == 1) {
-					Entregado = false;
+				FromatearFechaPedio();
+				FormatearFechaEntrega();
+				int resultado;
+				do {
+
+					resultado = PreguntarEntregado();
+
+					if (resultado == 0) {
+						Entregado = true;
+					} else if (resultado == 1) {
+						Entregado = false;
+					}
+				} while (resultado == -1);
+				if (MandarAGestor()) {
+					ObtenerUltimoID();
 				}
-			} while (resultado == -1);
-			if (MandarAGestor()) {				
-				ObtenerUltimoID();
+			}else {
+				String MENSAJE = "Rellene las Fechas";
+				JOptionPane.showMessageDialog(null, MENSAJE, "SIN FECHA", JOptionPane.ERROR_MESSAGE);
 			}
 			break;
 
@@ -206,8 +213,6 @@ public class ClsIFIntroducirPedidos extends JInternalFrame implements ActionList
 		}
 
 	}
-
-	
 
 	/**
 	 * Confirmar la entrega del pedido

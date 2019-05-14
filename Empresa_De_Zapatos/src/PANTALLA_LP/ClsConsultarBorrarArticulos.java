@@ -22,9 +22,10 @@ import javax.swing.table.DefaultTableCellRenderer;
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
+import javax.swing.ListSelectionModel;
 
-public class ClsConsultarBorrarArticulos extends JInternalFrame implements ActionListener, ListSelectionListener{
-	
+public class ClsConsultarBorrarArticulos extends JInternalFrame implements ActionListener, ListSelectionListener {
+
 	/**
 	 * No se para que sirve esto
 	 */
@@ -83,7 +84,7 @@ public class ClsConsultarBorrarArticulos extends JInternalFrame implements Actio
 		getContentPane().add(BotonBorrar);
 		BotonBorrar.addActionListener(this);
 		BotonBorrar.setActionCommand(BORRAR_BUTTON);
-		
+
 		BotonActualizar = new JButton("\u27F3");
 		BotonActualizar.setBounds(672, 11, 43, 31);
 		getContentPane().add(BotonActualizar);
@@ -100,6 +101,7 @@ public class ClsConsultarBorrarArticulos extends JInternalFrame implements Actio
 		Alinear = new DefaultTableCellRenderer();
 
 		TablaArticulos = new JTable(TArticulos);
+		TablaArticulos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		TablaArticulos.getColumnModel().getColumn(0).setCellRenderer(Alinear);
@@ -119,7 +121,6 @@ public class ClsConsultarBorrarArticulos extends JInternalFrame implements Actio
 		PanelArticulos.setBounds(10, 45, 705, 190);
 		PanelArticulos.setViewportView(TablaArticulos);
 		getContentPane().add(PanelArticulos);
-		
 
 	}
 
@@ -129,11 +130,15 @@ public class ClsConsultarBorrarArticulos extends JInternalFrame implements Actio
 		case BORRAR_BUTTON:
 			String dato = String.valueOf(TablaArticulos.getValueAt(TablaArticulos.getSelectedRow(), 0));
 			int NArticulo = Integer.parseInt(dato);
-			MandarABorrar(NArticulo);
-			ActualizarTabla();
+
+			if (PreguntarEntregado() == 0) {
+				MandarABorrar(NArticulo);
+				ActualizarTabla();
+			}
 			break;
-			
+
 		case ACTUALIZAR_BUTTON:
+			BotonBorrar.setEnabled(false);
 			ActualizarTabla();
 			break;
 
@@ -143,8 +148,15 @@ public class ClsConsultarBorrarArticulos extends JInternalFrame implements Actio
 
 	}
 
+	private int PreguntarEntregado() {
+
+		return JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el registro?", "BORRAR",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+	}
+
 	private void ActualizarTabla() {
-		
+
 		TablaArticulos.setVisible(false);
 		Articulos = objGestorIFCBA.DameArticulos();
 		ClsTablaArticulos TablaActualizada = new ClsTablaArticulos(Articulos);
@@ -158,7 +170,7 @@ public class ClsConsultarBorrarArticulos extends JInternalFrame implements Actio
 		TablaArticulos.getColumnModel().getColumn(5).setCellRenderer(Alinear);
 		TablaArticulos.getColumnModel().getColumn(6).setCellRenderer(Alinear);
 		TablaArticulos.setVisible(true);
-		
+
 	}
 
 	private void MandarABorrar(int NArticulo) {

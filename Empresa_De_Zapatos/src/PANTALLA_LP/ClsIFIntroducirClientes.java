@@ -66,6 +66,8 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 	private JLabel TxtEmail;
 	private JTextField RecogerEmail;
 	private JButton BotonConfirmar;
+	private int NCliente;
+	private int  NumTel;
 	/**
 	 * constante para el boton confirmar
 	 */
@@ -73,6 +75,7 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 	private JSeparator separator_12;
 	private JSeparator separator_13;
 	private JSeparator separator_14;
+	private JLabel TxtInfo;
 
 	/**
 	 * constructor
@@ -98,7 +101,7 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
-		JLabel TxtNCliente = new JLabel("  N\u00FAmero de Cliente:");
+		JLabel TxtNCliente = new JLabel("  N\u00FAmero de Cliente*:");
 		TxtNCliente.setBounds(0, 5, 191, 28);
 		TxtNCliente.setEnabled(false);
 		TxtNCliente.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -139,8 +142,8 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 		TxtDatos.setHorizontalAlignment(SwingConstants.LEFT);
 		getContentPane().add(TxtDatos);
 
-		TxtNYA = new JLabel("Nombre y Apellidos: ");
-		TxtNYA.setBounds(0, 111, 171, 28);
+		TxtNYA = new JLabel("Nombre y Apellidos*: ");
+		TxtNYA.setBounds(0, 111, 181, 28);
 		TxtNYA.setEnabled(false);
 		TxtNYA.setFont(new Font("Tahoma", Font.BOLD, 15));
 		TxtNYA.setHorizontalAlignment(SwingConstants.CENTER);
@@ -153,7 +156,7 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 		getContentPane().add(RecogerNYA);
 		RecogerNYA.setColumns(10);
 
-		TxtDNINIF = new JLabel("DNI o NIF:");
+		TxtDNINIF = new JLabel("DNI o NIF*:");
 		TxtDNINIF.setBounds(278, 111, 111, 28);
 		TxtDNINIF.setEnabled(false);
 		TxtDNINIF.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -194,7 +197,7 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 		TxtEstancia.setFont(new Font("Tahoma", Font.BOLD, 25));
 		getContentPane().add(TxtEstancia);
 
-		TxtDireccion = new JLabel("Direcci\u00F3n: ");
+		TxtDireccion = new JLabel("Direcci\u00F3n*: ");
 		TxtDireccion.setBounds(0, 246, 111, 28);
 		TxtDireccion.setFont(new Font("Tahoma", Font.BOLD, 15));
 		TxtDireccion.setHorizontalAlignment(SwingConstants.CENTER);
@@ -208,7 +211,7 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 		getContentPane().add(RecogerDireccion);
 		RecogerDireccion.setColumns(10);
 
-		TxtProvincia = new JLabel("Provincia:");
+		TxtProvincia = new JLabel("Provincia*:");
 		TxtProvincia.setBounds(222, 246, 111, 28);
 		TxtProvincia.setFont(new Font("Tahoma", Font.BOLD, 15));
 		TxtProvincia.setHorizontalAlignment(SwingConstants.CENTER);
@@ -299,6 +302,12 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 		separator_14.setBounds(441, 305, 111, 28);
 		getContentPane().add(separator_14);
 
+		TxtInfo = new JLabel("Los campos con * son obligatorios");
+		TxtInfo.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		TxtInfo.setEnabled(false);
+		TxtInfo.setBounds(10, 451, 212, 23);
+		getContentPane().add(TxtInfo);
+
 		/**
 		 * copiamos el objeto gestor
 		 */
@@ -310,15 +319,21 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 	public void actionPerformed(ActionEvent e) {
 
 		boolean correcto = false;
-		String DNI_NIF = RecogerDNINIF.getText().toUpperCase();
-		ClsComprobarDNI_NIF objComprobarDNI_NIF = new ClsComprobarDNI_NIF();
+		ClsComprobarDNI_NIF objComprobarDNI_NIF = null;
+		String DNI_NIF = null;
+		if (!RecogerDNINIF.getText().equals("")) {
+			DNI_NIF = RecogerDNINIF.getText().toUpperCase();
+			objComprobarDNI_NIF = new ClsComprobarDNI_NIF();
+		}
 
 		switch (e.getActionCommand()) {
 		case CONFIRMAR_BUTTON:
 			do {
 
 				try {
-					correcto = objComprobarDNI_NIF.ComprobarDNI_NIF(DNI_NIF);
+					if (!RecogerDNINIF.getText().equals("")) {
+						correcto = objComprobarDNI_NIF.ComprobarDNI_NIF(DNI_NIF);
+					}
 				} catch (ClsDNI_NIFValidoExcepcion a) {
 					RecogerDNINIF.setText("");
 					correcto = false;
@@ -328,15 +343,48 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 					JOptionPane.showMessageDialog(null, a.getMessage());
 				}
 			} while (!correcto && RecogerDNINIF.getText() == "");
-			if (correcto && RecogerDNINIF.getText() != null) {
-				MandarAGestor();
-				PonerVacio();
+			if (correcto && !RecogerNCliente.getText().equals("") && !RecogerNYA.getText().equals("")
+					&& !RecogerDireccion.getText().equals("") && !RecogerProvincia.getText().equals("")) {
+				Comporobar();
+			} else {
+				String MENSAJE = "Rellene los campos obligatorios";
+				JOptionPane.showMessageDialog(null, MENSAJE, "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 			break;
 
 		default:
 			break;
 		}
+	}
+
+	private void Comporobar() {
+
+		boolean comprobado = true;
+
+		try {
+			NCliente = Integer.parseInt(RecogerNCliente.getText());
+			
+		} catch (Exception e) {
+			comprobado = false;
+			JOptionPane.showMessageDialog(null, "Introduce un numero entero en Número de Cliente");
+		}
+		
+		
+		if (RecogerTel.getText().equals("")) {
+			NumTel = 0;
+		} else {
+			try {
+				NumTel = Integer.parseInt(RecogerTel.getText());				
+			} catch (Exception e) {
+				comprobado = false;
+				JOptionPane.showMessageDialog(null, "Número de teléfono erroneo");
+			}
+		}
+
+		if (comprobado) {
+			MandarAGestor();
+		}
+
 	}
 
 	/**
@@ -346,13 +394,16 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 
 		/**
 		 * Variables para recoger infor y mandarla al gestor
-		 */
-		int NCliente = Integer.parseInt(RecogerNCliente.getText());
-		int NumTel = Integer.parseInt(RecogerTel.getText());
+		 */		
 		String NomYAp = RecogerNYA.getText();
 		String DNI_NIF = RecogerDNINIF.getText();
 		String Provincia = RecogerProvincia.getText();
-		String Email = RecogerEmail.getText();
+		String Email;
+		if (RecogerEmail.getText().equals("")) {
+			Email = "";
+		} else {
+			Email = RecogerEmail.getText();
+		}
 		String Direccion = RecogerDireccion.getText();
 
 		try {
@@ -365,6 +416,8 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "No se ha podido realizar el insert: " + e);
 		}
+
+		PonerVacio();
 	}
 
 	/**

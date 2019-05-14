@@ -23,7 +23,6 @@ import javax.swing.SwingConstants;
 import COMUN.ItfProperty;
 import javax.swing.ImageIcon;
 
-
 /**
  * Internar Frame para introducir Suelas
  * 
@@ -44,6 +43,8 @@ public class ClsIFIntroducirSuelas extends JInternalFrame implements ActionListe
 	private JTextField CasillaDesSuela;
 	private JTextField CasillaPrecioSuela;
 	private JButton NSuelaAuto, ConfirmarSuela;
+	private int Ref;
+	private Double Prec;
 	/**
 	 * Para tener el Gestor
 	 */
@@ -135,7 +136,7 @@ public class ClsIFIntroducirSuelas extends JInternalFrame implements ActionListe
 		JLabel Vacio4 = new JLabel("");
 		getContentPane().add(Vacio4);
 
-		ConfirmarSuela = new JButton("Confirmar Material");
+		ConfirmarSuela = new JButton("Confirmar Suela");
 		ConfirmarSuela.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		ConfirmarSuela.addActionListener(this);
 		ConfirmarSuela.setActionCommand(CONFIRMAR_BUTTON);
@@ -153,14 +154,43 @@ public class ClsIFIntroducirSuelas extends JInternalFrame implements ActionListe
 			break;
 
 		case CONFIRMAR_BUTTON:
-			MandarAGestor();
-			PonerVacio();
+			Comprobar();
 			break;
 
 		default:
 			break;
 		}
 
+	}
+
+	private void Comprobar() {
+
+		boolean comprobado = true;
+
+		try {
+			Ref = Integer.parseInt(CasillaNSuela.getText());
+		} catch (Exception e) {
+			comprobado = false;
+			JOptionPane.showMessageDialog(null, "Numero de Suela incorrecto o vacio");
+		}
+
+		if (!CasillaPrecioSuela.getText().equals("")) {
+			try {
+				Prec = Double.parseDouble(CasillaPrecioSuela.getText());
+			} catch (Exception e) {
+				comprobado = false;
+				JOptionPane.showMessageDialog(null, "El precio no puede ser texto");
+			}
+		}
+		if (CasillaDesSuela.getText().equals("")) {
+			comprobado = false;
+			JOptionPane.showMessageDialog(null, "La descripción no puede estar vacia");
+		}
+
+		if (comprobado) {
+			MandarAGestor();
+			PonerVacio();
+		}
 	}
 
 	/**
@@ -179,9 +209,7 @@ public class ClsIFIntroducirSuelas extends JInternalFrame implements ActionListe
 	 */
 	private void MandarAGestor() {
 
-		int Ref = Integer.parseInt(CasillaNSuela.getText());
 		String Desc = CasillaDesSuela.getText();
-		Double Prec = Double.parseDouble(CasillaPrecioSuela.getText());
 
 		try {
 			if (objGestorIFIM.CrearSuelas(Ref, Desc, Prec)) {

@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
+import javax.swing.ListSelectionModel;
 
 /**
  * Clase para consultar y borrar suelas
@@ -104,6 +105,7 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 		Alinear = new DefaultTableCellRenderer();
 
 		TablaSuelas = new JTable(TSuelas);
+		TablaSuelas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		TablaSuelas.getColumnModel().getColumn(0).setCellRenderer(Alinear);
@@ -130,17 +132,27 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 
 			String dato = String.valueOf(TablaSuelas.getValueAt(TablaSuelas.getSelectedRow(), 0));
 			int NSuela = Integer.parseInt(dato);
-			MandarABorrar(NSuela);
-			ActualizarTabla();
+			if (PreguntarEntregado() == 0) {
+				MandarABorrar(NSuela);
+				ActualizarTabla();
+			}
 			break;
 
 		case ACTUALIZAR_BUTTON:
+			BotonBorrar.setEnabled(false);
 			ActualizarTabla();
 			break;
 
 		default:
 			break;
 		}
+
+	}
+
+	private int PreguntarEntregado() {
+
+		return JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el registro?", "BORRAR",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 	}
 

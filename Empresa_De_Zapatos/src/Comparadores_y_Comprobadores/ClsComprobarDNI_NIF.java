@@ -44,7 +44,7 @@ public class ClsComprobarDNI_NIF {
 		 * valor correspondiente.
 		 * 
 		 */
-		if (PrimeraPosicion == 'X' | PrimeraPosicion == 'Y' | PrimeraPosicion == 'Z') {
+		if (PrimeraPosicion == 'X' || PrimeraPosicion == 'Y' || PrimeraPosicion == 'Z') {
 
 			/**
 			 * Seleccionamos los digitos del DNI o NIF

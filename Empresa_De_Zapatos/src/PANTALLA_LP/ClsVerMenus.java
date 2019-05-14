@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
-import javax.swing.JDesktopPane;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.border.EmptyBorder;
 import LN.ClsGestorLN;
@@ -13,7 +13,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
-
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -59,6 +58,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	private final String PEDIDOS_BORRAR_BUTTON = "Boton de borrar pedidos";
 	private final String SERIES_BORRAR_BUTTON = "Boton de borrar series";
 	private final String SUELAS_BORRAR_BUTTON = "Boton de borrar suelas";
+	private Random random = new Random();
 
 	/**
 	 * Constante para el LISENER de actualizar.
@@ -73,7 +73,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	/**
 	 * Objetos instanciados
 	 */
-	private JDesktopPane PanelMenuIntrducirDatos;
+	private  ClsPonerFotoPantalla PanelMenuIntrducirDatos;
 	private JMenuBar menuBar;
 	private JMenu Actualizar, ConsultarBorrar, Introducir;
 	private JMenuItem ArticulosIntroducir, ClientesIntroducir, DesgloseIntroducir, EnviosIntroducir, HerrajesIntroducir,
@@ -102,6 +102,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	private ClsConsultarBorrarDesgloses IntFrameConsultarBorrarDesgloses;
 	private ClsConsultarBorrarHerrajes IntFrameConsultarBorrarHerrajes;
 	private ClsActualizarEntregas IntFrameActualizarEntregas;
+
 
 	/**
 	 * Launch the application.
@@ -141,20 +142,24 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		/**
 		 * Inicializamos panel
 		 */
-		PanelMenuIntrducirDatos = new JDesktopPane();
+		
+		String ruta = "./imagen/Satellite" + random.nextInt(3) + ".png";
+
+		//foto = new ClsPonerFotoPantalla(ruta);
+
+		PanelMenuIntrducirDatos = new ClsPonerFotoPantalla(ruta);
+
 		PanelMenuIntrducirDatos.setBackground(Color.WHITE);
 		PanelMenuIntrducirDatos.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(PanelMenuIntrducirDatos);
 		PanelMenuIntrducirDatos.setLayout(null);
-		PanelMenuIntrducirDatos.addComponentListener(null);
+		PanelMenuIntrducirDatos.getMaximumSize();
 
-		/**
-		 * Inicializamos la barra de menu
-		 */
 		menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 1366, 40);
+		PanelMenuIntrducirDatos.add(menuBar);
 		menuBar.setForeground(Color.BLUE);
 		menuBar.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		setJMenuBar(menuBar);
 
 		Actualizar = new JMenu("Actualizar");
 		Actualizar.setFont(new Font("Segoe UI", Font.BOLD, 25));
@@ -165,10 +170,6 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		Actualizar.add(EntregasActualizar);
 		EntregasActualizar.addActionListener(this);
 		EntregasActualizar.setActionCommand(ENTREGAS_ACTUALIZAR_BUTTON);
-
-		/**
-		 * Inicializamos boton de Introducir
-		 */
 
 		ConsultarBorrar = new JMenu("Consultar");
 		ConsultarBorrar.setFont(new Font("Segoe UI", Font.BOLD, 25));
@@ -247,206 +248,57 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		Introducir.setForeground(Color.BLUE);
 		Introducir.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		menuBar.add(Introducir);
-
-		/**
-		 * Inicializamos boton de Articulos
-		 */
 		ArticulosIntroducir = new JMenuItem("Articulos");
-		/**
-		 * Añadimos al boton generico
-		 */
 		Introducir.add(ArticulosIntroducir);
-		/**
-		 * Implementamos el escuchador al boton
-		 */
 		ArticulosIntroducir.addActionListener(this);
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
 		ArticulosIntroducir.setActionCommand(ARTICULOS_INSERTAR_BUTTON);
-
-		/**
-		 * Separador de botones
-		 */
 		JSeparator separator = new JSeparator();
 		Introducir.add(separator);
-
-		/**
-		 * Inicializamos boton de Clientes
-		 */
 		ClientesIntroducir = new JMenuItem("Clientes");
-		/**
-		 * Añadimos al boton generico
-		 */
 		Introducir.add(ClientesIntroducir);
-		/**
-		 * Implementamos el escuchador al boton
-		 */
 		ClientesIntroducir.addActionListener(this);
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
 		ClientesIntroducir.setActionCommand(CLIENTES_INSERTAR_BUTTON);
-
-		/**
-		 * Separador de botones
-		 */
 		JSeparator separator_1 = new JSeparator();
 		Introducir.add(separator_1);
-
-		/**
-		 * Inicializamos boton de Desglose
-		 */
 		DesgloseIntroducir = new JMenuItem("Desglose de Pedido");
-		/**
-		 * Añadimos al boton generico
-		 */
 		Introducir.add(DesgloseIntroducir);
-		/**
-		 * Implementamos el escuchador al boton
-		 */
 		DesgloseIntroducir.addActionListener(this);
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
 		DesgloseIntroducir.setActionCommand(DESGLOSE_INSERTAR_BUTTON);
-
-		/**
-		 * Separador de botones
-		 */
 		JSeparator separator_2 = new JSeparator();
 		Introducir.add(separator_2);
-
-		/**
-		 * Inicializamos boton de Envios
-		 */
 		EnviosIntroducir = new JMenuItem("Envios");
-		/**
-		 * Añadimos al boton generico
-		 */
 		Introducir.add(EnviosIntroducir);
-		/**
-		 * Implementamos el escuchador al boton
-		 */
 		EnviosIntroducir.addActionListener(this);
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
 		EnviosIntroducir.setActionCommand(ENVIOS_INSERTAR_BUTTON);
-
-		/**
-		 * Separador de botones
-		 */
 		JSeparator separator_3 = new JSeparator();
 		Introducir.add(separator_3);
-
-		/**
-		 * Inicializamos boton de Herrajes
-		 */
 		HerrajesIntroducir = new JMenuItem("Herrajes");
-		/**
-		 * Añadimos al boton generico
-		 */
 		Introducir.add(HerrajesIntroducir);
-		/**
-		 * Implementamos el escuchador al boton
-		 */
 		HerrajesIntroducir.addActionListener(this);
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
 		HerrajesIntroducir.setActionCommand(HERRAJES_INSERTAR_BUTTON);
-
-		/**
-		 * Separador de botones
-		 */
 		JSeparator separator_4 = new JSeparator();
 		Introducir.add(separator_4);
-
-		/**
-		 * Inicializamos boton de Materiales
-		 */
 		MaterialesIntroducir = new JMenuItem("Materiales");
-		/**
-		 * Añadimos al boton generico
-		 */
 		Introducir.add(MaterialesIntroducir);
-		/**
-		 * Implementamos el escuchador al boton
-		 */
 		MaterialesIntroducir.addActionListener(this);
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
 		MaterialesIntroducir.setActionCommand(MATERIALES_INSERTAR_BUTTON);
-
-		/**
-		 * Separador de botones
-		 */
 		JSeparator separator_5 = new JSeparator();
 		Introducir.add(separator_5);
-
-		/**
-		 * Inicializamos boton de Pedidos
-		 */
 		PedidosIntroducir = new JMenuItem("Pedidos");
-		/**
-		 * Añadimos al boton generico
-		 */
 		Introducir.add(PedidosIntroducir);
-		/**
-		 * Implementamos el escuchador al boton
-		 */
 		PedidosIntroducir.addActionListener(this);
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
 		PedidosIntroducir.setActionCommand(PEDIDOS_INSERTAR_BUTTON);
-
-		/**
-		 * Separador de botones
-		 */
 		JSeparator separator_6 = new JSeparator();
 		Introducir.add(separator_6);
-
-		/**
-		 * Inicializamos boton de Series
-		 */
 		SeriesIntroducir = new JMenuItem("Series");
-		/**
-		 * Añadimos al boton generico
-		 */
 		Introducir.add(SeriesIntroducir);
-		/**
-		 * Implementamos el escuchador al boton
-		 */
 		SeriesIntroducir.addActionListener(this);
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
 		SeriesIntroducir.setActionCommand(SERIES_INSERTAR_BUTTON);
-
-		/**
-		 * Separador de botones
-		 */
 		JSeparator separator_7 = new JSeparator();
 		Introducir.add(separator_7);
-
-		/**
-		 * Inicializamos boton de Suelas
-		 */
 		SuelasIntroducir = new JMenuItem("Suelas");
-		/**
-		 * Añadimos al boton generico
-		 */
 		Introducir.add(SuelasIntroducir);
-		/**
-		 * Implementamos el escuchador al boton
-		 */
 		SuelasIntroducir.addActionListener(this);
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
 		SuelasIntroducir.setActionCommand(SUELAS_INSERTAR_BUTTON);
 
 		JMenu Informes = new JMenu("Informes");
@@ -458,6 +310,170 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		Informes.add(PedidosDesglose);
 		PedidosDesglose.addActionListener(this);
 		PedidosDesglose.setActionCommand(INFORMES_PEDIDOS_MAS_DESGLOSES_BUTTON);
+		PanelMenuIntrducirDatos.addComponentListener(null);
+
+		
+
+		//foto.setBounds(0, 39, 1366, 1326);
+		//PanelMenuIntrducirDatos.add(foto);
+		//PanelMenuIntrducirDatos.addComponentListener(null);
+
+		/**
+		 * Inicializamos la barra de menu
+		 */
+
+		/**
+		 * Inicializamos boton de Introducir
+		 */
+
+		/**
+		 * Inicializamos boton de Articulos
+		 */
+		/**
+		 * Añadimos al boton generico
+		 */
+		/**
+		 * Implementamos el escuchador al boton
+		 */
+		/**
+		 * Añadimos comando al boton para la escucha
+		 */
+
+		/**
+		 * Separador de botones
+		 */
+
+		/**
+		 * Inicializamos boton de Clientes
+		 */
+		/**
+		 * Añadimos al boton generico
+		 */
+		/**
+		 * Implementamos el escuchador al boton
+		 */
+		/**
+		 * Añadimos comando al boton para la escucha
+		 */
+
+		/**
+		 * Separador de botones
+		 */
+
+		/**
+		 * Inicializamos boton de Desglose
+		 */
+		/**
+		 * Añadimos al boton generico
+		 */
+		/**
+		 * Implementamos el escuchador al boton
+		 */
+		/**
+		 * Añadimos comando al boton para la escucha
+		 */
+
+		/**
+		 * Separador de botones
+		 */
+
+		/**
+		 * Inicializamos boton de Envios
+		 */
+		/**
+		 * Añadimos al boton generico
+		 */
+		/**
+		 * Implementamos el escuchador al boton
+		 */
+		/**
+		 * Añadimos comando al boton para la escucha
+		 */
+
+		/**
+		 * Separador de botones
+		 */
+
+		/**
+		 * Inicializamos boton de Herrajes
+		 */
+		/**
+		 * Añadimos al boton generico
+		 */
+		/**
+		 * Implementamos el escuchador al boton
+		 */
+		/**
+		 * Añadimos comando al boton para la escucha
+		 */
+
+		/**
+		 * Separador de botones
+		 */
+
+		/**
+		 * Inicializamos boton de Materiales
+		 */
+		/**
+		 * Añadimos al boton generico
+		 */
+		/**
+		 * Implementamos el escuchador al boton
+		 */
+		/**
+		 * Añadimos comando al boton para la escucha
+		 */
+
+		/**
+		 * Separador de botones
+		 */
+
+		/**
+		 * Inicializamos boton de Pedidos
+		 */
+		/**
+		 * Añadimos al boton generico
+		 */
+		/**
+		 * Implementamos el escuchador al boton
+		 */
+		/**
+		 * Añadimos comando al boton para la escucha
+		 */
+
+		/**
+		 * Separador de botones
+		 */
+
+		/**
+		 * Inicializamos boton de Series
+		 */
+		/**
+		 * Añadimos al boton generico
+		 */
+		/**
+		 * Implementamos el escuchador al boton
+		 */
+		/**
+		 * Añadimos comando al boton para la escucha
+		 */
+
+		/**
+		 * Separador de botones
+		 */
+
+		/**
+		 * Inicializamos boton de Suelas
+		 */
+		/**
+		 * Añadimos al boton generico
+		 */
+		/**
+		 * Implementamos el escuchador al boton
+		 */
+		/**
+		 * Añadimos comando al boton para la escucha
+		 */
 
 	}
 
@@ -604,7 +620,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		}
 
 	}
-	
+
 	/**
 	 * Llamada a InternalFrame para actualizar entregas
 	 */
@@ -1274,7 +1290,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 
 			IntFrameClientes.toFront();
 
-			PanelMenuIntrducirDatos.moveToFront(IntFrameSuelas);
+			PanelMenuIntrducirDatos.moveToFront(IntFrameClientes);
 
 			mostrar = true;
 
@@ -1741,14 +1757,14 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 
 		return mostrar;
 	}
-	
+
 	/**
 	 * Metodo para comprobar que la ventana esta abierta o no
 	 * 
 	 * @return nos dice si esta abierta o no
 	 */
 	private boolean ComprobarVentanaActualizarEntregasAbierta() {
-		
+
 		boolean mostrar = false;
 
 		boolean cerrado;
@@ -1773,6 +1789,6 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		}
 
 		return mostrar;
-		
+
 	}
 }

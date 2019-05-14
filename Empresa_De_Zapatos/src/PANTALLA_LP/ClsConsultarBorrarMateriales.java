@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
+import javax.swing.ListSelectionModel;
 
 public class ClsConsultarBorrarMateriales extends JInternalFrame implements ActionListener, ListSelectionListener {
 
@@ -100,6 +101,7 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 		Alinear = new DefaultTableCellRenderer();
 
 		TablaMateriales = new JTable(TClientes);
+		TablaMateriales.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		TablaMateriales.getColumnModel().getColumn(0).setCellRenderer(Alinear);
@@ -125,17 +127,27 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 
 			String dato = String.valueOf(TablaMateriales.getValueAt(TablaMateriales.getSelectedRow(), 0));
 			int NMaterial = Integer.parseInt(dato);
-			MandarABorrar(NMaterial);
-			ActualizarTabla();
+			if (PreguntarEntregado() == 0) {
+				MandarABorrar(NMaterial);
+				ActualizarTabla();
+			}
 			break;
 
 		case ACTUALIZAR_BUTTON:
+			BotonBorrar.setEnabled(false);
 			ActualizarTabla();
 			break;
 
 		default:
 			break;
 		}
+
+	}
+
+	private int PreguntarEntregado() {
+
+		return JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el registro?", "BORRAR",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 	}
 

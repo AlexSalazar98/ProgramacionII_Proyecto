@@ -17,17 +17,21 @@ import javax.swing.JInternalFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 import COMUN.ItfProperty;
 import LN.ClsGestorLN;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 /**
  * Clase para sacar tabla con ciertos atributos de pedidos y otros de desgloses
@@ -36,7 +40,7 @@ import javax.swing.JTable;
  * @author David Requeta
  *
  */
-public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListener {
+public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListener, ListSelectionListener {
 
 	/**
 	 * No se para que sirve esto.
@@ -48,7 +52,7 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 	private JButton BotonExportar;
 	private JDateChooser RecogerFInicio, RecogerFFinal;
 	private JScrollPane scrollPane;
-	private JButton BotonBuscar, BotonTotales;
+	private JButton BotonBuscar;
 	private Date FechaDeEntregaInicio, FechaDeEntregaFinal;
 	private DefaultTableCellRenderer Alinear;
 	private ClsTablaPedidoMasDesglose TDesgloses;
@@ -72,7 +76,6 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 	 */
 	private final String BUSCAR_BUTTON = "Boton de buscar";
 	private final String EXPORTAR_BUTTON = "Boton de exportar a excel";
-	private final String TOTALES_BUTTON = "Boton de sacar totales";
 	
 
 	/**
@@ -104,6 +107,7 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 		getContentPane().add(TxtBuscador);
 
 		BotonExportar = new JButton("Exportar ");
+		BotonExportar.setEnabled(false);
 		BotonExportar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		BotonExportar.setBounds(1134, 238, 93, 23);
 		getContentPane().add(BotonExportar);
@@ -137,13 +141,6 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 		getContentPane().add(BotonBuscar);
 		BotonBuscar.addActionListener(this);
 		BotonBuscar.setActionCommand(BUSCAR_BUTTON);
-
-		BotonTotales = new JButton("Totales");
-		BotonTotales.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		BotonTotales.setBounds(10, 244, 89, 23);
-		getContentPane().add(BotonTotales);
-		BotonTotales.addActionListener(this);
-		BotonTotales.setActionCommand(TOTALES_BUTTON);
 
 	}
 
@@ -217,15 +214,15 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 	 */
 	private void FormatearFechaEntregaInicio() {
 		DateFormat miFormato;
-		String fecha;
+		String fecha = null;
 
 		/**
 		 * fromateamos la fecha de otro modo diferente al anterior para sacarla por
 		 * pantalla.
 		 */
 		miFormato = DateFormat.getDateInstance(DateFormat.SHORT);
-		fecha = miFormato.format(RecogerFInicio.getDate());
 
+		fecha = miFormato.format(RecogerFInicio.getDate());
 		try {
 			FechaDeEntregaInicio = miFormato.parse(fecha);
 		} catch (ParseException e) {
@@ -239,15 +236,15 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 	 */
 	private void FormatearFechaEntregaFinal() {
 		DateFormat miFormato;
-		String fecha;
+		String fecha = null;
 
 		/**
 		 * fromateamos la fecha de otro modo diferente al anterior para sacarla por
 		 * pantalla.
 		 */
 		miFormato = DateFormat.getDateInstance(DateFormat.SHORT);
-		fecha = miFormato.format(RecogerFFinal.getDate());
 
+		fecha = miFormato.format(RecogerFFinal.getDate());
 		try {
 			FechaDeEntregaFinal = miFormato.parse(fecha);
 		} catch (ParseException e) {
@@ -262,6 +259,10 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 		Alinear = new DefaultTableCellRenderer();
 
 		table = new JTable(TDesgloses);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		JTableHeader header = table.getTableHeader();
+		header.setBackground(Color.black);
+		header.setForeground(Color.black);
 
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		table.getColumnModel().getColumn(0).setCellRenderer(Alinear);
@@ -280,6 +281,7 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 		table.getColumnModel().getColumn(13).setCellRenderer(Alinear);
 		table.getColumnModel().getColumn(14).setCellRenderer(Alinear);
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+		table.getSelectionModel().addListSelectionListener(this);
 		table.setFillsViewportHeight(true);
 		table.setRowSelectionAllowed(true);
 		TDesgloses.fireTableDataChanged();
@@ -295,14 +297,22 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 	public void actionPerformed(ActionEvent e) {
 
 		switch (e.getActionCommand()) {
+
 		case BUSCAR_BUTTON:
-			ObtenerDatos();
-			if (contador == 0) {
-				CrearTabla();
-				contador = contador + 1;
+			BotonExportar.setEnabled(false);
+			if (RecogerFInicio.getDate() != null && RecogerFFinal.getDate() != null) {
+				ObtenerDatos();
+				if (contador == 0) {
+					CrearTabla();
+					contador = contador + 1;
+				} else {
+					ActualizarTabla();
+				}
 			} else {
-				ActualizarTabla();
+				String MENSAJE = "Rellene las Fechas";
+				JOptionPane.showMessageDialog(null, MENSAJE, "SIN FECHA", JOptionPane.ERROR_MESSAGE);
 			}
+
 			break;
 
 		case EXPORTAR_BUTTON:
@@ -341,6 +351,16 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 		table.getColumnModel().getColumn(14).setCellRenderer(Alinear);
 		table.setVisible(true);
 
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent arg0) {
+		int Seleccionado = table.getSelectedRowCount();
+
+		if (Seleccionado > 0) {
+			BotonExportar.setEnabled(true);
+		}
+		
 	}
 
 }

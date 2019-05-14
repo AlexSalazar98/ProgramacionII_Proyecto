@@ -81,6 +81,7 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 	private JButton MostrarClientes;
 	private JTable table;
 	JScrollPane JSCClientes;
+	private int CPDeEnvio, TelefonoDeEnvio;
 
 	/**
 	 * Constructor.
@@ -281,13 +282,13 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 		case CONFIRMAR_BUTTON:
 			while (!ComprobarCamposVacios()) {
 				if (RecogerCP.getText().equals("")) {
-					RecogerCP.setText(JOptionPane.showInputDialog("Codigo Postal:", new ImageIcon("\\u27Oe")));
+					RecogerCP.setText(JOptionPane.showInputDialog("Codigo Postal:"));
 				}
 				if (RecogerPoblacionEnvio.getText().equals("")) {
 					RecogerPoblacionEnvio.setText(JOptionPane.showInputDialog("Población"));
 				}
 			}
-			if (ComprobarCamposVacios()) {
+			if (Comprobar()) {
 				MandarAGestor();
 				PonerVacio();
 				ObtenerUltimoID();
@@ -297,6 +298,27 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 		default:
 			break;
 		}
+
+	}
+
+	private boolean Comprobar() {
+
+		boolean comprobar = true;
+
+		try {
+			CPDeEnvio = Integer.parseInt(RecogerCP.getText());
+		} catch (Exception e) {
+			comprobar = false;
+			JOptionPane.showMessageDialog(null, "Codigo postal de envio erroneo");
+		}
+
+		try {
+			TelefonoDeEnvio = Integer.parseInt(RecogerTelefono.getText());
+		} catch (Exception e) {
+			comprobar = false;
+			JOptionPane.showMessageDialog(null, "Número de teléfono erroneo");
+		}
+		return comprobar;
 
 	}
 
@@ -405,9 +427,9 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 		String NombreCliente = RecogerNYACliente.getText();
 		String DireccionDeEnvio = RecogerDirEnvio.getText();
 		String PoblacionDeEnvio = RecogerPoblacionEnvio.getText();
-		int CPDeEnvio = Integer.parseInt(RecogerCP.getText());
+
 		String ProvinciaDeEnvio = RecogerProvinciaEnvio.getText();
-		int TelefonoDeEnvio = Integer.parseInt(RecogerTelefono.getText());
+
 		int NumeroDeCliente_Envio = Integer.parseInt(comboBox.getSelectedItem().toString());
 
 		try {
@@ -445,6 +467,11 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 		if (RecogerCP.getText().equals("") || RecogerPoblacionEnvio.getText().equals("")) {
 			comprobar = false;
 
+		}
+
+		if (RecogerTelefono.getText().equals("")) {
+			RecogerTelefono.setText("0");
+			;
 		}
 
 		return comprobar;

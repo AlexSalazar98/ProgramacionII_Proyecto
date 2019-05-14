@@ -49,6 +49,7 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 	JButton NSAutomatico, Confirmar;
 	private JTextField INSerie;
 	private JTextField Desc;
+	private int NDS;
 
 	/**
 	 * Constuctor
@@ -83,6 +84,7 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 		INSerie.setColumns(10);
 
 		NSAutomatico = new JButton("N\u00BA Serie Automatico");
+		NSAutomatico.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		getContentPane().add(NSAutomatico);
 		NSAutomatico.addActionListener(this);
 		NSAutomatico.setActionCommand(AUTOMATICO_BUTTON);
@@ -108,6 +110,7 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 		getContentPane().add(Vacio3);
 
 		Confirmar = new JButton("Confirmar Serie");
+		Confirmar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		getContentPane().add(Confirmar);
 		Confirmar.addActionListener(this);
 		Confirmar.setActionCommand(CONFIRMAR_BUTTON);
@@ -123,14 +126,36 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 			ObtenerUltimoID();
 			break;
 		case CONFIRMAR_BUTTON:
-			MandarAlGestor();
-			PonerVacio();
+			Comprobar();
 			break;
 
 		default:
 			break;
 		}
 	}
+	
+	private void Comprobar() {
+
+		boolean comprobado = true;
+
+		try {
+			NDS = Integer.parseInt(INSerie.getText());
+		} catch (Exception e) {
+			comprobado = false;
+			JOptionPane.showMessageDialog(null, "Numero de Serie incorrecto o vacio");
+		}
+		
+		if(Desc.getText().equals("")) {
+			comprobado = false;
+			JOptionPane.showMessageDialog(null, "La descripción no puede estar vacia");
+		}
+		
+		if (comprobado) {
+			MandarAlGestor();
+			PonerVacio();
+		}
+	}
+
 
 	/**
 	 * Metodo para poner automatico el siguiente ID
@@ -155,7 +180,7 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 	 */
 	private void MandarAlGestor() {
 
-		int NDS = Integer.parseInt(INSerie.getText());
+		
 		String Des = Desc.getText();
 		try {
 			if (objGestorIFIS.CrearSerie(NDS, Des)) {

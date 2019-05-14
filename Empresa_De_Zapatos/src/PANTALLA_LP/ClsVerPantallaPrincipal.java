@@ -104,9 +104,7 @@ public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {
 			 * Lanza mensaje de excepcion en caso de que no pueda cargar la informacion
 			 */
 
-			String MENSAJE;
-			MENSAJE = "Ejecute la aplicacion MySQLWorkBench";
-
+			String MENSAJE = "Ejecute la aplicacion MySQLWorkBench";
 			JOptionPane.showMessageDialog(null, MENSAJE, "SIN CONEXION CON BD", JOptionPane.ERROR_MESSAGE);
 
 		}

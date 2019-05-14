@@ -23,7 +23,6 @@ import javax.swing.SwingConstants;
 import COMUN.ItfProperty;
 import javax.swing.ImageIcon;
 
-
 /**
  * Internal Frame para introducir Herrajes
  * 
@@ -43,6 +42,9 @@ public class ClsIFIntroducirHerrajes extends JInternalFrame implements ActionLis
 	private JTextField CasillaDesHerraje;
 	private JTextField CasillaPrecioHerraje;
 	private JButton NHerrajeAuto, ConfirmarHerraje;
+	private int Ref;
+	private Double Prec;
+
 	/**
 	 * Para tener el Gestor
 	 */
@@ -152,14 +154,43 @@ public class ClsIFIntroducirHerrajes extends JInternalFrame implements ActionLis
 			break;
 
 		case CONFIRMAR_BUTTON:
-			MandarAGestor();
-			PonerVacio();
+			Comprobar();
 			break;
 
 		default:
 			break;
 		}
 
+	}
+
+	private void Comprobar() {
+
+		boolean comprobado = true;
+
+		try {
+			Ref = Integer.parseInt(CasillaNHerraje.getText());
+		} catch (Exception e) {
+			comprobado = false;
+			JOptionPane.showMessageDialog(null, "Numero de Herraje incorrecto o vacio");
+		}
+
+		if (!CasillaPrecioHerraje.getText().equals("")) {
+			try {
+				Prec = Double.parseDouble(CasillaPrecioHerraje.getText());
+			} catch (Exception e) {
+				comprobado = false;
+				JOptionPane.showMessageDialog(null, "El precio no puede ser texto");
+			}
+		}
+		if (CasillaDesHerraje.getText().equals("")) {
+			comprobado = false;
+			JOptionPane.showMessageDialog(null, "La descripción no puede estar vacia");
+		}
+
+		if (comprobado) {
+			MandarAGestor();
+			PonerVacio();
+		}
 	}
 
 	/**
@@ -178,9 +209,7 @@ public class ClsIFIntroducirHerrajes extends JInternalFrame implements ActionLis
 	 */
 	private void MandarAGestor() {
 
-		int Ref = Integer.parseInt(CasillaNHerraje.getText());
 		String Desc = CasillaDesHerraje.getText();
-		Double Prec = Double.parseDouble(CasillaPrecioHerraje.getText());
 
 		try {
 			if (objGestorIFIH.CrearHerrajes(Ref, Desc, Prec)) {
@@ -213,7 +242,5 @@ public class ClsIFIntroducirHerrajes extends JInternalFrame implements ActionLis
 		CasillaNHerraje.setText(IDActualizado);
 
 	}
-	
-	
 
 }

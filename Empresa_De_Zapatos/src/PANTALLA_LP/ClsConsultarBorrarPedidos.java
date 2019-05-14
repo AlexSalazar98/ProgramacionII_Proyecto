@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
+import javax.swing.ListSelectionModel;
 
 /**
  * Clase para mostrar y borrar pedidos de la tabla
@@ -103,6 +104,7 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 		Alinear = new DefaultTableCellRenderer();
 
 		TablaPedidos = new JTable(TPedidos);
+		TablaPedidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		TablaPedidos.getColumnModel().getColumn(0).setCellRenderer(Alinear);
 		TablaPedidos.getColumnModel().getColumn(1).setCellRenderer(Alinear);
@@ -130,17 +132,27 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 
 			String dato = String.valueOf(TablaPedidos.getValueAt(TablaPedidos.getSelectedRow(), 0));
 			int NPedido = Integer.parseInt(dato);
-			MandarABorrar(NPedido);
-			ActualizarTabla();
+			if (PreguntarEntregado() == 0) {
+				MandarABorrar(NPedido);
+				ActualizarTabla();
+			}
 			break;
 
 		case ACTUALIZAR_BUTTON:
+			BotonBorrar.setEnabled(false);
 			ActualizarTabla();
 			break;
 
 		default:
 			break;
 		}
+
+	}
+
+	private int PreguntarEntregado() {
+
+		return JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el registro?", "BORRAR",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 	}
 
