@@ -14,10 +14,13 @@ public class Main {
 	public static void main(String[] args) {
 
 		/**
-		 * Aqui llamamos al menu principal.
+		 * Aqui llamamos al menu principal Frame.
 		 */
 
 		ClsVerPantallaPrincipal.main();
+		/**
+		 * Aqui llamamos al menu principal consola.
+		 */
 		// ClsMenuPrincipal.MenuPrincipal();
 
 	}

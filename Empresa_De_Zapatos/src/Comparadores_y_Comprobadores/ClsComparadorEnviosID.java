@@ -12,9 +12,15 @@ import LN.ClsEnvios;
  */
 public class ClsComparadorEnviosID implements Comparator<ClsEnvios> {
 
+	/**
+	 * Metodo para comparar el id de los Envios
+	 */
 	@Override
 	public int compare(ClsEnvios ID0, ClsEnvios ID1) {
 
+		/**
+		 * Variables que recogen el NUmero de Envio para compararlos
+		 */
 		Integer a = ID0.getNumeroDeEnvio();
 		Integer b = ID1.getNumeroDeEnvio();
 

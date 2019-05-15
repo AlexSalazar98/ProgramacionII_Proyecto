@@ -1,5 +1,6 @@
 package PANTALLA_LP;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,8 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
+
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
@@ -105,6 +108,13 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 
 		TablaPedidos = new JTable(TPedidos);
 		TablaPedidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		JTableHeader header = TablaPedidos.getTableHeader();
+		header.setVisible(true);
+		header.setBackground(Color.black);
+		header.setForeground(Color.black);
+		header.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		TablaPedidos.getColumnModel().getColumn(0).setCellRenderer(Alinear);
 		TablaPedidos.getColumnModel().getColumn(1).setCellRenderer(Alinear);

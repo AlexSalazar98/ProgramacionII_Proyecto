@@ -13,12 +13,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_ENTREGADO;
+
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
+
 import COMUN.ItfProperty;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -111,12 +115,21 @@ public class ClsActualizarEntregas extends JInternalFrame implements ActionListe
 			}
 
 		}
+		
+		
 
 		TPedidos = new ClsTablaEntregas(PedidosNoEntegados);
 		Alinear = new DefaultTableCellRenderer();
 
 		table = new JTable(TPedidos);
 		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		
+		JTableHeader header = table.getTableHeader();
+		header.setVisible(true);
+		header.setBackground(Color.black);
+		header.setForeground(Color.black);
+		header.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		table.getColumnModel().getColumn(0).setCellRenderer(Alinear);
 		table.getColumnModel().getColumn(1).setCellRenderer(Alinear);

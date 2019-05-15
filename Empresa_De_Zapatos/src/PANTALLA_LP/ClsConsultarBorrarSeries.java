@@ -10,12 +10,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
+
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
@@ -109,6 +112,12 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 
 		TablaSeries = new JTable(TSeries);
 		TablaSeries.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		JTableHeader header = TablaSeries.getTableHeader();
+		header.setVisible(true);
+		header.setBackground(Color.black);
+		header.setForeground(Color.black);
+		header.setFont(new Font("Tahoma", Font.BOLD, 13));
 
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		TablaSeries.getColumnModel().getColumn(0).setCellRenderer(Alinear);

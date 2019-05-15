@@ -257,12 +257,16 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 
 		TDesgloses = new ClsTablaPedidoMasDesglose(DesglosesEntreFechas);
 		Alinear = new DefaultTableCellRenderer();
+		
 
 		table = new JTable(TDesgloses);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		JTableHeader header = table.getTableHeader();
+		header.setVisible(true);
 		header.setBackground(Color.black);
 		header.setForeground(Color.black);
+		header.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
 
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		table.getColumnModel().getColumn(0).setCellRenderer(Alinear);

@@ -1,5 +1,6 @@
 package PANTALLA_LP;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
@@ -102,6 +104,12 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 
 		TablaClientes = new JTable(TClientes);
 		TablaClientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		JTableHeader header = TablaClientes.getTableHeader();
+		header.setVisible(true);
+		header.setBackground(Color.black);
+		header.setForeground(Color.black);
+		header.setFont(new Font("Tahoma", Font.BOLD, 13));
 
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		TablaClientes.getColumnModel().getColumn(0).setCellRenderer(Alinear);

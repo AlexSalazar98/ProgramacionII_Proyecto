@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 
 import COMUN.ItfProperty;
 import LN.ClsGestorLN;
@@ -371,6 +372,11 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 
 		TablaPedidos = new JTable(TPedidos);
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+
+		JTableHeader header = TablaPedidos.getTableHeader();
+		header.setVisible(true);
+		header.setFont(new Font("Tahoma", Font.BOLD, 13));
+
 		TablaPedidos.getColumnModel().getColumn(0).setCellRenderer(Alinear);
 		TablaPedidos.getColumnModel().getColumn(1).setCellRenderer(Alinear);
 		TablaPedidos.getColumnModel().getColumn(2).setCellRenderer(Alinear);
@@ -396,6 +402,11 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 
 		TablaArticulos = new JTable(TArticulos);
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+
+		JTableHeader header = TablaArticulos.getTableHeader();
+		header.setVisible(true);
+		header.setFont(new Font("Tahoma", Font.BOLD, 13));
+
 		TablaArticulos.getColumnModel().getColumn(0).setCellRenderer(Alinear);
 		TablaArticulos.getColumnModel().getColumn(1).setCellRenderer(Alinear);
 		TablaArticulos.getColumnModel().getColumn(2).setCellRenderer(Alinear);
@@ -428,6 +439,11 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 
 		TablaSeries = new JTable(TSeries);
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+
+		JTableHeader header = TablaSeries.getTableHeader();
+		header.setVisible(true);
+		header.setFont(new Font("Tahoma", Font.BOLD, 13));
+
 		TablaSeries.getColumnModel().getColumn(0).setCellRenderer(Alinear);
 		TablaSeries.getColumnModel().getColumn(1).setCellRenderer(Alinear);
 		TablaSeries.setPreferredScrollableViewportSize(new Dimension(500, 70));

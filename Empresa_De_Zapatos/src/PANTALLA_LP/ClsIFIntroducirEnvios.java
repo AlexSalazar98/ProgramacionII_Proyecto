@@ -12,6 +12,8 @@ import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NUMERO;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DIRECCION;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_PROVINCIA;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_TELEFONO;
+
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.Box;
@@ -23,6 +25,8 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
+
 import COMUN.ItfProperty;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -353,6 +357,13 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 
 		table = new JTable(TClientes);
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+
+		JTableHeader header = table.getTableHeader();
+		header.setVisible(true);
+		header.setBackground(Color.black);
+		header.setForeground(Color.black);
+		header.setFont(new Font("Tahoma", Font.BOLD, 13));
+
 		table.getColumnModel().getColumn(0).setCellRenderer(Alinear);
 		table.getColumnModel().getColumn(1).setCellRenderer(Alinear);
 		table.getColumnModel().getColumn(2).setCellRenderer(Alinear);

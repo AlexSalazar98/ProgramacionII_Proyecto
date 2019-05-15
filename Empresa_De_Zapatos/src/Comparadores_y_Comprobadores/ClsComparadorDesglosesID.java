@@ -13,9 +13,15 @@ import LN.ClsDesgloseDePedido;
  */
 public class ClsComparadorDesglosesID implements Comparator<ClsDesgloseDePedido> {
 
+	/**
+	 * Metodo para comparar el Numero de Pedido
+	 */
 	@Override
 	public int compare(ClsDesgloseDePedido ID0, ClsDesgloseDePedido Id1) {
 
+		/**
+		 * Variables que recogen el Numero de Pedidos para compararlos
+		 */
 		Integer a = ID0.getNumeroDePedido();
 		Integer b = Id1.getNumeroDePedido();
 

@@ -17,6 +17,8 @@ import LN.ClsGestorLN;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NOMBRE_Y_APELLIDOS;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_NUMERO;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO;
+
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -24,6 +26,7 @@ import com.toedter.calendar.JDateChooser;
 import COMUN.ItfProperty;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JButton;
@@ -202,7 +205,7 @@ public class ClsIFIntroducirPedidos extends JInternalFrame implements ActionList
 				if (MandarAGestor()) {
 					ObtenerUltimoID();
 				}
-			}else {
+			} else {
 				String MENSAJE = "Rellene las Fechas";
 				JOptionPane.showMessageDialog(null, MENSAJE, "SIN FECHA", JOptionPane.ERROR_MESSAGE);
 			}
@@ -310,6 +313,13 @@ public class ClsIFIntroducirPedidos extends JInternalFrame implements ActionList
 
 		table = new JTable(TClientes);
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+
+		JTableHeader header = table.getTableHeader();
+		header.setVisible(true);
+		header.setBackground(Color.black);
+		header.setForeground(Color.black);
+		header.setFont(new Font("Tahoma", Font.BOLD, 13));
+
 		table.getColumnModel().getColumn(0).setCellRenderer(Alinear);
 		table.getColumnModel().getColumn(1).setCellRenderer(Alinear);
 		table.getColumnModel().getColumn(2).setCellRenderer(Alinear);
