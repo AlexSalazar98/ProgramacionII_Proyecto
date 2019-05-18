@@ -27,15 +27,36 @@ import static COMUN.ClsConstantes.PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO;
 public class ClsEnvios implements ItfProperty, Comparable {
 
 	/**
-	 * Estos son los atributos de la tablas
+	 * Atributo para recoger numero de envio
 	 */
 	private int NumeroDeEnvio;
+	/**
+	 * Atributo para recoger nombre y apellidos del cliente
+	 */
 	private String NombreCliente;
+	/**
+	 * Atributo para recoger direccion de envio
+	 */
 	private String DireccionDeEnvio;
+	/**
+	 * Atributo para recoger poblacion de envio
+	 */
 	private String PoblacionDeEnvio;
+	/**
+	 * Atributo para recoger codigo postal de envio
+	 */
 	private int CPDeEnvio;
+	/**
+	 * Atributo para recoger provincia de envio
+	 */
 	private String ProvinciaDeEnvio;
+	/**
+	 * Atributo para recoger telefono de envio
+	 */
 	private int TelefonoDeEnvio;
+	/**
+	 * Atributo para recoger numero del cliente (Herencia de la tabla cliente)
+	 */
 	private int NumeroDeCliente_Envio;
 
 	/**

@@ -22,6 +22,8 @@ import javax.swing.table.JTableHeader;
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
+import Tablas.ClsTablaSeries;
+
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -65,6 +67,11 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 	private final String BORRAR_BUTTON = "Boton de confirmar Series";
 	private final String ACTUALIZAR_BUTTON = "Boton de actualizar Series";
 
+	/**
+	 * Constructor
+	 * 
+	 * @param ObjGestor recibe el gestor
+	 */
 	public ClsConsultarBorrarSeries(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarSeries.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setTitle("Consultar Series");
@@ -75,6 +82,11 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 		Inicializar(ObjGestor);
 	}
 
+	/**
+	 * Metodo inicializador de objetos
+	 * 
+	 * @param ObjGestor recibe gestor
+	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
 		objGestorIFCBS = ObjGestor;
@@ -103,6 +115,9 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para crear la tabla
+	 */
 	private void CrearTablaSeries() {
 
 		Series = objGestorIFCBS.DameSeries();
@@ -112,7 +127,7 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 
 		TablaSeries = new JTable(TSeries);
 		TablaSeries.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
+
 		JTableHeader header = TablaSeries.getTableHeader();
 		header.setVisible(true);
 		header.setBackground(Color.black);
@@ -136,6 +151,9 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -160,6 +178,11 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para preguntar por confirmacion de borrado
+	 * 
+	 * @return mandamos confirm.
+	 */
 	private int PreguntarEntregado() {
 
 		return JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el registro?", "BORRAR",
@@ -167,6 +190,11 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para mandar a borrar
+	 * 
+	 * @param NSerie mandamos parametro
+	 */
 	private void MandarABorrar(int NSerie) {
 
 		try {
@@ -183,6 +211,9 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Escuchador de tabla
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 
@@ -194,6 +225,9 @@ public class ClsConsultarBorrarSeries extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para actualizar la tabla
+	 */
 	private void ActualizarTabla() {
 		TablaSeries.setVisible(false);
 		Series = objGestorIFCBS.DameSeries();

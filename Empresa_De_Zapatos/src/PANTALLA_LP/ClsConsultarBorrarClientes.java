@@ -24,6 +24,8 @@ import javax.swing.table.JTableHeader;
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
+import Tablas.ClsTablaClientes;
+
 import javax.swing.ListSelectionModel;
 
 public class ClsConsultarBorrarClientes extends JInternalFrame implements ActionListener, ListSelectionListener {
@@ -57,6 +59,11 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 	private final String BORRAR_BUTTON = "Boton de confirmar Clientes";
 	private final String ACTUALIZAR_BUTTON = "Boton de actualizar Clientes";
 
+	/**
+	 * Constructor
+	 * 
+	 * @param ObjGestor recibe el gestor
+	 */
 	public ClsConsultarBorrarClientes(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarClientes.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setTitle("Consultar Clientes");
@@ -67,6 +74,11 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 		Inicializar(ObjGestor);
 	}
 
+	/**
+	 * Metodo inicializador
+	 * 
+	 * @param ObjGestor revibe el gestor
+	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
 		objGestorIFCBA = ObjGestor;
@@ -95,6 +107,9 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 
 	}
 
+	/**
+	 * Metodo para crear tabla
+	 */
 	private void CrearTablaClientes() {
 
 		Clientes = objGestorIFCBA.DameClientes();
@@ -104,7 +119,7 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 
 		TablaClientes = new JTable(TClientes);
 		TablaClientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
+
 		JTableHeader header = TablaClientes.getTableHeader();
 		header.setVisible(true);
 		header.setBackground(Color.black);
@@ -132,6 +147,9 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 
 	}
 
+	/**
+	 * Esccuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -156,6 +174,11 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 
 	}
 
+	/**
+	 * Metodo para preguntar por la confirmacion
+	 * 
+	 * @return nos devuelve la respuesta
+	 */
 	private int PreguntarEntregado() {
 
 		return JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el registro?", "BORRAR",
@@ -163,6 +186,11 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 
 	}
 
+	/**
+	 * Metodo para manda a borrar
+	 * 
+	 * @param NCliente mandamos parametro
+	 */
 	private void MandarABorrar(int NCliente) {
 
 		try {
@@ -179,6 +207,9 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 
 	}
 
+	/**
+	 * Escuchador de tabla
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 
@@ -190,6 +221,9 @@ public class ClsConsultarBorrarClientes extends JInternalFrame implements Action
 
 	}
 
+	/**
+	 * Metodo para actualizar la tabla
+	 */
 	private void ActualizarTabla() {
 
 		TablaClientes.setVisible(false);

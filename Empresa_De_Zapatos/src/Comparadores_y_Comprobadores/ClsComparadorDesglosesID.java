@@ -14,7 +14,7 @@ import LN.ClsDesgloseDePedido;
 public class ClsComparadorDesglosesID implements Comparator<ClsDesgloseDePedido> {
 
 	/**
-	 * Metodo para comparar el Numero de Pedido
+	 * Metodo para comparar el Numero de pedido dentro de la tabla desgloses
 	 */
 	@Override
 	public int compare(ClsDesgloseDePedido ID0, ClsDesgloseDePedido Id1) {

@@ -13,6 +13,12 @@ import LN.ClsGestorLN;
  */
 public class ClsMenuConsultarDatos {
 
+	/**
+	 * Metodo que reune el menu de consultar datos
+	 * 
+	 * @param objGestorMC     recibe el objeto gestor
+	 * @param objMostrarDatos recibe el objeto de la clase mostrar datos
+	 */
 	public static void MenuConsultarDatos(ClsGestorLN objGestorMC, ClsMostrarDatos objMostrarDatos) {
 
 		/**

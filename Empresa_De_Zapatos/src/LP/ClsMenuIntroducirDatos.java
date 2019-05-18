@@ -21,6 +21,11 @@ import LN.ClsGestorLN;
 
 public class ClsMenuIntroducirDatos {
 
+	/**
+	 * Metodo que reune el menu de introducir datos
+	 * 
+	 * @param objGestorMI recibe el objeto gestor
+	 */
 	public static void MenuIntroducirDatos(ClsGestorLN objGestorMI) {
 
 		/**

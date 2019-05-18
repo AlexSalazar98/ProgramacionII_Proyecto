@@ -89,6 +89,11 @@ public class ClsDatos {
 		objConn = DriverManager.getConnection(RUTA_DE_LA_BD, NOMBRE_DEL_USUARIO, CONTRASEÑA_DE_LA_BD);
 	}
 
+	/**
+	 * Metodo para cerrar la conexion con BD
+	 * 
+	 * @throws SQLException Lanza posible excepcion
+	 */
 	public void desconectarBD() throws SQLException {
 		objConn.close();
 	}
@@ -131,7 +136,6 @@ public class ClsDatos {
 	 * @throws SQLException lanzamos excepciones hacia la capa LP
 	 * @return nos devuelve los datos.
 	 */
-
 	public ResultSet consultarSeries() throws SQLException {
 
 		/**
@@ -378,7 +382,6 @@ public class ClsDatos {
 	 * @param Referencia parametro por el cual borramos
 	 * @throws SQLException Lanzamos excepciones
 	 */
-
 	public void eliminarMateriales(int Referencia) throws SQLException {
 
 		/**
@@ -1084,12 +1087,13 @@ public class ClsDatos {
 
 	/**
 	 * Metodo para actualizar pedidos
-	 * @param numeroDePedido parametro recibido
-	 * @param fechaDePedido parametro recibido
-	 * @param fechaDeEntrega parametro recibido
-	 * @param entregado parametro recibido
+	 * 
+	 * @param numeroDePedido            parametro recibido
+	 * @param fechaDePedido             parametro recibido
+	 * @param fechaDeEntrega            parametro recibido
+	 * @param entregado                 parametro recibido
 	 * @param nombreYApelliosDelCliente parametro recibido
-	 * @param numeroDeCliente_Pedidos parametro recibido
+	 * @param numeroDeCliente_Pedidos   parametro recibido
 	 * @throws SQLException lanza excepcion
 	 */
 	public void ActualizarPedidos(int numeroDePedido, Date fechaDePedido, Date fechaDeEntrega, boolean entregado,

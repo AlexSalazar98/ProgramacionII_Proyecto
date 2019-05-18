@@ -1,4 +1,4 @@
-package PANTALLA_LP;
+package Tablas;
 
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_ENTREGADO;
 import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_FECHA_DE_ENTREGA;

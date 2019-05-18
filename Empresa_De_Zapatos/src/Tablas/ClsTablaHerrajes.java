@@ -1,4 +1,4 @@
-package PANTALLA_LP;
+package Tablas;
 
 
 

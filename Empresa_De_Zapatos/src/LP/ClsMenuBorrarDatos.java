@@ -14,6 +14,11 @@ import LN.ClsGestorLN;
  */
 public class ClsMenuBorrarDatos {
 
+	/**
+	 * Metodo que reune el menu de borrar
+	 * 
+	 * @param objGestorMB recibe el objeto gestor
+	 */
 	public static void MenuBorrarDatos(ClsGestorLN objGestorMB) {
 
 		/**

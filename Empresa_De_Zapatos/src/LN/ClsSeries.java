@@ -20,11 +20,12 @@ import static COMUN.ClsConstantes.PROPIEDAD_SERIES_DESCRIPCION;
 public class ClsSeries implements ItfProperty {
 
 	/**
-	 * 
-	 * Estos son los atributos de la clase
-	 * 
+	 * Atributo para recoger el numero de la serie
 	 */
 	private int NumeroDeSerie;
+	/**
+	 * Atributo para recoger la descripcion
+	 */
 	private String Descripcion;
 
 	/**

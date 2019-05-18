@@ -34,9 +34,11 @@ import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_DESGLOS
  *         LP Y LN.
  *
  */
-
 public class ClsGestorLN {
 
+	/**
+	 * Objeto de la clase datos
+	 */
 	ClsDatos objDatos = new ClsDatos();
 
 	/**
@@ -53,7 +55,7 @@ public class ClsGestorLN {
 	ArrayList<ClsMateriales> MiListaDeMateriales;
 
 	/**
-	 * Aqui generaremos todo en relacion al Gestor.
+	 * Constructor del gestor
 	 */
 	public ClsGestorLN() {
 
@@ -78,6 +80,7 @@ public class ClsGestorLN {
 	 * @param Referencia_Suelas  parametro referencia suelas
 	 * @param Descripcion_Suelas parametro descripcion suelas
 	 * @param Precio_Suelas      parametro precio suelas
+	 * @return nos dice si se ha hecho o no
 	 * @throws SQLException lanzamos excepcion.
 	 */
 	public boolean CrearSuelas(int Referencia_Suelas, String Descripcion_Suelas, Double Precio_Suelas)
@@ -116,6 +119,7 @@ public class ClsGestorLN {
 	 * 
 	 * @param NumeroDeSerie     parametro numero de serie
 	 * @param Descripcion_Serie parametro descripcion de serie.
+	 * @return nos dice si se ha hecho o no
 	 * @throws SQLException lanzamos excepcion
 	 */
 	public boolean CrearSerie(int NumeroDeSerie, String Descripcion_Serie) throws SQLException {
@@ -161,7 +165,7 @@ public class ClsGestorLN {
 	 * @param Entregado                 parametro entregado
 	 * @param NumeroDeCliente_Pedidos   parametro numero de cliente
 	 * @param NombreYApelliosDelCliente parametro nombre y apellidos del cliente
-	 * @return
+	 * @return nos dice si se ha hecho o no
 	 * @throws SQLException lanzamos excepcion.
 	 */
 	public boolean CrearPedidos(int NumeroDePedido, Date FechaDePedido, Date FechaDeEntrega, Boolean Entregado,
@@ -203,6 +207,7 @@ public class ClsGestorLN {
 	 * @param Referencia  parametro referencia
 	 * @param Descripcion parametro descripcion
 	 * @param Precio      parametro precio
+	 * @return nos dice si se ha hecho o no
 	 * @throws SQLException lanzamos la excepcion
 	 */
 	public boolean CrearMateriales(int Referencia, String Descripcion, double Precio) throws SQLException {
@@ -242,6 +247,7 @@ public class ClsGestorLN {
 	 * @param Referencia  parametro referencia
 	 * @param Descripcion parametro descripcion
 	 * @param Precio      parametro precio
+	 * @return nos dice si se ha hecho o no
 	 * @throws SQLException lanzamos excepcion
 	 */
 	public boolean CrearHerrajes(int Referencia, String Descripcion, double Precio) throws SQLException {
@@ -287,7 +293,7 @@ public class ClsGestorLN {
 	 * @param ProvinciaDeEnvio      parametro provincia de envio
 	 * @param TelefonoDeEnvio       parametro telefonon de envio
 	 * @param NumeroDeCliente_Envio parametro numero de cliente
-	 * @return
+	 * @return nos dice si se ha hecho o no
 	 * @throws SQLException lanza excepcion
 	 */
 	public boolean CrearEnvios(int NumeroDeEnvio, String NombreCliente, String DireccionDeEnvio,
@@ -335,6 +341,7 @@ public class ClsGestorLN {
 	 * @param Provincia          parametro provincia
 	 * @param Telefono           parametro telefono
 	 * @param Email              parametro email
+	 * @return nos dice si se ha hecho o no
 	 * @throws SQLException mandamos la excepcion a LP
 	 */
 	public boolean CrearClientes(int NumeroDeCliente, String NombreYApellidos, String DNI_NIF,
@@ -380,7 +387,7 @@ public class ClsGestorLN {
 	 * @param CantidadHerrajes           parametro cantidad de herrajes
 	 * @param Precio                     parametro precio
 	 * @param ReferenciaSuelas_Articulos parametro referencia de la suela
-	 * @return
+	 * @return nos dice si se ha hecho o no
 	 * @throws SQLException lanza excepcion
 	 */
 	public boolean CrearArticulos(int Referencia, int Serie, String Descripcion, int CantidadMaterial,
@@ -434,6 +441,7 @@ public class ClsGestorLN {
 	 * @param NumeroDePie4          parametro cantidad del numero 4
 	 * @param CantidadTotal         parametro de cantidad total de numeros.
 	 * @param Pedidos_NPedido       parametro del numero de Pedido.
+	 * @return nos dice si se ha hecho o no
 	 * @throws SQLException lanza excepcion.
 	 */
 	public boolean CrearDesgloseDePedido(int NumeroDePedido, int ReferenciaDelArticulo, int Serie, int Color,
@@ -1073,6 +1081,11 @@ public class ClsGestorLN {
 
 	}
 
+	/**
+	 * Metodo intermedio para recuperar objetos cliente de la BD
+	 * 
+	 * @throws SQLException lanzamos excepcion a LP
+	 */
 	public void ObjetosRecuperadosClientes() throws SQLException {
 		objDatos.conectarBD();
 		/**
@@ -1216,6 +1229,11 @@ public class ClsGestorLN {
 
 	}
 
+	/**
+	 * Metodo intermedio para recuperar objetos envios de la BD
+	 * 
+	 * @throws SQLException lanzamos excepcion a LP
+	 */
 	public void ObjetosRecuperadosEnvios() throws SQLException {
 		objDatos.conectarBD();
 		/**
@@ -1254,17 +1272,18 @@ public class ClsGestorLN {
 	}
 
 	/**
-	 * Metodo para devolver objetos Cliente
+	 * Metodo para devolver objetos envios
 	 * 
 	 * @return nos genera un return
 	 */
-	@SuppressWarnings("unchecked")
+
 	public ArrayList<ItfProperty> DameEnvios() {
 
+		ClsComparadorEnviosID objCompEnvio = new ClsComparadorEnviosID();
 		/**
 		 * LLamamos al metodo de ordenacion que hemos generado
 		 */
-		Collections.sort(MiListaDeEnvios);
+		Collections.sort(MiListaDeEnvios, objCompEnvio);
 
 		/**
 		 * Generamos ArrayList De tipo ITF para recuperar las propiedades del objeto y
@@ -1285,7 +1304,7 @@ public class ClsGestorLN {
 	}
 
 	/**
-	 * Metodo para comprobar que no se repite clientes.
+	 * Metodo para comprobar que no se repite envios.
 	 * 
 	 * @param objEnvios objeto a comparar.
 	 * @return nos dice si esta repetido o no.
@@ -1311,7 +1330,7 @@ public class ClsGestorLN {
 	}
 
 	/**
-	 * Metopo para eliminar cliente de Array y BD
+	 * Metopo para eliminar envios de Array y BD
 	 * 
 	 * @param NEnvio parametro por el cual borrar.
 	 * @throws SQLException       lanzamos excepcion
@@ -1366,6 +1385,11 @@ public class ClsGestorLN {
 
 	}
 
+	/**
+	 * Metodo intermedio para recuperar objetos pedido de la BD
+	 * 
+	 * @throws SQLException lanzamos excepcion a LP
+	 */
 	public void ObjetosRecuperadosPedidos() throws SQLException {
 		objDatos.conectarBD();
 		/**
@@ -1401,6 +1425,11 @@ public class ClsGestorLN {
 		objDatos.desconectarBD();
 	}
 
+	/**
+	 * Metodo para devolver los objetos Pedido
+	 * 
+	 * @return genera un return
+	 */
 	public ArrayList<ItfProperty> DamePedidos() {
 
 		/**
@@ -1431,6 +1460,12 @@ public class ClsGestorLN {
 
 	}
 
+	/**
+	 * Metodo para comprobar que no se repite pedidos.
+	 * 
+	 * @param objEnvios objeto a comparar.
+	 * @return nos dice si esta repetido o no.
+	 */
 	public boolean ExistePedidos(ClsPedidos objPedidos) {
 
 		/**
@@ -1451,6 +1486,14 @@ public class ClsGestorLN {
 		return retorno;
 	}
 
+	/**
+	 * Metodo para eliminar pedidos de array y bd
+	 * 
+	 * @param NPedido parametro por el cual borrar
+	 * @return nos dice si se ha hecho o no
+	 * @throws SQLException       lanza excepcion de bd
+	 * @throws ClsBorrarExcepcion lanza excepcion de borrado
+	 */
 	public boolean EliminarPedidosDeArray(int NPedido) throws SQLException, ClsBorrarExcepcion {
 
 		/**
@@ -1499,6 +1542,11 @@ public class ClsGestorLN {
 
 	}
 
+	/**
+	 * Metodo intermedio para recuperar objetos articulo de la BD
+	 * 
+	 * @throws SQLException lanzamos excepcion a LP
+	 */
 	public void ObjetosRecuperadosArticulos() throws SQLException {
 		objDatos.conectarBD();
 		/**
@@ -1535,6 +1583,11 @@ public class ClsGestorLN {
 		objDatos.desconectarBD();
 	}
 
+	/**
+	 * Metodo para devolver los objetos Articulo
+	 * 
+	 * @return genera un return
+	 */
 	public ArrayList<ItfProperty> DameArticulos() {
 
 		/**
@@ -1555,6 +1608,12 @@ public class ClsGestorLN {
 
 	}
 
+	/**
+	 * Metodo para comprobar que no se repite articulos.
+	 * 
+	 * @param objEnvios objeto a comparar.
+	 * @return nos dice si esta repetido o no.
+	 */
 	public boolean ExisteArticulos(ClsArticulos Articulos) {
 
 		/**
@@ -1764,6 +1823,13 @@ public class ClsGestorLN {
 		return hecho;
 	}
 
+	/**
+	 * Metodo para actualizar el estado de los pedidos
+	 * 
+	 * @param NPedido prametro por el cual se actualizan
+	 * @return nos dice si se ha hecho o no
+	 * @throws SQLException lanza excepcion de BD
+	 */
 	public boolean ActualizarEntregasDePedidos(int NPedido) throws SQLException {
 
 		/**
@@ -1847,7 +1913,7 @@ public class ClsGestorLN {
 			objDatos.ActualizarPedidos(NumeroDePedido, FechaDePedido, FechaDeEntrega, Entregado,
 					NombreYApelliosDelCliente, NumeroDeCliente_Pedidos);
 			objDatos.desconectarBD();
-			
+
 		}
 
 		return Hecho;

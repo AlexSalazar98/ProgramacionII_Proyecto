@@ -23,6 +23,8 @@ import javax.swing.table.JTableHeader;
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
+import Tablas.ClsTablaPedidos;
+
 import javax.swing.ListSelectionModel;
 
 /**
@@ -62,6 +64,11 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 	private final String BORRAR_BUTTON = "Boton de confirmar Pedidos";
 	private final String ACTUALIZAR_BUTTON = "Boton de actualizar Pedidos";
 
+	/**
+	 * Constructor
+	 * 
+	 * @param ObjGestor recibe el gestro
+	 */
 	public ClsConsultarBorrarPedidos(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarPedidos.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setTitle("Consultar Pedidos");
@@ -72,6 +79,11 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 		Inicializar(ObjGestor);
 	}
 
+	/**
+	 * Metodo inicializador de objetos
+	 * 
+	 * @param ObjGestor recibe el gestor
+	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
 		objGestorIFCBP = ObjGestor;
@@ -99,6 +111,9 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 		BotonActualizar.setActionCommand(ACTUALIZAR_BUTTON);
 	}
 
+	/**
+	 * Metodo para crear la tabla
+	 */
 	private void CrearTablaPedidos() {
 
 		Pedidos = objGestorIFCBP.DamePedidos();
@@ -108,13 +123,13 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 
 		TablaPedidos = new JTable(TPedidos);
 		TablaPedidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
+
 		JTableHeader header = TablaPedidos.getTableHeader();
 		header.setVisible(true);
 		header.setBackground(Color.black);
 		header.setForeground(Color.black);
 		header.setFont(new Font("Tahoma", Font.BOLD, 13));
-		
+
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		TablaPedidos.getColumnModel().getColumn(0).setCellRenderer(Alinear);
 		TablaPedidos.getColumnModel().getColumn(1).setCellRenderer(Alinear);
@@ -135,6 +150,9 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -159,6 +177,11 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 
 	}
 
+	/**
+	 * Metodo para preguntar por la confirmacion de borrado
+	 * 
+	 * @return mandamos confirm.
+	 */
 	private int PreguntarEntregado() {
 
 		return JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el registro?", "BORRAR",
@@ -166,6 +189,11 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 
 	}
 
+	/**
+	 * Metodo para mandar a borrar
+	 * 
+	 * @param NPedido mandamos parametro
+	 */
 	private void MandarABorrar(int NPedido) {
 
 		try {
@@ -182,6 +210,9 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 
 	}
 
+	/**
+	 * Escuchador de tabla
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 
@@ -193,6 +224,9 @@ public class ClsConsultarBorrarPedidos extends JInternalFrame implements ActionL
 
 	}
 
+	/**
+	 * Metodo para actualizar la tabla
+	 */
 	private void ActualizarTabla() {
 		TablaPedidos.setVisible(false);
 		Pedidos = objGestorIFCBP.DamePedidos();

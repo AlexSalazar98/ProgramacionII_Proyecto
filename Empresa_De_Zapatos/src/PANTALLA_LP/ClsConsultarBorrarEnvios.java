@@ -24,6 +24,8 @@ import javax.swing.table.JTableHeader;
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
+import Tablas.ClsTablaEnvios;
+
 import javax.swing.ListSelectionModel;
 
 public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionListener, ListSelectionListener {
@@ -57,6 +59,11 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 	private final String BORRAR_BUTTON = "Boton de confirmar Envios";
 	private final String ACTUALIZAR_BUTTON = "Boton de actualizar Envios";
 
+	/**
+	 * Constructor
+	 * 
+	 * @param ObjGestor recibe el gestor
+	 */
 	public ClsConsultarBorrarEnvios(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarEnvios.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setTitle("Consultar Envios");
@@ -67,6 +74,11 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 		Inicializar(ObjGestor);
 	}
 
+	/**
+	 * Metodo inicializador de objetos
+	 * 
+	 * @param ObjGestor recibe el gestro
+	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
 		objGestorIFCBE = ObjGestor;
@@ -95,6 +107,9 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para crear la tabla
+	 */
 	private void CrearTablaEnvios() {
 
 		Envios = objGestorIFCBE.DameEnvios();
@@ -104,7 +119,7 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 
 		TablaEnvios = new JTable(TEnvios);
 		TablaEnvios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
+
 		JTableHeader header = TablaEnvios.getTableHeader();
 		header.setVisible(true);
 		header.setBackground(Color.black);
@@ -133,6 +148,9 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -157,6 +175,11 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Preguntar por confirmacion
+	 * 
+	 * @return devolvemos confir
+	 */
 	private int PreguntarEntregado() {
 
 		return JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el registro?", "BORRAR",
@@ -164,6 +187,11 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para mandar a borrar
+	 * 
+	 * @param NEnvio mandamos parametro
+	 */
 	private void MandarABorrar(int NEnvio) {
 
 		try {
@@ -180,6 +208,9 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Escuchador de tabla
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 
@@ -191,6 +222,9 @@ public class ClsConsultarBorrarEnvios extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para actualizar la tabla
+	 */
 	private void ActualizarTabla() {
 		TablaEnvios.setVisible(false);
 		Envios = objGestorIFCBE.DameEnvios();

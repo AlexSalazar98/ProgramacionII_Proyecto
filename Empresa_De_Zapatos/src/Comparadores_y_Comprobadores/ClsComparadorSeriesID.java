@@ -13,6 +13,9 @@ import LN.ClsSeries;
  */
 public class ClsComparadorSeriesID implements Comparator<ClsSeries> {
 
+	/**
+	 * Metodo para comparar los numeros de las series
+	 */
 	@Override
 	public int compare(ClsSeries ID0, ClsSeries ID1) {
 

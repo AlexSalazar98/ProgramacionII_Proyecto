@@ -13,6 +13,9 @@ import LN.ClsSuelas;
  */
 public class ClsComparadorSuelasID implements Comparator<ClsSuelas> {
 
+	/**
+	 * Metodo para comparar la Referencia de las suelas
+	 */
 	@Override
 	public int compare(ClsSuelas ID0, ClsSuelas ID1) {
 

@@ -23,6 +23,9 @@ import javax.swing.table.JTableHeader;
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
+import Tablas.ClsTablaSeries;
+import Tablas.ClsTablaSuelas;
+
 import javax.swing.ListSelectionModel;
 
 /**
@@ -63,6 +66,11 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 	private final String BORRAR_BUTTON = "Boton de confirmar Suelas";
 	private final String ACTUALIZAR_BUTTON = "Boton de actualizar Suelas";
 
+	/**
+	 * Constructro
+	 * 
+	 * @param ObjGestor recibe el gestor
+	 */
 	public ClsConsultarBorrarSuelas(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarSeries.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setTitle("Consultar Suelas");
@@ -73,6 +81,11 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 		Inicializar(ObjGestor);
 	}
 
+	/**
+	 * Metodo inicializador de objetos
+	 * 
+	 * @param ObjGestor recibe el gestro
+	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
 		objGestorIFCBSu = ObjGestor;
@@ -100,6 +113,9 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 		BotonActualizar.setActionCommand(ACTUALIZAR_BUTTON);
 	}
 
+	/**
+	 * Metodo para crear tabla
+	 */
 	private void CrearTablaSuelas() {
 
 		Suelas = objGestorIFCBSu.DameSuelas();
@@ -134,6 +150,9 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -158,6 +177,11 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para preguntar por la confirmacion de borrado
+	 * 
+	 * @return devolvemos confirm.
+	 */
 	private int PreguntarEntregado() {
 
 		return JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el registro?", "BORRAR",
@@ -165,6 +189,11 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para mandar a borrar
+	 * 
+	 * @param NSuela mandamos parametro
+	 */
 	private void MandarABorrar(int NSuela) {
 
 		try {
@@ -181,6 +210,9 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Escuchador de tabla
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 
@@ -192,6 +224,9 @@ public class ClsConsultarBorrarSuelas extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para actualizar la tabla
+	 */
 	private void ActualizarTabla() {
 		TablaSuelas.setVisible(false);
 		Suelas = objGestorIFCBSu.DameSuelas();

@@ -12,6 +12,9 @@ import LN.ClsMateriales;
  */
 public class ClsComparadorMaterialesID implements Comparator<ClsMateriales> {
 
+	/**
+	 * Metodo para comparar la Referencia de los Materiales
+	 */
 	@Override
 	public int compare(ClsMateriales ID0, ClsMateriales ID1) {
 

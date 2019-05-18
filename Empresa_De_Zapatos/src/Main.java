@@ -11,6 +11,11 @@ import PANTALLA_LP.ClsVerPantallaPrincipal;
  */
 public class Main {
 
+	/**
+	 * Este es el metod main
+	 * 
+	 * @param args parametro del metodo main
+	 */
 	public static void main(String[] args) {
 
 		/**

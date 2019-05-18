@@ -46,6 +46,12 @@ public class ClsExportar {
 		Exportar(table);
 	}
 
+	/**
+	 * Metodo para exportar tablas
+	 * 
+	 * @param t recibe la tabla
+	 * @throws IOException lanza excepcion
+	 */
 	private void Exportar(JTable t) throws IOException {
 		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de Excel", "xls");

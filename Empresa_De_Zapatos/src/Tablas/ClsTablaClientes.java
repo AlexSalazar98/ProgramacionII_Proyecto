@@ -1,4 +1,4 @@
-package PANTALLA_LP;
+package Tablas;
 
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DIRECCION;
 import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_DNI_NIF;

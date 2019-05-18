@@ -19,6 +19,8 @@ import java.awt.Dimension;
 import javax.swing.Box;
 import javax.swing.JPanel;
 import LN.ClsGestorLN;
+import Tablas.ClsTablaClientes;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

@@ -15,6 +15,10 @@ import LN.ClsPedidos;
 
 public class ClsComparadorPorFechas implements Comparator<ClsPedidos> {
 
+	/**
+	 * Metodo el cual primero compara fechas de pedido, luego fechas de entrega y
+	 * por último nombres y apellidos de los clientes de la tabla pedidos
+	 */
 	@Override
 	public int compare(ClsPedidos P0, ClsPedidos P1) {
 

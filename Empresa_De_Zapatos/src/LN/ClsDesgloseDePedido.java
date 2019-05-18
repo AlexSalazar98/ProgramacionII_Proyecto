@@ -34,23 +34,69 @@ import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO;
 public class ClsDesgloseDePedido implements ItfProperty {
 
 	/**
-	 * Estos son los atributos.
+	 * Atributo para recoger el numero de desglose
 	 */
 	private int NumeroDePedido;
+	/**
+	 * Atributo para recoger la referencia de articulo (Herencia de la tabla
+	 * articulos)
+	 */
 	private int ReferenciaDelArticulo;
+	/**
+	 * Atributo para recoger el numero de la serie
+	 */
 	private int Serie;
+	/**
+	 * Atributo para recoger el numero de color
+	 */
 	private int Color;
+	/**
+	 * Atributo para recoger cantidades del pie 5
+	 */
 	private int NumeroDePie5;
+	/**
+	 * Atributo para recoger cantidades del pie 6
+	 */
 	private int NumeroDePie6;
+	/**
+	 * Atributo para recoger cantidades del pie 7
+	 */
 	private int NumeroDePie7;
+	/**
+	 * Atributo para recoger cantidades del pie 8
+	 */
 	private int NumeroDePie8;
+	/**
+	 * Atributo para recoger cantidades del pie 9
+	 */
 	private int NumeroDePie9;
+	/**
+	 * Atributo para recoger cantidades del pie 0
+	 */
 	private int NumeroDePie0;
+	/**
+	 * Atributo para recoger cantidades del pie 1
+	 */
 	private int NumeroDePie1;
+	/**
+	 * Atributo para recoger cantidades del pie 2
+	 */
 	private int NumeroDePie2;
+	/**
+	 * Atributo para recoger cantidades del pie 3
+	 */
 	private int NumeroDePie3;
+	/**
+	 * Atributo para recoger cantidades del pie 4
+	 */
 	private int NumeroDePie4;
+	/**
+	 * Atributo para recoger la cantidad total de pies
+	 */
 	private int CantidadTotal;
+	/**
+	 * Atributo para recoger el numero de pedido (Herencia de la tabla pedidos)
+	 */
 	private int Pedidos_NPedido_Desglose;
 
 	/**

@@ -24,14 +24,32 @@ import static COMUN.ClsConstantes.PROPIEDAD_CLIENTE_EMAIL;
 public class ClsClientes implements ItfProperty {
 
 	/**
-	 * Estos son los atributos de la tabla.
+	 * Atributo para recoger el Numero del cliente
 	 */
 	private int NumeroDeCliente;
+	/**
+	 * Atributo para recoger el nombre y apellido del cliente
+	 */
 	private String NombreYApellidos;
+	/**
+	 * Atributo para recoger el DNI o NIF del cliente
+	 */
 	private String DNI_NIF;
+	/**
+	 * Atributo para recoger la direccion del cliente
+	 */
 	private String DireccionDeCliente;
+	/**
+	 * Atribtuo para recpger la provincia del cliente
+	 */
 	private String Provincia;
+	/**
+	 * Atributo para recoger el telefono del cliente
+	 */
 	private int Telefono;
+	/**
+	 * Atributo para recoger el email
+	 */
 	private String Email;
 
 	/**

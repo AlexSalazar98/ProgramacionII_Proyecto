@@ -14,12 +14,16 @@ import COMUN.ItfProperty;
 public abstract class ClsMateriasPrimas implements ItfProperty {
 
 	/**
-	 * 
-	 * Estos son los atributos comunes.
-	 * 
+	 * Atributo comun para SUELAS, MATERIALES y HERRAJES para recoger su Referencia
 	 */
 	private int Referencia;
+	/**
+	 * Atributo comun para SUELAS, MATERIALES y HERRAJES para recoger la Descripcion
+	 */
 	private String Descripcion;
+	/**
+	 * Atributo comun para SUELAS, MATERIALES y HERRAJES para recoger el Preccio
+	 */
 	private double Precio;
 
 	/**

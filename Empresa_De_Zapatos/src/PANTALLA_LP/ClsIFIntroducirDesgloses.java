@@ -28,6 +28,9 @@ import javax.swing.table.JTableHeader;
 
 import COMUN.ItfProperty;
 import LN.ClsGestorLN;
+import Tablas.ClsTablaArticulos;
+import Tablas.ClsTablaPedidos;
+import Tablas.ClsTablaSeries;
 
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;

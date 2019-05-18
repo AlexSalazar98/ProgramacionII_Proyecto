@@ -24,14 +24,32 @@ import static COMUN.ClsConstantes.PROPIEDAD_ARTICULO_REFERENCIA_SUELAS;
 public class ClsArticulos implements ItfProperty {
 
 	/**
-	 * Estos son los atributos de la entidad Articulos.
+	 * Atributo para recoger la referencia
 	 */
 	private int Referencia;
+	/**
+	 * Atributo para recoger el numero de serie
+	 */
 	private int Serie;
+	/**
+	 * Atributo para recoger la descripcion
+	 */
 	private String Descripcion;
+	/**
+	 * Atributo para recoger la cantidad de materiales
+	 */
 	private int CantidadMaterial;
+	/*
+	 * Atributo para recoger la cantidad de herrajes
+	 */
 	private int CantidadHerrajes;
+	/**
+	 * Atributo para recoger el precio
+	 */
 	private double Precio;
+	/**
+	 * Atributo heredado de la tabla suelas (Referencia de la suela)
+	 */
 	private int ReferenciaSuelas_Articulos;
 
 	/**

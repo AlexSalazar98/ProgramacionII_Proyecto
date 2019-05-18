@@ -15,6 +15,9 @@ import LN.ClsGestorLN;
 
 public class ClsMenuPrincipal {
 
+	/**
+	 * Metodo que reune el menu principal
+	 */
 	public static void MenuPrincipal() {
 
 		/**

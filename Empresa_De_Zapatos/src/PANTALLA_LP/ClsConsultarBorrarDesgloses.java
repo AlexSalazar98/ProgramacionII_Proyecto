@@ -24,6 +24,8 @@ import javax.swing.table.JTableHeader;
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
+import Tablas.ClsTablaDesgloses;
+
 import javax.swing.ListSelectionModel;
 
 public class ClsConsultarBorrarDesgloses extends JInternalFrame implements ActionListener, ListSelectionListener {
@@ -57,6 +59,11 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 	private final String BORRAR_BUTTON = "Boton de confirmar Desgloses";
 	private final String ACTUALIZAR_BUTTON = "Boton de actualizar Desgloses";
 
+	/**
+	 * Constructor
+	 * 
+	 * @param ObjGestor recibe el gestor
+	 */
 	public ClsConsultarBorrarDesgloses(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarDesgloses.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setTitle("Consultar Desgloses");
@@ -67,6 +74,11 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 		Inicializar(ObjGestor);
 	}
 
+	/**
+	 * Inicializador de objetos
+	 * 
+	 * @param ObjGestor recibe el gestor
+	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
 		objGestorIFCBD = ObjGestor;
@@ -95,6 +107,9 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 
 	}
 
+	/**
+	 * Metodo para crear la tabla
+	 */
 	private void CrearTablaDesgloses() {
 
 		Desgloses = objGestorIFCBD.DameDesgloses();
@@ -104,7 +119,7 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 
 		TablaDesgloses = new JTable(TDesgloses);
 		TablaDesgloses.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
+
 		JTableHeader header = TablaDesgloses.getTableHeader();
 		header.setVisible(true);
 		header.setBackground(Color.black);
@@ -142,6 +157,9 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -166,6 +184,11 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 
 	}
 
+	/**
+	 * Preguntar por confirmacion
+	 * 
+	 * @return devolvemos la confirmacion
+	 */
 	private int PreguntarEntregado() {
 
 		return JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el registro?", "BORRAR",
@@ -173,6 +196,11 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 
 	}
 
+	/**
+	 * Metodo para mandar a borrar
+	 * 
+	 * @param NDesglose parametro por el cual borrar
+	 */
 	private void MandarABorrar(int NDesglose) {
 
 		try {
@@ -189,6 +217,9 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 
 	}
 
+	/**
+	 * Escuhcador de tabla
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 
@@ -200,6 +231,9 @@ public class ClsConsultarBorrarDesgloses extends JInternalFrame implements Actio
 
 	}
 
+	/**
+	 * Metodo para actualizar la tabla
+	 */
 	private void ActualizarTabla() {
 		TablaDesgloses.setVisible(false);
 		Desgloses = objGestorIFCBD.DameDesgloses();

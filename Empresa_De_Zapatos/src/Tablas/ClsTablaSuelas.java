@@ -1,16 +1,24 @@
-package PANTALLA_LP;
+package Tablas;
 
-import static COMUN.ClsConstantes.PROPIEDAD_SERIES_DESCRIPCION;
-import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
+
 
 import java.util.ArrayList;
-
 import javax.swing.table.AbstractTableModel;
-
+import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_REFERENCIA;
+import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_DESCRIPCION;
+import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_PRECIO;
 import COMUN.ItfProperty;
 import LN.ClsGestorLN;
 
-public class ClsTablaSeries extends AbstractTableModel {
+/**
+ * Clase para formar la tabla suelas
+ * 
+ * @author Alex Salazar
+ * @author David Requeta
+ *
+ */
+public class ClsTablaSuelas extends AbstractTableModel {
+	
 
 	/**
 	 * No se para que sirve esto.
@@ -19,44 +27,46 @@ public class ClsTablaSeries extends AbstractTableModel {
 	/**
 	 * Array Series
 	 */
-	ArrayList<ItfProperty> SeriesRecuperadas;
+	ArrayList<ItfProperty> SuelasRecuperadas;
 
-	private String[] NombreColumnas = { "Nº de Serie", "Descripción" };
+	private String[] NombreColumnas = { "Referencia", "Descripción" , "Precio"};
 	Object[][] data;
 
 	/**
 	 * 
 	 */
-	public ClsTablaSeries(ArrayList<ItfProperty> Series) {
+	public ClsTablaSuelas(ArrayList<ItfProperty> Suelas) {
 		super();
 
-		int filas = Series.size();
+		int filas = Suelas.size();
 		int cont;
 		data = new Object[filas][];
 		cont = 0;
 
-		for (ItfProperty b : Series) {
-			Object[] a = { b.getIntegerProperty(PROPIEDAD_SERIES_NUMERO_DE_SERIE),
-					b.getStringProperty(PROPIEDAD_SERIES_DESCRIPCION), };
+		for (ItfProperty b : Suelas) {
+			Object[] a = { b.getIntegerProperty(PROPIEDAD_SUELAS_REFERENCIA),
+					b.getStringProperty(PROPIEDAD_SUELAS_DESCRIPCION),
+					b.getDoubleProperty(PROPIEDAD_SUELAS_PRECIO),};
 			data[cont] = a;
 			cont++;
 		}
 	}
 
 	public Object[][] setData(ClsGestorLN ObjGestor) {
-		SeriesRecuperadas = ObjGestor.DameSeries();
-		int filas = SeriesRecuperadas.size();
+		SuelasRecuperadas = ObjGestor.DameSuelas();
+		int filas = SuelasRecuperadas.size();
 		int cont;
 		data = new Object[filas][];
 		cont = 0;
 
-		for (ItfProperty b : SeriesRecuperadas) {
-			Object[] a = { b.getIntegerProperty(PROPIEDAD_SERIES_NUMERO_DE_SERIE),
-					b.getStringProperty(PROPIEDAD_SERIES_DESCRIPCION), };
+		for (ItfProperty b : SuelasRecuperadas) {
+			Object[] a = { b.getIntegerProperty(PROPIEDAD_SUELAS_REFERENCIA),
+					b.getStringProperty(PROPIEDAD_SUELAS_DESCRIPCION),
+					b.getDoubleProperty(PROPIEDAD_SUELAS_PRECIO),};
 			data[cont] = a;
 			cont++;
 		}
-
+		
 		return data;
 	}
 
@@ -104,5 +114,6 @@ public class ClsTablaSeries extends AbstractTableModel {
 		fireTableCellUpdated(row, col);
 
 	}
+
 
 }

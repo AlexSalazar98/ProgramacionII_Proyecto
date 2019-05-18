@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import javax.swing.JInternalFrame;
 
 import LN.ClsGestorLN;
+import Tablas.ClsTablaEntregas;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -69,6 +71,11 @@ public class ClsActualizarEntregas extends JInternalFrame implements ActionListe
 	 */
 	private final String ACTUALIZAR_BUTTON = "Boton de actualizar";
 
+	/**
+	 * Constructor
+	 * 
+	 * @param ObjGestor recibe el gestor
+	 */
 	public ClsActualizarEntregas(ClsGestorLN ObjGestor) {
 		setIconifiable(true);
 		setClosable(true);
@@ -80,6 +87,11 @@ public class ClsActualizarEntregas extends JInternalFrame implements ActionListe
 		Inicializar(ObjGestor);
 	}
 
+	/**
+	 * Metodo para inicializar objetos
+	 * 
+	 * @param ObjGestor revibe el gestor
+	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
 		objGestorIFAE = ObjGestor;
@@ -102,6 +114,9 @@ public class ClsActualizarEntregas extends JInternalFrame implements ActionListe
 		CrearTabla();
 	}
 
+	/**
+	 * Metodo para crear tabla
+	 */
 	private void CrearTabla() {
 
 		PedidosNoEntegados = new ArrayList<ItfProperty>();
@@ -115,21 +130,19 @@ public class ClsActualizarEntregas extends JInternalFrame implements ActionListe
 			}
 
 		}
-		
-		
 
 		TPedidos = new ClsTablaEntregas(PedidosNoEntegados);
 		Alinear = new DefaultTableCellRenderer();
 
 		table = new JTable(TPedidos);
 		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		
+
 		JTableHeader header = table.getTableHeader();
 		header.setVisible(true);
 		header.setBackground(Color.black);
 		header.setForeground(Color.black);
 		header.setFont(new Font("Tahoma", Font.BOLD, 13));
-		
+
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		table.getColumnModel().getColumn(0).setCellRenderer(Alinear);
 		table.getColumnModel().getColumn(1).setCellRenderer(Alinear);
@@ -141,7 +154,6 @@ public class ClsActualizarEntregas extends JInternalFrame implements ActionListe
 		table.setFillsViewportHeight(true);
 		table.setRowSelectionAllowed(true);
 		table.getSelectionModel().addListSelectionListener(this);
-		
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 45, 640, 177);
@@ -149,6 +161,9 @@ public class ClsActualizarEntregas extends JInternalFrame implements ActionListe
 		getContentPane().add(scrollPane);
 	}
 
+	/**
+	 * Metodo escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -162,6 +177,9 @@ public class ClsActualizarEntregas extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Metodo escuchador de tabla
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent arg0) {
 
@@ -173,6 +191,9 @@ public class ClsActualizarEntregas extends JInternalFrame implements ActionListe
 
 	}
 
+	/*
+	 * Metodo para mandar a actualizar
+	 */
 	private void MandarActualizar() {
 
 		int CantidadSeleccionados = table.getSelectedRowCount();
@@ -197,6 +218,9 @@ public class ClsActualizarEntregas extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Metodo para actualizar la tabla
+	 */
 	private void ActualizarTabla() {
 
 		table.setVisible(false);

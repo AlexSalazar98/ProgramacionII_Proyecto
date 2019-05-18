@@ -21,15 +21,28 @@ import static COMUN.ClsConstantes.PROPIEDAD_PEDIDOS_NUMERO_DE_PEDIDO;
 public class ClsPedidos implements ItfProperty {
 
 	/**
-	 * 
-	 * Estos son los atributos de la entidad Pedidos.
-	 * 
+	 * Atributo para recoger el numero del pedido
 	 */
 	private int NumeroDePedido;
+	/**
+	 * Atributo para recoger la fecha en la que se ha hecho el pedido
+	 */
 	private Date FechaDePedido;
+	/**
+	 * Atributo para recoger la fecha en la que se tiene que entregar
+	 */
 	private Date FechaDeEntrega;
+	/**
+	 * Atributo para recoger el estado del pedido (Entregado o NO Entregado)
+	 */
 	private boolean Entregado;
+	/**
+	 * Atributo para recoger el numero del cliente (Herencia de la tabla clientes)
+	 */
 	private int NumeroDeCliente_Pedidos;
+	/**
+	 * Atributo para recoger nombre y apellido del cliente
+	 */
 	private String NombreYApelliosDelCliente;
 
 	/**

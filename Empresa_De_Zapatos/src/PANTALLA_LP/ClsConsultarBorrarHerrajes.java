@@ -24,6 +24,8 @@ import javax.swing.table.JTableHeader;
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
+import Tablas.ClsTablaHerrajes;
+
 import javax.swing.ListSelectionModel;
 
 public class ClsConsultarBorrarHerrajes extends JInternalFrame implements ActionListener, ListSelectionListener {
@@ -57,6 +59,11 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 	private final String BORRAR_BUTTON = "Boton de confirmar Herrajes";
 	private final String ACTUALIZAR_BUTTON = "Boton de actualizar Herrajes";
 
+	/**
+	 * Constructor
+	 * 
+	 * @param ObjGestor recibe el gestro
+	 */
 	public ClsConsultarBorrarHerrajes(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarHerrajes.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setTitle("Consultar Herrajes");
@@ -67,6 +74,11 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 		Inicializar(ObjGestor);
 	}
 
+	/**
+	 * Inicializador
+	 * 
+	 * @param ObjGestor recibe el gestors
+	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
 		objGestorIFCBH = ObjGestor;
@@ -95,6 +107,9 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 
 	}
 
+	/**
+	 * Metodo para crear la tabla
+	 */
 	private void CrearTablaHerrajes() {
 
 		Herrajes = objGestorIFCBH.DameHerrajes();
@@ -128,6 +143,9 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 
 	}
 
+	/**
+	 * escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -152,6 +170,11 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 
 	}
 
+	/**
+	 * Preguntar por la confirmacion del borrado
+	 * 
+	 * @return devolvemos confir
+	 */
 	private int PreguntarEntregado() {
 
 		return JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el registro?", "BORRAR",
@@ -159,6 +182,11 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 
 	}
 
+	/**
+	 * Metodo para mandar a borrar
+	 * 
+	 * @param NHerrajes mandamos parametro
+	 */
 	private void MandarABorrar(int NHerrajes) {
 
 		try {
@@ -175,6 +203,9 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 
 	}
 
+	/**
+	 * Escuchador de tabla
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 
@@ -186,6 +217,9 @@ public class ClsConsultarBorrarHerrajes extends JInternalFrame implements Action
 
 	}
 
+	/**
+	 * Metodo para actualizar la tabla
+	 */
 	private void ActualizarTabla() {
 		TablaHerrajes.setVisible(false);
 		Herrajes = objGestorIFCBH.DameHerrajes();

@@ -24,6 +24,8 @@ import javax.swing.table.JTableHeader;
 import COMUN.ItfProperty;
 import Excepciones.ClsBorrarExcepcion;
 import LN.ClsGestorLN;
+import Tablas.ClsTablaMateriales;
+
 import javax.swing.ListSelectionModel;
 
 public class ClsConsultarBorrarMateriales extends JInternalFrame implements ActionListener, ListSelectionListener {
@@ -57,6 +59,11 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 	private final String BORRAR_BUTTON = "Boton de confirmar Materiales";
 	private final String ACTUALIZAR_BUTTON = "Boton de actualizar Materiales";
 
+	/**
+	 * COnstrucotr
+	 * 
+	 * @param ObjGestor recibe el gestor
+	 */
 	public ClsConsultarBorrarMateriales(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsConsultarBorrarMateriales.class.getResource("/PANTALLA_LP/DEUSTO.png")));
 		setTitle("Consultar Materiales");
@@ -67,6 +74,11 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 		Inicializar(ObjGestor);
 	}
 
+	/**
+	 * Metodo inicializador
+	 * 
+	 * @param ObjGestor recibe el gestor
+	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
 		objGestorIFCBM = ObjGestor;
@@ -95,6 +107,9 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 
 	}
 
+	/**
+	 * Metodo para crear tabla
+	 */
 	private void CrearTablaMateriales() {
 
 		Materiales = objGestorIFCBM.DameMateriales();
@@ -128,6 +143,9 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -152,6 +170,11 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 
 	}
 
+	/**
+	 * Pregutnar confirmacion de borrado
+	 * 
+	 * @return mandamos confir
+	 */
 	private int PreguntarEntregado() {
 
 		return JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el registro?", "BORRAR",
@@ -159,6 +182,11 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 
 	}
 
+	/**
+	 * Mandamos a borrar
+	 * 
+	 * @param NMaterial mandamos parametro
+	 */
 	private void MandarABorrar(int NMaterial) {
 
 		try {
@@ -175,6 +203,9 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 
 	}
 
+	/**
+	 * Escuchador de tabla
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 
@@ -186,6 +217,9 @@ public class ClsConsultarBorrarMateriales extends JInternalFrame implements Acti
 
 	}
 
+	/**
+	 * Metodo para actualizar la tabla
+	 */
 	private void ActualizarTabla() {
 		TablaMateriales.setVisible(false);
 		Materiales = objGestorIFCBM.DameMateriales();

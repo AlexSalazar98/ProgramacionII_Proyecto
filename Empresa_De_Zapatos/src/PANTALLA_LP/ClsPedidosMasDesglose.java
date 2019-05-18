@@ -29,6 +29,8 @@ import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 import COMUN.ItfProperty;
 import LN.ClsGestorLN;
+import Tablas.ClsTablaPedidoMasDesglose;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;

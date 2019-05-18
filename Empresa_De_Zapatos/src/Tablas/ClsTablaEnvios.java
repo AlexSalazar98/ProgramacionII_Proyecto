@@ -1,4 +1,4 @@
-package PANTALLA_LP;
+package Tablas;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
