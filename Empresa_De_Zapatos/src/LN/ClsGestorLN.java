@@ -1463,7 +1463,7 @@ public class ClsGestorLN {
 	/**
 	 * Metodo para comprobar que no se repite pedidos.
 	 * 
-	 * @param objEnvios objeto a comparar.
+	 * @param objPedidos objeto a comparar.
 	 * @return nos dice si esta repetido o no.
 	 */
 	public boolean ExistePedidos(ClsPedidos objPedidos) {
@@ -1611,7 +1611,7 @@ public class ClsGestorLN {
 	/**
 	 * Metodo para comprobar que no se repite articulos.
 	 * 
-	 * @param objEnvios objeto a comparar.
+	 * @param Articulos objeto a comparar.
 	 * @return nos dice si esta repetido o no.
 	 */
 	public boolean ExisteArticulos(ClsArticulos Articulos) {

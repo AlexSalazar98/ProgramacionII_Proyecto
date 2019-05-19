@@ -25,12 +25,14 @@ public class ClsTablaPedidos extends AbstractTableModel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String[] NombreColumnas = { "Nº de Pedido", "Fecha de Pedido", "Fecha de Entrega", "Estado", "Nombre y Apellidos Cliente",
-			"Nº Cliente"};
+	private String[] NombreColumnas = { "Nº de Pedido", "Fecha de Pedido", "Fecha de Entrega", "Estado",
+			"Nombre y Apellidos Cliente", "Nº Cliente" };
 	Object[][] data;
 
 	/**
+	 * Metodo para crear la tabla
 	 * 
+	 * @param Pedidos recibe parametro
 	 */
 	public ClsTablaPedidos(ArrayList<ItfProperty> Pedidos) {
 		super();
@@ -60,6 +62,11 @@ public class ClsTablaPedidos extends AbstractTableModel {
 		}
 	}
 
+	/**
+	 * Metodo para actualizar la tabla
+	 * 
+	 * @param Pedidos recibe parametro
+	 */
 	public void setData(ArrayList<ItfProperty> Pedidos) {
 
 		SimpleDateFormat MiFormato = new SimpleDateFormat("dd-MM-yyyy");
@@ -87,18 +94,30 @@ public class ClsTablaPedidos extends AbstractTableModel {
 		}
 	}
 
+	/**
+	 * Metodo para obtener la cantidad de las columnas
+	 */
 	public int getColumnCount() {
 		return NombreColumnas.length;
 	}
 
+	/**
+	 * Metodo para obetener el numero de filas
+	 */
 	public int getRowCount() {
 		return data.length;
 	}
 
+	/**
+	 * Metodo para obtener nombre de las columnas
+	 */
 	public String getColumnName(int col) {
 		return NombreColumnas[col];
 	}
 
+	/**
+	 * metodo para obtener los valores
+	 */
 	public Object getValueAt(int row, int col) {
 		return data[row][col];
 	}

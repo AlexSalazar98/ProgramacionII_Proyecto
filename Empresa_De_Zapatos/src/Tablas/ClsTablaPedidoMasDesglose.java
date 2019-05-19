@@ -16,7 +16,6 @@ import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_9;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO;
 import static COMUN.ClsConstantes.PROPIEDAD_DESGLOSE_DE_PEDIDO_SERIE;
 
-
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
@@ -35,12 +34,15 @@ public class ClsTablaPedidoMasDesglose extends AbstractTableModel {
 	 */
 	ArrayList<ItfProperty> DesglosesRecuperados;
 
-	private String[] NombreColumnas = { "Nº de Pedido", "Referencia", "Serie", "Color", "Nº Pie 5", "Nº Pie 6", "Nº Pie 7",
-			"Nº Pie 8", "Nº Pie 9", "Nº Pie 0", "Nº Pie 1", "Nº Pie 2", "Nº Pie 3", "Nº Pie 4", "Cantidad Total", };
+	private String[] NombreColumnas = { "Nº de Pedido", "Referencia", "Serie", "Color", "Nº Pie 5", "Nº Pie 6",
+			"Nº Pie 7", "Nº Pie 8", "Nº Pie 9", "Nº Pie 0", "Nº Pie 1", "Nº Pie 2", "Nº Pie 3", "Nº Pie 4",
+			"Cantidad Total", };
 	Object[][] data;
 
 	/**
+	 * Metodo para crear la tabla
 	 * 
+	 * @param Desgloses recibe parametro
 	 */
 	public ClsTablaPedidoMasDesglose(ArrayList<ItfProperty> Desgloses) {
 		super();
@@ -52,9 +54,9 @@ public class ClsTablaPedidoMasDesglose extends AbstractTableModel {
 
 		for (ItfProperty b : Desgloses) {
 			Object[] a = { b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO),
-					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO),					
+					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO),
 					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_SERIE),
-					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_COLOR),					
+					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_COLOR),
 					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_5),
 					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_6),
 					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_7),
@@ -71,7 +73,12 @@ public class ClsTablaPedidoMasDesglose extends AbstractTableModel {
 		}
 	}
 
-	public Object[][] setData(ClsGestorLN ObjGestor) {
+	/**
+	 * Metodo para actualizar la tabla
+	 * 
+	 * @param ObjGestor recibe parametro
+	 */
+	public void setData(ClsGestorLN ObjGestor) {
 		DesglosesRecuperados = ObjGestor.DameDesgloses();
 		int filas = DesglosesRecuperados.size();
 		int cont;
@@ -80,9 +87,9 @@ public class ClsTablaPedidoMasDesglose extends AbstractTableModel {
 
 		for (ItfProperty b : DesglosesRecuperados) {
 			Object[] a = { b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PEDIDO),
-					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO),					
+					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_REFERENCIA_DEL_ARTICULO),
 					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_SERIE),
-					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_COLOR),					
+					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_COLOR),
 					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_5),
 					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_6),
 					b.getIntegerProperty(PROPIEDAD_DESGLOSE_DE_PEDIDO_NUMERO_DE_PIE_7),
@@ -98,21 +105,32 @@ public class ClsTablaPedidoMasDesglose extends AbstractTableModel {
 			cont++;
 		}
 
-		return data;
 	}
 
+	/**
+	 * Metodo para obtener la cantidad de las columnas
+	 */
 	public int getColumnCount() {
 		return NombreColumnas.length;
 	}
 
+	/**
+	 * Metodo para obetener el numero de filas
+	 */
 	public int getRowCount() {
 		return data.length;
 	}
 
+	/**
+	 * Metodo para obtener nombre de las columnas
+	 */
 	public String getColumnName(int col) {
 		return NombreColumnas[col];
 	}
 
+	/**
+	 * metodo para obtener los valores
+	 */
 	public Object getValueAt(int row, int col) {
 		return data[row][col];
 	}

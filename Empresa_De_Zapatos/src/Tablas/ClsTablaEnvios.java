@@ -31,12 +31,14 @@ public class ClsTablaEnvios extends AbstractTableModel {
 	 */
 	ArrayList<ItfProperty> EnviosRecuperados;
 
-	private String[] NombreColumnas = { "Nº Envio", "Nombre Cliente", "Direccion Envio", "Poblacion Envio",
-			"CP Envio", "Provincia Envio", "Telefono Envio", "Nº Cliente Envio" };
+	private String[] NombreColumnas = { "Nº Envio", "Nombre Cliente", "Direccion Envio", "Poblacion Envio", "CP Envio",
+			"Provincia Envio", "Telefono Envio", "Nº Cliente Envio" };
 	Object[][] data;
 
 	/**
+	 * Metodo para crear la tabla
 	 * 
+	 * @param Envios recibe parametro
 	 */
 	public ClsTablaEnvios(ArrayList<ItfProperty> Envios) {
 		super();
@@ -54,15 +56,21 @@ public class ClsTablaEnvios extends AbstractTableModel {
 					b.getIntegerProperty(PROPIEDAD_ENVIOS_CPD_DE_ENVIO),
 					b.getStringProperty(PROPIEDAD_ENVIOS_PROVINCIA_DE_ENVIO),
 					b.getIntegerProperty(PROPIEDAD_ENVIOS_TELEFONO_DE_ENVIO),
-					b.getIntegerProperty(PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO),};
+					b.getIntegerProperty(PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO), };
 			data[cont] = a;
 			cont++;
 		}
 	}
 
-	public Object[][] setData(ClsGestorLN ObjGestor) {
+	/**
+	 * Metodo para actualizar la tabla
+	 * 
+	 * @param ObjGestor recibe parametro
+	 * 
+	 */
+	public void setData(ClsGestorLN ObjGestor) {
 		EnviosRecuperados = ObjGestor.DameEnvios();
-		int filas =EnviosRecuperados.size();
+		int filas = EnviosRecuperados.size();
 		int cont;
 		data = new Object[filas][];
 		cont = 0;
@@ -75,26 +83,37 @@ public class ClsTablaEnvios extends AbstractTableModel {
 					b.getIntegerProperty(PROPIEDAD_ENVIOS_CPD_DE_ENVIO),
 					b.getStringProperty(PROPIEDAD_ENVIOS_PROVINCIA_DE_ENVIO),
 					b.getIntegerProperty(PROPIEDAD_ENVIOS_TELEFONO_DE_ENVIO),
-					b.getIntegerProperty(PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO),};
+					b.getIntegerProperty(PROPIEDAD_ENVIOS_NUMERO_DE_CLIENTE_ENVIO), };
 			data[cont] = a;
 			cont++;
 		}
 
-		return data;
 	}
 
+	/**
+	 * Metodo para obtener la cantidad de las columnas
+	 */
 	public int getColumnCount() {
 		return NombreColumnas.length;
 	}
 
+	/**
+	 * Metodo para obetener el numero de filas
+	 */
 	public int getRowCount() {
 		return data.length;
 	}
 
+	/**
+	 * Metodo para obtener nombre de las columnas
+	 */
 	public String getColumnName(int col) {
 		return NombreColumnas[col];
 	}
 
+	/**
+	 * metodo para obtener los valores
+	 */
 	public Object getValueAt(int row, int col) {
 		return data[row][col];
 	}

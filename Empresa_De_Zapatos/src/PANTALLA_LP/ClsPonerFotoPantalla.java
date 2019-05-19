@@ -8,6 +8,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JDesktopPane;
 
+/**
+ * Clase que extiende de JDesktopPane para crear objetos de ese tipo y pintalos
+ * 
+ * @author Alex Salazar
+ * @author David Requeta
+ *
+ */
 public class ClsPonerFotoPantalla extends JDesktopPane {
 
 	/**
@@ -17,6 +24,11 @@ public class ClsPonerFotoPantalla extends JDesktopPane {
 	private BufferedImage imagen;
 	private Image imagenEscalada;
 
+	/**
+	 * Metodo para poner una foto en el fondo del JDesktopPane
+	 * 
+	 * @param path recibe la ruta de la foto
+	 */
 	public ClsPonerFotoPantalla(String path) {
 
 		try {
@@ -30,6 +42,9 @@ public class ClsPonerFotoPantalla extends JDesktopPane {
 
 	}
 
+	/**
+	 * Escuchador para pintar la pantalla
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);

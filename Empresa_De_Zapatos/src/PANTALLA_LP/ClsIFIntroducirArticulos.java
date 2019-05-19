@@ -52,8 +52,7 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 	private JTextField RecogerPArt;
 	private JLabel TxtSerie, TxtDescripcion, TxtSuelasRef, TxtCMaterial, TxtCHerrajes, TxtPrecioArt;
 	private JButton ConfirmarBoton;
-	@SuppressWarnings("rawtypes")
-	private JComboBox SeleccionarSerie, SeleccionarNSuelas;
+	private JComboBox<Integer> SeleccionarSerie, SeleccionarNSuelas;
 	private JScrollPane scrollPane;
 	private JTextArea Descripciones;
 	private JLabel TxtDescripciones;
@@ -79,7 +78,7 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 	/**
 	 * Constructor recibe el Gestor
 	 * 
-	 * @param ObjGestor
+	 * @param ObjGestor recibe el gestor
 	 */
 	public ClsIFIntroducirArticulos(ClsGestorLN ObjGestor) {
 		setClosable(true);
@@ -93,11 +92,15 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	/**
+	 * metodo para inicializar los objetos
+	 * 
+	 * @param ObjGestor recibe el gestor
+	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
 		objGestorIFIA = ObjGestor;
-		CargarArrays(objGestorIFIA);
+		CargarArrays();
 
 		TxtNArticulo = new JLabel("N\u00BA de Art\u00EDculo*:");
 		TxtNArticulo.setEnabled(false);
@@ -120,7 +123,7 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 		TxtSerie.setBounds(10, 59, 101, 27);
 		getContentPane().add(TxtSerie);
 
-		SeleccionarSerie = new JComboBox();
+		SeleccionarSerie = new JComboBox<Integer>();
 		SeleccionarSerie.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		SeleccionarSerie.setBounds(121, 59, 86, 22);
 		getContentPane().add(SeleccionarSerie);
@@ -145,7 +148,7 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 		TxtSuelasRef.setBounds(239, 60, 110, 24);
 		getContentPane().add(TxtSuelasRef);
 
-		SeleccionarNSuelas = new JComboBox();
+		SeleccionarNSuelas = new JComboBox<Integer>();
 		SeleccionarNSuelas.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		SeleccionarNSuelas.setBounds(348, 61, 74, 22);
 		getContentPane().add(SeleccionarNSuelas);
@@ -254,13 +257,20 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 
 	}
 
-	private void CargarArrays(ClsGestorLN objGestorIFIA) {
+	/**
+	 * Metodo para obtener los datos de los arrays
+	 * 
+	 */
+	private void CargarArrays() {
 
 		Series = objGestorIFIA.DameSeries();
 		Suelas = objGestorIFIA.DameSuelas();
 
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -290,6 +300,9 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para poner campos vacios
+	 */
 	private void PonerVacio() {
 
 		RecogerNArticulo.setText("");
@@ -300,6 +313,9 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para carga la descripcion de serie
+	 */
 	private void CargarDescripcionSerie() {
 		ItfProperty ObjetoSeleccionado;
 
@@ -312,6 +328,9 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 		}
 	}
 
+	/**
+	 * Metodo para carga la descripcion de suela
+	 */
 	private void CargarDescripcionSuela() {
 		ItfProperty ObjetoSeleccionado;
 
@@ -324,6 +343,9 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 		}
 	}
 
+	/**
+	 * Metodo para comprobar que los valores introducidos son adecuados
+	 */
 	private void Comporobar() {
 
 		boolean comprobado = false;
@@ -362,6 +384,9 @@ public class ClsIFIntroducirArticulos extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para mandar los datos al gestor
+	 */
 	private void MandarAGestor() {
 
 		int NSerie = Integer.parseInt(SeleccionarSerie.getSelectedItem().toString());

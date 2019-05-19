@@ -25,7 +25,9 @@ public class ClsTablaSeries extends AbstractTableModel {
 	Object[][] data;
 
 	/**
+	 * Metodo para crear la tabla
 	 * 
+	 * @param Series recibe parametro
 	 */
 	public ClsTablaSeries(ArrayList<ItfProperty> Series) {
 		super();
@@ -43,7 +45,12 @@ public class ClsTablaSeries extends AbstractTableModel {
 		}
 	}
 
-	public Object[][] setData(ClsGestorLN ObjGestor) {
+	/**
+	 * Metodo para actualizar la tabla
+	 * 
+	 * @param ObjGestor recibe parametro
+	 */
+	public void setData(ClsGestorLN ObjGestor) {
 		SeriesRecuperadas = ObjGestor.DameSeries();
 		int filas = SeriesRecuperadas.size();
 		int cont;
@@ -57,21 +64,32 @@ public class ClsTablaSeries extends AbstractTableModel {
 			cont++;
 		}
 
-		return data;
 	}
 
+	/**
+	 * Metodo para obtener la cantidad de las columnas
+	 */
 	public int getColumnCount() {
 		return NombreColumnas.length;
 	}
 
+	/**
+	 * Metodo para obetener el numero de filas
+	 */
 	public int getRowCount() {
 		return data.length;
 	}
 
+	/**
+	 * Metodo para obtener nombre de las columnas
+	 */
 	public String getColumnName(int col) {
 		return NombreColumnas[col];
 	}
 
+	/**
+	 * metodo para obtener los valores
+	 */
 	public Object getValueAt(int row, int col) {
 		return data[row][col];
 	}

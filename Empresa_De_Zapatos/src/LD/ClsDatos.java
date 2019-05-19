@@ -958,22 +958,22 @@ public class ClsDatos {
 	 * 
 	 * Metodo para insertar desgloses de pedido
 	 * 
-	 * @param NPedidoD                  parametro numero de pedido
-	 * @param Articulos_Referencia      parametro numero de referencia del articulo
-	 * @param Serie                     parametro numero de serie
-	 * @param Color                     parametro numero de color
-	 * @param P5                        parametro cantidad del numero 5
-	 * @param P6                        parametro cantidad del numero 6
-	 * @param P7                        parametro cantidad del numero 7
-	 * @param P8                        parametro cantidad del numero 8
-	 * @param P9                        parametro cantidad del numero 9
-	 * @param P0                        parametro cantidad del numero 0
-	 * @param P1                        parametro cantidad del numero 1
-	 * @param P2                        parametro cantidad del numero 2
-	 * @param P3                        parametro cantidad del numero 3
-	 * @param P4                        parametro cantidad del numero 4
-	 * @param CantidadTotalPies         parametro de cantidad total de numeros.
-	 * @param Pedidos_Clientes_NCliente parametro del numero del cliente.
+	 * @param NPedidoD             parametro numero de pedido
+	 * @param Articulos_Referencia parametro numero de referencia del articulo
+	 * @param Serie                parametro numero de serie
+	 * @param Color                parametro numero de color
+	 * @param P5                   parametro cantidad del numero 5
+	 * @param P6                   parametro cantidad del numero 6
+	 * @param P7                   parametro cantidad del numero 7
+	 * @param P8                   parametro cantidad del numero 8
+	 * @param P9                   parametro cantidad del numero 9
+	 * @param P0                   parametro cantidad del numero 0
+	 * @param P1                   parametro cantidad del numero 1
+	 * @param P2                   parametro cantidad del numero 2
+	 * @param P3                   parametro cantidad del numero 3
+	 * @param P4                   parametro cantidad del numero 4
+	 * @param CantidadTotalPies    parametro de cantidad total de numeros.
+	 * @param Pedidos_NPedido      parametro del numero del cliente.
 	 * @throws SQLException lanza excepcion
 	 */
 	public void InsertarDesglose(int NPedidoD, int Articulos_Referencia, int Serie, int Color, int P5, int P6, int P7,

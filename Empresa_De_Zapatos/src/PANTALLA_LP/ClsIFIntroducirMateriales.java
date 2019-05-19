@@ -146,6 +146,9 @@ public class ClsIFIntroducirMateriales extends JInternalFrame implements ActionL
 
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -163,6 +166,9 @@ public class ClsIFIntroducirMateriales extends JInternalFrame implements ActionL
 
 	}
 
+	/**
+	 * Metodo para comprobar que los valores introducidos son adecuados
+	 */
 	private void Comprobar() {
 
 		boolean comprobado = true;

@@ -78,12 +78,11 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 	 */
 	private final String BUSCAR_BUTTON = "Boton de buscar";
 	private final String EXPORTAR_BUTTON = "Boton de exportar a excel";
-	
 
 	/**
 	 * Constructor
 	 * 
-	 * @param ObjGestor
+	 * @param ObjGestor recibe el gestor
 	 */
 	public ClsPedidosMasDesglose(ClsGestorLN ObjGestor) {
 
@@ -97,6 +96,11 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 		Inicializar(ObjGestor);
 	}
 
+	/**
+	 * Metodo para inicializar objetos
+	 * 
+	 * @param ObjGestor recibimos el gestor
+	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
 		objGestorIFPMD = ObjGestor;
@@ -146,6 +150,9 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Metodo para obtener datos de los arrays
+	 */
 	private void ObtenerDatos() {
 
 		Pedidos = objGestorIFPMD.OrdenarPedidos();
@@ -255,11 +262,13 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Metodo para crear tabla
+	 */
 	private void CrearTabla() {
 
 		TDesgloses = new ClsTablaPedidoMasDesglose(DesglosesEntreFechas);
 		Alinear = new DefaultTableCellRenderer();
-		
 
 		table = new JTable(TDesgloses);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -268,7 +277,6 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 		header.setBackground(Color.black);
 		header.setForeground(Color.black);
 		header.setFont(new Font("Tahoma", Font.BOLD, 13));
-		
 
 		Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 		table.getColumnModel().getColumn(0).setCellRenderer(Alinear);
@@ -299,6 +307,9 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -334,6 +345,9 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Metodo para actualizar tabla
+	 */
 	private void ActualizarTabla() {
 
 		table.setVisible(false);
@@ -359,6 +373,9 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Escuchador de tabla
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent arg0) {
 		int Seleccionado = table.getSelectedRowCount();
@@ -366,7 +383,7 @@ public class ClsPedidosMasDesglose extends JInternalFrame implements ActionListe
 		if (Seleccionado > 0) {
 			BotonExportar.setEnabled(true);
 		}
-		
+
 	}
 
 }

@@ -26,7 +26,9 @@ public class ClsTablaEntregas extends AbstractTableModel {
 	Object[][] data;
 
 	/**
+	 * Metodo para crear la tabla
 	 * 
+	 * @param Pedidos recibe parametro
 	 */
 	public ClsTablaEntregas(ArrayList<ItfProperty> Pedidos) {
 		super();
@@ -56,6 +58,11 @@ public class ClsTablaEntregas extends AbstractTableModel {
 		}
 	}
 
+	/**
+	 * Metodo para actualizar la tabla
+	 * 
+	 * @param Pedidos recibe parametro
+	 */
 	public void setData(ArrayList<ItfProperty> Pedidos) {
 
 		SimpleDateFormat MiFormato = new SimpleDateFormat("dd-MM-yyyy");
@@ -83,18 +90,30 @@ public class ClsTablaEntregas extends AbstractTableModel {
 		}
 	}
 
+	/**
+	 * Metodo para obtener la cantidad de las columnas
+	 */
 	public int getColumnCount() {
 		return NombreColumnas.length;
 	}
 
+	/**
+	 * Metodo para obetener el numero de filas
+	 */
 	public int getRowCount() {
 		return data.length;
 	}
 
+	/**
+	 * Metodo para obtener nombre de las columnas
+	 */
 	public String getColumnName(int col) {
 		return NombreColumnas[col];
 	}
 
+	/**
+	 * metodo para obtener los valores
+	 */
 	public Object getValueAt(int row, int col) {
 		return data[row][col];
 	}

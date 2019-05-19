@@ -117,7 +117,7 @@ public class ClsDesgloseDePedido implements ItfProperty {
 	 * @param numeroDePie3             parametro cantidad del numero 3
 	 * @param numeroDePie4             parametro cantidad del numero 4
 	 * @param cantidadTotal            parametro cantidad total
-	 * @param Pedidos_NPedido_Desglose parametro del numero del cliente.
+	 * @param pedidos_NPedido_Desglose parametro del numero del cliente.
 	 */
 	public ClsDesgloseDePedido(int numeroDePedido, int referenciaDelArticulo, int serie, int color, int numeroDePie5,
 			int numeroDePie6, int numeroDePie7, int numeroDePie8, int numeroDePie9, int numeroDePie0, int numeroDePie1,

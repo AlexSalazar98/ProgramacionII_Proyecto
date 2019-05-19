@@ -45,7 +45,9 @@ public class ClsTablaDesgloses extends AbstractTableModel {
 	Object[][] data;
 
 	/**
+	 * Metodo para crear la tabla
 	 * 
+	 * @param Desgloses recibe parametro
 	 */
 	public ClsTablaDesgloses(ArrayList<ItfProperty> Desgloses) {
 		super();
@@ -77,7 +79,13 @@ public class ClsTablaDesgloses extends AbstractTableModel {
 		}
 	}
 
-	public Object[][] setData(ClsGestorLN ObjGestor) {
+	/**
+	 * Metodo para actualizar la tabla
+	 * 
+	 * @param ObjGestor recibe parametro
+	 * 
+	 */
+	public void setData(ClsGestorLN ObjGestor) {
 		DesglosesRecuperados = ObjGestor.DameDesgloses();
 		int filas = DesglosesRecuperados.size();
 		int cont;
@@ -105,21 +113,32 @@ public class ClsTablaDesgloses extends AbstractTableModel {
 			cont++;
 		}
 
-		return data;
 	}
 
+	/**
+	 * Metodo para obtener la cantidad de las columnas
+	 */
 	public int getColumnCount() {
 		return NombreColumnas.length;
 	}
 
+	/**
+	 * Metodo para obetener el numero de filas
+	 */
 	public int getRowCount() {
 		return data.length;
 	}
 
+	/**
+	 * Metodo para obtener nombre de las columnas
+	 */
 	public String getColumnName(int col) {
 		return NombreColumnas[col];
 	}
 
+	/**
+	 * metodo para obtener los valores
+	 */
 	public Object getValueAt(int row, int col) {
 		return data[row][col];
 	}

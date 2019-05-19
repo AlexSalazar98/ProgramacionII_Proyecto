@@ -146,6 +146,9 @@ public class ClsIFIntroducirHerrajes extends JInternalFrame implements ActionLis
 
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -163,6 +166,9 @@ public class ClsIFIntroducirHerrajes extends JInternalFrame implements ActionLis
 
 	}
 
+	/**
+	 * Metodo para comprobar que los valores introducidos son adecuados
+	 */
 	private void Comprobar() {
 
 		boolean comprobado = true;

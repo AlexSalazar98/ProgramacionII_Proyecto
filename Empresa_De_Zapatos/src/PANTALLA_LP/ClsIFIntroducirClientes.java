@@ -67,7 +67,7 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 	private JTextField RecogerEmail;
 	private JButton BotonConfirmar;
 	private int NCliente;
-	private int  NumTel;
+	private int NumTel;
 	/**
 	 * constante para el boton confirmar
 	 */
@@ -315,6 +315,9 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -357,24 +360,26 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 		}
 	}
 
+	/**
+	 * Metodo para comprobar que los valores introducidos son adecuados
+	 */
 	private void Comporobar() {
 
 		boolean comprobado = true;
 
 		try {
 			NCliente = Integer.parseInt(RecogerNCliente.getText());
-			
+
 		} catch (Exception e) {
 			comprobado = false;
 			JOptionPane.showMessageDialog(null, "Introduce un numero entero en Número de Cliente");
 		}
-		
-		
+
 		if (RecogerTel.getText().equals("")) {
 			NumTel = 0;
 		} else {
 			try {
-				NumTel = Integer.parseInt(RecogerTel.getText());				
+				NumTel = Integer.parseInt(RecogerTel.getText());
 			} catch (Exception e) {
 				comprobado = false;
 				JOptionPane.showMessageDialog(null, "Número de teléfono erroneo");
@@ -394,7 +399,7 @@ public class ClsIFIntroducirClientes extends JInternalFrame implements ActionLis
 
 		/**
 		 * Variables para recoger infor y mandarla al gestor
-		 */		
+		 */
 		String NomYAp = RecogerNYA.getText();
 		String DNI_NIF = RecogerDNINIF.getText();
 		String Provincia = RecogerProvincia.getText();

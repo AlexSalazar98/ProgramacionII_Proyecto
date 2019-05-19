@@ -15,9 +15,10 @@ import java.awt.Color;
 import java.awt.Toolkit;
 
 /**
+ * Pantalla pincipal de la aplicacion
  * 
  * @author Alex Salazar
- * @author David Requeta Pantalla pincipal de la aplicacion
+ * @author David Requeta
  *
  */
 public class ClsVerPantallaPrincipal extends JFrame implements ActionListener {

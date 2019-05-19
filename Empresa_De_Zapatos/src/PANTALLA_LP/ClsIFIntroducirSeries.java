@@ -18,7 +18,6 @@ import javax.swing.JButton;
 import static COMUN.ClsConstantes.PROPIEDAD_SERIES_NUMERO_DE_SERIE;
 import javax.swing.ImageIcon;
 
-
 /**
  * 
  * @author Alex Salazar
@@ -52,7 +51,9 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 	private int NDS;
 
 	/**
-	 * Constuctor
+	 * Constructor
+	 * 
+	 * @param ObjGestor recibe objeto gestor
 	 */
 	public ClsIFIntroducirSeries(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsIFIntroducirSeries.class.getResource("/PANTALLA_LP/DEUSTO.png")));
@@ -69,7 +70,9 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 	}
 
 	/**
-	 * Para inicializar los objetos
+	 * Metodo para inicializar objetos
+	 * 
+	 * @param ObjGestor recibe objeto gesotr
 	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 		NSerie = new JLabel("Numero De Serie:");
@@ -118,6 +121,9 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -133,7 +139,10 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 			break;
 		}
 	}
-	
+
+	/**
+	 * Metodo para comprobar que los valores introducidos son adecuados
+	 */
 	private void Comprobar() {
 
 		boolean comprobado = true;
@@ -144,18 +153,17 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 			comprobado = false;
 			JOptionPane.showMessageDialog(null, "Numero de Serie incorrecto o vacio");
 		}
-		
-		if(Desc.getText().equals("")) {
+
+		if (Desc.getText().equals("")) {
 			comprobado = false;
 			JOptionPane.showMessageDialog(null, "La descripción no puede estar vacia");
 		}
-		
+
 		if (comprobado) {
 			MandarAlGestor();
 			PonerVacio();
 		}
 	}
-
 
 	/**
 	 * Metodo para poner automatico el siguiente ID
@@ -180,7 +188,6 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 	 */
 	private void MandarAlGestor() {
 
-		
 		String Des = Desc.getText();
 		try {
 			if (objGestorIFIS.CrearSerie(NDS, Des)) {
@@ -195,6 +202,9 @@ public class ClsIFIntroducirSeries extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Metodo para poner campos vacios
+	 */
 	private void PonerVacio() {
 
 		INSerie.setText("");

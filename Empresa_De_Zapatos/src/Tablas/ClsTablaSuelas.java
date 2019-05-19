@@ -1,7 +1,5 @@
 package Tablas;
 
-
-
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import static COMUN.ClsConstantes.PROPIEDAD_SUELAS_REFERENCIA;
@@ -18,7 +16,6 @@ import LN.ClsGestorLN;
  *
  */
 public class ClsTablaSuelas extends AbstractTableModel {
-	
 
 	/**
 	 * No se para que sirve esto.
@@ -29,11 +26,13 @@ public class ClsTablaSuelas extends AbstractTableModel {
 	 */
 	ArrayList<ItfProperty> SuelasRecuperadas;
 
-	private String[] NombreColumnas = { "Referencia", "Descripción" , "Precio"};
+	private String[] NombreColumnas = { "Referencia", "Descripción", "Precio" };
 	Object[][] data;
 
 	/**
+	 * Metodo para crear la tabla
 	 * 
+	 * @param Suelas recibe parametro
 	 */
 	public ClsTablaSuelas(ArrayList<ItfProperty> Suelas) {
 		super();
@@ -45,14 +44,18 @@ public class ClsTablaSuelas extends AbstractTableModel {
 
 		for (ItfProperty b : Suelas) {
 			Object[] a = { b.getIntegerProperty(PROPIEDAD_SUELAS_REFERENCIA),
-					b.getStringProperty(PROPIEDAD_SUELAS_DESCRIPCION),
-					b.getDoubleProperty(PROPIEDAD_SUELAS_PRECIO),};
+					b.getStringProperty(PROPIEDAD_SUELAS_DESCRIPCION), b.getDoubleProperty(PROPIEDAD_SUELAS_PRECIO), };
 			data[cont] = a;
 			cont++;
 		}
 	}
 
-	public Object[][] setData(ClsGestorLN ObjGestor) {
+	/**
+	 * Metodo para actualizar la tabla
+	 * 
+	 * @param ObjGestor recibe parametro
+	 */
+	public void setData(ClsGestorLN ObjGestor) {
 		SuelasRecuperadas = ObjGestor.DameSuelas();
 		int filas = SuelasRecuperadas.size();
 		int cont;
@@ -61,27 +64,37 @@ public class ClsTablaSuelas extends AbstractTableModel {
 
 		for (ItfProperty b : SuelasRecuperadas) {
 			Object[] a = { b.getIntegerProperty(PROPIEDAD_SUELAS_REFERENCIA),
-					b.getStringProperty(PROPIEDAD_SUELAS_DESCRIPCION),
-					b.getDoubleProperty(PROPIEDAD_SUELAS_PRECIO),};
+					b.getStringProperty(PROPIEDAD_SUELAS_DESCRIPCION), b.getDoubleProperty(PROPIEDAD_SUELAS_PRECIO), };
 			data[cont] = a;
 			cont++;
 		}
-		
-		return data;
+
 	}
 
+	/**
+	 * Metodo para obtener la cantidad de las columnas
+	 */
 	public int getColumnCount() {
 		return NombreColumnas.length;
 	}
 
+	/**
+	 * Metodo para obetener el numero de filas
+	 */
 	public int getRowCount() {
 		return data.length;
 	}
 
+	/**
+	 * Metodo para obtener nombre de las columnas
+	 */
 	public String getColumnName(int col) {
 		return NombreColumnas[col];
 	}
 
+	/**
+	 * metodo para obtener los valores
+	 */
 	public Object getValueAt(int row, int col) {
 		return data[row][col];
 	}
@@ -114,6 +127,5 @@ public class ClsTablaSuelas extends AbstractTableModel {
 		fireTableCellUpdated(row, col);
 
 	}
-
 
 }

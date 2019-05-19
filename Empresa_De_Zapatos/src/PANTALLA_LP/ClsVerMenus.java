@@ -73,7 +73,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	/**
 	 * Objetos instanciados
 	 */
-	private  ClsPonerFotoPantalla PanelMenuIntrducirDatos;
+	private ClsPonerFotoPantalla PanelMenuIntrducirDatos;
 	private JMenuBar menuBar;
 	private JMenu Actualizar, ConsultarBorrar, Introducir;
 	private JMenuItem ArticulosIntroducir, ClientesIntroducir, DesgloseIntroducir, EnviosIntroducir, HerrajesIntroducir,
@@ -103,9 +103,11 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	private ClsConsultarBorrarHerrajes IntFrameConsultarBorrarHerrajes;
 	private ClsActualizarEntregas IntFrameActualizarEntregas;
 
-
 	/**
 	 * Launch the application.
+	 * 
+	 * @param args      recibe parametro
+	 * @param ObjGestor recibe gestor
 	 */
 	public static void main(String[] args, ClsGestorLN ObjGestor) {
 		EventQueue.invokeLater(new Runnable() {
@@ -124,6 +126,8 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 
 	/**
 	 * Constructor
+	 * 
+	 * @param ObjGestor recibe el gestor
 	 */
 	public ClsVerMenus(ClsGestorLN ObjGestor) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ClsVerMenus.class.getResource("/PANTALLA_LP/DEUSTO.png")));
@@ -134,6 +138,8 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 
 	/**
 	 * Crea los componentes
+	 * 
+	 * @param ObjGestor recibe el gestor
 	 */
 	private void IniciarComponentes(ClsGestorLN ObjGestor) {
 
@@ -142,10 +148,8 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		/**
 		 * Inicializamos panel
 		 */
-		
-		String ruta = "./imagen/Satellite" + random.nextInt(3) + ".png";
 
-		//foto = new ClsPonerFotoPantalla(ruta);
+		String ruta = "./imagen/Satellite" + random.nextInt(3) + ".png";
 
 		PanelMenuIntrducirDatos = new ClsPonerFotoPantalla(ruta);
 
@@ -312,171 +316,11 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 		PedidosDesglose.setActionCommand(INFORMES_PEDIDOS_MAS_DESGLOSES_BUTTON);
 		PanelMenuIntrducirDatos.addComponentListener(null);
 
-		
-
-		//foto.setBounds(0, 39, 1366, 1326);
-		//PanelMenuIntrducirDatos.add(foto);
-		//PanelMenuIntrducirDatos.addComponentListener(null);
-
-		/**
-		 * Inicializamos la barra de menu
-		 */
-
-		/**
-		 * Inicializamos boton de Introducir
-		 */
-
-		/**
-		 * Inicializamos boton de Articulos
-		 */
-		/**
-		 * Añadimos al boton generico
-		 */
-		/**
-		 * Implementamos el escuchador al boton
-		 */
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
-
-		/**
-		 * Separador de botones
-		 */
-
-		/**
-		 * Inicializamos boton de Clientes
-		 */
-		/**
-		 * Añadimos al boton generico
-		 */
-		/**
-		 * Implementamos el escuchador al boton
-		 */
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
-
-		/**
-		 * Separador de botones
-		 */
-
-		/**
-		 * Inicializamos boton de Desglose
-		 */
-		/**
-		 * Añadimos al boton generico
-		 */
-		/**
-		 * Implementamos el escuchador al boton
-		 */
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
-
-		/**
-		 * Separador de botones
-		 */
-
-		/**
-		 * Inicializamos boton de Envios
-		 */
-		/**
-		 * Añadimos al boton generico
-		 */
-		/**
-		 * Implementamos el escuchador al boton
-		 */
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
-
-		/**
-		 * Separador de botones
-		 */
-
-		/**
-		 * Inicializamos boton de Herrajes
-		 */
-		/**
-		 * Añadimos al boton generico
-		 */
-		/**
-		 * Implementamos el escuchador al boton
-		 */
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
-
-		/**
-		 * Separador de botones
-		 */
-
-		/**
-		 * Inicializamos boton de Materiales
-		 */
-		/**
-		 * Añadimos al boton generico
-		 */
-		/**
-		 * Implementamos el escuchador al boton
-		 */
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
-
-		/**
-		 * Separador de botones
-		 */
-
-		/**
-		 * Inicializamos boton de Pedidos
-		 */
-		/**
-		 * Añadimos al boton generico
-		 */
-		/**
-		 * Implementamos el escuchador al boton
-		 */
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
-
-		/**
-		 * Separador de botones
-		 */
-
-		/**
-		 * Inicializamos boton de Series
-		 */
-		/**
-		 * Añadimos al boton generico
-		 */
-		/**
-		 * Implementamos el escuchador al boton
-		 */
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
-
-		/**
-		 * Separador de botones
-		 */
-
-		/**
-		 * Inicializamos boton de Suelas
-		 */
-		/**
-		 * Añadimos al boton generico
-		 */
-		/**
-		 * Implementamos el escuchador al boton
-		 */
-		/**
-		 * Añadimos comando al boton para la escucha
-		 */
-
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -697,7 +541,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * Llamada a InternalFrame para consultar y borrar clientes
+	 * Llamada a InternalFrame para consultar y borrar herrajes
 	 */
 	private void ConsultarBorrarHerrajes() {
 		/**
@@ -722,7 +566,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * Llamada a InternalFrame para consultar y borrar clientes
+	 * Llamada a InternalFrame para consultar y borrar desgloses
 	 */
 	private void ConsultarBorrarDesgloses() {
 		/**
@@ -797,7 +641,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * Llamada a InternalFrame para consultar y borrar suelas
+	 * Llamada a InternalFrame para consultar y borrar articulos
 	 */
 	private void ConsultarBorrarArticulos() {
 		/**
@@ -1169,9 +1013,9 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * Metodo para detectar si InternalFrame Herrajes esta abierto
+	 * Metodo para detectar si InternalFrame Series esta abierto
 	 * 
-	 * @param inter recive el objeto
+	 * @return nos dice si esta o no
 	 */
 	private boolean ComprobarVentanaSeriesAbierta() {
 
@@ -1204,7 +1048,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	/**
 	 * Metodo para detectar si InternalFrame Suelas esta abierto
 	 * 
-	 * @param inter recive el objeto
+	 * @return nos dice si esta o no
 	 */
 	private boolean ComprobarVentanaSuelasAbierta() {
 		boolean mostrar = false;
@@ -1236,7 +1080,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	/**
 	 * Metodo para detectar si InternalFrame Materiales esta abierto
 	 * 
-	 * @param inter recive el objeto
+	 * @return nos dice si esta o no
 	 */
 	private boolean ComprobarVentanaMaterialesAbierta() {
 
@@ -1269,7 +1113,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	/**
 	 * Metodo para detectar si InternalFrame Clientes esta abierto
 	 * 
-	 * @param inter recive el objeto
+	 * @return nos dice si esta o no
 	 */
 	private boolean ComprobarVentanaClientesAbierta() {
 
@@ -1302,7 +1146,7 @@ public class ClsVerMenus extends JFrame implements ActionListener {
 	/**
 	 * Metodo para comprobar si la ventana envios esta abierta
 	 * 
-	 * @return nos devuelve el resultado
+	 * @return nos dice si esta o no
 	 */
 	private boolean ComprobarVentanaEnviosAbierta() {
 

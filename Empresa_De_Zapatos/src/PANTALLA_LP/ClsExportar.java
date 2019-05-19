@@ -38,8 +38,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class ClsExportar {
 
 	/**
-	 * constructor
+	 * Constructor
 	 * 
+	 * @param table parametro recibido
 	 * @throws IOException lanza excepcion
 	 */
 	public ClsExportar(JTable table) throws IOException {

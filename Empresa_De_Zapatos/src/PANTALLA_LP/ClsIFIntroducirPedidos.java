@@ -50,8 +50,7 @@ public class ClsIFIntroducirPedidos extends JInternalFrame implements ActionList
 	private JLabel TxtNPedido, TxtFechaPedido, TxtFechaEntega, TxtNCliente, TxtNombreApellidos;
 	private JTextField RecogerNPedido, RecogerNombreApellidos;
 	private JDateChooser RecogerFechaPedido, RecogerFechaEntrega;
-	@SuppressWarnings("rawtypes")
-	private JComboBox RecogerNumeroCliente;
+	private JComboBox<Integer> RecogerNumeroCliente;
 	private JTable table;
 	JScrollPane JSCClientes;
 	private ArrayList<ItfProperty> Clientes;
@@ -67,6 +66,11 @@ public class ClsIFIntroducirPedidos extends JInternalFrame implements ActionList
 	private final String MOSTRAR_CLINETES_BOTON = "Mostrar tabla con clientes";
 	private final String COMBOBOX_SELECCIONAR = "Seleccionar del combobox";
 
+	/**
+	 * Constructor
+	 * 
+	 * @param objGestor recibe el gestor
+	 */
 	public ClsIFIntroducirPedidos(ClsGestorLN objGestor) {
 		setResizable(false);
 		setMaximizable(false);
@@ -82,7 +86,11 @@ public class ClsIFIntroducirPedidos extends JInternalFrame implements ActionList
 
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	/**
+	 * Metodo para inicializar objetos
+	 * 
+	 * @param objGestor recibe el gestor
+	 */
 	private void Inicializar(ClsGestorLN objGestor) {
 
 		objGestorIFIP = objGestor;
@@ -146,7 +154,7 @@ public class ClsIFIntroducirPedidos extends JInternalFrame implements ActionList
 		TxtNCliente.setBounds(10, 76, 163, 24);
 		getContentPane().add(TxtNCliente);
 
-		RecogerNumeroCliente = new JComboBox();
+		RecogerNumeroCliente = new JComboBox<Integer>();
 		RecogerNumeroCliente.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		RecogerNumeroCliente.setBounds(161, 78, 86, 20);
 		getContentPane().add(RecogerNumeroCliente);
@@ -175,6 +183,9 @@ public class ClsIFIntroducirPedidos extends JInternalFrame implements ActionList
 
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 

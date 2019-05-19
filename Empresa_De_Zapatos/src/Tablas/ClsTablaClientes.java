@@ -23,7 +23,9 @@ public class ClsTablaClientes extends AbstractTableModel {
 	Object[][] data;
 
 	/**
+	 * Metodo para crear la tabla
 	 * 
+	 * @param Clientes recibe parametro
 	 */
 	public ClsTablaClientes(ArrayList<ItfProperty> Clientes) {
 		super();
@@ -44,6 +46,11 @@ public class ClsTablaClientes extends AbstractTableModel {
 		}
 	}
 
+	/**
+	 * Metodo para actualizar la tabla
+	 * 
+	 * @param Clientes recibe parametro
+	 */
 	public void setData(ArrayList<ItfProperty> Clientes) {
 		int filas = Clientes.size();
 		int cont;
@@ -61,18 +68,30 @@ public class ClsTablaClientes extends AbstractTableModel {
 		}
 	}
 
+	/**
+	 * Metodo para obtener la cantidad de las columnas
+	 */
 	public int getColumnCount() {
 		return NombreColumnas.length;
 	}
 
+	/**
+	 * Metodo para obetener el numero de filas
+	 */
 	public int getRowCount() {
 		return data.length;
 	}
 
+	/**
+	 * Metodo para obtener nombre de las columnas
+	 */
 	public String getColumnName(int col) {
 		return NombreColumnas[col];
 	}
 
+	/**
+	 * metodo para obtener los valores
+	 */
 	public Object getValueAt(int row, int col) {
 		return data[row][col];
 	}

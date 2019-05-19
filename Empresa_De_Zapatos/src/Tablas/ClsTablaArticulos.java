@@ -24,12 +24,14 @@ public class ClsTablaArticulos extends AbstractTableModel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String[] NombreColumnas = { "Referencia", "Nº Serie", "Descripcion", "Cantidad Material", "Cantidad Herrajes",
-			"Precio", "Ref. Suela" };
+	private String[] NombreColumnas = { "Referencia", "Nº Serie", "Descripcion", "Cantidad Material",
+			"Cantidad Herrajes", "Precio", "Ref. Suela" };
 	Object[][] data;
 
 	/**
+	 * Metodo para crear la tabla
 	 * 
+	 * @param Articulos recibe parametro
 	 */
 	public ClsTablaArticulos(ArrayList<ItfProperty> Articulos) {
 		super();
@@ -41,8 +43,7 @@ public class ClsTablaArticulos extends AbstractTableModel {
 
 		for (ItfProperty b : Articulos) {
 			Object[] a = { b.getIntegerProperty(PROPIEDAD_ARTICULO_REFERENCIA),
-					b.getIntegerProperty(PROPIEDAD_ARTICULO_SERIE), 
-					b.getStringProperty(PROPIEDAD_ARTICULO_DESCRIPCION),
+					b.getIntegerProperty(PROPIEDAD_ARTICULO_SERIE), b.getStringProperty(PROPIEDAD_ARTICULO_DESCRIPCION),
 					b.getIntegerProperty(PROPIEDAD_ARTICULO_CANTIDAD_DE_MATERIAL),
 					b.getIntegerProperty(PROPIEDAD_ARTICULO_CANTIDAD_DE_HERRAJES),
 					b.getDoubleProperty(PROPIEDAD_ARTICULO_PRECIO),
@@ -52,6 +53,11 @@ public class ClsTablaArticulos extends AbstractTableModel {
 		}
 	}
 
+	/**
+	 * Metodo para actualizar la tabla
+	 * 
+	 * @param Articulos recibe parametro
+	 */
 	public void setData(ArrayList<ItfProperty> Articulos) {
 		int filas = Articulos.size();
 		int cont;
@@ -70,18 +76,30 @@ public class ClsTablaArticulos extends AbstractTableModel {
 		}
 	}
 
+	/**
+	 * Metodo para obtener la cantidad de las columnas
+	 */
 	public int getColumnCount() {
 		return NombreColumnas.length;
 	}
 
+	/**
+	 * Metodo para obetener el numero de filas
+	 */
 	public int getRowCount() {
 		return data.length;
 	}
 
+	/**
+	 * Metodo para obtener nombre de las columnas
+	 */
 	public String getColumnName(int col) {
 		return NombreColumnas[col];
 	}
 
+	/**
+	 * metodo para obtener los valores
+	 */
 	public Object getValueAt(int row, int col) {
 		return data[row][col];
 	}

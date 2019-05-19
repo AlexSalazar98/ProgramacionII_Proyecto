@@ -146,6 +146,9 @@ public class ClsIFIntroducirSuelas extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -163,6 +166,9 @@ public class ClsIFIntroducirSuelas extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Metodo para comprobar que los valores introducidos son adecuados
+	 */
 	private void Comprobar() {
 
 		boolean comprobado = true;

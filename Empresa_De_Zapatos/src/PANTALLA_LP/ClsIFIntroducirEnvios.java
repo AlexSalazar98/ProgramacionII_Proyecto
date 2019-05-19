@@ -53,8 +53,7 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 	private JButton BotonConfirmarEnvio;
 	private JLabel TxtNEnvio;
 	private JTextField RecogerNEnvio;
-	@SuppressWarnings("rawtypes")
-	private JComboBox comboBox;
+	private JComboBox<Integer> comboBox;
 
 	/**
 	 * constantes para el ActionLisener
@@ -90,7 +89,9 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 	private int CPDeEnvio, TelefonoDeEnvio;
 
 	/**
-	 * Constructor.
+	 * Cosntructor
+	 * 
+	 * @param ObjGestor recibe el gestors
 	 */
 	public ClsIFIntroducirEnvios(ClsGestorLN ObjGestor) {
 		setFrameIcon(new ImageIcon(ClsIFIntroducirEnvios.class.getResource("/PANTALLA_LP/DEUSTO.png")));
@@ -107,7 +108,11 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 		ObtenerUltimoID();
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	/**
+	 * Metodo para inicializar objetos
+	 * 
+	 * @param ObjGestor recibe el gestor
+	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
 		objGestorIFIE = ObjGestor;
@@ -147,7 +152,7 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 		TxtNCliente.setBounds(20, 59, 123, 25);
 		getContentPane().add(TxtNCliente);
 
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<Integer>();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		comboBox.setBounds(172, 62, 86, 22);
 		getContentPane().add(comboBox);
@@ -269,6 +274,9 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -307,6 +315,9 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Metodo para comprobar que los valores introducidos son adecuados
+	 */
 	private boolean Comprobar() {
 
 		boolean comprobar = true;
@@ -387,14 +398,6 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 	}
 
 	/**
-	 * Metodo para cargar los valores en los campos
-	 */
-	// private void CargarDatos() {
-
-	// Clientes = objGestorIFIE.DameClientes();
-	// }
-
-	/**
 	 * Metodo para obtener el nombre del Cliente seleccionado
 	 */
 	private void CargarNombreCliente() {
@@ -473,6 +476,11 @@ public class ClsIFIntroducirEnvios extends JInternalFrame implements ActionListe
 
 	}
 
+	/**
+	 * Metodo para comprobar que campos obligatorios no queden vacios
+	 * 
+	 * @return nos dice si estan vacios o no
+	 */
 	private boolean ComprobarCamposVacios() {
 
 		boolean comprobar = true;

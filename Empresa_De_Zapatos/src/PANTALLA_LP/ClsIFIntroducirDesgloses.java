@@ -51,8 +51,7 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 			RecogerP0, RecogerP1, RecogerP2, RecogerP3, RecogerP4;
 	private JPanel General, Cantidades, Articulos;
 	private JButton BotonConfirmar;
-	@SuppressWarnings({ "rawtypes" })
-	private JComboBox RecogerNPedido, RecogerRefArt, RecogerNSerie;
+	private JComboBox<Integer> RecogerNPedido, RecogerRefArt, RecogerNSerie;
 	private JSplitPane SeriesPedidos;
 	private JScrollPane PanelPedidos, PanelArticulos, PanelSeries;
 	private JTable TablaSeries, TablaArticulos, TablaPedidos;
@@ -76,6 +75,8 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 
 	/**
 	 * Constructor
+	 * 
+	 * @param ObjGestor recibe el gestor
 	 */
 	public ClsIFIntroducirDesgloses(ClsGestorLN ObjGestor) {
 		setTitle("Introducir Desgloses");
@@ -89,7 +90,11 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 		ObtenerUltimoID();
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	/**
+	 * Metodo para inicializar objetos
+	 * 
+	 * @param ObjGestor recibe el gestor
+	 */
 	private void Inicializar(ClsGestorLN ObjGestor) {
 
 		objGestorIFIDes = ObjGestor;
@@ -135,7 +140,7 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 		TxtNPedido.setBounds(10, 57, 146, 19);
 		General.add(TxtNPedido);
 
-		RecogerNPedido = new JComboBox();
+		RecogerNPedido = new JComboBox<Integer>();
 		RecogerNPedido.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		RecogerNPedido.setBounds(166, 57, 49, 22);
 		General.add(RecogerNPedido);
@@ -146,7 +151,7 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 		TxtRefArt.setBounds(10, 105, 177, 19);
 		General.add(TxtRefArt);
 
-		RecogerRefArt = new JComboBox();
+		RecogerRefArt = new JComboBox<Integer>();
 		RecogerRefArt.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		RecogerRefArt.setBounds(197, 105, 49, 22);
 		General.add(RecogerRefArt);
@@ -157,7 +162,7 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 		TxtNSerie.setBounds(270, 109, 130, 15);
 		General.add(TxtNSerie);
 
-		RecogerNSerie = new JComboBox();
+		RecogerNSerie = new JComboBox<Integer>();
 		RecogerNSerie.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		RecogerNSerie.setBounds(410, 105, 49, 22);
 		General.add(RecogerNSerie);
@@ -368,6 +373,9 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para crear tabla
+	 */
 	private void CrearTablaPedidos() {
 
 		ClsTablaPedidos TPedidos = new ClsTablaPedidos(Pedidos);
@@ -398,6 +406,9 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 		TPedidos.setData(Pedidos);
 	}
 
+	/**
+	 * Metodo para crear tabla
+	 */
 	private void CrearTablaArticulos() {
 
 		ClsTablaArticulos TArticulos = new ClsTablaArticulos(ArticulosT);
@@ -435,6 +446,9 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 		Articulos.add(TxtArticulos);
 	}
 
+	/**
+	 * Metodo para crear tabla
+	 */
 	private void CrearTablaSeries() {
 
 		ClsTablaSeries TSeries = new ClsTablaSeries(Series);
@@ -461,6 +475,9 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 		TSeries.setData(objGestorIFIDes);
 	}
 
+	/**
+	 * Escuchador
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -476,6 +493,9 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para comprobar que los valores introducidos son adecuados
+	 */
 	private void Comporobar() {
 
 		boolean comprobado = true;
@@ -603,6 +623,9 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para poner campos vacios
+	 */
 	private void PonerVacio() {
 
 		RecogerNColor.setText("");
@@ -619,6 +642,9 @@ public class ClsIFIntroducirDesgloses extends JInternalFrame implements ActionLi
 
 	}
 
+	/**
+	 * Metodo para mandar los datos al gestor
+	 */
 	private void MandarAGestor() {
 
 		int NumeroDePedido = Integer.parseInt(RecogerNDesglose.getText());
