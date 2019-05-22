@@ -41,6 +41,15 @@ public class ClsPonerFotoPantalla extends JDesktopPane {
 		}
 
 	}
+	
+//CERRO 22.05.2109
+//	public ClsPonerFotoPantalla(String path) {
+//		imagenEscalada =ClsUtilidades.getImage(path);
+//		
+//		//imagenEscalada = imagen.getScaledInstance(1366, 710, Image.SCALE_SMOOTH);
+//	
+//	}
+	
 
 	/**
 	 * Escuchador para pintar la pantalla
